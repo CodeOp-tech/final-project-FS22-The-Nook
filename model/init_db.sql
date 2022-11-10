@@ -12,8 +12,8 @@ SET foreign_key_checks = 1;
 CREATE TABLE `users`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `username` VARCHAR(255) NOT NULL,
-    `email` INT NOT NULL,
-    `password` INT NOT NULL
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE `books`(
@@ -27,8 +27,8 @@ CREATE TABLE `users_books`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `user_id` INT UNSIGNED NOT NULL,
     `book_id` INT UNSIGNED NOT NULL,
-    `rating` INT NOT NULL,
-    `comment` VARCHAR(255) NOT NULL,
+    `rating` INT NULL,
+    `comment` VARCHAR(255) NULL,
     `date_read` DATE NULL,
     `favorite` TINYINT(1) NOT NULL
 );
@@ -65,3 +65,23 @@ ALTER TABLE
     `users_clubs` ADD CONSTRAINT `users_clubs_clubs_id_foreign` FOREIGN KEY(`clubs_id`) REFERENCES `clubs`(`id`);
 ALTER TABLE
     `books_clubs` ADD CONSTRAINT `books_clubs_club_id_foreign` FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`);
+
+
+
+INSERT INTO users (username, email, password)
+    VALUES ('johndoe', 'johndoe@example.com', 'password1'), ('janedoe', 'janedoe@example.com', 'password2');
+
+INSERT INTO books (title, author, image)
+    VALUES ("La Divina Commedia", "Dante Alighieri", "https://m.media-amazon.com/images/I/51v2k7bvlUL.jpg"), ("Don Quijote de la Mancha", "Miguel Cervantes", "https://imagenes.elpais.com/resizer/ny6-0RsNhSHBhQyWmel5nDGK3Wk=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/7BN7MROFVTFLCFQ2FXZPUC3Y3E.jpg");
+
+INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
+    VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0), (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
+
+INSERT INTO clubs (name, category)
+    VALUES ("International classics", "classics"), ("Into the future", "sci-fi");
+
+INSERT INTO books_clubs (book_id, club_id, date)
+    VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");
+
+INSERT INTO users_clubs (clubs_id, users_id, admin)
+    VALUES (1, 1, 0), (1, 2, 1), (2, 1, 1);
