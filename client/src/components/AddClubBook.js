@@ -31,7 +31,7 @@ function AddClubBook(props) {
         let bookObj = {
           author: results.docs[0].author_name[0],
           title: results.docs[0].title,
-          imageUrl: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
+          image: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
         };
         setBookToAdd(bookObj);
       } else {
@@ -44,7 +44,7 @@ function AddClubBook(props) {
 
   return (
     <div className="AddClubBook">
-      <h1>Add a Book by Title</h1>
+      <h3>Add a Book by Title</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
