@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function AddClubBook(props) {
-  const [bookToAdd, setBookToAdd] = useState({});
+  const [bookToPost, setBookToPost] = useState({});
   const [searchTitle, setSearchTitle] = useState("");
   const [error, setError] = useState("");
 
@@ -9,19 +9,7 @@ function AddClubBook(props) {
     setSearchTitle(event.target.value);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    getBook(searchTitle);
-    // addBookCb(bookToAdd);
-    setSearchTitle("");
-  }
-
-  //TO BE MOVED TO APP.JS
-  function addBook(bookToAdd) {}
-
   async function getBook(searchTitle) {
-    // setError("");
-
     let url = `http://openlibrary.org/search.json?title=${searchTitle}`;
 
     try {
@@ -33,7 +21,8 @@ function AddClubBook(props) {
           title: results.docs[0].title,
           image: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
         };
-        setBookToAdd(bookObj);
+        setBookToPost(bookObj);
+        postBook(bookObj);
       } else {
         setError(`Server error: ${response.status}: ${response.statusText}`);
       }
@@ -41,6 +30,35 @@ function AddClubBook(props) {
       setError(`Network error: ${err.message}`);
     }
   }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    getBook(searchTitle);
+    // console.log("after getBook", bookToPost);
+    // postBook(bookToPost);
+    // console.log("after bookToPost");
+    setSearchTitle("");
+    setError("");
+  }
+
+  const postBook = (book) => {
+    let postOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(book),
+    };
+    console.log(book);
+    console.log(JSON.stringify(book));
+    console.log("postOptions", postOptions);
+    fetch("/books", postOptions)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("json", json);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className="AddClubBook">
@@ -61,9 +79,10 @@ function AddClubBook(props) {
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Submit
+          Add
         </button>
       </form>
+      <h3>Your Club's Next Book:</h3>
     </div>
   );
 }

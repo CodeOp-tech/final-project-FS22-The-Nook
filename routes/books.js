@@ -39,6 +39,7 @@ router.get("/:id", async function (req, res, next) {
  **/
 
 router.post("/", async function (req, res, next) {
+  console.log("here");
   let sql = `INSERT INTO books (title, author, image)
   VALUES ('${req.body.title}', '${req.body.author}', '${req.body.image}'); SELECT LAST_INSERT_ID();`;
 
