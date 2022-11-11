@@ -43,11 +43,11 @@ router.post("/", async function (req, res, next) {
   VALUES ('${req.body.title}', '${req.body.author}', '${req.body.image}'); SELECT LAST_INSERT_ID();`;
 
   try {
-    await db(sql);
-    let results = await db(`SELECT * FROM books`);
-    let book = results.data[results.data.length - 1];
-    console.log(results);
-    res.send(book);
+    let idResult = await db(sql);
+    let results = await db(
+      `SELECT * FROM books WHERE id = ${idResult.data[0].insertId}`
+    );
+    res.send(results.data[0]);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
