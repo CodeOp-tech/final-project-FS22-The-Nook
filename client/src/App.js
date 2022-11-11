@@ -5,6 +5,8 @@ import NavBar from './components/NavBar';
 import PrivateRoute from './components/PrivateRoute';
 import ErrorView from './views/ErrorView';
 import ProfileView from './views/ProfileView';
+import AllClubsView from './views/AllClubs';
+import AllBooksView from './views/AllBooksView';
 
 
 
@@ -19,11 +21,15 @@ function App() {
                 <Routes>
                   
                     <Route path="/" element={<h1>Home</h1>} />
+
+                    <Route path="/clubs" element={<AllClubsView />} />
+
+                    <Route path="/books" element={<AllBooksView />} />
                 
-                    <Route path="/users/:userId" element={
-                        <PrivateRoute>
+                    <Route path="/profile" element={
+                       
                             <ProfileView />
-                        </PrivateRoute>
+                        
                     } />
                     
                     <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
