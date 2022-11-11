@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar';
+import PrivateRoute from './components/PrivateRoute';
+import ErrorView from './views/ErrorView';
+import ProfileView from './views/ProfileView';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    
+
+    return (
+        <div className="App">
+            <NavBar/>
+
+            <div className="container">
+                <Routes>
+                  
+                    <Route path="/" element={<h1>Home</h1>} />
+                
+                    <Route path="/users/:userId" element={
+                        <PrivateRoute>
+                            <ProfileView />
+                        </PrivateRoute>
+                    } />
+                    
+                    <Route path="*" element={<ErrorView code="404" text="Page not found" />} />
+                </Routes>
+                
+            </div>
+          
+        </div>
+    );
 }
+
 
 export default App;
