@@ -1,19 +1,18 @@
-import React from "react";
-import "./HomeView.css";
+import React, { useState } from "react";
 
 function AddClubBook(props) {
   const [bookToAdd, setBookToAdd] = useState({});
   const [searchTitle, setSearchTitle] = useState("");
+  const [error, setError] = useState("");
 
   function handleChange(event) {
-    const value = event.target.value;
-    const name = event.target.name;
+    setSearchTitle(event.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     getBook(searchTitle);
-    addBookCb(bookToAdd);
+    // addBookCb(bookToAdd);
     setSearchTitle("");
   }
 
@@ -48,14 +47,14 @@ function AddClubBook(props) {
       <h1>Add a Book by Title</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
-            Password
+          <label htmlFor="title" className="form-label">
+            Title
           </label>
           <input
-            type="test"
+            type="text"
             className="form-control"
             id="titleInput"
-            name="title"
+            name="search-title"
             value={searchTitle}
             onChange={(e) => handleChange(e)}
           />
