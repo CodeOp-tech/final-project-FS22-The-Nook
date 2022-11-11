@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomeView.css";
 
-function AddBookComponent(props) {
+function AddClubBook(props) {
   const [bookToAdd, setBookToAdd] = useState({});
   const [searchTitle, setSearchTitle] = useState("");
 
@@ -44,7 +44,7 @@ function AddBookComponent(props) {
   }
 
   return (
-    <div className="BookSearchView">
+    <div className="AddClubBook">
       <h1>Add a Book by Title</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -69,4 +69,4 @@ function AddBookComponent(props) {
   );
 }
 
-export default BookSearchView;
+export default AddClubBook;
