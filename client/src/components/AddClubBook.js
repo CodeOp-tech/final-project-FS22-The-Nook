@@ -34,9 +34,6 @@ function AddClubBook(props) {
   function handleSubmit(e) {
     e.preventDefault();
     getBook(searchTitle);
-    // console.log("after getBook", bookToPost);
-    // postBook(bookToPost);
-    // console.log("after bookToPost");
     setSearchTitle("");
     setError("");
   }
@@ -47,14 +44,9 @@ function AddClubBook(props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(book),
     };
-    console.log(book);
-    console.log(JSON.stringify(book));
-    console.log("postOptions", postOptions);
+
     fetch("/books", postOptions)
       .then((res) => res.json())
-      .then((json) => {
-        console.log("json", json);
-      })
       .catch((error) => {
         console.log(error.message);
       });
