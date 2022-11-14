@@ -31,6 +31,7 @@ function AddClubBook(props) {
           title: results.docs[0].title,
           image: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
           date: formData.date,
+          club_id: 1, // TODO: change from hard-coded value once connected to club
         };
         setBookToPost(bookObj);
         postBook(bookObj);
