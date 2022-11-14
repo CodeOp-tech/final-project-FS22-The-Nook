@@ -10,6 +10,7 @@ import ProfileView from "./views/ProfileView";
 import EditProfileView from "./views/EditProfileView";
 
 import AllBooksView from "./views/AllBooksView";
+
 import HomeView from './views/HomeView';
 
 import ClubAdminView from "./views/ClubAdminView";
@@ -71,7 +72,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<HomeView />} />
+          <Route path="/" element={<h1>HomeView</h1>} />
 
           <Route path="/books" element={<AllBooksView />} />
 
@@ -108,7 +109,7 @@ function App() {
             element={<ErrorView code="404" text="Page not found" />}
           />
           
-          <Route path="/clubs" element={<ClubSearchView />} />
+          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)}/>} />
         </Routes>
       </div>
     </div>
