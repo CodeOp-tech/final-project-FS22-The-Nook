@@ -9,6 +9,7 @@ import ProfileView from './views/ProfileView';
 import AllClubsView from './views/AllClubs';
 import AllBooksView from './views/AllBooksView';
 import ClubAdminView from "./views/ClubAdminView";
+import ClubView from "./views/ClubView";
 
 
 import Local from "./helpers/Local";
@@ -70,8 +71,11 @@ function App() {
         <Route path="club-admin" element={<ClubAdminView />} />
         <Route
           path="*"
-          element={<ErrorView code="404" text="Page not found" />}
-        />
+          element={<ErrorView code="404" text="Page not found" />} />
+        
+        <Route path="clubs" element={<ClubView />} />
+       
+
       </Routes>
       </div>
     </div>
