@@ -9,12 +9,9 @@ const EMPTY_FORM = {
 };
 
 function AddClubBook(props) {
-  const [bookToPost, setBookToPost] = useState({});
+  const [bookImage, setBookImage] = useState({});
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [error, setError] = useState("");
-
-  const GOOGLE_BOOKS_API_KEY = "AIzaSyCHigh0Hpb_cmfcO1IpRKaCPCki7A4cC3M"; //TODO - connect .env file to obscure key
-  console.log("booktopost", bookToPost);
 
   function handleChange(event) {
     const value = event.target.value;
@@ -26,40 +23,19 @@ function AddClubBook(props) {
     }));
   }
 
-  async function getBook(formData) {
-    let title = formData.title.replaceAll(" ", "+");
-    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${GOOGLE_BOOKS_API_KEY}`;
-
-    try {
-      let response = await fetch(url);
-      if (response.ok) {
-        let results = await response.json(); //converts JSON to JS
-        let bookObj = {
-          author: results.items[1].volumeInfo.authors[0],
-          title: results.items[1].volumeInfo.title,
-          image: results.items[1].volumeInfo.imageLinks.thumbnail,
-          date: formData.date,
-          club_id: 1, // TODO: change from hard-coded value once connected to club
-        };
-        setBookToPost(bookObj);
-        postBook(bookObj);
-      } else {
-        setError(`Server error: ${response.status}: ${response.statusText}`);
-      }
-    } catch (err) {
-      setError(`Network error: ${err.message}`);
-    }
-  }
-
-  const postBook = (book) => {
+  const postBook = (formData) => {
     let postOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(book),
+      body: JSON.stringify(formData),
     };
 
     fetch("/books", postOptions)
       .then((res) => res.json())
+      .then((json) => {
+        setBookImage(json);
+        console.log("json", json);
+      })
       .catch((error) => {
         console.log(error.message);
       });
@@ -67,9 +43,8 @@ function AddClubBook(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    getBook(formData);
+    postBook(formData);
     setError("");
-    setBookToPost({});
     setFormData(EMPTY_FORM);
   }
 
@@ -110,7 +85,7 @@ function AddClubBook(props) {
         </button>
       </form>
       <h3>Your Club's Next Book:</h3>
-      {bookToPost ? <img src={bookToPost.image} /> : null}
+      {bookImage ? <img src={bookImage.image} /> : null}
     </div>
   );
 }
