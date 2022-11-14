@@ -35,7 +35,7 @@ function NavBar(props) {
               </li>
               {props.user? 
               <li className="nav-item">
-              <NavLink className="nav-link" to={`/profile`}>
+              <NavLink className="nav-link" to="/profile">
                 Profile
               </NavLink>
             </li> : null
