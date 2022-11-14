@@ -6,7 +6,6 @@ import NavBar from './components/NavBar';
 import PrivateRoute from './components/PrivateRoute';
 import ErrorView from './views/ErrorView';
 import ProfileView from './views/ProfileView';
-import AllClubsView from './views/AllClubs';
 import AllBooksView from './views/AllBooksView';
 import ClubAdminView from "./views/ClubAdminView";
 import LoginView from "./views/LoginView";
@@ -53,10 +52,6 @@ function App() {
           doLogin(newUser.username, newUser.password)
         }
       })
-          // res.json()
-          // .then((json)=> {
-          //   props.setData(json)
-          //})})
         .catch(error => {
           console.log(`Server error: ${error.message}`)
         })
@@ -69,8 +64,6 @@ function App() {
   `       <div className="container">
       <Routes>
         <Route path="/" element={<h1>Home</h1>} />
-
-        <Route path="/clubs" element={<AllClubsView />} />
 
          <Route path="/books" element={<AllBooksView />} />
                 
