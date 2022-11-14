@@ -1,36 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Api from '../helpers/Api';
+import React from "react";
 
 
-function ProfileView(props) {
-    const [user, setUser] = useState(null);
-    const [errorMsg, setErrorMsg] = useState('');
-    let { userId } = useParams();
-
-    useEffect(() => {
-        fetchProfile();
-    }, []);
-
-    async function fetchProfile() {
-        let myresponse = await Api.getUser(userId);
-        if (myresponse.ok) {
-            setUser(myresponse.data);
-            setErrorMsg('');
-        } else {
-            setUser(null);
-            let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-            setErrorMsg(msg);
-        }
-    }
-
-    if (errorMsg) {
-        return <h2 style={{ color: 'red' }}>{errorMsg}</h2>
-    }
-
-    if (!user) {
-        return <h2>Loading...</h2>;
-    }
+function ProfileView() {
+ 
 
     return (
         <div className="ProfileView">
@@ -38,9 +10,14 @@ function ProfileView(props) {
 
             <div className="UserInfo">
                 <h2>Personal Info</h2>
-            ID: {user.id}<br />
-            Username: {user.username}<br />
-            Email: {user.email}
+            ID: 
+           
+            <br />
+            Username:
+
+            <br />
+            Email:
+        
             </div>
 
             <div className="JoinedClubs">
