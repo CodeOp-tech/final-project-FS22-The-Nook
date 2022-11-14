@@ -9,13 +9,14 @@ import ProfileView from './views/ProfileView';
 import AllClubsView from './views/AllClubs';
 import AllBooksView from './views/AllBooksView';
 import ClubAdminView from "./views/ClubAdminView";
+import LoginView from "./views/LoginView";
+import RegisterView from "./views/RegisterView";
 import ClubView from "./views/ClubView";
 
 
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
-import LoginView from "./views/LoginView";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -39,10 +40,32 @@ function App() {
     setUser(null);
   }
 
+  function registerUser(newUser){
+      fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({username: newUser.username, email: newUser.email, password: newUser.password})
+      })
+      .then((res) => {
+        if(res.ok){
+          doLogin(newUser.username, newUser.password)
+        }
+      })
+          // res.json()
+          // .then((json)=> {
+          //   props.setData(json)
+          //})})
+        .catch(error => {
+          console.log(`Server error: ${error.message}`)
+        })
+  }
+
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={user} logoutCb={doLogout} />
   `       <div className="container">
       <Routes>
         <Route path="/" element={<h1>Home</h1>} />
@@ -58,6 +81,13 @@ function App() {
               loginCb={(u, p) => doLogin(u, p)}
               loginError={loginErrorMsg}
             />
+          }
+        />
+
+        <Route
+          path="/register"
+          element={
+            <RegisterView registerUser={newUser => registerUser(newUser)}/>
           }
         />
         <Route
