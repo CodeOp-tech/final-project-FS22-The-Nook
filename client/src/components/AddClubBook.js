@@ -5,6 +5,8 @@ function AddClubBook(props) {
   const [searchTitle, setSearchTitle] = useState("");
   const [error, setError] = useState("");
 
+  console.log(bookToPost);
+
   function handleChange(event) {
     setSearchTitle(event.target.value);
   }
@@ -75,6 +77,7 @@ function AddClubBook(props) {
         </button>
       </form>
       <h3>Your Club's Next Book:</h3>
+      {bookToPost ? <img src={bookToPost.image} /> : null}
     </div>
   );
 }
