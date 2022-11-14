@@ -1,0 +1,15 @@
+.Navbar li {
+  display: inline-block;
+  list-style: none;
+  padding: 20px;
+} 
+
+.d-flex {
+  margin-left: 20px !important;
+}
+
+/* .navbar-nav {
+  display: inline;
+  text-align: right;
+  margin-left: 700px;
+} */
