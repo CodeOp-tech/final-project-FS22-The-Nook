@@ -33,12 +33,13 @@ function NavBar(props) {
                 Books
               </NavLink>
               </li>
-
+              {props.user? 
               <li className="nav-item">
               <NavLink className="nav-link" to={`/profile`}>
                 Profile
               </NavLink>
-            </li>
+            </li> : null
+            }
           </ul>
 
           
