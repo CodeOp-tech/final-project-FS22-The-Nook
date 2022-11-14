@@ -1,56 +1,52 @@
 import React, { useState } from "react";
 
+const EMPTY_FORM = {
+  author: "",
+  title: "",
+  image: "",
+  date: "",
+  club_id: null,
+};
+
 function AddClubBook(props) {
-  const [bookToPost, setBookToPost] = useState({});
-  const [searchTitle, setSearchTitle] = useState("");
+  const [bookImage, setBookImage] = useState({});
+  const [formData, setFormData] = useState(EMPTY_FORM);
   const [error, setError] = useState("");
 
   function handleChange(event) {
-    setSearchTitle(event.target.value);
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setFormData((state) => ({
+      ...state,
+      [name]: value,
+    }));
   }
 
-  async function getBook(searchTitle) {
-    let url = `http://openlibrary.org/search.json?title=${searchTitle}`;
-
-    try {
-      let response = await fetch(url);
-      if (response.ok) {
-        let results = await response.json(); //converts JSON to JS
-        let bookObj = {
-          author: results.docs[0].author_name[0],
-          title: results.docs[0].title,
-          image: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
-        };
-        setBookToPost(bookObj);
-        postBook(bookObj);
-      } else {
-        setError(`Server error: ${response.status}: ${response.statusText}`);
-      }
-    } catch (err) {
-      setError(`Network error: ${err.message}`);
-    }
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    getBook(searchTitle);
-    setSearchTitle("");
-    setError("");
-  }
-
-  const postBook = (book) => {
+  const postBook = (formData) => {
     let postOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(book),
+      body: JSON.stringify(formData),
     };
 
     fetch("/books", postOptions)
       .then((res) => res.json())
+      .then((json) => {
+        setBookImage(json);
+        console.log("json", json);
+      })
       .catch((error) => {
         console.log(error.message);
       });
   };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    postBook(formData);
+    setError("");
+    setFormData(EMPTY_FORM);
+  }
 
   return (
     <div className="AddClubBook">
@@ -64,8 +60,22 @@ function AddClubBook(props) {
             type="text"
             className="form-control"
             id="titleInput"
-            name="search-title"
-            value={searchTitle}
+            name="title"
+            value={formData.title}
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
+            When should the book be read by?
+          </label>
+          <input
+            className="form-control"
+            value={formData.date}
+            id="read-by-date"
+            name="date"
+            type="date"
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -75,6 +85,7 @@ function AddClubBook(props) {
         </button>
       </form>
       <h3>Your Club's Next Book:</h3>
+      {bookImage ? <img src={bookImage.image} /> : null}
     </div>
   );
 }
