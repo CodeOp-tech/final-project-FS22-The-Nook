@@ -6,6 +6,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import ErrorView from "./views/ErrorView";
 import ProfileView from "./views/ProfileView";
 import ClubAdminView from "./views/ClubAdminView";
+import ClubView from "./views/ClubView";
 
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
@@ -61,8 +62,11 @@ function App() {
         <Route path="club-admin" element={<ClubAdminView />} />
         <Route
           path="*"
-          element={<ErrorView code="404" text="Page not found" />}
-        />
+          element={<ErrorView code="404" text="Page not found" />} />
+        
+        <Route path="clubs" element={<ClubView />} />
+       
+
       </Routes>
     </div>
   );

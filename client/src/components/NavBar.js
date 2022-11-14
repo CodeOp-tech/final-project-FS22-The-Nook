@@ -18,6 +18,14 @@ function NavBar(props) {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/">Home</NavLink>
                         </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="club-admin">Club Admin</NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="clubs">Clubs</NavLink>
+                        </li>
                        
                     </ul>
                 </div>
