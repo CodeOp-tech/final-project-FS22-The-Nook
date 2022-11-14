@@ -40,7 +40,7 @@ router.get("/:id", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   let sql = `INSERT INTO books (title, author, image)
-  VALUES ('${req.body.title}', '${req.body.author}', '${req.body.image}'); SELECT LAST_INSERT_ID();`;
+  VALUES ("${req.body.title}", "${req.body.author}", "${req.body.image}"); SELECT LAST_INSERT_ID();`;
 
   try {
     let idResult = await db(sql);

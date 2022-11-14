@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 
+const EMPTY_FORM = {
+  author: "",
+  title: "",
+  image: "",
+  date: "",
+  club_id: null,
+};
+
 function AddClubBook(props) {
   const [bookToPost, setBookToPost] = useState({});
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(EMPTY_FORM);
   const [error, setError] = useState("");
 
-  // console.log(bookToPost);
-
-  console.log("formData", formData);
+  const GOOGLE_BOOKS_API_KEY = "AIzaSyCHigh0Hpb_cmfcO1IpRKaCPCki7A4cC3M"; //TODO - connect .env file to obscure key
+  console.log("booktopost", bookToPost);
 
   function handleChange(event) {
     const value = event.target.value;
@@ -20,16 +27,17 @@ function AddClubBook(props) {
   }
 
   async function getBook(formData) {
-    let url = `http://openlibrary.org/search.json?title=${formData.title}`;
+    let title = formData.title.replaceAll(" ", "+");
+    let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${GOOGLE_BOOKS_API_KEY}`;
 
     try {
       let response = await fetch(url);
       if (response.ok) {
         let results = await response.json(); //converts JSON to JS
         let bookObj = {
-          author: results.docs[0].author_name[0],
-          title: results.docs[0].title,
-          image: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
+          author: results.items[1].volumeInfo.authors[0],
+          title: results.items[1].volumeInfo.title,
+          image: results.items[1].volumeInfo.imageLinks.thumbnail,
           date: formData.date,
           club_id: 1, // TODO: change from hard-coded value once connected to club
         };
@@ -41,13 +49,6 @@ function AddClubBook(props) {
     } catch (err) {
       setError(`Network error: ${err.message}`);
     }
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    getBook(formData);
-    setFormData({});
-    setError("");
   }
 
   const postBook = (book) => {
@@ -63,6 +64,14 @@ function AddClubBook(props) {
         console.log(error.message);
       });
   };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    getBook(formData);
+    setError("");
+    setBookToPost({});
+    setFormData(EMPTY_FORM);
+  }
 
   return (
     <div className="AddClubBook">
