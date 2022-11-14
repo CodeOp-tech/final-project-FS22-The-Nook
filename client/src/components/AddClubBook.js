@@ -2,17 +2,25 @@ import React, { useState } from "react";
 
 function AddClubBook(props) {
   const [bookToPost, setBookToPost] = useState({});
-  const [searchTitle, setSearchTitle] = useState("");
+  const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
 
-  console.log(bookToPost);
+  // console.log(bookToPost);
+
+  console.log("formData", formData);
 
   function handleChange(event) {
-    setSearchTitle(event.target.value);
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setFormData((state) => ({
+      ...state,
+      [name]: value,
+    }));
   }
 
-  async function getBook(searchTitle) {
-    let url = `http://openlibrary.org/search.json?title=${searchTitle}`;
+  async function getBook(formData) {
+    let url = `http://openlibrary.org/search.json?title=${formData.title}`;
 
     try {
       let response = await fetch(url);
@@ -22,6 +30,7 @@ function AddClubBook(props) {
           author: results.docs[0].author_name[0],
           title: results.docs[0].title,
           image: `https://covers.openlibrary.org/b/id/${results.docs[0].cover_i}-L.jpg`,
+          date: formData.date,
         };
         setBookToPost(bookObj);
         postBook(bookObj);
@@ -35,8 +44,8 @@ function AddClubBook(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    getBook(searchTitle);
-    setSearchTitle("");
+    getBook(formData);
+    setFormData({});
     setError("");
   }
 
@@ -66,8 +75,22 @@ function AddClubBook(props) {
             type="text"
             className="form-control"
             id="titleInput"
-            name="search-title"
-            value={searchTitle}
+            name="title"
+            value={formData.title}
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
+            When should the book be read by?
+          </label>
+          <input
+            className="form-control"
+            value={formData.date}
+            id="read-by-date"
+            name="date"
+            type="date"
             onChange={(e) => handleChange(e)}
           />
         </div>

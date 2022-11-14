@@ -35,16 +35,18 @@ router.get("/:id", async function (req, res, next) {
 });
 
 /**
- * Add one book.
+ * Add one book to a club's book list.
  **/
 
-router.post("/", async function (req, res, next) {
-  console.log("here");
+router.post("/:id", async function (req, res, next) {
   let sql = `INSERT INTO books (title, author, image)
   VALUES ('${req.body.title}', '${req.body.author}', '${req.body.image}'); SELECT LAST_INSERT_ID();`;
 
   try {
     let idResult = await db(sql);
+    await db(
+      `INSERT INTO books_clubs (book_id, club_id, date) VALUES (${idResult.data[0].insertId}, ${req.params.id}, STR_TO_DATE("${req.body.date}", "%Y-%m-%d"));`
+    );
     let results = await db(
       `SELECT * FROM books WHERE id = ${idResult.data[0].insertId}`
     );
