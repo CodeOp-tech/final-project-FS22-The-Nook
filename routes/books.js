@@ -40,17 +40,6 @@ router.get("/:id", async function (req, res, next) {
 /**
  * Add one book to a club's book list.
  **/
-// async function getBook(formData) {
-
-//       setBookToPost(bookObj);
-//       postBook(bookObj);
-//     } else {
-//       setError(`Server error: ${response.status}: ${response.statusText}`);
-//     }
-//   } catch (err) {
-//     setError(`Network error: ${err.message}`);
-//   }
-// }
 
 router.post("/", async function (req, res, next) {
   console.log("req", req);
