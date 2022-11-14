@@ -2,7 +2,12 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 const { ensureUserLoggedIn } = require("../middleware/guards");
-const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
+const {
+  joinToJson,
+  clubsSql,
+  booksSql,
+  clubMembersListSql,
+} = require("./commonfunctions");
 
 function joinToJsonCount(result, count) {
   let completeResult = [];
@@ -23,6 +28,18 @@ function joinToJsonCount(result, count) {
   return completeResult;
 }
 
+function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
+  let clubInfoWithMembers = clubInfoResults.data[0];
+  let members = [];
+  members = clubMembersResults.data.map((m) => ({
+    username: m.username,
+    id: m.id,
+  }));
+
+  clubInfoWithMembers.members = members;
+
+  return clubInfoWithMembers;
+}
 
 // list all clubs
 
@@ -56,7 +73,7 @@ router.get("/", async function (req, res) {
 
   try {
     let result = await db(sql);
-    
+
     let countSql = `
       SELECT COUNT(user_id) AS j
       FROM users_clubs
@@ -65,7 +82,6 @@ router.get("/", async function (req, res) {
     let count = await db(countSql);
 
     res.status(200).send(joinToJsonCount(result, count));
-    
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -76,8 +92,13 @@ router.get("/:id", async function (req, res) {
   let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
 
   try {
-    let result = await db(sql);
-    res.send(result.data[0]);
+    let clubInfoResults = await db(sql);
+    let clubMembersResults = await db(
+      clubMembersListSql + ` WHERE users_clubs.club_id =${req.params.id}`
+    );
+    res.send(
+      clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults)
+    );
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -85,10 +106,9 @@ router.get("/:id", async function (req, res) {
 
 // add a user to a club (add the user to the user_club junction table when a user wants to join a club)
 
-router.post("/:id", ensureUserLoggedIn, async function(req, res) {
-
+router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let userId = res.locals.user;
-  let clubId = req.params.id 
+  let clubId = req.params.id;
   let checkUserSql = `
       SELECT *
       FROM users_clubs
@@ -105,14 +125,12 @@ router.post("/:id", ensureUserLoggedIn, async function(req, res) {
     let check = await db(checkUserSql);
     if (check.data.length === 0) {
       await db(postSql);
-      let booksResults = await db(booksSql +` WHERE user_id = '${userId}'`) ;
-      let clubsResults = await db(clubsSql +` WHERE user_id = '${userId}'`)
+      let booksResults = await db(booksSql + ` WHERE user_id = '${userId}'`);
+      let clubsResults = await db(clubsSql + ` WHERE user_id = '${userId}'`);
       res.send(joinToJson(booksResults, clubsResults));
     } else {
-       res.status(403).send("User already joined")
+      res.status(403).send("User already joined");
     }
-
-
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

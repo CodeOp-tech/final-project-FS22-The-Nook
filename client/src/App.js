@@ -67,7 +67,6 @@ function App() {
   }
   let id = 1; // TODO: remove hardcoding when able
 
-
   useEffect(() => {
     fetchClub(id);
     fetchClubBooks(id);
@@ -123,7 +122,7 @@ function App() {
         myresponse.data.token
       );
       setUser(myresponse.data.user);
-      
+
       setLoginErrorMsg("");
       navigate("/");
     } else {
@@ -237,7 +236,9 @@ function App() {
           />
           <Route
             path="/clubs"
-            element={<ClubSearchView setUser={(user) => setUser(user)} />}
+            element={
+              <ClubSearchView user={user} setUser={(user) => setUser(user)} />
+            }
           />
         </Routes>
       </div>

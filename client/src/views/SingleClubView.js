@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
+import MembersList from "../components/MembersList";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
 
 function SingleClubView(props) {
   let { clubId } = useParams();
 
-  // if (!props.club.name) {
-  //   console.log("loading", props.club);
-  //   return <h2>Loading</h2>;
-  // }
+  function getClubMembers(clubId) {}
+
+  function handleJoin(userId) {}
+
   return (
     <div className="SingleClubView mt-5">
       {props.club.name ? (
@@ -35,15 +36,17 @@ function SingleClubView(props) {
           <div>
             <div className="row mt-5">
               <div className="col-4">
-                <button type="button" className="btn btn-outline-light mb-3">
+                <button
+                  type="button"
+                  className="btn btn-outline-light mb-3"
+                  onClick={handleJoin}
+                >
                   JOIN
                 </button>
+
                 <h2>Members</h2>
                 <div>
-                  {/* ADD NUMBER OF MEMBERS, too
-                  {props.members.map((m) => (
-                  <h3>m.userName</h3>
-                ))} */}
+                  <MembersList club={props.club} />
                 </div>
               </div>
               <div className="col-8">
