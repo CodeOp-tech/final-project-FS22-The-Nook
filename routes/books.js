@@ -29,7 +29,7 @@ router.get("/", async function (req, res) {
  **/
 
 router.post("/", async function (req, res, next) {
-  console.log("req", req);
+  console.log("req", req.body);
   let title = req.body.title.replaceAll(" ", "+");
   let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
@@ -37,10 +37,13 @@ router.post("/", async function (req, res, next) {
     let response = await fetch(url);
     if (response.ok) {
       let results = await response.json(); //converts JSON to JS
+      console.log("results", results.items);
+      let book = results.items.filter((e) => e.volumeInfo.language === "en");
+      console.log("book", book);
       let bookObj = {
-        author: results.items[1].volumeInfo.authors[0],
-        title: results.items[1].volumeInfo.title,
-        image: results.items[1].volumeInfo.imageLinks.thumbnail,
+        author: book[0].volumeInfo.authors[0],
+        title: book[0].volumeInfo.title,
+        image: book[0].volumeInfo.imageLinks.thumbnail,
         date: req.body.date,
         club_id: 1, // TODO: change from hard-coded value once connected to club
       };
@@ -48,7 +51,7 @@ router.post("/", async function (req, res, next) {
       let idResult = await db(`INSERT INTO books (title, author, image)
   VALUES ("${bookObj.title}", "${bookObj.author}", "${bookObj.image}"); SELECT LAST_INSERT_ID();`);
       await db(
-        `INSERT INTO books_clubs (book_id, club_id, date) VALUES (${idResult.data[0].insertId}, ${bookObj.club_id}, STR_TO_DATE("${req.body.date}", "%Y-%m-%d"));`
+        `INSERT INTO books_clubs (book_id, club_id, date) VALUES (${idResult.data[0].insertId}, ${bookObj.club_id}, STR_TO_DATE('${req.body.date}', '%Y-%m-%d'));`
       );
       let results2 = await db(
         `SELECT * FROM books WHERE id = ${idResult.data[0].insertId}`

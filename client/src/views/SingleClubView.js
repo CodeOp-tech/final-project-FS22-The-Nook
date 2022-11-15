@@ -7,7 +7,7 @@ function SingleClubView(props) {
   //   let { id } = useParams();
   const [club, setClub] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
-  let id = 2; // TODO: remove hardcoding when able
+  let id = 1; // TODO: remove hardcoding when able
   console.log("params", id);
   console.log("club", club);
 
