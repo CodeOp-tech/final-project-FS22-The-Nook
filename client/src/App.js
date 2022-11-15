@@ -1,11 +1,16 @@
+
 import React, { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 import ErrorView from "./views/ErrorView";
+
 import ProfileView from "./views/ProfileView";
 import AllBooksView from "./views/AllBooksView";
+import AllClubsView from './views/AllClubs';
+import HomeView from './views/HomeView';
+
 import ClubAdminView from "./views/ClubAdminView";
 import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
@@ -58,6 +63,7 @@ function App() {
         console.log(`Server error: ${error.message}`);
       });
   }
+
 
   return (
     <div className="App">
