@@ -50,7 +50,6 @@ function AddClubBook(props) {
 
   return (
     <div className="AddClubBook">
-      <h3>Add a Book by Title</h3>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -68,7 +67,7 @@ function AddClubBook(props) {
 
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
-            When should the book be read by?
+            Meeting Date
           </label>
           <input
             className="form-control"

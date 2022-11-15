@@ -6,32 +6,26 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 /**
- * Get all books
+ * Get all books or all books by club
  **/
 router.get("/", async function (req, res) {
   let sql = "SELECT * FROM books";
+
+  if (req.query.club_id) {
+    let club = await db(
+      `SELECT EXISTS(SELECT * from books_clubs WHERE club_id=${req.query.club_id}) AS Result`
+    );
+    if (club.data[0].Result) {
+      sql = `SELECT books.* FROM books INNER JOIN books_clubs ON books.id = books_clubs.book_id WHERE books_clubs.club_id=${req.query.club_id}`;
+    } else {
+      return res.status(404).send({ error: "Club does not exist" });
+    }
+  }
 
   try {
     let results = await db(sql);
     let books = results.data;
     res.send(books);
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-});
-
-/**
- * Get one book.
- **/
-
-router.get("/:id", async function (req, res, next) {
-  let { id } = req.params;
-  let sql = `SELECT * FROM books WHERE id = ${id}`;
-
-  try {
-    let results = await db(sql);
-    let book = results.data[0];
-    res.send(book);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
