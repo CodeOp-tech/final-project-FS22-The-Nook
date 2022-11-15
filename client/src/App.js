@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} logoutCb={doLogout} />`{" "}
+      <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
           <Route path="/" element={<h1>Home</h1>} />
