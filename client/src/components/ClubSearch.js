@@ -30,27 +30,27 @@ function ClubSearch(props) {
                 className="form-control"
                 type="search"
                 placeholder="Search for a club"
-                // aria-label="Search"
+                aria-label="Search"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
             />
 
-            <div className="form-floating">
-                <label htmlFor="floatingSelect">Choose a category</label>
+            <div className="mt-3">
+                {/* <label htmlFor="floatingSelect">Choose a category</label> */}
                 <select
                     className="form-select"
                     id="floatingSelect"
-                    // aria-label="Choose category"
+                    aria-label="Choose category"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}            
                 >
-                    <option defaultValue>Choose a category</option>
+                    <option className="" defaultValue>Choose a category</option>
                     <option data-tokens="1">classics</option>
                     <option data-tokens="2">sci-fi</option>
                 </select>
                 
             </div>
-            <button type="submit">Search</button>
+            <button className="btn btn-outline-secondary mt-3" type="submit">Search</button>
 
         </form>
 

@@ -9,7 +9,7 @@ import AllBooksView from "./views/AllBooksView";
 import ClubAdminView from "./views/ClubAdminView";
 import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
-import ClubView from "./views/ClubView";
+import ClubSearchView from "./views/ClubSearchView";
 import SingleClubView from "./views/SingleClubView";
 
 import Local from "./helpers/Local";
@@ -99,7 +99,7 @@ function App() {
             element={<ErrorView code="404" text="Page not found" />}
           />
 
-          <Route path="clubs" element={<ClubView />} />
+          <Route path="/clubs" element={<ClubSearchView />} />
         </Routes>
       </div>
     </div>
