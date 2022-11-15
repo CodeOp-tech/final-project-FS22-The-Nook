@@ -38,6 +38,7 @@ function ClubBookshelf(props) {
               <div className="card-body">
                 <h5 className="card-title">{b.title}</h5>
                 <h6 className="card-text">By {b.author}</h6>
+                <h6 className="card-text">Discussed {b.date.slice(0, 7)}</h6>
               </div>
             </div>
           </div>
