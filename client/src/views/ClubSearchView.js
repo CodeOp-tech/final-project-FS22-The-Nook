@@ -4,12 +4,13 @@ import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
 
 
-function ClubView(props) {
+function ClubSearchView(props) {
+    // The useSearchParams hook is used to read and modify the query string in the URL 
     const [searchParams] = useSearchParams({});
 
+
     // search params for each field
-    const search = searchParams.get("search") || "";
-    // const name = searchParams.get("name") || "";
+    const name = searchParams.get("search") || "";
     const category = searchParams.get("category") || "";
 
     const [clubs, setClubs] = useState([]);
@@ -18,13 +19,13 @@ function ClubView(props) {
     // search effect function
      useEffect(() => {
         getClubs();
-    }, [search, category]); // useEffect is dependent on search and category - the effect will run again if they are updated
+    }, [name, category]); // useEfefct will run every time name and category are updated
 
-    // The useParams hook returns an object of key/value pairs of the dynamic params from the current URL that were matched by the <Route path> .
+
 
     async function getClubs() {
         const query = new URLSearchParams({
-            name: search,
+            name: name,
             category: category,
         }).toString();
 
@@ -43,11 +44,20 @@ function ClubView(props) {
 
 
   return (
-    <div className="ClubView">
-      <ClubSearch />
-      <ClubList clubs={clubs} />
+    <div className="container">
+      <div className="row">
+        <div className="col-md-3">
+           <ClubSearch />
+        </div>
+
+        <div className="col-md-9">
+           <ClubList clubs={clubs} />
+        </div>
+
+      </div>
+
     </div>
   );
 }
 
-export default ClubView;
+export default ClubSearchView;
