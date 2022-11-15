@@ -3,6 +3,7 @@ import Api from "../helpers/Api";
 
 function ClubBookshelf(props) {
   const [clubBooks, setClubBooks] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetchClubBooks();
@@ -23,15 +24,25 @@ function ClubBookshelf(props) {
 
   return (
     <div className="ClubBookshelf">
-      <div className="card" style="width: 18rem;">
-        <img src="..." className="card-img-top" alt="..." />
-        <div className="card-body">
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+      {clubBooks.map((b) => (
+        <div key={b.id} className="col my-2">
+          <div className="card" style={{ width: "18rem" }}>
+            <div key={b.id}>
+              <div>
+                <img
+                  src={`${b.image}`}
+                  className="card-img-top"
+                  alt={`${b.title}`}
+                />
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">{b.title}</h5>
+                <h6 className="card-text">By {b.author}</h6>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }

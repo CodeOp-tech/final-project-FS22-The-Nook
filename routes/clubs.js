@@ -35,18 +35,13 @@ router.get("/", async function (req, res) {
 
 // Get info for a specific club
 router.get("/:id", async function (req, res) {
-  let club = await db(
-    `SELECT EXISTS(SELECT * from clubs WHERE id=${req.params.id}) AS Result`
-  );
-  if (club.data[0].Result) {
-    try {
-      let result = await db(`SELECT * FROM clubs WHERE id=${req.params.id}`);
-      res.send(result.data[0]);
-    } catch (err) {
-      res.status(500).send({ error: err.message });
-    }
-  } else {
-    return res.status(404).send({ error: "Club does not exist" });
+  let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
+
+  try {
+    let result = await db(sql);
+    res.send(result.data[0]);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
   }
 });
 

@@ -32,7 +32,7 @@ class Api {
    **/
 
   static async getClubBooks(club_id) {
-    return await this._doFetch(`/books/?clubs=${club_id}`);
+    return await this._doFetch(`/books/?club_id=${club_id}`);
   }
 
   /**
