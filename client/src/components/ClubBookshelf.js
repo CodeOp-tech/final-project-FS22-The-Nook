@@ -10,7 +10,7 @@ function ClubBookshelf(props) {
 
   //Get clubs's books
   async function fetchClubBooks() {
-    let myresponse = await Api.getClubBooks(`${props.clubs.id}`);
+    let myresponse = await Api.getClubBooks(`${props.club.id}`);
     if (myresponse.ok) {
       setClubBooks(myresponse.data);
       setErrorMsg("");

@@ -36,6 +36,14 @@ class Api {
   }
 
   /**
+   * Get club with ID 'id'
+   **/
+
+  static async getClub(id) {
+    return await this._doFetch(`/clubs/${id}`);
+  }
+
+  /**
    * General purpose GET (for URLs like /members-only)
    **/
 
