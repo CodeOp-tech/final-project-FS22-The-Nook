@@ -42,6 +42,11 @@ function ClubSearchView(props) {
         }
     }
 
+    async function joinClub(id) {
+      // post to add the user to the club
+
+    }
+
 
   return (
     <div className="container">
@@ -51,7 +56,7 @@ function ClubSearchView(props) {
         </div>
 
         <div className="col-md-9">
-           <ClubList clubs={clubs} />
+           <ClubList clubs={clubs} userJoinsClubCb={joinClub}/>
         </div>
 
       </div>

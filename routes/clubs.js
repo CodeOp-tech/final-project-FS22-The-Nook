@@ -45,4 +45,5 @@ router.get("/:id", async function (req, res) {
   }
 });
 
+// add a user to a club (add the user to the user_club junction table when a user wants to join a club)
 module.exports = router;

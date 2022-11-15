@@ -36,7 +36,9 @@ CREATE TABLE `users_books`(
 CREATE TABLE `clubs`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
-    `category` VARCHAR(255) NOT NULL
+    `category` VARCHAR(255) NOT NULL,
+    `location` VARCHAR(255) NOT NULL,
+    `numofmembers` INT NULL
 );
 
 CREATE TABLE `books_clubs`(
