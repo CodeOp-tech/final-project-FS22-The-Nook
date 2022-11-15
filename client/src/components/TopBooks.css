@@ -1,0 +1,10 @@
+.card {
+    padding: 0, 36px;
+    display: inline-flex;
+    margin: 0px auto;
+  }
+  
+  h2, .card-title{
+    font-family:'Courier New', Courier, monospace
+  }
+  

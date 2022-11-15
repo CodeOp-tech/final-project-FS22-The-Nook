@@ -2,11 +2,22 @@
   display: inline-block;
   list-style: none;
   padding: 20px;
+  
 } 
-
+.navbar-brand{
+  color: rgb(57, 81, 68);
+  font-size: 40px;
+}
+.nav-link{
+  color: rgb(57, 81, 68);
+}
 .d-flex {
   margin-left: 20px !important;
 }
+.Navbar{
+  background-color: bisque;
+}
+
 
 /* .navbar-nav {
   display: inline;

@@ -36,9 +36,33 @@ function Carousel4Wide(props) {
                                 <div className="col-md-3">
                                     <div className="card">
                                         <div className="card-img">
-                                            <img src="https://via.placeholder.com/700x500.png/CB997E/333333?text=1" className="img-fluid" alt="" />
+                                            <img src="https://i.pinimg.com/564x/84/e4/73/84e4732d07ffc571aee8abc261e2249a.jpg" className="img-fluid" alt="" />
                                         </div>
-                                        <div className="card-img-overlay">Slide 1</div>
+                                        <div className="card-img-overlay"><span className="clubName" >The Bookworms</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* <div className="carousel-item">
+                                <div className="col-md-3">
+                                    <div className="card">
+                                        <div className="card-img">
+                                            <img src="https://i.pinimg.com/564x/01/40/2a/01402a66c993be04a1914483eda7c089.jpg" className="img-fluid" alt="" />
+                                        </div>
+
+                                      <div className="card-img-overlay"><span className="clubName">All Booked</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div className="carousel-item">
+                                <div className="col-md-3">
+                                    <div className="card">
+                                        <div className="card-img">
+                                            <img src="https://i.pinimg.com/564x/87/f4/90/87f49037e6d155b3f90b21d1a76eba1d.jpg" className="img-fluid" alt="" />
+                                        </div>
+                                        <div className="card-img-overlay"><span className="clubName">Wine & Read</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -46,9 +70,9 @@ function Carousel4Wide(props) {
                                 <div className="col-md-3">
                                     <div className="card">
                                         <div className="card-img">
-                                            <img src="https://via.placeholder.com/700x500.png/DDBEA9/333333?text=2" className="img-fluid" alt="" />
+                                            <img src="https://i.pinimg.com/564x/b9/db/1b/b9db1b0030be494fdecd9de24399b2cb.jpg" className="img-fluid" alt="" />
                                         </div>
-                                        <div className="card-img-overlay">Slide 2</div>
+                                        <div className="card-img-overlay"><span className="clubName">The Wild Readers</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -56,9 +80,9 @@ function Carousel4Wide(props) {
                                 <div className="col-md-3">
                                     <div className="card">
                                         <div className="card-img">
-                                            <img src="https://via.placeholder.com/700x500.png/FFE8D6/333333?text=3" className="img-fluid" alt="" />
+                                            <img src="https://i.pinimg.com/564x/76/b2/00/76b200b6807404b1fda815a95e30ab8b.jpg" className="img-fluid" alt="" />
                                         </div>
-                                        <div className="card-img-overlay">Slide 3</div>
+                                        <div className="card-img-overlay"><span className="clubName">Due Date Club</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -66,33 +90,15 @@ function Carousel4Wide(props) {
                                 <div className="col-md-3">
                                     <div className="card">
                                         <div className="card-img">
-                                            <img src="https://via.placeholder.com/700x500.png/B7B7A4/333333?text=4" className="img-fluid" alt="" />
+                                            <img src="https://i.pinimg.com/564x/5d/b8/57/5db857920d3a2c002af672bddc0424f9.jpg" className="img-fluid" alt="" />
                                         </div>
-                                        <div className="card-img-overlay">Slide 4</div>
+                                        <div className="card-img-overlay"><span className="clubName">Adventures in Bookland</span></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="carousel-item">
-                                <div className="col-md-3">
-                                    <div className="card">
-                                        <div className="card-img">
-                                            <img src="https://via.placeholder.com/700x500.png/A5A58D/333333?text=5" className="img-fluid" alt="" />
-                                        </div>
-                                        <div className="card-img-overlay">Slide 5</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="carousel-item">
-                                <div className="col-md-3">
-                                    <div className="card">
-                                        <div className="card-img">
-                                            <img src="https://via.placeholder.com/700x500.png/6B705C/eeeeee?text=6" className="img-fluid" alt="" />
-                                        </div>
-                                        <div className="card-img-overlay">Slide 6</div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>  */}
                         </div>
+
+
                         <a className="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>

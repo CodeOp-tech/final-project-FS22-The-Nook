@@ -7,7 +7,7 @@ function NavBar(props) {
   return (
     <nav
       className="Navbar navbar navbar-expand-sm navbar-dark mb-4"
-      style={{ backgroundColor: "teal" }}
+      
     >
       <div className="container-fluid">
         <span className="navbar-brand font-weight-bold">The Nook</span>
