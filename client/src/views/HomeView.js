@@ -10,6 +10,7 @@ function HomeView() {
 
     return (
         <div classname="homePage">
+
         <div className="logo">
             <img src="https://i.imgur.com/tMhxVJ8.png"/></div>
         
@@ -24,9 +25,12 @@ function HomeView() {
 
 
         <div classname="buttonArea">
+            <div className="buttonArea">
           <h1> Want to find a book club?</h1>
             <button className="btn btn-light">Join!</button>
+            </div>
           </div>
+
           </div>
        
     );
