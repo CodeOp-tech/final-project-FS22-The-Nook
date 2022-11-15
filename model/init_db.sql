@@ -48,13 +48,13 @@ CREATE TABLE `books_clubs`(
 
 CREATE TABLE `users_clubs`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `clubs_id` INT UNSIGNED NOT NULL,
-    `users_id` INT UNSIGNED NOT NULL,
+    `club_id` INT UNSIGNED NOT NULL,
+    `user_id` INT UNSIGNED NOT NULL,
     `admin` TINYINT(1) NOT NULL
 );
 
 ALTER TABLE
-    `users_clubs` ADD CONSTRAINT `users_clubs_users_id_foreign` FOREIGN KEY(`users_id`) REFERENCES `users`(`id`);
+    `users_clubs` ADD CONSTRAINT `users_clubs_users_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `users`(`id`);
 ALTER TABLE
     `users_books` ADD CONSTRAINT `users_books_user_id_foreign` FOREIGN KEY(`user_id`) REFERENCES `users`(`id`);
 ALTER TABLE
@@ -62,20 +62,20 @@ ALTER TABLE
 ALTER TABLE
     `books_clubs` ADD CONSTRAINT `books_clubs_book_id_foreign` FOREIGN KEY(`book_id`) REFERENCES `books`(`id`);
 ALTER TABLE
-    `users_clubs` ADD CONSTRAINT `users_clubs_clubs_id_foreign` FOREIGN KEY(`clubs_id`) REFERENCES `clubs`(`id`);
+    `users_clubs` ADD CONSTRAINT `users_clubs_clubs_id_foreign` FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`);
 ALTER TABLE
     `books_clubs` ADD CONSTRAINT `books_clubs_club_id_foreign` FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`);
 
 
 
 INSERT INTO users (username, email, password)
-    VALUES ('johndoe', 'johndoe@example.com', 'password1'), ('janedoe', 'janedoe@example.com', 'password2');
+    VALUES ('johndoe', 'johndoe@example.com', '$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W'), ('janedoe', 'janedoe@example.com', '$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6');
 
 INSERT INTO books (title, author, image)
     VALUES ("La Divina Commedia", "Dante Alighieri", "https://m.media-amazon.com/images/I/51v2k7bvlUL.jpg"), ("Don Quijote de la Mancha", "Miguel Cervantes", "https://imagenes.elpais.com/resizer/ny6-0RsNhSHBhQyWmel5nDGK3Wk=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/7BN7MROFVTFLCFQ2FXZPUC3Y3E.jpg");
 
 INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
-    VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0), (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
+    VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0), (1, 2, 3, "Aaaa", "2022-10-11", 1), (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
 
 INSERT INTO clubs (name, category)
     VALUES ("International classics", "classics"), ("Into the future", "sci-fi");
@@ -83,5 +83,5 @@ INSERT INTO clubs (name, category)
 INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");
 
-INSERT INTO users_clubs (clubs_id, users_id, admin)
+INSERT INTO users_clubs (club_id, user_id, admin)
     VALUES (1, 1, 0), (1, 2, 1), (2, 1, 1);

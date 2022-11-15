@@ -24,7 +24,7 @@ function NavBar(props) {
             </li>
 
             <li className="nav-item">
-            <NavLink className="nav-link" to="/clubs">
+            <NavLink className="nav-link" to="clubs">
                 Clubs
               </NavLink>
               </li>
@@ -34,12 +34,13 @@ function NavBar(props) {
                 Books
               </NavLink>
               </li>
-
+              {props.user? 
               <li className="nav-item">
-              <NavLink className="nav-link" to={`/profile`}>
+              <NavLink className="nav-link" to={`/users/${props.user.id}`}>
                 Profile
               </NavLink>
-            </li>
+            </li> : null
+            }
           </ul>
 
           
