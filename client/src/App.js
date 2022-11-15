@@ -98,7 +98,7 @@ function App() {
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
-
+          
           <Route path="/clubs" element={<ClubSearchView />} />
         </Routes>
       </div>
