@@ -9,7 +9,6 @@ function makeWhereFromFilters(query) {
 
     if (query.name) {
         filters.push(`name LiKE '%${query.name}%'`);
-        // %${q.name}% will find any values that have "{q.name}" in any position
     }
     if (query.category) {
         filters.push(`category LIKE '%${query.category}%'`);

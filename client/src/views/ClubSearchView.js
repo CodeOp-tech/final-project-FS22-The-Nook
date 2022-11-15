@@ -4,7 +4,7 @@ import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
 
 
-function ClubView(props) {
+function ClubSearchView(props) {
     // The useSearchParams hook is used to read and modify the query string in the URL 
     const [searchParams] = useSearchParams({});
 
@@ -44,11 +44,20 @@ function ClubView(props) {
 
 
   return (
-    <div className="ClubView">
-      <ClubSearch />
-      <ClubList clubs={clubs} />
+    <div className="container">
+      <div className="row">
+        <div className="col-md-3">
+           <ClubSearch />
+        </div>
+
+        <div className="col-md-9">
+           <ClubList clubs={clubs} />
+        </div>
+
+      </div>
+
     </div>
   );
 }
 
-export default ClubView;
+export default ClubSearchView;
