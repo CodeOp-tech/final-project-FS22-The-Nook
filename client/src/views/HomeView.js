@@ -1,40 +1,33 @@
-import React, {useEffect, useState,} from "react";
-import './HomeView.css';
-import Carousel4Wide from '../components/Carousel4Wide'
-import TopBooks from '../components/TopBooks'
-
+import React, { useEffect, useState } from "react";
+import "./HomeView.css";
+import Carousel4Wide from "../components/Carousel4Wide";
+import TopBooks from "../components/TopBooks";
 
 function HomeView() {
+  return (
+    <div className="homePage">
+      <div className="logo">
+        <img src="https://i.imgur.com/tMhxVJ8.png" />
+      </div>
 
+      <div className="clubCarousel">
+        <h1>Featured Clubs</h1>
+        <Carousel4Wide />
+      </div>
 
-
-    return (
-        <div classname="homePage">
-
-        <div className="logo">
-            <img src="https://i.imgur.com/tMhxVJ8.png"/></div>
-        
-        <div className="clubCarousel">
-            <h1>Featured Clubs</h1>
-      <Carousel4Wide /></div>
-
-
-        <div className="favoriteBooks">
+      <div className="favoriteBooks">
         <h1>Favorite Books</h1>
-        <TopBooks/></div>
+        <TopBooks />
+      </div>
 
-
-        <div classname="buttonArea">
-            <div className="buttonArea">
+      <div className="buttonArea">
+        <div className="buttonArea">
           <h1> Want to find a book club?</h1>
-            <button className="btn btn-light">Join!</button>
-            </div>
-          </div>
-
-          </div>
-       
-    );
-    
+          <button className="btn btn-light">Join!</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default HomeView;

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
@@ -8,8 +7,7 @@ import ErrorView from "./views/ErrorView";
 
 import ProfileView from "./views/ProfileView";
 import AllBooksView from "./views/AllBooksView";
-import AllClubsView from './views/AllClubs';
-import HomeView from './views/HomeView';
+import HomeView from "./views/HomeView";
 
 import ClubAdminView from "./views/ClubAdminView";
 import LoginView from "./views/LoginView";
@@ -64,13 +62,12 @@ function App() {
       });
   }
 
-
   return (
     <div className="App">
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<HomeView />} />
 
           <Route path="/books" element={<AllBooksView />} />
 
@@ -104,7 +101,7 @@ function App() {
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
-          
+
           <Route path="/clubs" element={<ClubSearchView />} />
         </Routes>
       </div>
