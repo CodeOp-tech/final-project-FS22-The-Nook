@@ -4,25 +4,25 @@ const db = require("../model/helper");
 
 // list all clubs 
 
-function makeWhereFromFilters(q) {
+function makeWhereFromFilters(query) {
     let filters = [];
 
-    if (q.name) {
-        filters.push(`name LiKE '%${q.name}%'`);
-        // %${q.name}% will find any values that have "{q.name}" in any position
+    if (query.name) {
+        filters.push(`name LiKE '%${query.name}%'`);
     }
-    if (q.category) {
-        filters.push(`category LIKE '%${q.category}%'`);
+    if (query.category) {
+        filters.push(`category LIKE '%${query.category}%'`);
     }
 
     return filters.join(' AND ');
 }
 
-router.get('/', async function (req, res) {
+router.get("/", async function (req, res) {
     let sql = 'SELECT * FROM clubs';
     let where = makeWhereFromFilters(req.query);
+
     if (where) {
-        sql += `WHERE ${where}`;
+        sql = `SELECT * FROM clubs WHERE ${where}`;
     }
 
     try {
@@ -33,13 +33,5 @@ router.get('/', async function (req, res) {
     }
 })
 
-// router.get('/', async function (req, res) {
-//     try {
-//         let result = await db('SELECT * FROM clubs');
-//         res.send(result.data)
-//     } catch (err) {
-//         res.status(500).send({error: err.message})
-//     }
-// })
 
 module.exports = router;
