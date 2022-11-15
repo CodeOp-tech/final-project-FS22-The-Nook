@@ -34,7 +34,6 @@ function AddClubBook(props) {
       .then((res) => res.json())
       .then((json) => {
         setBookImage(json);
-        console.log("json", json);
       })
       .catch((error) => {
         console.log(error.message);
