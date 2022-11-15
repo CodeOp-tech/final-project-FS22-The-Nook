@@ -13,7 +13,8 @@ function joinToJson(result){
       author: b.author,
       rating: b.rating,
       date_read: b.date_read,
-      favorite: b.favorite
+      favorite: b.favorite,
+      image: b.image
     }))
     books= [...new Set(books.map((item) => JSON.stringify(item)))]
     books= books.map(i=> JSON.parse(i))
