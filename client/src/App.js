@@ -7,6 +7,7 @@ import ErrorView from './views/ErrorView';
 import ProfileView from './views/ProfileView';
 import AllClubsView from './views/AllClubs';
 import AllBooksView from './views/AllBooksView';
+import HomeView from './views/HomeView';
 
 
 
@@ -20,7 +21,7 @@ function App() {
             <div className="container">
                 <Routes>
                   
-                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="/" element={<HomeView/>} />
 
                     <Route path="/clubs" element={<AllClubsView />} />
 
