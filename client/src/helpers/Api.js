@@ -1,19 +1,6 @@
 import Local from './Local';
 
 
-/**
- * This is a helper class that places all "knowledge" about doing a fetch() in one place. 
- * Any component that needs to do a fetch() will import this class and call the corresponding method.
- * 
- * All methods call the internal/private _doFetch() method, which does all the work. It returns
- * a "unified" myresponse obj that has four properties:
- *   ok: true if the server response is OK, false otherwise
- *   data: the response data if OK, null otherwise
- *   status: the response status code if the server was reached; 0 otherwise
- *   error: the error message if there was either a server or network error, '' otherwise
- **/
-
-
 class Api {
 
     /**
