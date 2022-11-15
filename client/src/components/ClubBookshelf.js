@@ -44,10 +44,10 @@ function ClubBookshelf(props) {
   }
 
   return (
-    <div className="ClubBookshelf row mb-3">
+    <div className="ClubBookshelf row mb-2">
       {clubBooks.map((b) => (
         <div key={b.id} className="col my-2">
-          <div className="card" style={{ width: "18rem" }}>
+          <div className="card" style={{ width: "12rem" }}>
             <div key={b.id}>
               <div>
                 <img
