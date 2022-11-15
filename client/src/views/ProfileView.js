@@ -1,8 +1,36 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
+import { useParams } from 'react-router-dom';
+import Api from '../helpers/Api';
 
 
-function ProfileView() {
+function ProfileView(props) {
+    const [user, setUser] = useState(null);
+    const [errorMsg, setErrorMsg] = useState('');
+    let { userId } = useParams();
  
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    async function fetchProfile() {
+        let myresponse = await Api.getUser(userId);
+        if (myresponse.ok) {
+            setUser(myresponse.data);
+            setErrorMsg('');
+        } else {
+            setUser(null);
+            let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+            setErrorMsg(msg);
+        }
+    }
+
+    if (errorMsg) {
+        return <h2 style={{ color: 'red' }}>{errorMsg}</h2>
+    }
+
+    if (!user) {
+        return <h2>Loading...</h2>;
+    }
 
     return (
         <div className="ProfileView">
@@ -10,13 +38,13 @@ function ProfileView() {
 
             <div className="UserInfo">
                 <h2>Personal Info</h2>
-            ID: 
+            ID: {user.id}
            
             <br />
-            Username:
+            Username: {user.username}
 
             <br />
-            Email:
+            Email: {user.email}
         
             </div>
 

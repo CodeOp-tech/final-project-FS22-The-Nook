@@ -84,10 +84,10 @@ function App() {
           }
         />
         <Route
-          path="/users/:userId"
+          path='/users/:userId'
           element={
             <PrivateRoute>
-              <ProfileView />
+              <ProfileView user={user}/>
             </PrivateRoute>
           }
         />
