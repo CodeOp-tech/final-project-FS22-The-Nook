@@ -7,6 +7,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import ErrorView from "./views/ErrorView";
 
 import ProfileView from "./views/ProfileView";
+import EditProfileView from "./views/EditProfileView";
+
 import AllBooksView from "./views/AllBooksView";
 
 import HomeView from './views/HomeView';
@@ -28,7 +30,7 @@ function App() {
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
-      Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      Local.saveUserInfo(myresponse.data.user, myresponse.data.token);
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
       navigate("/");
@@ -94,10 +96,12 @@ function App() {
             path="/users/:userId"
             element={
               <PrivateRoute>
-                <ProfileView />
+                <ProfileView user={user}/>
               </PrivateRoute>
             }
           />
+          <Route path="/users/:userId/edit" element={<EditProfileView user={user} setUser={user=> setUser(user)}/>} />
+
           <Route path="club-admin" element={<ClubAdminView />} />
           <Route path="clubs/:clubId" element={<SingleClubView />} />
           <Route

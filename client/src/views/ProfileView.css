@@ -1,4 +1,13 @@
-.ProfileView{
-    background-color: bisque;
-    
+.UserInfo{
+    color: white;
+}
+
+.ProfileView h2{
+    color: bisque
+}
+
+.ProfileView .edit{
+    width: 4rem;
+    height: 2rem;
+    font-size: 16px;
 }
