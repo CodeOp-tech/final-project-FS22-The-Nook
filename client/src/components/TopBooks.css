@@ -1,6 +1,7 @@
 .col{
 margin-bottom: 10px;
 }
+
 .card {
     display: inline-flex;
     margin: 0px auto;
@@ -9,14 +10,17 @@ margin-bottom: 10px;
 
   .card-img-top {
     padding-top:10px;
-    height: cover;
-    object-fit: cover;
+    object-fit: contain;
+    height: 70%;
+   
   }
 
   .bookCard{
     height: 100%;
     width: 80%;
-    /* padding: 9px; */
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     
   }
 

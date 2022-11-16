@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
+import './ClubSearchView.css'
 import Local from '../helpers/Local';
 import Api from '../helpers/Api';
 
@@ -102,7 +103,7 @@ function ClubSearchView(props) {
 
 
   return (
-    <div className="container">
+    <div className="container ClubSearchView">
       <div className="row">
         <div className="col-md-3">
            <ClubSearch />

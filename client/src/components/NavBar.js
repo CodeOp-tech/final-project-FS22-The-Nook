@@ -6,11 +6,13 @@ import HomeView from "../views/HomeView";
 function NavBar(props) {
   return (
     <nav
-      className="Navbar navbar navbar-expand-sm navbar-dark mb-4"
+      className="Navbar navbar navbar-expand-sm navbar-dark mb-2"
       
     >
       <div className="container-fluid">
-        <span className="navbar-brand font-weight-bold">The Nook</span>
+
+      <a className="navbar-brand" href="/" ><img src="https://i.imgur.com/FRh3Vql.png" className="img-responsive" alt="thenooklogogreen"/>
+      </a>
 
         
 
@@ -49,11 +51,6 @@ function NavBar(props) {
         {/* Right-aligned stuff, based on whether user is logged in */}
         {props.user ? (
           <ul className="navbar-nav">
-            {/* <li className="nav-item">
-              <NavLink className="nav-link" to={`/users/${props.user.id}`}>
-                Profile ({props.user.username})
-              </NavLink>
-            </li> */}
             <li className="nav-item">
               {/* Log out user. Then go to home page. */}
               <Link className="nav-link" to="/" onClick={props.logoutCb}>
