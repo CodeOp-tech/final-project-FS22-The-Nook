@@ -2,12 +2,25 @@
   display: inline-block;
   list-style: none;
   padding: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color:rgb(57, 81, 68);;
   
 } 
+
+.img-responsive{
+  width: 180px;
+  height: 120px;
+  margin: auto;
+  
+}
+
 .navbar-brand{
   color: rgb(57, 81, 68);
-  font-size: 40px;
+  
 }
+
 .nav-link{
   color: rgb(57, 81, 68);
 }
