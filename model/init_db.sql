@@ -38,7 +38,11 @@ CREATE TABLE `clubs`(
     `name` VARCHAR(255) NOT NULL,
     `category` VARCHAR(255) NOT NULL,
     `next_mtg_time` TIME NOT NULL,
-    `next_mtg_location` VARCHAR(255) NOT NULL
+    `next_mtg_location_name` VARCHAR(255) NOT NULL,
+    `next_mtg_address` VARCHAR(255) NOT NULL,
+    `next_mtg_city` VARCHAR(255) NOT NULL,
+    `next_mtg_postal_code` VARCHAR(255) NOT NULL,
+    `next_mtg_country` VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE `books_clubs`(
@@ -79,8 +83,10 @@ INSERT INTO books (title, author, image)
 INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0), (1, 2, 3, "Aaaa", "2022-10-11", 1), (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
 
-INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location)
-    VALUES ("International classics", "classics", "11:00:00", "Martini Bar"), ("Into the future", "sci-fi", "19:00:00", "Hyde Park");
+INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_mtg_address, next_mtg_city, next_mtg_country, next_mtg_postal_code)
+    VALUES ("International classics", "classics", "19:00:00", "Olive or Twist", "925 NW 11th Ave", "Portland", "United States", "97209" ),
+    ("Into the future", "sci-fi", "21:00:00", "High Park", "1873 Bloor St W", "Toronto", "Canada", "M6R 2Z3"),
+     ("Reimagined History", "historical fiction", "20:00:00", "Barça Cafe", "C. d'Aristedes Maillol, 12", "Barcelona", "Spain", "08028");
 
 INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");
