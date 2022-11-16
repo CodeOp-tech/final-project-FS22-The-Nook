@@ -1,52 +1,34 @@
-import React,{useState, useEffect} from "react";
-import { useParams } from 'react-router-dom';
-import Api from '../helpers/Api';
+import React from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 import ReactStars from 'react-stars'
+import "./ProfileView.css"
 
 
 
 function ProfileView(props) {
-    const [user, setUser] = useState(null);
-    const [errorMsg, setErrorMsg] = useState('');
+    //const [user, setUser] = useState(null);
     let { userId } = useParams();
+
+    let navigate = useNavigate()
+
+    let user = props.user;
  
-    useEffect(() => {
-        fetchProfile();
-    }, []);
 
-    async function fetchProfile() {
-        let myresponse = await Api.getUser(userId);
-        if (myresponse.ok) {
-            setUser(myresponse.data);
-            setErrorMsg('');
-        } else {
-            setUser(null);
-            let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-            setErrorMsg(msg);
-        }
+    function handleClick() {
+        navigate(`/users/${userId}/edit`)
     }
-
-    if (errorMsg) {
-        return <h2 style={{ color: 'red' }}>{errorMsg}</h2>
-    }
-
-    if (!user) {
-        return <h2>Loading...</h2>;
-    }
-
-    const ratingChanged = (newRating) => {
-        console.log(newRating)
-      }
 
     return (
         <div className="ProfileView">
-            <h1>Profile View</h1>
+            <div>
+            <h1 className="d-inline">Profile View</h1>
+
+            <button type="button" onClick={handleClick} className="btn btn-outline-light edit py-1 float-end">Edit</button>
+            </div>
 
             <div className="UserInfo">
                 <h2>Personal Info</h2>
-            ID: {user.id}
-           
-            <br />
+       
             Username: {user.username}
 
             <br />
