@@ -74,7 +74,6 @@ ALTER TABLE
     `books_clubs` ADD CONSTRAINT `books_clubs_club_id_foreign` FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`);
 
 
-
 INSERT INTO users (username, email, password)
     VALUES ('johndoe', 'johndoe@example.com', '$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W'), ('janedoe', 'janedoe@example.com', '$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6');
 

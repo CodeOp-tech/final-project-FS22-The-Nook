@@ -13,17 +13,34 @@ function HomeView() {
       <div className="clubCarousel">
         <h1>Featured Clubs</h1>
         <Carousel4Wide />
+
+        <a
+          type="button"
+          className="btn btn-responsive btn-outline-dark"
+          href="/clubs"
+        >
+          See All Clubs
+        </a>
       </div>
 
-      <div className="favoriteBooks">
-        <h1>Favorite Books</h1>
+      <div className="topBooks">
+        <h1>Top Books</h1>
         <TopBooks />
+        <a
+          type="button"
+          className="btn btn-responsive btn-outline-dark"
+          href="/books"
+        >
+          See All Books
+        </a>
       </div>
 
       <div className="buttonArea">
         <div className="buttonArea">
           <h1> Want to find a book club?</h1>
-          <button className="btn btn-light">Join!</button>
+          <a type="button" className="btn btn-light" href="login">
+            Join!
+          </a>
         </div>
       </div>
     </div>
