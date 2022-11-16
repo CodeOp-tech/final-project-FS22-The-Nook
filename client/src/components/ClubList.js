@@ -4,8 +4,8 @@ import { useSearchParams } from "react-router-dom";
 
 function ClubList(props) {  
 
-  function joinClub(id) {
-    props.userJoinsClubCb(id);
+  function joinClub(club) {
+    props.userJoinsClubCb(club);
   }
 
   return (
@@ -14,13 +14,14 @@ function ClubList(props) {
 
       
             {
-                props.clubs.map(p => (
-                    <div className="col border" key={p.id}>
-                        <p className="fs-3">{p.name}</p>
-                        <p><b>Genre:</b></p>
+                props.clubs.map(c => (
+
+                    <div className="col border" key={c.id}>
+                        <p className="fs-3">{c.name}</p>
+                        <p><b>Genre:</b> {c.category}</p>
                         <p><b>Location:</b></p>
-                        <p><b>Members:</b></p>
-                        <button className="btn btn-outline-secondary mt-3" type="button" onClick={(e) => joinClub(p.id)}>Join</button>
+                        <p><b>Members:</b> {c.j}</p>
+                        <button className="btn btn-outline-secondary mt-3" type="button" onClick={(e) => joinClub(c)}>Join</button>
                     </div>
                 ))
             }

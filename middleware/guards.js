@@ -5,18 +5,32 @@ const { SECRET_KEY } = require("../config");
  * Make sure the user is logged in
  **/
 
- function ensureUserLoggedIn(req, res, next) {
-    let token = _getToken(req);
+//  function ensureUserLoggedIn(req, res, next) {
+//     let token = _getToken(req);
+
+//     try {
+//         // Throws error on invalid/missing token
+//         jwt.verify(token, SECRET_KEY);
+//         // If we get here, a valid token was passed
+//         next();
+//     } catch (err) {
+//         res.status(401).send({ error: 'Unauthorized' });
+//     }
+// }
+
+// my version
+function ensureUserLoggedIn(req, res, next) {
+    let token = _getToken(req) 
 
     try {
-        // Throws error on invalid/missing token
-        jwt.verify(token, SECRET_KEY);
-        // If we get here, a valid token was passed
-        next();
-    } catch (err) {
-        res.status(401).send({ error: 'Unauthorized' });
+        let payload = jwt.verify(token, SECRET_KEY); 
+        let userId = payload.userId; 
+        res.locals.user = userId  
+          next(); 
+    } catch(err) {
+          res.status(500).send({ error: err.massage });
     }
-}
+  }
 
 
 /**
