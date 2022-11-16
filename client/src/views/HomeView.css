@@ -1,0 +1,31 @@
+body{
+    background-image: url("https://i.pinimg.com/originals/9b/ed/e2/9bede21da7861bdad0a7191e571bda68.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img{
+    width: 400px;
+    height: 300px;
+    margin-bottom: 50px;
+}
+
+h1{
+    color: rgb(240, 235, 206);
+    margin: 20px;
+    padding-top: 20px;
+}
+
+.clubCarousel, .favoriteBooks {
+    background-color: rgb(170, 139, 86);
+}
+
+.btn {
+    font-size: 30px;
+    margin-bottom: 20px;
+    
+}
+
+.buttonArea{
+    background-color: rgb(170, 139, 86);
+}

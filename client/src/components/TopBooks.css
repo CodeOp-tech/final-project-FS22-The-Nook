@@ -1,0 +1,26 @@
+.col{
+margin-bottom: 10px;
+}
+.card {
+    display: inline-flex;
+    margin: 0px auto;
+    
+  }
+
+  .card-img-top {
+    padding-top:10px;
+    height: cover;
+    object-fit: cover;
+  }
+
+  .bookCard{
+    height: 100%;
+    width: 80%;
+    /* padding: 9px; */
+    
+  }
+
+  h2, .card-title{
+    font-family:'Courier New', Courier, monospace
+  }
+  

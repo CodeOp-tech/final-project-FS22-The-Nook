@@ -1,6 +1,6 @@
 class Local {
 
-    static saveUserInfo(token, user) {
+    static saveUserInfo(user, token) {
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
     }
