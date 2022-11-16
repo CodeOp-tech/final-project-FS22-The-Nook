@@ -232,7 +232,6 @@ function AddMeetingForm(props) {
     country: "",
     club_id: 1, //TODO change to id once params are available
   };
-  const [newBook, setNewBook] = useState({});
   const [newMeeting, setNewMeeting] = useState({});
   const [nextBookFormData, setNextBookFormData] =
     useState(EMPTY_NEXT_BOOK_FORM);
@@ -283,7 +282,7 @@ function AddMeetingForm(props) {
     fetch("/books", postOptions)
       .then((res) => res.json())
       .then((json) => {
-        setNewBook(json);
+        setNewMeeting(json);
       })
       .catch((error) => {
         console.log(error.message);
@@ -306,17 +305,17 @@ function AddMeetingForm(props) {
         console.log(error.message);
       });
   };
-  console.log("nextbookformData", nextBookFormData);
-  console.log("meetingDetailsFormData", meetingDetailsFormData);
+
   function handleSubmit(e) {
     e.preventDefault();
     meetingDetailsFormData.time = `${meetingDetailsFormData.time}:00`;
     postBook(nextBookFormData);
     patchClub(meetingDetailsFormData);
+    props.updateNextMeetingCb(newMeeting);
     setError("");
     setMeetingDetailsFormData(EMPTY_MEETING_DETAILS_FORM);
     setNextBookFormData(EMPTY_NEXT_BOOK_FORM);
-    navigate(`/clubs/${id}`);
+    navigate(`/clubs/1`); //TODO: Change to (`/clubs/${id}`);
   }
 
   return (
