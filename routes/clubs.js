@@ -50,22 +50,24 @@ router.patch("/:id", async function (req, res) {
   let sql = `
       UPDATE clubs
       SET
-        next_mtg_time = '${req.body.next_mtg_time}',
-        next_mtg_location_name = '${req.body.next_mtg_location_name}',
-        next_mtg_address = '${req.body.next_mtg_address}',
-        next_mtg_city = '${req.body.next_mtg_city}',
-        next_mtg_postal_code = '${req.body.next_mtg_postal_code}',
-        next_mtg_country = '${req.body.next_mtg_country}'
+        next_mtg_time = "${req.body.time}",
+        next_mtg_location_name = "${req.body.locationName}",
+        next_mtg_address = "${req.body.address}",
+        next_mtg_city = "${req.body.city}",
+        next_mtg_postal_code = "${req.body.postalCode}",
+        next_mtg_country = "${req.body.country}"
       WHERE
-        id = ${req.params.id};
+        id = ${req.body.club_id};
     `;
   try {
-    let club = await db(`SELECT * FROM clubs WHERE id = ${req.params.id}`);
+    let club = await db(`SELECT * FROM clubs WHERE id = ${req.body.club_id}`);
     if (club.data.length === 0) {
       res.status(404).send({ error: "Club does not exist." });
     } else {
       await db(sql);
-      let result = await db(`SELECT * FROM clubs WHERE id = ${req.params.id}`);
+      let result = await db(
+        `SELECT * FROM clubs WHERE id = ${req.body.club_id}`
+      );
       res.status(201).send(result.data);
     }
   } catch (err) {

@@ -221,7 +221,7 @@ function AddMeetingForm(props) {
     title: "",
     image: "",
     date: "",
-    club_id: id,
+    club_id: 1, //TODO change to id once params are available
   };
   const EMPTY_MEETING_DETAILS_FORM = {
     time: "",
@@ -230,7 +230,7 @@ function AddMeetingForm(props) {
     city: "",
     postalCode: "",
     country: "",
-    club_id: id,
+    club_id: 1, //TODO change to id once params are available
   };
   const [newBook, setNewBook] = useState({});
   const [newMeeting, setNewMeeting] = useState({});
@@ -301,7 +301,7 @@ function AddMeetingForm(props) {
       body: JSON.stringify(meetingDetailsFormData),
     };
 
-    fetch("/clubs", patchOptions)
+    fetch("/clubs/:id", patchOptions)
       .then((res) => res.json())
       .then((json) => {
         setNewMeeting(json);
@@ -314,7 +314,7 @@ function AddMeetingForm(props) {
   console.log("meetingDetailsFormData", meetingDetailsFormData);
   function handleSubmit(e) {
     e.preventDefault();
-    setNewBook({});
+    meetingDetailsFormData.time = `${meetingDetailsFormData.time}:00`;
     postBook(nextBookFormData);
     patchClub(meetingDetailsFormData);
     setError("");
