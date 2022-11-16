@@ -71,7 +71,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<HomeView />} />
 
           <Route path="/books" element={<AllBooksView />} />
 
@@ -108,7 +108,7 @@ function App() {
             element={<ErrorView code="404" text="Page not found" />}
           />
           
-          <Route path="/clubs" element={<ClubSearchView />} />
+          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)}/>} />
         </Routes>
       </div>
     </div>

@@ -28,7 +28,7 @@ function ensureUserLoggedIn(req, res, next) {
         res.locals.user = userId  
           next(); 
     } catch(err) {
-          res.status(500).send({ error: err.massage });
+          res.status(500).send({ error: err.message });
     }
   }
 

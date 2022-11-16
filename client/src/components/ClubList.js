@@ -16,7 +16,7 @@ function ClubList(props) {
             {
                 props.clubs.map(c => (
 
-                    <div className="col border" key={c.id}>
+                    <div className="col border bg-light" key={c.id}>
                         <p className="fs-3">{c.name}</p>
                         <p><b>Genre:</b> {c.category}</p>
                         <p><b>Location:</b></p>

@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 const { ensureUserLoggedIn } = require('../middleware/guards');
+const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
+
 
 // list all clubs
 
@@ -87,19 +89,22 @@ router.get("/:id", async function (req, res) {
 router.post("/:id", ensureUserLoggedIn, async function(req, res) {
 
   let clubId = req.params.id 
+  
 
   let sql = `
     INSERT INTO users_clubs (club_id, user_id, admin)
     VALUES
       (${clubId}, ${res.locals.user}, 1)
   `;
+let userId = res.locals.user;
+console.log(userId)
 
   try {
     await db(sql);
-    console.log(sql)
-    // let result = await db(`SELECT * FROM users_clubs WHERE user_id = ${res.locals.user}`);
-    // res.status(201).send(result.data);
-    res.status(201).send( "User joined successfully" )
+    // console.log(sql)
+    let booksResults = await db(booksSql +` WHERE user_id = '${userId}'`) ;
+    let clubsResults = await db(clubsSql +` WHERE user_id = '${userId}'`)
+    res.send(joinToJson(booksResults, clubsResults));
   } catch (err) {
       res.status(500).send({ error: err.message });
   }

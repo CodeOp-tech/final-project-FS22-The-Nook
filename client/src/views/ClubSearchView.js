@@ -70,6 +70,8 @@ function ClubSearchView(props) {
         body: JSON.stringify(club) 
       }
 
+
+
        // add token to the header if it exists in local storage
       let token = Local.getToken(); 
       if (token) {
@@ -79,7 +81,12 @@ function ClubSearchView(props) {
       try {
         let response = await fetch (`/clubs/${club.id}`, options);
         if (response.ok) {
-          await response.json();
+          // await response.json();
+          let json = await response.json()
+          props.setUser(json)
+
+
+
         } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
         }
@@ -87,6 +94,11 @@ function ClubSearchView(props) {
          console.log(`Network error: ${err.message}`);
       }
     }
+
+
+
+
+
 
 
   return (
