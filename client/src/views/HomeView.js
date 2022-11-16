@@ -23,8 +23,8 @@ function HomeView() {
       </div>
 
 
-        <div className="favoriteBooks">
-        <h1>Favorite Books</h1>
+        <div className="topBooks">
+        <h1>Top Books</h1>
         <TopBooks/>
         <a type="button" className="btn btn-responsive btn-outline-dark" href="/books">See All Books</a></div>
 

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Carousel4Wide.css";
-import ClubBookshelf from "./ClubBookshelf";
-import ClubSearch from "./ClubSearch";
 import { Link } from "react-router-dom";
 
 function Carousel4Wide(props) {
@@ -9,6 +7,7 @@ function Carousel4Wide(props) {
   const [loading, setLoading] = useState(false); //state2
   const [error, setError] = useState(""); //state 3
 
+  //get the clubs first
   async function getClubs() {
     setLoading(true);
     setError("");
@@ -28,7 +27,7 @@ function Carousel4Wide(props) {
     setLoading(false);
   }
 
-  //carousel
+  //carousel function
 
   //when page loads do this
   useEffect(() => {
@@ -63,25 +62,14 @@ function Carousel4Wide(props) {
       <div className="container text-center my-3">
         <div className="row mx-auto my-auto justify-content-center">
           <div
-            id="bookCarousel"
+            id="clubCarousel"
             className="carousel slide"
             data-bs-ride="carousel"
           >
             <div className="carousel-inner" role="listbox">
-              {/* <div className="carousel-item active">
-                                      <div className="col-md-3">
-                                    <div className="card carouselCard">
-                                        <div className="card-img">
-                                            <img src="https://i.pinimg.com/564x/84/e4/73/84e4732d07ffc571aee8abc261e2249a.jpg" className="img-fluid" alt="" />
-                                        </div>
-                                        <div className="card-img-overlay">
-                                            <Link to={`/clubs/${clubs[0]?.id}`} className="clubName"  >{clubs[0]?.name}</Link></div>
-                                    </div>
-                                    </div>
-                            </div> */}
+        
 
-              {
-                clubs.map((c) => (
+              {clubs.map((c) => (
                   <div className="carousel-item active">
                     <div className="col-md-3">
                       <div className="card carouselCard">
@@ -103,28 +91,31 @@ function Carousel4Wide(props) {
                 ))}
             </div>
 
+<div className="carouselControls">
             <a
-              className="carousel-control-prev bg-transparent w-aut"
-              href="#bookCarousel"
+              className="carousel-control-prev bi bi-arrow-left-circle"
+              href="#clubCarousel"
               role="button"
               data-bs-slide="prev"
             >
               <span
                 className="carousel-control-prev-icon"
-                aria-hidden="true"
+                aria-hidden="false"
               ></span>
             </a>
             <a
-              className="carousel-control-next bg-transparent w-aut"
-              href="#bookCarousel"
+              className="carousel-control-next"
+              href="#clubCarousel"
               role="button"
               data-bs-slide="next"
             >
               <span
                 className="carousel-control-next-icon"
-                aria-hidden="true"
+                aria-hidden="false"
               ></span>
             </a>
+            </div>
+
           </div>
         </div>
       </div>

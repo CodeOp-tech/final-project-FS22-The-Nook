@@ -32,8 +32,6 @@ useEffect(() => {
 
 
 
-
-
     return (
         <div className="bookContainer">
           
@@ -47,7 +45,7 @@ useEffect(() => {
           <div className="card-body">
             <Link to={b.id} className="card-title">{b.title}</Link>
             <h5 className="card-title">by {b.author}</h5>
-            <p className="card-text">Default description</p>
+            <p className="card-text">Default description lots lots lots of text ahahhahah woooo it works niicee</p>
             </div></div></div>))}
             </div>
       
