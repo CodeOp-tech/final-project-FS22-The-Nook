@@ -273,10 +273,6 @@ function AddMeetingForm(props) {
   //   }));
   // }
 
-  function handleAddCountry(e) {
-    meetingDetailsFormData.country = e.target.value;
-  }
-
   const postBook = (nextBookFormData) => {
     let postOptions = {
       method: "POST",
@@ -433,17 +429,13 @@ function AddMeetingForm(props) {
             <select
               className="form-select"
               aria-label="Default select example"
-              onClick={handleAddCountry}
+              onChange={handleNewMeetingChange}
               name="country"
+              value={meetingDetailsFormData.country}
             >
               <option defaultValue></option>
               {countryList.map((c) => (
-                <option
-                  className="dropdown-item"
-                  key={c}
-                  name="country"
-                  value={c}
-                >
+                <option className="dropdown-item" key={c} value={c}>
                   {c}
                 </option>
               ))}
