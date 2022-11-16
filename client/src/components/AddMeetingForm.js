@@ -216,57 +216,72 @@ const countryList = [
 function AddMeetingForm(props) {
   const { id } = useParams();
 
-  const EMPTY_FORM = {
+  const EMPTY_NEXT_BOOK_FORM = {
     author: "",
     title: "",
     image: "",
     date: "",
-    time: "",
-    location: {
-      locationName: "",
-      address: "",
-      city: "",
-      postalCode: "",
-      country: "",
-    },
     club_id: id,
   };
-
+  const EMPTY_MEETING_DETAILS_FORM = {
+    time: "",
+    locationName: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: "",
+    club_id: id,
+  };
   const [newBook, setNewBook] = useState({});
-  const [formData, setFormData] = useState(EMPTY_FORM);
+  const [newMeeting, setNewMeeting] = useState({});
+  const [nextBookFormData, setNextBookFormData] =
+    useState(EMPTY_NEXT_BOOK_FORM);
+  const [meetingDetailsFormData, setMeetingDetailsFormData] = useState(
+    EMPTY_MEETING_DETAILS_FORM
+  );
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  function handleChange(event) {
+  function handleNewBookChange(event) {
     const value = event.target.value;
     const name = event.target.name;
 
-    setFormData((state) => ({
+    setNextBookFormData((state) => ({
       ...state,
       [name]: value,
     }));
   }
 
-  function handleNestedChange(e) {
-    const value = e.target.value;
-    const name = e.target.name;
-    setFormData(({ location }) => ({
-      location: {
-        ...location,
-        [name]: value,
-      },
+  function handleNewMeetingChange(event) {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setMeetingDetailsFormData((state) => ({
+      ...state,
+      [name]: value,
     }));
   }
 
+  // function handleNestedChange(e) {
+  //   const value = e.target.value;
+  //   const name = e.target.name;
+  //   setFormData(({ location }) => ({
+  //     location: {
+  //       ...location,
+  //       [name]: value,
+  //     },
+  //   }));
+  // }
+
   function handleAddCountry(e) {
-    formData.location.country = e.target.value;
+    meetingDetailsFormData.country = e.target.value;
   }
 
-  const postBook = (formData) => {
+  const postBook = (nextBookFormData) => {
     let postOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(nextBookFormData),
     };
 
     fetch("/books", postOptions)
@@ -279,12 +294,32 @@ function AddMeetingForm(props) {
       });
   };
 
+  const patchClub = (meetingDetailsFormData) => {
+    let patchOptions = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(meetingDetailsFormData),
+    };
+
+    fetch("/clubs", patchOptions)
+      .then((res) => res.json())
+      .then((json) => {
+        setNewMeeting(json);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  console.log("nextbookformData", nextBookFormData);
+  console.log("meetingDetailsFormData", meetingDetailsFormData);
   function handleSubmit(e) {
     e.preventDefault();
     setNewBook({});
-    postBook(formData);
+    postBook(nextBookFormData);
+    patchClub(meetingDetailsFormData);
     setError("");
-    setFormData(EMPTY_FORM);
+    setMeetingDetailsFormData(EMPTY_MEETING_DETAILS_FORM);
+    setNextBookFormData(EMPTY_NEXT_BOOK_FORM);
     navigate(`/clubs/${id}`);
   }
 
@@ -300,8 +335,8 @@ function AddMeetingForm(props) {
             className="form-control"
             id="titleInput"
             name="title"
-            value={formData.title}
-            onChange={(e) => handleChange(e)}
+            value={nextBookFormData.title}
+            onChange={(e) => handleNewBookChange(e)}
           />
         </div>
         <div className="row">
@@ -311,11 +346,11 @@ function AddMeetingForm(props) {
             </label>
             <input
               className="form-control"
-              value={formData.date}
+              value={nextBookFormData.date}
               id="read-by-date"
               name="date"
               type="date"
-              onChange={(e) => handleChange(e)}
+              onChange={(e) => handleNewBookChange(e)}
             />
           </div>
 
@@ -325,11 +360,11 @@ function AddMeetingForm(props) {
             </label>
             <input
               className="form-control"
-              value={formData.time}
+              value={meetingDetailsFormData.time}
               id="meeting-time"
               name="time"
               type="time"
-              onChange={(e) => handleChange(e)}
+              onChange={(e) => handleNewMeetingChange(e)}
             />
           </div>
         </div>
@@ -343,8 +378,8 @@ function AddMeetingForm(props) {
             id="location-name"
             placeholder="Name of cafe, bar, park, library, etc."
             name="locationName"
-            value={formData.location.locationName}
-            onChange={(e) => handleNestedChange(e)}
+            value={meetingDetailsFormData.locationName}
+            onChange={(e) => handleNewMeetingChange(e)}
           />
         </div>
 
@@ -358,8 +393,8 @@ function AddMeetingForm(props) {
             id="inputAddress"
             placeholder="123 Main St"
             name="address"
-            value={formData.location.address}
-            onChange={(e) => handleNestedChange(e)}
+            value={meetingDetailsFormData.address}
+            onChange={(e) => handleNewMeetingChange(e)}
           />
         </div>
         <div className="row">
@@ -372,12 +407,12 @@ function AddMeetingForm(props) {
               className="form-control"
               id="inputCity"
               name="city"
-              value={formData.location.city}
-              onChange={(e) => handleNestedChange(e)}
+              value={meetingDetailsFormData.city}
+              onChange={(e) => handleNewMeetingChange(e)}
             />
           </div>
 
-          <div className="col-md-3">
+          <div className="col-md-2">
             <label htmlFor="inputZip" className="form-label">
               Postal Code
             </label>
@@ -386,12 +421,12 @@ function AddMeetingForm(props) {
               className="form-control"
               id="inputPostalCode"
               name="postalCode"
-              value={formData.location.postalCode}
-              onChange={(e) => handleNestedChange(e)}
+              value={meetingDetailsFormData.postalCode}
+              onChange={(e) => handleNewMeetingChange(e)}
             />
           </div>
 
-          <div className="col-md-4 my-auto dropdown">
+          <div className="col-md-5 my-auto dropdown">
             <label htmlFor="inputCountry" className="form-label">
               Country
             </label>
