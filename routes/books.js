@@ -37,9 +37,9 @@ router.post("/", async function (req, res, next) {
     let response = await fetch(url);
     if (response.ok) {
       let results = await response.json(); //converts JSON to JS
-      console.log("results", results.items);
+      // console.log("results", results.items);
       let book = results.items.filter((e) => e.volumeInfo.language === "en");
-      console.log("book", book);
+      console.log("book", book[0].volumeInfo.categories);
       let bookObj = {
         author: book[0].volumeInfo.authors[0],
         title: book[0].volumeInfo.title,
