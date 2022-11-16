@@ -45,6 +45,7 @@ function ClubBookshelf(props) {
 
   return (
     <div className="ClubBookshelf row mb-2">
+      <h2>Our Bookshelf</h2>
       {clubBooks.map((b) => (
         <div key={b.id} className="col my-2">
           <div className="card" style={{ width: "12rem" }}>

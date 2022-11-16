@@ -232,7 +232,7 @@ function AddMeetingForm(props) {
     country: "",
     club_id: 1, //TODO change to id once params are available
   };
-  const [newMeeting, setNewMeeting] = useState({});
+  // const [newMeeting, setNewMeeting] = useState({});
   const [nextBookFormData, setNextBookFormData] =
     useState(EMPTY_NEXT_BOOK_FORM);
   const [meetingDetailsFormData, setMeetingDetailsFormData] = useState(
@@ -298,9 +298,9 @@ function AddMeetingForm(props) {
 
     fetch("/clubs/:id", patchOptions)
       .then((res) => res.json())
-      .then((json) => {
-        setNewMeeting(json);
-      })
+      // .then((json) => {
+      //   setNewMeeting(json);
+      // })
       .catch((error) => {
         console.log(error.message);
       });
@@ -311,7 +311,6 @@ function AddMeetingForm(props) {
     meetingDetailsFormData.time = `${meetingDetailsFormData.time}:00`;
     postBook(nextBookFormData);
     patchClub(meetingDetailsFormData);
-    props.updateNextMeetingCb(newMeeting);
     setError("");
     setMeetingDetailsFormData(EMPTY_MEETING_DETAILS_FORM);
     setNextBookFormData(EMPTY_NEXT_BOOK_FORM);
@@ -321,21 +320,21 @@ function AddMeetingForm(props) {
   return (
     <div className="AddMeetingForm">
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">
-            Book Title
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="titleInput"
-            name="title"
-            value={nextBookFormData.title}
-            onChange={(e) => handleNewBookChange(e)}
-          />
-        </div>
         <div className="row">
-          <div className="col mb-3">
+          <div className="col mb-6">
+            <label htmlFor="title" className="form-label">
+              Book Title
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="titleInput"
+              name="title"
+              value={nextBookFormData.title}
+              onChange={(e) => handleNewBookChange(e)}
+            />
+          </div>
+          <div className="col mb-2">
             <label htmlFor="title" className="form-label">
               Meeting Date
             </label>
@@ -349,7 +348,7 @@ function AddMeetingForm(props) {
             />
           </div>
 
-          <div className="col mb-3">
+          <div className="col mb-2">
             <label htmlFor="title" className="form-label">
               Meeting Time
             </label>
@@ -363,35 +362,38 @@ function AddMeetingForm(props) {
             />
           </div>
         </div>
-        <div className="col-12">
-          <label htmlFor="locationName" className="form-label">
-            Location Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="location-name"
-            placeholder="Name of cafe, bar, park, library, etc."
-            name="locationName"
-            value={meetingDetailsFormData.locationName}
-            onChange={(e) => handleNewMeetingChange(e)}
-          />
+        <div className="row">
+          <div className="col-6">
+            <label htmlFor="locationName" className="form-label">
+              Location Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="location-name"
+              placeholder="Name of cafe, bar, park, library, etc."
+              name="locationName"
+              value={meetingDetailsFormData.locationName}
+              onChange={(e) => handleNewMeetingChange(e)}
+            />
+          </div>
+
+          <div className="col-6">
+            <label htmlFor="inputAddress" className="form-label">
+              Address
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputAddress"
+              placeholder="123 Main St"
+              name="address"
+              value={meetingDetailsFormData.address}
+              onChange={(e) => handleNewMeetingChange(e)}
+            />
+          </div>
         </div>
 
-        <div className="col-12">
-          <label htmlFor="inputAddress" className="form-label">
-            Address
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="inputAddress"
-            placeholder="123 Main St"
-            name="address"
-            value={meetingDetailsFormData.address}
-            onChange={(e) => handleNewMeetingChange(e)}
-          />
-        </div>
         <div className="row">
           <div className="col-md-5">
             <label htmlFor="inputCity" className="form-label">

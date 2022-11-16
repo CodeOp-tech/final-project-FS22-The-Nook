@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, Outlet } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
-import ClubAdminView from "./ClubAdminView";
 import Api from "../helpers/Api";
 
 function SingleClubView(props) {
@@ -10,9 +9,7 @@ function SingleClubView(props) {
   const [club, setClub] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [clubBooks, setClubBooks] = useState({});
-  const [nextMeeting, setNextMeeting] = useState({});
   let id = 1; // TODO: remove hardcoding when able
-  console.log("nextmtg", nextMeeting);
 
   useEffect(() => {
     fetchClub(id);
@@ -21,7 +18,7 @@ function SingleClubView(props) {
 
   //Get clubs's books
   async function fetchClubBooks() {
-    let myresponse = await Api.getClubBooks(`${club.id}`);
+    let myresponse = await Api.getClubBooks(`${id}`); //TODO: Change to ${club.id}
     if (myresponse.ok) {
       setClubBooks(myresponse.data);
       setErrorMsg("");
@@ -44,23 +41,16 @@ function SingleClubView(props) {
     }
   }
 
-  function updateNextMeeting(nextMeeting) {
-    setNextMeeting(nextMeeting);
-  }
-
   if (!club) {
     return <h2>Loading</h2>;
   }
   return (
     <div className="SingleClubView">
-      <Outlet updateNextMeetingCb={updateNextMeeting} />
+      {/* Outlet = ClubAdminView */}
+      <Outlet />
       <h2>{club.name}</h2>
       <h3>{club.category}</h3>
-      <NextMeetingInfo
-        club={club}
-        clubBooks={clubBooks}
-        nextMeeting={nextMeeting}
-      />
+      <NextMeetingInfo club={club} clubBooks={clubBooks} />
       <ClubBookshelf club={club} />
     </div>
   );
