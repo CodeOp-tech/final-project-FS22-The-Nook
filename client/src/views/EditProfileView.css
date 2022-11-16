@@ -1,0 +1,15 @@
+.EditProfile .title{
+    color: bisque
+}
+
+.form-group label{
+    color: white
+}
+
+.EditProfile form .inputs{
+    text-align: left 
+}
+
+.EditProfile .save{
+    font-size: 16px;
+}
