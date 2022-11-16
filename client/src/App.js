@@ -8,7 +8,7 @@ import ErrorView from "./views/ErrorView";
 
 import ProfileView from "./views/ProfileView";
 import AllBooksView from "./views/AllBooksView";
-import AllClubsView from './views/AllClubs';
+
 import HomeView from './views/HomeView';
 
 import ClubAdminView from "./views/ClubAdminView";
@@ -70,7 +70,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<HomeView/>} />
 
           <Route path="/books" element={<AllBooksView />} />
 

@@ -6,11 +6,13 @@ import HomeView from "../views/HomeView";
 function NavBar(props) {
   return (
     <nav
-      className="Navbar navbar navbar-expand-sm navbar-dark mb-4"
+      className="Navbar navbar navbar-expand-sm navbar-dark mb-2"
       
     >
       <div className="container-fluid">
-        <span className="navbar-brand font-weight-bold">The Nook</span>
+
+      <a className="navbar-brand" href="/" ><img src="https://i.imgur.com/FRh3Vql.png" className="img-responsive" alt="thenooklogogreen"/>
+      </a>
 
         
 

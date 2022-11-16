@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { useParams } from 'react-router-dom';
 import Api from '../helpers/Api';
+import './ProfileView.css'
 
 
 function ProfileView(props) {

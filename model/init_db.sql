@@ -78,7 +78,8 @@ INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0), (1, 2, 3, "Aaaa", "2022-10-11", 1), (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
 
 INSERT INTO clubs (name, category)
-    VALUES ("International classics", "classics"), ("Into the future", "sci-fi");
+    VALUES ("International classics", "classics"), ("Into the future", "sci-fi"), ("test1", "classics"), ("test2", "classics"),
+    ("test3", "classics");
 
 INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");

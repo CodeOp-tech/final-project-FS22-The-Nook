@@ -11,13 +11,15 @@ img{
 }
 
 h1{
-    color: rgb(240, 235, 206);
+    color: bisque;
     margin: 20px;
     padding-top: 20px;
+    color: rgb(170, 139, 86);
 }
 
 .clubCarousel, .favoriteBooks {
-    background-color: rgb(170, 139, 86);
+    background-color: bisque;
+    
 }
 
 .btn {
@@ -27,5 +29,13 @@ h1{
 }
 
 .buttonArea{
-    background-color: rgb(170, 139, 86);
+    background-color: bisque;
+}
+
+.btn-responsive{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    color: rgb(57, 81, 68);
+    border-color: rgb(57, 81, 68)
 }
