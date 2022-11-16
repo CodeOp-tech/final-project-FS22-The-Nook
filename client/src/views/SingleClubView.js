@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Outlet } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
 import Api from "../helpers/Api";
@@ -46,8 +46,6 @@ function SingleClubView(props) {
   }
   return (
     <div className="SingleClubView">
-      {/* Outlet = ClubAdminView */}
-      <Outlet />
       <h2>{club.name}</h2>
       <h3>{club.category}</h3>
       <NextMeetingInfo club={club} clubBooks={clubBooks} />

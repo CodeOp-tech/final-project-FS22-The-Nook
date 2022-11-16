@@ -105,9 +105,8 @@ function App() {
             }
           />
 
-          <Route path="clubs/:clubId" element={<SingleClubView />}>
-            <Route path="club-admin" element={<ClubAdminView />} />
-          </Route>
+          <Route path="clubs/:clubId" element={<SingleClubView />} />
+          <Route path="clubs/:clubId/club-admin" element={<ClubAdminView />} />
 
           <Route
             path="*"
