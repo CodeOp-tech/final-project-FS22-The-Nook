@@ -6,22 +6,22 @@ const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
 
 
 function joinToJasonCount (result, count){
-  let row0 = result.data[0];
-  let row0Count = count.data[0];
 
-  let completeResult = {
-    id: row0.id,
-    name: row0.name,
-    category: row0.category,
-    next_mtg_time: row0.next_mtg_time,
-    next_mtg_location_name: row0.next_mtg_location_name,
-    next_mtg_address: row0. next_mtg_address,
-    next_mtg_city: row0.next_mtg_city,
-    next_mtg_postal_code: row0.next_mtg_postal_code,
-    next_mtg_country: row0.next_mtg_country,
-    image: row0.image,
-    membersCount: row0Count.j
-  }
+  let completeResult = [];
+  completeResult = result.data.map((c, ind) => ({
+    id: c.id,
+    name: c.name,
+    category: c.category,
+    next_mtg_time: c.next_mtg_time,
+    next_mtg_location_name: c.next_mtg_location_name,
+    next_mtg_address: c. next_mtg_address,
+    next_mtg_city: c.next_mtg_city,
+    next_mtg_postal_code: c.next_mtg_postal_code,
+    next_mtg_country: c.next_mtg_country,
+    image: c.image,
+    membersCount: count.data[ind] ? count.data[ind].j : 0
+  }))
+  
   return completeResult
 }
 

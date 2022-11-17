@@ -104,7 +104,7 @@ function ClubSearchView(props) {
         </div>
 
         <div className="col-md-9">
-           <ClubList clubs={clubs} userJoinsClubCb={joinClub} />
+           <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} />
         </div>
 
       </div>
