@@ -11,3 +11,21 @@
     height: 2rem;
     font-size: 16px;
 }
+.ProfileView .heart {
+    color: red;
+    padding: 5px
+}
+
+.ProfileView .heart {
+    color: red;
+    font-size: 1.3rem;
+    display: block;
+    opacity: 1
+}
+
+.ProfileView .favoritebtn:disabled {
+    vertical-align: middle;
+    opacity: 1;
+    border:none;
+
+}

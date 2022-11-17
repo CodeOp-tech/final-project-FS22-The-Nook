@@ -109,7 +109,7 @@ function App() {
             element={<ErrorView code="404" text="Page not found" />}
           />
           
-          <Route path="/clubs" element={<ClubSearchView />} />
+          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)}/>} />
         </Routes>
       </div>
     </div>

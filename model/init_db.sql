@@ -1,4 +1,4 @@
-SET foreign_key_checks = 0; 
+SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS users;
@@ -36,7 +36,14 @@ CREATE TABLE `users_books`(
 CREATE TABLE `clubs`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
-    `category` VARCHAR(255) NOT NULL
+    `category` VARCHAR(255) NOT NULL,
+    `next_mtg_time` TIME NOT NULL,
+    `next_mtg_location_name` VARCHAR(255) NOT NULL,
+    `next_mtg_address` VARCHAR(255) NOT NULL,
+    `next_mtg_city` VARCHAR(255) NOT NULL,
+    `next_mtg_postal_code` VARCHAR(255) NOT NULL,
+    `next_mtg_country` VARCHAR(255) NOT NULL,
+    `image` VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE `books_clubs`(
@@ -67,7 +74,6 @@ ALTER TABLE
     `books_clubs` ADD CONSTRAINT `books_clubs_club_id_foreign` FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`);
 
 
-
 INSERT INTO users (username, email, password)
     VALUES ('johndoe', 'johndoe@example.com', '$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W'), ('janedoe', 'janedoe@example.com', '$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6');
 
@@ -77,8 +83,10 @@ INSERT INTO books (title, author, image)
 INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0), (1, 2, 3, "Aaaa", "2022-10-11", 1), (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
 
-INSERT INTO clubs (name, category)
-    VALUES ("International classics", "classics"), ("Into the future", "sci-fi");
+INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_mtg_address, next_mtg_city, next_mtg_country, next_mtg_postal_code, image)
+    VALUES ("International classics", "classics", "19:00:00", "Olive or Twist", "925 NW 11th Ave", "Portland", "United States", "97209", "https://static01.nyt.com/images/2022/01/16/fashion/VIRAL-LIBRARY/VIRAL-LIBRARY-articleLarge.jpg?quality=75&auto=webp&disable=upscale"),
+    ("Into the future", "sci-fi", "21:00:00", "High Park", "1873 Bloor St W", "Toronto", "Canada", "M6R 2Z3", "https://media.istockphoto.com/id/1277822133/photo/futuristic-scifi-battle-ships-hover-over-an-alien-planet.jpg?s=612x612&w=0&k=20&c=JSZtYp2TtvE19LWxOV1mhgfpvZX6Y-jxlC-KRwYi6cs="),
+     ("Reimagined History", "historical fiction", "20:00:00", "Barça Cafe", "C. d'Aristedes Maillol, 12", "Barcelona", "Spain", "08028", "https://images.unsplash.com/photo-1461360370896-922624d12aa1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGlzdG9yeXxlbnwwfHwwfHw%3D&w=1000&q=80");
 
 INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");
