@@ -53,13 +53,40 @@ function SingleClubView(props) {
   //   return <h2>Loading</h2>;
   // }
   return (
-    <div className="SingleClubView">
+    <div className="SingleClubView mt-5">
       {props.club.name ? (
         <div>
-          <h2>{props.club.name}</h2>
-          <h3>{props.club.category}</h3>
-          <NextMeetingInfo club={props.club} clubBooks={props.clubBooks} />
-          <ClubBookshelf club={props.club} clubBooks={props.clubBooks} />
+          <h1>{props.club.name}</h1>
+          {/* <img src={props.club.image} alt={props.club.name} /> */}
+          <div className="row mt-5">
+            <div className="col mb-3">
+              <NextMeetingInfo club={props.club} clubBooks={props.clubBooks} />
+            </div>
+
+            <div className="col mb-6">
+              <h2>About Our Club</h2>
+              <h3>Category: {props.club.category}</h3>
+              <h3>
+                Location: {props.club.next_mtg_city},{" "}
+                {props.club.next_mtg_country}
+              </h3>
+              <img src={props.club.image} alt={props.club.name} />
+            </div>
+          </div>
+          <div className="row mt-3">
+            <div className="col-4">
+              <h2>Members</h2>
+              <div>
+                {/* {props.members.map((m) => (
+                  <h3>m.userName</h3>
+                ))} */}
+              </div>
+            </div>
+
+            <div className="col">
+              <ClubBookshelf club={props.club} clubBooks={props.clubBooks} />
+            </div>
+          </div>
         </div>
       ) : (
         <h2>Loading</h2>

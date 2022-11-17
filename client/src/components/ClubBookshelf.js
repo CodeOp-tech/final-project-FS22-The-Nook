@@ -45,28 +45,34 @@ function ClubBookshelf(props) {
 
   return (
     <div className="ClubBookshelf row mb-2">
-      <h2>Our Bookshelf</h2>
-      {props.clubBooks &&
-        props.clubBooks.map((b) => (
-          <div key={b.id} className="col my-2">
-            <div className="card" style={{ width: "12rem" }}>
-              <div key={b.id}>
-                <div>
-                  <img
-                    src={`${b.image}`}
-                    className="card-img-top"
-                    alt={`${b.title}`}
-                  />
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title">{b.title}</h5>
-                  <h6 className="card-text">By {b.author}</h6>
-                  <h6 className="card-text">Discussed {formatDate(b.date)}</h6>
+      <div className="container border me-0">
+        <h2>Bookshelf</h2>
+        <div className="row">
+          {props.clubBooks &&
+            props.clubBooks.map((b) => (
+              <div key={b.id} className="col">
+                <div className="card" style={{ width: "12rem" }}>
+                  <div key={b.id}>
+                    <div>
+                      <img
+                        src={`${b.image}`}
+                        className="card-img-top"
+                        alt={`${b.title}`}
+                      />
+                    </div>
+                    <div className="card-body">
+                      <h5 className="card-title">{b.title}</h5>
+                      <h6 className="card-text">By {b.author}</h6>
+                      <h6 className="card-text">
+                        Discussed {formatDate(b.date)}
+                      </h6>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            ))}
+        </div>
+      </div>
     </div>
   );
 }

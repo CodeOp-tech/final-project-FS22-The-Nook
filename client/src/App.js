@@ -221,7 +221,29 @@ function App() {
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
-
+          <Route
+            path="clubs/:clubId"
+            element={
+              <SingleClubView
+                club={club}
+                clubBooks={clubBooks}
+                fetchClubBooks={fetchClubBooks}
+                fetchClub={fetchClub}
+              />
+            }
+          />
+          <Route
+            path="clubs/:clubId/club-admin"
+            element={
+              <ClubAdminView
+                club={club}
+                setClubCb={setClub}
+                setClubBooksCb={setClubBooks}
+                postBookCb={postBook}
+                patchClubCb={patchClub}
+              />
+            }
+          />
           <Route
             path="/clubs"
             element={<ClubSearchView setUser={(user) => setUser(user)} />}
