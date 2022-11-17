@@ -30,6 +30,29 @@ function App() {
   const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
+  const [clubs, setClubs] = useState([]); //state 1
+  const [loading, setLoading] = useState(false); //state2
+  const [error, setError] = useState(""); //state 3
+
+  //get the clubs first
+  async function getClubs() {
+    setLoading(true);
+    setError("");
+
+    try {
+      let response = await fetch("clubs");
+      if (response.ok) {
+        let data = await response.json();
+        setClubs(data);
+      } else {
+        setError(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+
+    setLoading(false);
+  }
   let id = 1; // TODO: remove hardcoding when able
 
   console.log("club", club);
@@ -104,7 +127,13 @@ function App() {
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
-      Local.saveUserInfo(myresponse.data.user, myresponse.data.token);
+      Local.saveUserInfo(
+        {
+          username: myresponse.data.user.username,
+          id: myresponse.data.user.id,
+        },
+        myresponse.data.token
+      );
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
       navigate("/");
@@ -145,7 +174,10 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<HomeView />} />
+          <Route
+            path="/"
+            element={<HomeView clubs={clubs} getClubs={getClubs} />}
+          />
 
           <Route path="/books" element={<AllBooksView />} />
 
@@ -176,30 +208,11 @@ function App() {
           <Route
             path="/users/:userId/edit"
             element={
-              <EditProfileView user={user} setUser={(user) => setUser(user)} />
-            }
-          />
-
-          <Route
-            path="clubs/:clubId"
-            element={
-              <SingleClubView
-                club={club}
-                clubBooks={clubBooks}
-                fetchClubBooks={fetchClubBooks}
-                fetchClub={fetchClub}
-              />
-            }
-          />
-          <Route
-            path="clubs/:clubId/club-admin"
-            element={
-              <ClubAdminView
-                club={club}
-                setClubCb={setClub}
-                setClubBooksCb={setClubBooks}
-                postBookCb={postBook}
-                patchClubCb={patchClub}
+              <EditProfileView
+                user={user}
+                setUser={(user) => setUser(user)}
+                clubs={clubs}
+                setClubs={setClubs}
               />
             }
           />
