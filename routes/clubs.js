@@ -110,7 +110,11 @@ router.post("/:id", ensureUserLoggedIn, async function(req, res) {
       res.status(500).send({ error: err.message });
   }
 
-})
+});
+
+// post a new book club
+
+
 
 
 

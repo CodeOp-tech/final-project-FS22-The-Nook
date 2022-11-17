@@ -23,7 +23,11 @@ function ClubSearchView(props) {
     // search effect function
      useEffect(() => {
         getClubs();
-    }, [name, category, clubs]); // useEfefct will run every time name and category are updated
+    }, [name, category]); // useEfefct will run every time name and category are updated
+    //clubs -> updating the no. of members without refreshing
+
+    //either remove clubs from 26 or from 42
+
 
     // search function 
     async function getClubs() {
@@ -110,11 +114,6 @@ function ClubSearchView(props) {
 
         
       </div>
-
-      <div className="createClubView">
-        <CreateClub /></div>
-      
-
     </div>
   );
 }

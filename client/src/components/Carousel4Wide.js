@@ -67,55 +67,40 @@ function Carousel4Wide(props) {
             data-bs-ride="carousel"
           >
             <div className="carousel-inner" role="listbox">
-        
-
-              {clubs.map((c) => (
-                  <div className="carousel-item active" key={c?.id}>
-                    <div className="col-md-3">
-                      <div className="card carouselCard">
-                        <div className="card-img">
-                          <img
-                            src="https://i.pinimg.com/564x/84/e4/73/84e4732d07ffc571aee8abc261e2249a.jpg"
-                            className="img-fluid"
-                            alt=""
-                          />
-                        </div>
-                        <div className="card-img-overlay">
-                          <Link to={`/clubs/${c?.id}`} className="clubName">
-                            {c?.name}
-                          </Link>
-                        </div>
+              {clubs.map((c, ix) => (
+                <div
+                  key={c.id}
+                  className={`carousel-item ${ix === 0 ? "active" : null}`}>
+                  <div className="col-md-3">
+                    <div className="card carouselCard">
+                      <div className="card-img">
+                        <img src={c.image} className="img-fluid" alt="" />
+                      </div>
+                      <div className="card-img-overlay">
+                        <Link to={`/clubs/${c?.id}`} className="clubName">
+                          {c?.name}
+                        </Link>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
             </div>
 
-<div className="carouselControls">
-            <a
-              className="carousel-control-prev bi bi-arrow-left-circle"
-              href="#clubCarousel"
-              role="button"
-              data-bs-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="false"
-              ></span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#clubCarousel"
-              role="button"
-              data-bs-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="false"
-              ></span>
-            </a>
+            <div className="carouselControls">
+              <a
+                className="carousel-control-prev active bi-arrow-left-circle"
+                href="#clubCarousel"
+                role="button"
+                data-bs-slide="prev"
+              ></a>
+              <a
+                className="carousel-control-next bi-arrow-right-circle"
+                href="#clubCarousel"
+                role="button"
+                data-bs-slide="next"
+              ></a>
             </div>
-
           </div>
         </div>
       </div>
