@@ -13,3 +13,13 @@
 .EditProfile .save{
     font-size: 16px;
 }
+
+.EditProfile .heart {
+    color: red;
+    font-size: 1.3rem;
+    display: block
+}
+
+.EditProfile .favoritebtn {
+    vertical-align: middle;
+}
