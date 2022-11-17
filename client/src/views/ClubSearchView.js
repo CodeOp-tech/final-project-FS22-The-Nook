@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
+import CreateClub from "../components/CreateClub";
 import './ClubSearchView.css'
 
 
@@ -41,7 +42,7 @@ function ClubSearchView(props) {
         } catch (err) {
                 console.log(`Network error: ${err.message}`);
         }
-    }
+    };
 
 
   return (
@@ -55,7 +56,12 @@ function ClubSearchView(props) {
            <ClubList clubs={clubs} />
         </div>
 
+        
       </div>
+
+      <div className="createClubView">
+        <CreateClub /></div>
+      
 
     </div>
   );
