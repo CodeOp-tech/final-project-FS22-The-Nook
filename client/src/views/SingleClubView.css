@@ -1,4 +1,10 @@
-img {
-  width: 50%;
-  height: 50%;
+#header-image {
+  object-fit: cover;
+  max-height: 250px;
+  opacity: 0.7;
+}
+
+#book-cover-img {
+  max-width: 175px;
+  height: auto;
 }

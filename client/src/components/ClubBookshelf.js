@@ -46,24 +46,24 @@ function ClubBookshelf(props) {
   return (
     <div className="ClubBookshelf row mb-2">
       <div className="container border me-0">
-        <h2>Bookshelf</h2>
+        <h2 className="mt-3">Bookshelf</h2>
         <div className="row">
           {props.clubBooks &&
             props.clubBooks.map((b) => (
               <div key={b.id} className="col">
-                <div className="card" style={{ width: "12rem" }}>
-                  <div key={b.id}>
+                <div className="card mh-290px" style={{ width: "12rem" }}>
+                  <div style={{ width: "12rem", height: "23rem" }} key={b.id}>
                     <div>
                       <img
                         src={`${b.image}`}
-                        className="card-img-top"
+                        className="card-img-top py-0 mb-0"
                         alt={`${b.title}`}
                       />
                     </div>
-                    <div className="card-body">
-                      <h5 className="card-title">{b.title}</h5>
-                      <h6 className="card-text">By {b.author}</h6>
-                      <h6 className="card-text">
+                    <div className="card-body mb-0">
+                      {/* <h5 className="card-title">{b.title}</h5>
+                      <h6 className="card-text">By {b.author}</h6> */}
+                      <h6 className="card-text pt-0 mt-0">
                         Discussed {formatDate(b.date)}
                       </h6>
                     </div>

@@ -7,7 +7,7 @@ function NextMeetingInfo(props) {
   return (
     <div className="NextMeetingInfo">
       <div className="container border ms-0">
-        <h2>Next Meeting</h2>
+        <h2 className="mt-3">Next Meeting</h2>
         <div className="row my-0">
           <div className="col w-25 mb-3 p-0 my-auto">
             {props.clubBooks.length ? (
@@ -15,7 +15,8 @@ function NextMeetingInfo(props) {
                 <img
                   src={props.clubBooks[props.clubBooks.length - 1].image}
                   alt={props.clubBooks[props.clubBooks.length - 1].title}
-                  className="my-auto"
+                  className="my-3 ms-2"
+                  id="book-cover-img"
                 />
                 <h5>{props.clubBooks[props.clubBooks.length - 1].title}</h5>
                 <h6>{props.clubBooks[props.clubBooks.length - 1].author}</h6>
