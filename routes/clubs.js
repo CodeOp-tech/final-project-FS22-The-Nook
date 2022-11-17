@@ -5,7 +5,7 @@ const { ensureUserLoggedIn } = require('../middleware/guards');
 const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
 
 
-function joinToJasonCount (result, count){
+function joinToJsonCount (result, count){
 
   let completeResult = [];
   completeResult = result.data.map((c, ind) => ({
@@ -65,7 +65,7 @@ router.get("/", async function (req, res) {
       `;
     let count = await db(countSql);
 
-    res.status(200).send(joinToJasonCount(result,count));
+    res.status(200).send(joinToJsonCount(result,count));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
