@@ -71,7 +71,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<HomeView />} />
 
           <Route path="/books" element={<AllBooksView />} />
 
