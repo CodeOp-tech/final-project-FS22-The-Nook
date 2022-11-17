@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
+import CreateClub from "../components/CreateClub";
 import './ClubSearchView.css'
 import Local from '../helpers/Local';
 import Api from '../helpers/Api';
@@ -22,7 +23,11 @@ function ClubSearchView(props) {
     // search effect function
      useEffect(() => {
         getClubs();
-    }, [name, category, clubs]); // useEfefct will run every time name and category are updated
+    }, [name, category]); // useEfefct will run every time name and category are updated
+    //clubs -> updating the no. of members without refreshing
+
+    //either remove clubs from 26 or from 42
+
 
     // search function 
     async function getClubs() {
@@ -42,7 +47,7 @@ function ClubSearchView(props) {
         } catch (err) {
                 console.log(`Network error: ${err.message}`);
         }
-    }
+    };
 
     // get the number of members for each club 
     // useEffect(() => {
@@ -107,8 +112,8 @@ function ClubSearchView(props) {
            <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} />
         </div>
 
+        
       </div>
-
     </div>
   );
 }

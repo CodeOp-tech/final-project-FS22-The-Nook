@@ -6,6 +6,7 @@ import "./ProfileView.css"
 
 
 function ProfileView(props) {
+    //const [user, setUser] = useState(null);
     let { userId } = useParams();
 
     let navigate = useNavigate()
@@ -74,9 +75,6 @@ function ProfileView(props) {
                         color2={'#ffd700'} />
                             <h5 className="card-title">{b.title}</h5>
                             <h6 className="card-text">By {b.author}</h6>
-                            {b.favorite === 1 ?               
-                            <i className="bi bi-heart-fill heart"></i>                        
-                            :<i className="bi bi-heart heart"></i>}
                         </div>
                         </div>
                     </div>
@@ -106,12 +104,14 @@ function ProfileView(props) {
                         color2={'#ffd700'} />
                         <h5 className="card-title">{b.title}</h5>
                         <h6 className="card-text">By {b.author}</h6>
+
                         <button key={b.id} 
                                 type="button" className="btn btn-outline-danger favoritebtn py-0" data-toggle="button" aria-pressed="false" readOnly={true} disabled>
                                 {b.favorite === 1 ?               
                                 <i className="bi bi-heart-fill heart"></i>                        
                                 :<i className="bi bi-heart heart"></i>}
                         </button>
+
                         </div>
                         </div>
                     </div>
