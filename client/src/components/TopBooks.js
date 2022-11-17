@@ -39,7 +39,7 @@ useEffect(() => {
 
         {books.map((b) => (
   
-        <div className="col">
+        <div className="col" key={b.id}>
       <div className="card bookCard">
           <img src={b.image}className="card-img-top" alt="book 1" />
           <div className="card-body">
