@@ -4,7 +4,7 @@ import Carousel4Wide from '../components/Carousel4Wide'
 import TopBooks from '../components/TopBooks'
 
 
-function HomeView() {
+function HomeView(props) {
 
 
 
@@ -16,7 +16,7 @@ function HomeView() {
         
         <div className="clubCarousel">
             <h1>Featured Clubs</h1>
-      <Carousel4Wide />
+      <Carousel4Wide clubs={props.clubs} getClubs={props.getClubs}/>
 
       
       <a type="button" className="btn btn-responsive btn-outline-dark" href="/clubs">See All Clubs</a>

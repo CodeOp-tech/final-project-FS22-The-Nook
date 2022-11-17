@@ -29,7 +29,6 @@ const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
 });
 
 
-
 /**
  * Log in a user
  **/
@@ -69,5 +68,7 @@ const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
         res.status(500).send({ error: err.message });
     }
 });
+
+
 
 module.exports = router;

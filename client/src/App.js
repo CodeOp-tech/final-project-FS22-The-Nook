@@ -26,11 +26,34 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const navigate = useNavigate();
+  const [clubs, setClubs] = useState([]); //state 1
+  const [loading, setLoading] = useState(false); //state2
+  const [error, setError] = useState(""); //state 3
+
+  //get the clubs first
+  async function getClubs() {
+    setLoading(true);
+    setError("");
+
+    try {
+      let response = await fetch("clubs");
+      if (response.ok) {
+        let data = await response.json();
+        setClubs(data);
+      } else {
+        setError(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+
+    setLoading(false);
+  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
-      Local.saveUserInfo(myresponse.data.user, myresponse.data.token);
+      Local.saveUserInfo({username: myresponse.data.user.username, id:myresponse.data.user.id}, myresponse.data.token);
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
       navigate("/");
@@ -72,7 +95,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<HomeView/>} />
+          <Route path="/" element={<HomeView clubs={clubs} getClubs={getClubs}/>} />
 
           <Route path="/books" element={<AllBooksView />} />
 
@@ -100,7 +123,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/users/:userId/edit" element={<EditProfileView user={user} setUser={user=> setUser(user)}/>} />
+          <Route path="/users/:userId/edit" element={<EditProfileView user={user} setUser={user=> setUser(user)} clubs={clubs} setClubs={setClubs}/>} />
 
           <Route path="club-admin" element={<ClubAdminView />} />
           <Route path="clubs/:clubId" element={<SingleClubView />} />

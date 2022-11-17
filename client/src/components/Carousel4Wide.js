@@ -3,35 +3,13 @@ import "./Carousel4Wide.css";
 import { Link } from "react-router-dom";
 
 function Carousel4Wide(props) {
-  const [clubs, setClubs] = useState([]); //state 1
-  const [loading, setLoading] = useState(false); //state2
-  const [error, setError] = useState(""); //state 3
 
-  //get the clubs first
-  async function getClubs() {
-    setLoading(true);
-    setError("");
-
-    try {
-      let response = await fetch("clubs");
-      if (response.ok) {
-        let data = await response.json();
-        setClubs(data);
-      } else {
-        setError(`Server error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      setError(err.message);
-    }
-
-    setLoading(false);
-  }
 
   //carousel function
-
+let clubs = props.clubs;
   //when page loads do this
   useEffect(() => {
-    getClubs();
+    props.getClubs();
   }, []);
 
   //when the clubs var changes, call do init
@@ -69,7 +47,7 @@ function Carousel4Wide(props) {
             <div className="carousel-inner" role="listbox">
         
 
-              {clubs.map((c) => (
+              {clubs && clubs.map((c) => (
                   <div className="carousel-item active" key={c?.id}>
                     <div className="col-md-3">
                       <div className="card carouselCard">

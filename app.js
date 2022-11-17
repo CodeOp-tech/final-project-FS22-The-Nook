@@ -10,6 +10,7 @@ var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth");
 var booksRouter = require("./routes/books");
 var clubsRouter = require("./routes/clubs");
+var usersClubs = require("./routes/users_clubs");
 
 
 var app = express();
@@ -26,6 +27,8 @@ app.use("/users", usersRouter);
 app.use("/books", booksRouter);
 app.use("/clubs", clubsRouter);
 app.use(authRouter);
+app.use(usersClubs);
+
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
