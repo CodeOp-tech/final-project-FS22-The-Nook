@@ -27,6 +27,15 @@ class Api {
     return await this._doFetch(`/users/${userId}`);
   }
 
+
+  /**
+   * Delete a user from a club'
+   **/
+
+   static async leaveClub(userId, clubId) {
+    return await this._doFetch(`/leaveclub/${userId}`, "PUT", {club_id: +clubId});
+  }
+
   /**
    * Get all books from books table associated with club with ID 'club_id'
    **/
