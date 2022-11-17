@@ -5,6 +5,26 @@ const { ensureUserLoggedIn } = require('../middleware/guards');
 const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
 
 
+function joinToJasonCount (result, count){
+  let row0 = result.data[0];
+  let row0Count = count.data[0];
+
+  let completeResult = {
+    id: row0.id,
+    name: row0.name,
+    category: row0.category,
+    next_mtg_time: row0.next_mtg_time,
+    next_mtg_location_name: row0.next_mtg_location_name,
+    next_mtg_address: row0. next_mtg_address,
+    next_mtg_city: row0.next_mtg_city,
+    next_mtg_postal_code: row0.next_mtg_postal_code,
+    next_mtg_country: row0.next_mtg_country,
+    image: row0.image,
+    membersCount: row0Count.j
+  }
+  return completeResult
+}
+
 // list all clubs
 
 function makeWhereFromFilters(query) {
@@ -22,29 +42,35 @@ function makeWhereFromFilters(query) {
 
 router.get("/", async function (req, res) {
   let sql = `
-      SELECT clubs.*, COUNT(user_id) AS m 
+      SELECT clubs.*
       FROM clubs
-      LEFT JOIN users_clubs ON club_id = clubs.id
-      GROUP BY club_id
       `;
+    
+
   let where = makeWhereFromFilters(req.query);
 
   if (where) {
-    sql = `SELECT clubs.*, COUNT(user_id) AS m 
+    sql = `SELECT clubs.*
           FROM clubs
-          LEFT JOIN users_clubs ON club_id = clubs.id 
           WHERE ${where}
-          GROUP BY club_id
           `;
   }
 
   try {
     let result = await db(sql);
-    res.status(200).send(result.data);
+    let countSql = `
+      SELECT COUNT(user_id) AS j
+      FROM users_clubs
+      GROUP BY club_id
+      `;
+    let count = await db(countSql);
+
+    res.status(200).send(joinToJasonCount(result,count));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
+
 
 // Get info for a specific club
 router.get("/:id", async function (req, res) {
@@ -59,30 +85,6 @@ router.get("/:id", async function (req, res) {
 });
 
 
-// get all users that joined a club
-
-// router.get("/joined", async function(req, res) {
-
-
-//   try {
-
-//       let sql = `
-//       SELECT COUNT(user_id) AS j
-//       FROM users_clubs
-//       GROUP BY club_id
-//       `;
-      
-//       let result = await db(sql);
-//       // console.log(result)
-//       if (result.data.length === 0) {
-//         res.status(404).send({ error: "No users have joined yet" });
-//       } else {
-//         res.send(result.data);
-//       }
-//     } catch (err) {
-//       res.status(500).send({ error: err.message });
-//     }
-//   });
 
 // add a user to a club (add the user to the user_club junction table when a user wants to join a club)
 
