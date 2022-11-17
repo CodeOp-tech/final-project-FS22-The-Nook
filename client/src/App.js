@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -24,7 +24,82 @@ import Api from "./helpers/Api";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
+  const [club, setClub] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
+  const [clubBooks, setClubBooks] = useState([]);
+
   const navigate = useNavigate();
+  let id = 1; // TODO: remove hardcoding when able
+
+  console.log("club", club);
+  console.log("clubBooks", clubBooks);
+
+  useEffect(() => {
+    fetchClub(id);
+    fetchClubBooks(id);
+  }, []);
+
+  async function fetchClubBooks(id) {
+    let myresponse = await Api.getClubBooks(`${id}`); //TODO: Change to ${club.id}
+    if (myresponse.ok) {
+      setClubBooks(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClubBooks([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
+
+  async function fetchClub(id) {
+    let myresponse = await Api.getClub(id);
+    if (myresponse.ok) {
+      setClub(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClub([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
+  const postBook = (nextBookFormData) => {
+    let postOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nextBookFormData),
+    };
+
+    fetch("/books", postOptions)
+      .then((res) => res.json())
+      .then((json) => {
+        setClubBooks(json);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const patchClub = (meetingDetailsFormData) => {
+    let patchOptions = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(meetingDetailsFormData),
+    };
+
+    fetch("/clubs/:id", patchOptions)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("nextmtgjson", json);
+        setClub(json[0]);
+        fetchClub(meetingDetailsFormData.club_id);
+        fetchClubBooks(meetingDetailsFormData.club_id);
+        navigate(`/clubs/${meetingDetailsFormData.club_id}`);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -105,8 +180,29 @@ function App() {
             }
           />
 
-          <Route path="clubs/:clubId" element={<SingleClubView />} />
-          <Route path="clubs/:clubId/club-admin" element={<ClubAdminView />} />
+          <Route
+            path="clubs/:clubId"
+            element={
+              <SingleClubView
+                club={club}
+                clubBooks={clubBooks}
+                fetchClubBooks={fetchClubBooks}
+                fetchClub={fetchClub}
+              />
+            }
+          />
+          <Route
+            path="clubs/:clubId/club-admin"
+            element={
+              <ClubAdminView
+                club={club}
+                setClubCb={setClub}
+                setClubBooksCb={setClubBooks}
+                postBookCb={postBook}
+                patchClubCb={patchClub}
+              />
+            }
+          />
 
           <Route
             path="*"

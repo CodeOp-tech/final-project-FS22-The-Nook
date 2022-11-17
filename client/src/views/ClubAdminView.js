@@ -5,7 +5,13 @@ function ClubAdminView(props) {
   return (
     <div className="ClubAdminView">
       <h2>Add your next meeting</h2>
-      <AddMeetingForm />
+      <AddMeetingForm
+        setClubCb={props.setClubCb}
+        setClubBooksCb={props.setClubBooksCb}
+        postBookCb={props.postBookCb}
+        patchClubCb={props.patchClubCb}
+        club={props.club}
+      />
     </div>
   );
 }
