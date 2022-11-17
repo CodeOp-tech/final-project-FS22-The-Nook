@@ -21,7 +21,7 @@ function makeWhereFromFilters(query) {
 
 router.get("/", async function (req, res) {
   let sql = `
-      SELECT clubs.*, COUNT(user_id) AS j
+      SELECT clubs.*, COUNT(user_id) AS m
       FROM clubs
       LEFT JOIN users_clubs ON club_id = clubs.id
       GROUP BY club_id
@@ -29,7 +29,7 @@ router.get("/", async function (req, res) {
   let where = makeWhereFromFilters(req.query);
 
   if (where) {
-    sql = `SELECT clubs.*, COUNT(user_id) AS j
+    sql = `SELECT clubs.*, COUNT(user_id) AS m
           FROM clubs
           LEFT JOIN users_clubs ON club_id = clubs.id
           WHERE ${where}
@@ -92,7 +92,6 @@ router.post("/:id", ensureUserLoggedIn, async function (req, res) {
       (${clubId}, ${res.locals.user}, 1)
   `;
   let userId = res.locals.user;
-  console.log(userId);
 
   try {
     await db(sql);

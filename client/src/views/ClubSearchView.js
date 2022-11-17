@@ -22,7 +22,7 @@ function ClubSearchView(props) {
     // search effect function
      useEffect(() => {
         getClubs();
-    }, [name, category]); // useEfefct will run every time name and category are updated
+    }, [name, category, clubs]); // useEfefct will run every time name and category are updated
 
     // search function 
     async function getClubs() {
@@ -71,8 +71,6 @@ function ClubSearchView(props) {
         body: JSON.stringify(club) 
       }
 
-
-
        // add token to the header if it exists in local storage
       let token = Local.getToken(); 
       if (token) {
@@ -82,12 +80,8 @@ function ClubSearchView(props) {
       try {
         let response = await fetch (`/clubs/${club.id}`, options);
         if (response.ok) {
-          // await response.json();
           let json = await response.json()
           props.setUser(json)
-
-
-
         } else {
           console.log(`Server error: ${response.status} ${response.statusText}`);
         }

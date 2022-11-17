@@ -20,7 +20,7 @@ function ClubList(props) {
                         <p className="fs-3">{c.name}</p>
                         <p><b>Genre:</b> {c.category}</p>
                         <p><b>Location:</b></p>
-                        <p><b>Members:</b> {c.j}</p>
+                        <p><b>Members:</b> {c.m}</p>
                         <button className="btn btn-outline-secondary mt-3" type="button" onClick={(e) => joinClub(c)}>Join</button>
                     </div>
                 ))
