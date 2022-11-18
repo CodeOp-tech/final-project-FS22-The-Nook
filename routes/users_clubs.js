@@ -8,8 +8,6 @@ const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
  * Add a user to a club and return updated member list.
  **/
 
-// ensureUserLoggedIn;
-
 router.post("/joinclub/:id", ensureUserLoggedIn, async function (req, res) {
   let userId = Number(req.params.id);
   let { club_id } = req.body;
