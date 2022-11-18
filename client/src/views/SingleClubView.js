@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
+import MembersList from "../components/MembersList";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
 
 function SingleClubView(props) {
   let { clubId } = useParams();
+
+  function getClubMembers(clubId) {}
 
   function handleJoin(userId) {}
 
@@ -43,10 +46,7 @@ function SingleClubView(props) {
 
                 <h2>Members</h2>
                 <div>
-                  {/* ADD NUMBER OF MEMBERS, too
-                  {props.members.map((m) => (
-                  <h3>m.userName</h3>
-                ))} */}
+                  <MembersList club={props.club} />
                 </div>
               </div>
               <div className="col-8">
