@@ -23,7 +23,7 @@ import Api from "./helpers/Api";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
-  const [userInfo, setUserInfo] = useState({})
+  const [userInfo, setUserInfo] = useState({});
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
   const [club, setClub] = useState({});
@@ -31,20 +31,18 @@ function App() {
   const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
-  const [clubs, setClubs] = useState([]); 
-  const [loading, setLoading] = useState(false); 
-  const [error, setError] = useState(""); 
-
+  const [clubs, setClubs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    getUserInfo()
+    getUserInfo();
   }, []);
 
-  async function getUserInfo () {
+  async function getUserInfo() {
     let response = await Api.getUser(user.id);
-    setUserInfo(response.data)
-}
-
+    setUserInfo(response.data);
+  }
 
   //get the clubs first
   async function getClubs() {
@@ -160,7 +158,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={userInfo} logoutCb={doLogout} />{" "}
+      <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
           <Route
@@ -190,12 +188,11 @@ function App() {
             path="/users/:userId"
             element={
               <PrivateRoute>
-
-                <ProfileView user={userInfo}/>
+                <ProfileView user={userInfo} />
               </PrivateRoute>
             }
           />
-        
+
           <Route
             path="/users/:userId/edit"
             element={
