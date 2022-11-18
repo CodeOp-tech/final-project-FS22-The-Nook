@@ -10,8 +10,8 @@
 } 
 
 .img-responsive{
-  width: 180px;
-  height: 120px;
+  width: 100px;
+  height: 70px;
   margin: auto;
   
 }
@@ -23,13 +23,27 @@
 
 .nav-link{
   color: rgb(57, 81, 68);
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .d-flex {
   margin-left: 20px !important;
 }
 .Navbar{
   background-color: bisque;
+ 
 }
+
+.navbar-toggler{
+  color: rgb(57, 81, 68);
+  display: flex;
+  border-color: rgb(57, 81, 68);
+  
+  
+  
+}
+
+
 
 
 /* .navbar-nav {

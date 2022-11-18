@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './CreateClub.css'
 
-const CLUB_FORM = {
+const EMPTY_NEW_CLUB_FORM = {
   name: "",
   category: "",
   location: "",
@@ -10,11 +10,11 @@ const CLUB_FORM = {
 };
 
 function CreateClub() {
-  const [fields, setFields] = useState(CLUB_FORM);
+  const [fields, setFields] = useState(EMPTY_NEW_CLUB_FORM);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  function handleChange(event) {
+  function handleNewClubChange(event) {
     const value = event.target.value;
     const name = event.target.name;
 
@@ -50,7 +50,7 @@ function CreateClub() {
     addClub();
     setError("");
     console.log("You have created a new book club!");
-    setFields(CLUB_FORM);
+    setFields(EMPTY_NEW_CLUB_FORM);
     navigate(`/clubs`);
   };
 
@@ -72,7 +72,7 @@ function CreateClub() {
             
             placeholder="e.g. Les Bibliophiles"
             value={fields.name}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleNewClubChange(e)}
           />
         </div>
 
@@ -87,7 +87,7 @@ function CreateClub() {
             name="category"
             placeholder="e.g. Romance"
             value={fields.category}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleNewClubChange(e)}
           />
         </div>
 
@@ -102,7 +102,7 @@ function CreateClub() {
             name="location"
             placeholder="e.g. Paris"
             value={fields.location}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleNewClubChange(e)}
           />
         </div>
 
@@ -117,7 +117,7 @@ function CreateClub() {
             name="image"
             placeholder="Add Link Here"
             value={fields.image}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleNewClubChange(e)}
           />
         </div>
 

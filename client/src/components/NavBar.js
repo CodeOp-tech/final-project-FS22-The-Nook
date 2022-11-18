@@ -6,15 +6,19 @@ import HomeView from "../views/HomeView";
 function NavBar(props) {
   return (
     <nav
-      className="Navbar navbar navbar-expand-sm navbar-dark mb-2"
-      
-    >
+      className="Navbar navbar navbar-expand-lg navbar-dark mb-2">
+
       <div className="container-fluid">
 
-      <a className="navbar-brand" href="/" ><img src="https://i.imgur.com/FRh3Vql.png" className="img-responsive" alt="thenooklogogreen"/>
+      <a className="navbar-brand" href="/" ><img src="https://media4.giphy.com/media/khVofmhxrgVz4RsWv5/giphy.gif?cid=790b7611e80fc692840444e963e13c27831ec227f6566f23&rid=giphy.gif&ct=g" className="img-responsive" alt="thenooklogogreen"/>
       </a>
+     
 
-        
+      <div className="wholeNavBarToggler">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
         {/* Left-aligned stuff */}
         <div className="collapse navbar-collapse" id="navbarNav">
@@ -46,7 +50,7 @@ function NavBar(props) {
           </ul>
 
           
-        </div>
+        
 
         {/* Right-aligned stuff, based on whether user is logged in */}
         {props.user ? (
@@ -67,7 +71,10 @@ function NavBar(props) {
             </li>
           </ul>
         )}
+        </div>
       </div>
+</div>
+      
     </nav>
   );
 }
