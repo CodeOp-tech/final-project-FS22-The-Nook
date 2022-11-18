@@ -9,6 +9,15 @@
   height: auto;
 }
 
-.SingleClubView{
-  color: antiquewhite;
+.SingleClubView {
+  color: bisque;
+}
+
+.card-text {
+  color: black;
+}
+
+.user {
+  color: bisque !important;
+  border-color: bisque !important;
 }

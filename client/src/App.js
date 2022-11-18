@@ -97,6 +97,7 @@ function App() {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
       setClub(responsePatch.data[0]);
+      console.log("responsepatchdata", responsePatch.data);
     }
     let responsePostBook = await Api.postBook(BookData);
     if (responsePostBook.ok) {

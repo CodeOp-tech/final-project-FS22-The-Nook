@@ -9,10 +9,6 @@ import "./SingleClubView.css";
 function SingleClubView(props) {
   let { clubId } = useParams();
 
-  function getClubMembers(clubId) {}
-
-  function handleJoin(userId) {}
-
   return (
     <div className="SingleClubView mt-5">
       {props.club.name ? (
@@ -35,21 +31,13 @@ function SingleClubView(props) {
           </div>
           <div>
             <div className="row mt-5">
-              <div className="col-4">
-                <button
-                  type="button"
-                  className="btn btn-outline-light mb-3"
-                  onClick={handleJoin}
-                >
-                  JOIN
-                </button>
-
-                <h2>Members</h2>
+              <div className="col-4 border">
+                <h2 className="mt-3">Members</h2>
                 <div>
                   <MembersList club={props.club} />
                 </div>
               </div>
-              <div className="col-8">
+              <div className="col-8 ps-3 pe-0">
                 <NextMeetingInfo
                   club={props.club}
                   clubBooks={props.clubBooks}

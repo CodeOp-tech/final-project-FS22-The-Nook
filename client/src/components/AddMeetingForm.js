@@ -32,9 +32,6 @@ function AddMeetingForm(props) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  console.log("nextmtg1", nextMeeting);
-  console.log("newBook1", newBook);
-
   function handleNewBookChange(event) {
     const value = event.target.value;
     const name = event.target.name;

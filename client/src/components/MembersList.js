@@ -9,7 +9,11 @@ function MembersList(props) {
       <div className="row">
         <div className="col">
           {props.club.members.map((m) => (
-            <Link to={`/users/${m.id}`} className="btn btn-primary" key={m.id}>
+            <Link
+              to={`/users/${m.id}`}
+              className="btn btn-outline-light mx-2 btn-sm user"
+              key={m.id}
+            >
               <h4>{m.username}</h4>
             </Link>
           ))}
