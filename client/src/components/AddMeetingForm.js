@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CountryList from "./DropdownCountries.js";
 
 function AddMeetingForm(props) {
@@ -55,51 +55,13 @@ function AddMeetingForm(props) {
     }));
   }
 
-  // const postBook = (nextBookFormData) => {
-  //   let postOptions = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(nextBookFormData),
-  //   };
-
-  //   fetch("/books", postOptions)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       props.setClubBooksCb(json);
-  //       console.log("newBook2", newBook);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.message);
-  //     });
-  // };
-
-  // const patchClub = (meetingDetailsFormData) => {
-  //   let patchOptions = {
-  //     method: "PATCH",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(meetingDetailsFormData),
-  //   };
-
-  //   fetch("/clubs/:id", patchOptions)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       console.log("nextmtgjson", json);
-  //       props.setClubCb(json[0]);
-  //
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.message);
-  //     });
-  // };
-
   function handleSubmit(e) {
     e.preventDefault();
     meetingDetailsFormData.time = `${meetingDetailsFormData.time}:00`;
     meetingDetailsFormData.name = props.club.name;
     meetingDetailsFormData.category = props.club.category;
     meetingDetailsFormData.image = props.club.image;
-    props.postBookCb(nextBookFormData);
-    props.patchClubCb(meetingDetailsFormData);
+    props.postBookAndPatchClubCb(meetingDetailsFormData, nextBookFormData);
     setError("");
     setMeetingDetailsFormData(EMPTY_MEETING_DETAILS_FORM);
     setNextBookFormData(EMPTY_NEXT_BOOK_FORM);

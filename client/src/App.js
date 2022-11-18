@@ -86,42 +86,20 @@ function App() {
       setErrorMsg(msg);
     }
   }
-  const postBook = (nextBookFormData) => {
-    let postOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(nextBookFormData),
-    };
 
-    fetch("/books", postOptions)
-      .then((res) => res.json())
-      .then((json) => {
-        setClubBooks(json);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  const patchClub = (meetingDetailsFormData) => {
-    let patchOptions = {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(meetingDetailsFormData),
-    };
-
-    fetch("/clubs/:id", patchOptions)
-      .then((res) => res.json())
-      .then((json) => {
-        console.log("nextmtgjson", json);
-        setClub(json[0]);
-        fetchClub(meetingDetailsFormData.club_id);
-        fetchClubBooks(meetingDetailsFormData.club_id);
-        navigate(`/clubs/${meetingDetailsFormData.club_id}`);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+  const postBookAndPatchClub = async (meetingDetails, BookData) => {
+    let responsePatch = await Api.patchClub(meetingDetails);
+    if (responsePatch.ok) {
+      setClub(responsePatch.data[0]);
+    }
+    let responsePostBook = await Api.postBook(BookData);
+    if (responsePostBook.ok) {
+      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`); //TODO: Change to ${club.id}
+      if (getClubBooks.ok) {
+        setClubBooks(getClubBooks.data);
+      }
+      navigate(`/clubs/${meetingDetails.club_id}`);
+    }
   };
 
   async function doLogin(username, password) {
@@ -239,8 +217,7 @@ function App() {
                 club={club}
                 setClubCb={setClub}
                 setClubBooksCb={setClubBooks}
-                postBookCb={postBook}
-                patchClubCb={patchClub}
+                postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }
           />

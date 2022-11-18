@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import Api from "../helpers/Api";
 
 function ClubBookshelf(props) {
-  // const [clubBooks, setClubBooks] = useState([]);
-  // const [errorMsg, setErrorMsg] = useState("");
-
-  // useEffect(() => {
-  //   fetchClubBooks();
-  // }, []);
-
   function formatDate(date) {
     const months = {
       "01": "January",
@@ -30,18 +23,6 @@ function ClubBookshelf(props) {
 
     return `${month} ${day}, ${year}`;
   }
-  //Get clubs's books
-  // async function fetchClubBooks() {
-  //   let myresponse = await Api.getClubBooks(`${props.club.id}`);
-  //   if (myresponse.ok) {
-  //     setClubBooks(myresponse.data);
-  //     setErrorMsg("");
-  //   } else {
-  //     setClubBooks([]);
-  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-  //     setErrorMsg(msg);
-  //   }
-  // }
 
   return (
     <div className="ClubBookshelf row mb-2">
