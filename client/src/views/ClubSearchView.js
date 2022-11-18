@@ -24,10 +24,6 @@ function ClubSearchView(props) {
      useEffect(() => {
         getClubs();
     }, [name, category]); // useEfefct will run every time name and category are updated
-    //clubs -> updating the no. of members without refreshing
-
-    //either remove clubs from 26 or from 42
-
 
     // search function 
     async function getClubs() {
@@ -97,10 +93,6 @@ function ClubSearchView(props) {
 
 
 
-
-
-
-
   return (
     <div className="container ClubSearchView">
       <div className="row">
@@ -109,7 +101,7 @@ function ClubSearchView(props) {
         </div>
 
         <div className="col-md-9">
-           <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} />
+           <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} user={props.user} />
         </div>
 
         

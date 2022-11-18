@@ -122,6 +122,8 @@ function App() {
         myresponse.data.token
       );
       setUser(myresponse.data.user);
+      getUserInfo();
+      
       setLoginErrorMsg("");
       navigate("/");
     } else {

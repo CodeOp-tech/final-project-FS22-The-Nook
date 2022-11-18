@@ -85,22 +85,34 @@ router.get("/:id", async function (req, res) {
 
 // add a user to a club (add the user to the user_club junction table when a user wants to join a club)
 
-router.post("/:id", ensureUserLoggedIn, async function (req, res) {
-  let clubId = req.params.id;
+router.post("/:id", ensureUserLoggedIn, async function(req, res) {
 
-  let sql = `
+  let userId = res.locals.user;
+  let clubId = req.params.id 
+  let checkUserSql = `
+      SELECT *
+      FROM users_clubs
+      WHERE user_id = ${userId} AND club_id = ${clubId}
+  `;
+
+  let postSql = `
     INSERT INTO users_clubs (club_id, user_id, admin)
     VALUES
       (${clubId}, ${res.locals.user}, 1)
   `;
-  let userId = res.locals.user;
 
   try {
-    await db(sql);
-    // console.log(sql)
-    let booksResults = await db(booksSql + ` WHERE user_id = '${userId}'`);
-    let clubsResults = await db(clubsSql + ` WHERE user_id = '${userId}'`);
-    res.send(joinToJson(booksResults, clubsResults));
+    let check = await db(checkUserSql);
+    if (check.data.length === 0) {
+      await db(postSql);
+      let booksResults = await db(booksSql +` WHERE user_id = '${userId}'`) ;
+      let clubsResults = await db(clubsSql +` WHERE user_id = '${userId}'`)
+      res.send(joinToJson(booksResults, clubsResults));
+    } else {
+       res.status(403).send("User already joined")
+    }
+
+
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
