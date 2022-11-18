@@ -11,8 +11,7 @@ function HomeView() {
     return (
         <div className="homePage">
 
-        <div className="logo">
-            <img src="https://i.imgur.com/tMhxVJ8.png"/></div>
+        
         
         <div className="clubCarousel">
             <h1>Featured Clubs</h1>
