@@ -195,18 +195,13 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/users/:userId/edit" element={<EditProfileView user={userInfo} setUser={user=> setUserInfo(user)} clubs={clubs} setClubs={setClubs}/>} />
-          
-                <ProfileView user={user} />
-              </PrivateRoute>
-            }
-          />
+        
           <Route
             path="/users/:userId/edit"
             element={
               <EditProfileView
-                user={user}
-                setUser={(user) => setUser(user)}
+                user={userInfo}
+                setUser={(user) => setUserInfo(user)}
                 clubs={clubs}
                 setClubs={setClubs}
               />
