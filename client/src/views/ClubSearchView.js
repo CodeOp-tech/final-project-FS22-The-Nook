@@ -22,7 +22,7 @@ function ClubSearchView(props) {
     // search effect function
      useEffect(() => {
         getClubs();
-    }, [name, category, clubs]); // useEfefct will run every time name and category are updated
+    }, [name, category]); // useEfefct will run every time name and category are updated
 
     // search function 
     async function getClubs() {
@@ -92,10 +92,6 @@ function ClubSearchView(props) {
 
 
 
-
-
-
-
   return (
     <div className="container ClubSearchView">
       <div className="row">
@@ -104,7 +100,7 @@ function ClubSearchView(props) {
         </div>
 
         <div className="col-md-9">
-           <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} />
+           <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} user={props.user} />
         </div>
 
       </div>

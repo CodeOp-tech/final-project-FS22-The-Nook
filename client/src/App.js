@@ -32,6 +32,7 @@ function App() {
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.user, myresponse.data.token);
       setUser(myresponse.data.user);
+      // console.log("check what is set as user:", myresponse.data.user)
       setLoginErrorMsg("");
       navigate("/");
     } else {
@@ -109,7 +110,7 @@ function App() {
             element={<ErrorView code="404" text="Page not found" />}
           />
           
-          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)}/>} />
+          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)} user={user} />} />
         </Routes>
       </div>
     </div>
