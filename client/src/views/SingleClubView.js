@@ -8,10 +8,8 @@ import "./SingleClubView.css";
 function SingleClubView(props) {
   let { clubId } = useParams();
 
-  // if (!props.club.name) {
-  //   console.log("loading", props.club);
-  //   return <h2>Loading</h2>;
-  // }
+  function handleJoin(userId) {}
+
   return (
     <div className="SingleClubView mt-5">
       {props.club.name ? (
@@ -35,9 +33,14 @@ function SingleClubView(props) {
           <div>
             <div className="row mt-5">
               <div className="col-4">
-                <button type="button" className="btn btn-outline-light mb-3">
+                <button
+                  type="button"
+                  className="btn btn-outline-light mb-3"
+                  onClick={handleJoin}
+                >
                   JOIN
                 </button>
+
                 <h2>Members</h2>
                 <div>
                   {/* ADD NUMBER OF MEMBERS, too
