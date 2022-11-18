@@ -1,53 +1,44 @@
 import React,{useState, useEffect} from "react";
-import { useParams } from 'react-router-dom';
-import Api from '../helpers/Api';
+// import { useParams } from 'react-router-dom';
+// import Api from '../helpers/Api';
 import ReactStars from 'react-stars';
+import Api from "../helpers/Api";
 import "./EditProfileView.css";
 
 function EditProfileView(props){
-let [modifiedUser, setInput] = useState({});
 
 let user = props.user;
 
 
-function handleInputChange(event){
-    let {name, value} = event.target;
-    setInput(modifiedUser => ({...modifiedUser, [name]: value}))
+async function exitGroup(event){
+    let clubName = event.target.name; 
+    let club = props.clubs.find(c => (c.name === (clubName)))
+    console.log(event.target.name)
+    console.log(props.clubs)
+    console.log(club.id)
+    
+    let confirmation = confirm(`Do you really want to leave the club "${club.name}"?`)
+    if(confirmation){
+        let response = await Api.leaveClub(user.id, club.id)
+        props.setUser(response.data)
+    }
 }
+
 
 const ratingChanged = (newRating) => {
     console.log(newRating)
   }
 
-function toggleFavorite () {
-    
+
+  function toggleFavorite () {    
 }
+
+
 
 
 return(
         
         <div className="EditProfile">
-            
-
-            {}
-            <h2 className="title">Edit Profile</h2>
-            <form>
-            <div className="inputs">
-                <div className="form-group mb-2">
-                    <label htmlFor="username" className="label">Username</label>
-                    <input type="text" className="form-control" name="username" defaultValue={user.username} onChange={e=> handleInputChange(e)}/>
-                </div>
-                <div className="form-group mb-2">
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" className="form-control" name="email" defaultValue={user.email} onChange={e=> handleInputChange(e)} />
-                </div>
-                <div className="form-group mb-2">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" name="password" placeholder="Enter New Password" onChange={e=> handleInputChange(e)}/>
-                </div>
-            </div>
-            <button type="submit" className="btn btn-outline-light mt-4 save">Save changes</button>
-            </form>
 
 
         <h2 className="title">Edit Your Clubs</h2>
@@ -57,6 +48,7 @@ return(
                     <div >
                     <div className="card-body">
                         <h5 className="card-title">{c.name}</h5>
+                        <button type="button" className="btn btn-outline-dark exit" onClick={e => exitGroup(e)} name={c.name}>Leave club</button>
                     </div>
                     </div>
                 </div>

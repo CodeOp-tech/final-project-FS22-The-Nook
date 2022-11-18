@@ -30,3 +30,6 @@
 
 }
 
+.ProfileView .card-body div {
+    display: inline-block
+}
