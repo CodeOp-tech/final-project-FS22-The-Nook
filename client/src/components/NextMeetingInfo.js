@@ -38,7 +38,7 @@ function NextMeetingInfo(props) {
                 <h3>Time: {props.club.next_mtg_time.slice(0, 5)}</h3>
                 <h3>Location: {props.club.next_mtg_location_name}</h3>
                 <h4>
-                  `Address: {props.club.next_mtg_address},{" "}
+                  Address: {props.club.next_mtg_address},{" "}
                   {props.club.next_mtg_city}, {props.club.next_mtg_postal_code},{" "}
                   {props.club.next_mtg_country}
                 </h4>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
+import MembersList from "../components/MembersList";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
 import { useNavigate } from "react-router-dom";
@@ -73,12 +74,10 @@ async function joinClub(club) {
                 <button type="button" className="btn btn-outline-light mb-3"  onClick={(e) => canJoin(props.club)}>
                   JOIN
                 </button>
+
                 <h2>Members</h2>
                 <div>
-                  {/* ADD NUMBER OF MEMBERS, too
-                  {props.members.map((m) => (
-                  <h3>m.userName</h3>
-                ))} */}
+                  <MembersList club={props.club} />
                 </div>
               </div>
               <div className="col-8">
