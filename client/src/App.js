@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -11,7 +10,7 @@ import EditProfileView from "./views/EditProfileView";
 
 import AllBooksView from "./views/AllBooksView";
 
-import HomeView from './views/HomeView';
+import HomeView from "./views/HomeView";
 
 import ClubAdminView from "./views/ClubAdminView";
 import LoginView from "./views/LoginView";
@@ -25,6 +24,11 @@ import Api from "./helpers/Api";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
+  const [club, setClub] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
+  const [clubBooks, setClubBooks] = useState([]);
+
   const navigate = useNavigate();
   const [clubs, setClubs] = useState([]); //state 1
   const [loading, setLoading] = useState(false); //state2
@@ -49,11 +53,65 @@ function App() {
 
     setLoading(false);
   }
+  let id = 1; // TODO: remove hardcoding when able
+
+  console.log("club", club);
+  console.log("clubBooks", clubBooks);
+
+  useEffect(() => {
+    fetchClub(id);
+    fetchClubBooks(id);
+  }, []);
+
+  async function fetchClubBooks(id) {
+    let myresponse = await Api.getClubBooks(`${id}`); //TODO: Change to ${club.id}
+    if (myresponse.ok) {
+      setClubBooks(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClubBooks([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
+
+  async function fetchClub(id) {
+    let myresponse = await Api.getClub(id);
+    if (myresponse.ok) {
+      setClub(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClub([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
+
+  const postBookAndPatchClub = async (meetingDetails, BookData) => {
+    let responsePatch = await Api.patchClub(meetingDetails);
+    if (responsePatch.ok) {
+      setClub(responsePatch.data[0]);
+    }
+    let responsePostBook = await Api.postBook(BookData);
+    if (responsePostBook.ok) {
+      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`); //TODO: Change to ${club.id}
+      if (getClubBooks.ok) {
+        setClubBooks(getClubBooks.data);
+      }
+      navigate(`/clubs/${meetingDetails.club_id}`);
+    }
+  };
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
-      Local.saveUserInfo({username: myresponse.data.user.username, id:myresponse.data.user.id}, myresponse.data.token);
+      Local.saveUserInfo(
+        {
+          username: myresponse.data.user.username,
+          id: myresponse.data.user.id,
+        },
+        myresponse.data.token
+      );
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
       navigate("/");
@@ -89,13 +147,15 @@ function App() {
       });
   }
 
-
   return (
     <div className="App">
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
-          <Route path="/" element={<HomeView clubs={clubs} getClubs={getClubs}/>} />
+          <Route
+            path="/"
+            element={<HomeView clubs={clubs} getClubs={getClubs} />}
+          />
 
           <Route path="/books" element={<AllBooksView />} />
 
@@ -119,20 +179,52 @@ function App() {
             path="/users/:userId"
             element={
               <PrivateRoute>
-                <ProfileView user={user}/>
+                <ProfileView user={user} />
               </PrivateRoute>
             }
           />
-          <Route path="/users/:userId/edit" element={<EditProfileView user={user} setUser={user=> setUser(user)} clubs={clubs} setClubs={setClubs}/>} />
+          <Route
+            path="/users/:userId/edit"
+            element={
+              <EditProfileView
+                user={user}
+                setUser={(user) => setUser(user)}
+                clubs={clubs}
+                setClubs={setClubs}
+              />
+            }
+          />
 
-          <Route path="club-admin" element={<ClubAdminView />} />
-          <Route path="clubs/:clubId" element={<SingleClubView />} />
           <Route
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
-          
-          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)}/>} />
+          <Route
+            path="clubs/:clubId"
+            element={
+              <SingleClubView
+                club={club}
+                clubBooks={clubBooks}
+                fetchClubBooks={fetchClubBooks}
+                fetchClub={fetchClub}
+              />
+            }
+          />
+          <Route
+            path="clubs/:clubId/club-admin"
+            element={
+              <ClubAdminView
+                club={club}
+                setClubCb={setClub}
+                setClubBooksCb={setClubBooks}
+                postBookAndPatchClubCb={postBookAndPatchClub}
+              />
+            }
+          />
+          <Route
+            path="/clubs"
+            element={<ClubSearchView setUser={(user) => setUser(user)} />}
+          />
         </Routes>
       </div>
     </div>
