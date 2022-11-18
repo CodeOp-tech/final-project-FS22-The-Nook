@@ -37,11 +37,11 @@ CREATE TABLE `clubs`(
     `id` INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `category` VARCHAR(255) NOT NULL,
-    `next_mtg_time` TIME NOT NULL,
-    `next_mtg_location_name` VARCHAR(255) NOT NULL,
-    `next_mtg_address` VARCHAR(255) NOT NULL,
+    `next_mtg_time` TIME,
+    `next_mtg_location_name` VARCHAR(255),
+    `next_mtg_address` VARCHAR(255),
     `next_mtg_city` VARCHAR(255) NOT NULL,
-    `next_mtg_postal_code` VARCHAR(255) NOT NULL,
+    `next_mtg_postal_code` VARCHAR(255),
     `next_mtg_country` VARCHAR(255) NOT NULL,
     `image` VARCHAR(255) NOT NULL
 );
