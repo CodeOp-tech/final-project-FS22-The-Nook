@@ -1,5 +1,5 @@
 import React from "react";
-import AddMeetingForm from "../components/AddMeetingForm";
+//import AddMeetingForm from "../components/AddMeetingForm";
 
 function ClubAdminView(props) {
   return (
