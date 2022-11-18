@@ -122,7 +122,8 @@ function App() {
         myresponse.data.token
       );
       setUser(myresponse.data.user);
-      // console.log("check what is set as user:", myresponse.data.user)
+      getUserInfo();
+      
       setLoginErrorMsg("");
       navigate("/");
     } else {
