@@ -23,6 +23,7 @@ function joinToJsonCount(result, count) {
   return completeResult;
 }
 
+
 // list all clubs
 
 function makeWhereFromFilters(query) {
@@ -55,6 +56,7 @@ router.get("/", async function (req, res) {
 
   try {
     let result = await db(sql);
+    
     let countSql = `
       SELECT COUNT(user_id) AS j
       FROM users_clubs
@@ -63,6 +65,7 @@ router.get("/", async function (req, res) {
     let count = await db(countSql);
 
     res.status(200).send(joinToJsonCount(result, count));
+    
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

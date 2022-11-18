@@ -23,6 +23,7 @@ import Api from "./helpers/Api";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
+  const [userInfo, setUserInfo] = useState({})
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
   const [club, setClub] = useState({});
@@ -30,9 +31,20 @@ function App() {
   const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
-  const [clubs, setClubs] = useState([]); //state 1
-  const [loading, setLoading] = useState(false); //state2
-  const [error, setError] = useState(""); //state 3
+  const [clubs, setClubs] = useState([]); 
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
+
+
+  useEffect(() => {
+    getUserInfo()
+  }, []);
+
+  async function getUserInfo () {
+    let response = await Api.getUser(user.id);
+    setUserInfo(response.data)
+}
+
 
   //get the clubs first
   async function getClubs() {
@@ -40,7 +52,7 @@ function App() {
     setError("");
 
     try {
-      let response = await fetch("clubs");
+      let response = await fetch(`clubs`);
       if (response.ok) {
         let data = await response.json();
         setClubs(data);
@@ -50,7 +62,6 @@ function App() {
     } catch (err) {
       setError(err.message);
     }
-
     setLoading(false);
   }
   let id = 1; // TODO: remove hardcoding when able
@@ -149,7 +160,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} logoutCb={doLogout} />{" "}
+      <NavBar user={userInfo} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
           <Route
@@ -179,6 +190,13 @@ function App() {
             path="/users/:userId"
             element={
               <PrivateRoute>
+
+                <ProfileView user={userInfo}/>
+              </PrivateRoute>
+            }
+          />
+          <Route path="/users/:userId/edit" element={<EditProfileView user={userInfo} setUser={user=> setUserInfo(user)} clubs={clubs} setClubs={setClubs}/>} />
+          
                 <ProfileView user={user} />
               </PrivateRoute>
             }
@@ -199,6 +217,7 @@ function App() {
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
+
           <Route
             path="clubs/:clubId"
             element={
