@@ -69,15 +69,6 @@ router.get("/", async function (req, res) {
 
     res.status(200).send(joinToJsonCount(result,count));
 
-    let countSql = `
-      SELECT COUNT(user_id) AS j
-      FROM users_clubs
-      GROUP BY club_id
-      `;
-    let count = await db(countSql);
-
-    res.status(200).send(joinToJasonCount(result,count));
-  
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

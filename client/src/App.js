@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -24,11 +24,23 @@ import Api from "./helpers/Api";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
+  const [userInfo, setUserInfo] = useState({})
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const navigate = useNavigate();
-  const [clubs, setClubs] = useState([]); //state 1
-  const [loading, setLoading] = useState(false); //state2
-  const [error, setError] = useState(""); //state 3
+  const [clubs, setClubs] = useState([]); 
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(""); 
+
+
+  useEffect(() => {
+    getUserInfo()
+  }, []);
+
+  async function getUserInfo () {
+    let response = await Api.getUser(user.id);
+    setUserInfo(response.data)
+}
+
 
   //get the clubs first
   async function getClubs() {
@@ -36,7 +48,7 @@ function App() {
     setError("");
 
     try {
-      let response = await fetch("clubs");
+      let response = await fetch(`clubs`);
       if (response.ok) {
         let data = await response.json();
         setClubs(data);
@@ -46,7 +58,6 @@ function App() {
     } catch (err) {
       setError(err.message);
     }
-
     setLoading(false);
   }
 
@@ -92,7 +103,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} logoutCb={doLogout} />{" "}
+      <NavBar user={userInfo} logoutCb={doLogout} />{" "}
       <div className="container">
         <Routes>
           <Route path="/" element={<HomeView clubs={clubs} getClubs={getClubs}/>} />
@@ -119,11 +130,11 @@ function App() {
             path="/users/:userId"
             element={
               <PrivateRoute>
-                <ProfileView user={user}/>
+                <ProfileView user={userInfo}/>
               </PrivateRoute>
             }
           />
-          <Route path="/users/:userId/edit" element={<EditProfileView user={user} setUser={user=> setUser(user)} clubs={clubs} setClubs={setClubs}/>} />
+          <Route path="/users/:userId/edit" element={<EditProfileView user={userInfo} setUser={user=> setUserInfo(user)} clubs={clubs} setClubs={setClubs}/>} />
 
           <Route path="club-admin" element={<ClubAdminView />} />
           <Route path="clubs/:clubId" element={<SingleClubView />} />
@@ -132,7 +143,7 @@ function App() {
             element={<ErrorView code="404" text="Page not found" />}
           />
           
-          <Route path="/clubs" element={<ClubSearchView setUser={user => setUser(user)}/>} />
+          <Route path="/clubs" element={<ClubSearchView setUser={user => setUserInfo(user)}/>} />
         </Routes>
       </div>
     </div>

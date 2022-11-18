@@ -27,7 +27,6 @@ class Api {
     return await this._doFetch(`/users/${userId}`);
   }
 
-
   /**
    * Delete a user from a club'
    **/
