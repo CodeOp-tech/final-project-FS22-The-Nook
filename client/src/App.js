@@ -93,15 +93,14 @@ function App() {
     }
   }
 
-  const postBookAndPatchClub = async (meetingDetails, BookData) => {
+  const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
       setClub(responsePatch.data[0]);
-      console.log("responsepatchdata", responsePatch.data);
     }
-    let responsePostBook = await Api.postBook(BookData);
+    let responsePostBook = await Api.postBook(bookData);
     if (responsePostBook.ok) {
-      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`); //TODO: Change to ${club.id}
+      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
       if (getClubBooks.ok) {
         setClubBooks(getClubBooks.data);
       }

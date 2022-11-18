@@ -1,7 +1,6 @@
-#header-image {
+#header-img {
   object-fit: cover;
-  max-height: 250px;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 #book-cover-img {

@@ -173,21 +173,4 @@ router.patch("/:id", async function (req, res) {
   }
 });
 
-// Get info for a specific club including members list
-router.get("/:id", async function (req, res) {
-  let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
-
-  try {
-    let clubInfoResults = await db(sql);
-    let clubMembersResults = await db(
-      clubMembersListSql + ` WHERE users_clubs.club_id =${req.params.id}`
-    );
-    res.send(
-      clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults)
-    );
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-});
-
 module.exports = router;
