@@ -31,8 +31,10 @@ class Api {
    * Delete a user from a club'
    **/
 
-   static async leaveClub(userId, clubId) {
-    return await this._doFetch(`/leaveclub/${userId}`, "PUT", {club_id: +clubId});
+  static async leaveClub(userId, clubId) {
+    return await this._doFetch(`/leaveclub/${userId}`, "PUT", {
+      club_id: +clubId,
+    });
   }
 
   /**
@@ -51,6 +53,20 @@ class Api {
     return await this._doFetch(`/clubs/${id}`);
   }
 
+  //Fetch call for PATCH club.
+  static async patchClub(meetingData) {
+    return await this._doFetch(
+      `/clubs/${meetingData.club_id}`,
+      "PATCH",
+      meetingData
+    );
+  }
+
+  //Fetch call for POST book.
+  static async postBook(bookData) {
+    return await this._doFetch("/books", "POST", bookData);
+  }
+
   /**
    * General purpose GET (for URLs like /members-only)
    **/
@@ -58,7 +74,6 @@ class Api {
   static async getContent(url) {
     return await this._doFetch(url);
   }
-
 
   /**
    * Private method for internal use only

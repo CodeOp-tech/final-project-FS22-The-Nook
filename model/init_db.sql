@@ -86,7 +86,7 @@ INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
 INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_mtg_address, next_mtg_city, next_mtg_country, next_mtg_postal_code, image)
     VALUES ("International classics", "classics", "19:00:00", "Olive or Twist", "925 NW 11th Ave", "Portland", "United States", "97209", "https://static01.nyt.com/images/2022/01/16/fashion/VIRAL-LIBRARY/VIRAL-LIBRARY-articleLarge.jpg?quality=75&auto=webp&disable=upscale"),
     ("Into the future", "sci-fi", "21:00:00", "High Park", "1873 Bloor St W", "Toronto", "Canada", "M6R 2Z3", "https://media.istockphoto.com/id/1277822133/photo/futuristic-scifi-battle-ships-hover-over-an-alien-planet.jpg?s=612x612&w=0&k=20&c=JSZtYp2TtvE19LWxOV1mhgfpvZX6Y-jxlC-KRwYi6cs="),
-     ("Reimagined History", "historical fiction", "20:00:00", "Barça Cafe", "C. d'Aristedes Maillol, 12", "Barcelona", "Spain", "08028", "https://images.unsplash.com/photo-1461360370896-922624d12aa1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGlzdG9yeXxlbnwwfHwwfHw%3D&w=1000&q=80");
+     ("Reimagined History", "historical fiction", "20:00:00", "Barça Cafe", "C. d'Aristedes Maillol, 12", "Barcelona", "Spain", "08028", "https://images.unsplash.com/photo-1461360370896-922624d12aa1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGlzdG9yeXxlbnwwfHwwfHw%3D&w=1000&q=80"),("Child's Play", "childrens's literature", "12:00:00", "Ciutadella Parc", "C. d'Aristedes Maillol, 12", "Barcelona", "Spain", "08028", "https://i.pinimg.com/736x/54/45/0f/54450f404a3362d89e15d66d72c9c7f0.jpg");
 
 INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");
