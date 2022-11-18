@@ -63,7 +63,7 @@ router.get("/", async function (req, res) {
       `;
     let count = await db(countSql);
 
-    res.status(200).send(joinToJsonCount(result, count));
+    res.status(200).send(joinToJsonCount(result,count));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -194,7 +194,11 @@ router.post("/:id", ensureUserLoggedIn, async function(req, res) {
       res.status(500).send({ error: err.message });
   }
 
-})
+});
+
+// post a new book club
+
+
 
 
 

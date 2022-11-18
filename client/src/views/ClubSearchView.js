@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
+import CreateClub from "../components/CreateClub";
 import './ClubSearchView.css'
 import Local from '../helpers/Local';
 import Api from '../helpers/Api';
@@ -42,7 +43,7 @@ function ClubSearchView(props) {
         } catch (err) {
                 console.log(`Network error: ${err.message}`);
         }
-    }
+    };
 
     // get the number of members for each club 
     // useEffect(() => {
@@ -103,8 +104,8 @@ function ClubSearchView(props) {
            <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} user={props.user} />
         </div>
 
+        
       </div>
-
     </div>
   );
 }

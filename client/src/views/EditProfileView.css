@@ -23,3 +23,12 @@
 .EditProfile .favoritebtn {
     vertical-align: middle;
 }
+
+.EditProfile .card-body div {
+    display: inline-block
+}
+
+.EditProfile .exit{
+    font-size: 0.9rem;
+    margin-bottom: 0
+}
