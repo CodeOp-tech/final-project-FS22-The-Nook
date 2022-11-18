@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function MembersList(props) {
   const navigate = useNavigate();
@@ -7,11 +7,13 @@ function MembersList(props) {
   return (
     <div className="container MembersList">
       <div className="row">
-        {props.club.members.map((m) => (
-          <div className="col border bg-light" key={m.id}>
-            <h4>{m.username}</h4>
-          </div>
-        ))}
+        <div className="col">
+          {props.club.members.map((m) => (
+            <Link to={`/users/${m.id}`} className="btn btn-primary" key={m.id}>
+              <h4>{m.username}</h4>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
