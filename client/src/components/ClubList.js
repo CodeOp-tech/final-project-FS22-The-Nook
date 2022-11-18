@@ -1,50 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import ("./ClubList.css")
 
 
 function ClubList(props) {  
 
   const navigate = useNavigate();
 
-    function joinClub(club) {
-    if (props.user) {
-      props.userJoinsClubCb(club) 
-    } else {
-      navigate('/login')
-    }
-  }
+function redirect(clubId) {
+  navigate(`./${clubId}`)
+}
 
-  // function joinClub(club) {
-  //   if (props.user && props.user.clubs.name === club.name) {
-  //     // props.userJoinsClubCb(club) 
-  //     console.log("user is logged in and is already a member of the club")
-  //   } else if (props.user.clubs.name !== club.name){
-  //     // navigate('/login')
-  //     console.log("user is logged in and not a member of the club")
-  //   } else {
-  //     console.log("user is not logged in")
-  //   }
-  // }
-  
-  // function joinClub(club) {
-  //   if (props.user) { 
-  //     if (props.user.clubs.name !== club.name) {
-  //       // props.userJoinsClubCb(club) 
-  //       console.log("user is logged in and not a member")
-  //     }
 
-  //   } else {
-  
-  //     console.log("user is logged in and already a member")
-
-  //   }
-  //   // console.log("not a user and should go to login")
-  //   // return navigate('/login')
-
-  // }
-
- 
-
+//  <div class="card bg-dark text-white">
+//   <img class="card-img" src="..." alt="Card image">
+//   <div class="card-img-overlay">
+//     <h5 class="card-title">Card title</h5>
+//     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+//     <p class="card-text">Last updated 3 mins ago</p>
+//   </div>
+// </div> 
 
 
   return (
@@ -54,12 +29,17 @@ function ClubList(props) {
             {
                 props.clubs.map(c => (
 
-                    <div className="col border bg-light" key={c.id}>
-                        <p className="fs-3">{c.name}</p>
-                        <p><b>Genre:</b> {c.category}</p>
-                        <p><b>Location:</b></p>
-                        <p><b>Members:</b> {c.membersCount}</p>
-                        <button className="btn btn-outline-secondary mt-3" type="button" onClick={(e) => joinClub(c)}>Join</button>   
+                    <div className="col-lg-6 card " key={c.id}>
+                        <img className="card-img" src={c.image} />
+                        {/* <div className="card-img-overlay">
+                          <div className="info-bg"> */}
+                            <p className="fs-3">{c.name}</p>
+                            <p><b>Genre:</b> {c.category}</p>
+                            <p><b>Location:</b></p>
+                            <p><b>Members:</b> {c.membersCount}</p>
+                          {/* </div> */}
+                        {/* </div> */}
+                        <button className="btn btn-outline-secondary mt-3" type="button" onClick={e => redirect(c.id)}>More Info</button>   
                     </div>
                 ))
             }

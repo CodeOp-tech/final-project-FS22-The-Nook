@@ -62,6 +62,7 @@ router.get("/", async function (req, res) {
       FROM users_clubs
       GROUP BY club_id
       `;
+
     let count = await db(countSql);
 
     res.status(200).send(joinToJsonCount(result, count));
@@ -83,7 +84,7 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-// add a user to a club (add the user to the user_club junction table when a user wants to join a club)
+// add a user to a club 
 
 router.post("/:id", ensureUserLoggedIn, async function(req, res) {
 

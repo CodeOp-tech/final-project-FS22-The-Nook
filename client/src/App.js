@@ -220,6 +220,7 @@ function App() {
                 clubBooks={clubBooks}
                 fetchClubBooks={fetchClubBooks}
                 fetchClub={fetchClub}
+                user={user}
               />
             }
           />
@@ -236,7 +237,7 @@ function App() {
           />
           <Route
             path="/clubs"
-            element={<ClubSearchView setUser={(user) => setUser(user)} />}
+            element={<ClubSearchView user={user} setUser={(user) => setUser(user)} />}
           />
         </Routes>
       </div>

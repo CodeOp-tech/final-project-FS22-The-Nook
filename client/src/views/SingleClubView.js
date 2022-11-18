@@ -4,14 +4,49 @@ import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
+import { useNavigate } from "react-router-dom";
+import Local from '../helpers/Local';
 
 function SingleClubView(props) {
   let { clubId } = useParams();
 
-  // if (!props.club.name) {
-  //   console.log("loading", props.club);
-  //   return <h2>Loading</h2>;
-  // }
+  const navigate = useNavigate();
+
+
+  function canJoin(club) {
+  if (props.user) {
+    joinClub(club) 
+  } else {
+    navigate('/login')
+  }
+}
+
+async function joinClub(club) {
+  let options = {
+    method: 'POST', 
+    headers: { 'Content-Type': 'application/json' },  
+    body: JSON.stringify(club) 
+  }
+
+   // add token to the header if it exists in local storage
+  let token = Local.getToken(); 
+  if (token) {
+     options.headers['Authorization'] = 'Bearer ' + token;
+  }
+
+  try {
+    let response = await fetch (`/clubs/${club.id}`, options);
+    if (response.ok) {
+      let json = await response.json()
+      props.setUser(json)
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+  } catch (err) {
+     console.log(`Network error: ${err.message}`);
+  }
+}
+
   return (
     <div className="SingleClubView mt-5">
       {props.club.name ? (
@@ -35,7 +70,7 @@ function SingleClubView(props) {
           <div>
             <div className="row mt-5">
               <div className="col-4">
-                <button type="button" className="btn btn-outline-light mb-3">
+                <button type="button" className="btn btn-outline-light mb-3"  onClick={(e) => canJoin(props.club)}>
                   JOIN
                 </button>
                 <h2>Members</h2>
