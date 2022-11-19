@@ -8,9 +8,19 @@ const {
   booksSql,
   clubMembersListSql,
 } = require("./commonfunctions");
+var _ = require("lodash");
 
-function joinToJsonCount(result, count) {
+function joinToJsonCount(result, count, clubMembersResults) {
   let completeResult = [];
+  console.log("CMR data", clubMembersResults.data);
+
+  const grouped = _.groupBy(
+    clubMembersResults.data,
+    (userInfo) => userInfo.club_id
+  );
+
+  console.log("grouped", grouped);
+
   completeResult = result.data.map((c, ind) => ({
     id: c.id,
     name: c.name,
@@ -23,6 +33,7 @@ function joinToJsonCount(result, count) {
     next_mtg_country: c.next_mtg_country,
     image: c.image,
     membersCount: count.data[ind] ? count.data[ind].j : 0,
+    membersList: grouped[+c.id],
   }));
 
   return completeResult;
@@ -30,13 +41,13 @@ function joinToJsonCount(result, count) {
 
 function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
   let clubInfoWithMembers = clubInfoResults.data[0];
-  let members = [];
-  members = clubMembersResults.data.map((m) => ({
+  let membersList = [];
+  membersList = clubMembersResults.data.map((m) => ({
     username: m.username,
     id: m.id,
   }));
 
-  clubInfoWithMembers.members = members;
+  clubInfoWithMembers.membersList = membersList;
 
   return clubInfoWithMembers;
 }
@@ -81,7 +92,9 @@ router.get("/", async function (req, res) {
       `;
     let count = await db(countSql);
 
-    res.status(200).send(joinToJsonCount(result, count));
+    let clubMembersResults = await db(clubMembersListSql);
+
+    res.status(200).send(joinToJsonCount(result, count, clubMembersResults));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
