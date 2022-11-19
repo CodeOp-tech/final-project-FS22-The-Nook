@@ -10,7 +10,7 @@ const {
 } = require("./commonfunctions");
 var _ = require("lodash");
 
-function joinToJsonCount(result, count, clubMembersResults) {
+function joinToJsonCountAndMembers(result, count, clubMembersResults) {
   let completeResult = [];
   console.log("CMR data", clubMembersResults.data);
 
@@ -39,18 +39,18 @@ function joinToJsonCount(result, count, clubMembersResults) {
   return completeResult;
 }
 
-function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
-  let clubInfoWithMembers = clubInfoResults.data[0];
-  let membersList = [];
-  membersList = clubMembersResults.data.map((m) => ({
-    username: m.username,
-    id: m.id,
-  }));
+// function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
+//   let clubInfoWithMembers = clubInfoResults.data[0];
+//   let membersList = [];
+//   membersList = clubMembersResults.data.map((m) => ({
+//     username: m.username,
+//     id: m.id,
+//   }));
 
-  clubInfoWithMembers.membersList = membersList;
+//   clubInfoWithMembers.membersList = membersList;
 
-  return clubInfoWithMembers;
-}
+//   return clubInfoWithMembers;
+// }
 
 // list all clubs
 
@@ -94,7 +94,9 @@ router.get("/", async function (req, res) {
 
     let clubMembersResults = await db(clubMembersListSql);
 
-    res.status(200).send(joinToJsonCount(result, count, clubMembersResults));
+    res
+      .status(200)
+      .send(joinToJsonCountAndMembers(result, count, clubMembersResults));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -172,14 +174,10 @@ router.patch("/:id", async function (req, res) {
       let clubInfoResults = await db(
         `SELECT * FROM clubs WHERE id = ${req.body.club_id}`
       );
-      let clubMembersResults = await db(
-        clubMembersListSql + ` WHERE users_clubs.club_id =${req.params.id}`
-      );
-      res
-        .status(201)
-        .res.send(
-          clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults)
-        );
+      // let clubMembersResults = await db(
+      //   clubMembersListSql + ` WHERE users_clubs.club_id=${req.body.club_id}`
+      // );
+      res.status(201).send(clubInfoResults.data[0]);
     }
   } catch (err) {
     res.status(500).send({ error: err.message });
