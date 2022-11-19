@@ -13,7 +13,6 @@ let clubMembersListSql = `
         FROM clubs
         INNER JOIN users_clubs on clubs.id = users_clubs.club_id
         INNER JOIN users ON users_clubs.user_id = users.id
-        ORDER BY club_id
         `;
 
 function joinToJson(booksResult, clubsResult) {

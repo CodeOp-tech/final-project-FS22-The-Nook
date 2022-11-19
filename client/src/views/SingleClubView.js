@@ -7,6 +7,7 @@ import Api from "../helpers/Api";
 import "./SingleClubView.css";
 
 function SingleClubView(props) {
+  const [club, setClub] = useState({});
   const [clubBooks, setClubBooks] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -14,18 +15,32 @@ function SingleClubView(props) {
   let ix = clubId - 1;
   console.log("clubs", props.clubs);
   console.log("clubId", clubId);
+  console.log("CLUB", club);
 
   useEffect(() => {
     fetchClubBooks(clubId);
-  }, [clubId]);
+    fetchClub(clubId);
+  }, []);
 
-  async function fetchClubBooks(club) {
+  async function fetchClubBooks(clubId) {
     let myresponse = await Api.getClubBooks(`${clubId}`);
     if (myresponse.ok) {
       setClubBooks(myresponse.data);
       setErrorMsg("");
     } else {
       setClubBooks([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
+
+  async function fetchClub(id) {
+    let myresponse = await Api.getClub(id);
+    if (myresponse.ok) {
+      setClub(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClub([]);
       let msg = `Error ${myresponse.status}: ${myresponse.error}`;
       setErrorMsg(msg);
     }

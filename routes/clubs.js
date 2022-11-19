@@ -39,18 +39,18 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
   return completeResult;
 }
 
-// function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
-//   let clubInfoWithMembers = clubInfoResults.data[0];
-//   let membersList = [];
-//   membersList = clubMembersResults.data.map((m) => ({
-//     username: m.username,
-//     id: m.id,
-//   }));
+function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
+  let clubInfoWithMembers = clubInfoResults.data[0];
+  let membersList = [];
+  membersList = clubMembersResults.data.map((m) => ({
+    username: m.username,
+    id: m.id,
+  }));
 
-//   clubInfoWithMembers.membersList = membersList;
+  clubInfoWithMembers.membersList = membersList;
 
-//   return clubInfoWithMembers;
-// }
+  return clubInfoWithMembers;
+}
 
 // list all clubs
 

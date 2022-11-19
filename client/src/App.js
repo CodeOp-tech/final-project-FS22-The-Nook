@@ -98,7 +98,7 @@ function App() {
   const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
     // if (responsePatch.ok) {
-    //   setClub(responsePatch.data[0]);
+    //   setClubs(responsePatch.data[0]);
     // }
     let responsePostBook = await Api.postBook(bookData);
     // if (responsePostBook.ok) {
