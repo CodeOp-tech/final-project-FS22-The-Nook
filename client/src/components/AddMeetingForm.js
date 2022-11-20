@@ -32,9 +32,9 @@ function AddMeetingForm(props) {
   const [meetingDetailsFormData, setMeetingDetailsFormData] = useState(
     EMPTY_MEETING_DETAILS_FORM
   );
-  const [nextMeeting, setNextMeeting] = useState({});
-  const [newBook, setNewBook] = useState({});
-  const [error, setError] = useState("");
+  // const [nextMeeting, setNextMeeting] = useState({});
+  // const [newBook, setNewBook] = useState({});
+  // const [error, setError] = useState("");
   const navigate = useNavigate();
 
   function handleNewBookChange(event) {

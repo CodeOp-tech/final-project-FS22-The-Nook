@@ -32,22 +32,22 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
-  console.log("complete result", completeResult);
+  // console.log("complete result", completeResult);
   return completeResult;
 }
 
-function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
-  let clubInfoWithMembers = clubInfoResults.data[0];
-  let membersList = [];
-  membersList = clubMembersResults.data.map((m) => ({
-    username: m.username,
-    id: m.id,
-  }));
+// function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
+//   let clubInfoWithMembers = clubInfoResults.data[0];
+//   let membersList = [];
+//   membersList = clubMembersResults.data.map((m) => ({
+//     username: m.username,
+//     id: m.id,
+//   }));
 
-  clubInfoWithMembers.membersList = membersList;
+//   clubInfoWithMembers.membersList = membersList;
 
-  return clubInfoWithMembers;
-}
+//   return clubInfoWithMembers;
+// }
 
 // list all clubs
 
@@ -104,21 +104,21 @@ router.get("/", async function (req, res) {
 });
 
 // Get info for a specific club including members list
-router.get("/:id", async function (req, res) {
-  let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
+// router.get("/:id", async function (req, res) {
+//   let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
 
-  try {
-    let clubInfoResults = await db(sql);
-    let clubMembersResults = await db(
-      clubMembersListSql + ` WHERE users_clubs.club_id =${req.params.id}`
-    );
-    res.send(
-      clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults)
-    );
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-});
+//   try {
+//     let clubInfoResults = await db(sql);
+//     let clubMembersResults = await db(
+//       clubMembersListSql + ` WHERE users_clubs.club_id =${req.params.id}`
+//     );
+//     res.send(
+//       clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults)
+//     );
+//   } catch (err) {
+//     res.status(500).send({ error: err.message });
+//   }
+// });
 
 // add a user to a club
 

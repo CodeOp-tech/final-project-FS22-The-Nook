@@ -26,8 +26,8 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
-  const [club, setClub] = useState({});
-  const [errorMsg, setErrorMsg] = useState("");
+  // const [club, setClub] = useState({});
+  // const [errorMsg, setErrorMsg] = useState("");
   // const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     getUserInfo();
     getClubs();
-    fetchClub();
+    // fetchClub();
   }, [user]);
 
   async function getUserInfo() {
@@ -70,12 +70,23 @@ function App() {
   console.log("clubs", clubs);
 
   // useEffect(() => {
-  //   // fetchClub(id);
   //   fetchClubBooks(id);
   // }, []);
 
-  // async function fetchClubBooks(club) {
-  //   let myresponse = await Api.getClubBooks(`${club.id}`); //TODO: Change to ${club.id}
+  // async function fetchClub(id) {
+  //   let myresponse = await Api.getClub(id);
+  //   if (myresponse.ok) {
+  //     setClub(myresponse.data);
+  //     setErrorMsg("");
+  //   } else {
+  //     setClub([]);
+  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+  //     setErrorMsg(msg);
+  //   }
+  // }
+
+  // async function fetchClubBooks(clubId) {
+  //   let myresponse = await Api.getClubBooks(`${clubId}`);
   //   if (myresponse.ok) {
   //     setClubBooks(myresponse.data);
   //     setErrorMsg("");
@@ -86,22 +97,11 @@ function App() {
   //   }
   // }
 
-  async function fetchClub(id) {
-    let myresponse = await Api.getClub(id);
-    if (myresponse.ok) {
-      setClub(myresponse.data);
-      setErrorMsg("");
-    } else {
-      setClub([]);
-      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-      setErrorMsg(msg);
-    }
-  }
-
   const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
       setClubs(responsePatch.data);
+      setClub(responsePatch.data[meetingDetails.club_id - 1]);
     }
     let responsePostBook = await Api.postBook(bookData);
     // if (responsePostBook.ok) {
@@ -215,21 +215,23 @@ function App() {
           />
 
           <Route
-            path="clubs/:clubId"
+            path="/clubs/:id"
             element={
               <SingleClubView
                 clubs={clubs}
-                club={club}
+                // club={club}
+                // setClubCb={setClub}
+                getClubs={getClubs}
                 // clubBooks={clubBooks}
-                // fetchClubBooks={fetchClubBooks}
-                // fetchClub={fetchClub}
+                // fetchClubBooksCb={fetchClubBooks}
+                // fetchClubCb={fetchClub}
                 user={user}
                 setUser={(user) => setUser(user)}
               />
             }
           />
           <Route
-            path="clubs/club-admin/:clubId"
+            path="clubs/:id/club-admin"
             element={
               <ClubAdminView
                 clubs={clubs}
