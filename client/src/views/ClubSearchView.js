@@ -15,6 +15,7 @@ function ClubSearchView(props) {
     // search params for each field
     const name = searchParams.get("search") || "";
     const category = searchParams.get("category") || "";
+    const location = searchParams.get("location") || "";
 
     const [clubs, setClubs] = useState([]);
 
@@ -23,13 +24,14 @@ function ClubSearchView(props) {
     // search effect function
      useEffect(() => {
         getClubs();
-    }, [name, category]); // useEfefct will run every time name and category are updated
+    }, [name, category, location]); // useEfefct will run every time name and category are updated
 
     // search function 
     async function getClubs() {
         const query = new URLSearchParams({
             name: name,
             category: category,
+            // next_mtg_city: location,
         }).toString();
 
         try {
@@ -47,7 +49,7 @@ function ClubSearchView(props) {
 
 
   return (
-    <div className="container ClubSearchView">
+    <div className="container py-5 my-5 ClubSearchView">
       <div className="row">
         <div className="col-md-3">
            <ClubSearch />

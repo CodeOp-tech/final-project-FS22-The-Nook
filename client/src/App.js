@@ -218,6 +218,7 @@ function App() {
                 fetchClubBooks={fetchClubBooks}
                 fetchClub={fetchClub}
                 user={user}
+                setUser={(user) => setUser(user)}
               />
             }
           />

@@ -13,16 +13,14 @@ function SingleClubView(props) {
 
   const navigate = useNavigate();
 
-
-  function canJoin(club) {
-  if (props.user) {
-    joinClub(club) 
-  } else {
-    navigate('/login')
+  function redirect() {
+    navigate("/login")
   }
-}
 
-async function joinClub(club) {
+
+
+async function canJoin(club) {
+
   let options = {
     method: 'POST', 
     headers: { 'Content-Type': 'application/json' },  
@@ -40,6 +38,7 @@ async function joinClub(club) {
     if (response.ok) {
       let json = await response.json()
       props.setUser(json)
+      console.log("this is the reply the client receives from the backend and saves it as user:", json)
     } else {
       console.log(`Server error: ${response.status} ${response.statusText}`);
     }
@@ -47,6 +46,7 @@ async function joinClub(club) {
      console.log(`Network error: ${err.message}`);
   }
 }
+
 
   return (
     <div className="SingleClubView mt-5">
@@ -71,9 +71,18 @@ async function joinClub(club) {
           <div>
             <div className="row mt-5">
               <div className="col-4">
-                <button type="button" className="btn btn-outline-light mb-3"  onClick={(e) => canJoin(props.club)}>
-                  JOIN
+
+            {
+                props.user 
+                ? props.club.members.map((m) => m.id).includes(props.user.id)
+                    ? null
+                    : <button type="button" className="btn btn-outline-light mb-3" onClick={(e) => canJoin(props.club)}>
+                    JOIN
+                    </button>
+                : <button type="button" className="btn btn-outline-light mb-3" onClick={redirect}>
+                JOIN
                 </button>
+            }
 
                 <h2>Members</h2>
                 <div>

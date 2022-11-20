@@ -52,6 +52,10 @@ function makeWhereFromFilters(query) {
   if (query.category) {
     filters.push(`category LIKE '%${query.category}%'`);
   }
+  if (query.next_mtg_city) {
+    filters.push(`location LIKE '%${query.next_mtg_city}%'`);
+  }
+
 
   return filters.join(" AND ");
 }
