@@ -5,13 +5,48 @@ import NextMeetingInfo from "../components/NextMeetingInfo";
 import MembersList from "../components/MembersList";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
+import { useNavigate } from "react-router-dom";
+import Local from '../helpers/Local';
 
 function SingleClubView(props) {
   let { clubId } = useParams();
 
-  function getClubMembers(clubId) {}
+  const navigate = useNavigate();
 
-  function handleJoin(userId) {}
+  function redirect() {
+    navigate("/login")
+  }
+
+
+
+async function canJoin(club) {
+
+  let options = {
+    method: 'POST', 
+    headers: { 'Content-Type': 'application/json' },  
+    body: JSON.stringify(club) 
+  }
+
+   // add token to the header if it exists in local storage
+  let token = Local.getToken(); 
+  if (token) {
+     options.headers['Authorization'] = 'Bearer ' + token;
+  }
+
+  try {
+    let response = await fetch (`/clubs/${club.id}`, options);
+    if (response.ok) {
+      let json = await response.json()
+      props.setUser(json)
+      console.log("this is the reply the client receives from the backend and saves it as user:", json)
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+  } catch (err) {
+     console.log(`Network error: ${err.message}`);
+  }
+}
+
 
   return (
     <div className="SingleClubView mt-5">
@@ -36,13 +71,35 @@ function SingleClubView(props) {
           <div>
             <div className="row mt-5">
               <div className="col-4">
-                <button
-                  type="button"
-                  className="btn btn-outline-light mb-3"
-                  onClick={handleJoin}
-                >
-                  JOIN
+
+
+            {/* {
+                props.user 
+                ? props.club.members.map((m) => m.id).includes(props.user.id)
+                    ? null
+                    : <button type="button" className="btn btn-outline-light mb-3" onClick={(e) => canJoin(props.club)}>
+                    JOIN
+                    </button>
+                : <button type="button" className="btn btn-outline-light mb-3" onClick={redirect}>
+                JOIN
                 </button>
+            } */}
+
+            {
+                props.user ?
+          
+                    props.club.members.map((m) => m.id).includes(props.user.id) ?
+                        null
+                        : props.club.members.length >= 10 ?
+                           <p>club is full</p>
+                           : <button type="button" className="btn btn-outline-light mb-3" onClick={(e) => canJoin(props.club)}>
+                        JOIN
+                        </button>
+                    
+                 : <button type="button" className="btn btn-outline-light mb-3" onClick={redirect}>
+                  JOIN
+                  </button>
+            }
 
                 <h2>Members</h2>
                 <div>
