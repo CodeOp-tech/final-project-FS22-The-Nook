@@ -219,9 +219,12 @@ function App() {
             element={
               <SingleClubView
                 clubs={clubs}
+                club={club}
                 // clubBooks={clubBooks}
                 // fetchClubBooks={fetchClubBooks}
                 // fetchClub={fetchClub}
+                user={user}
+                setUser={(user) => setUser(user)}
               />
             }
           />
