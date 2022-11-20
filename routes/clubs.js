@@ -47,7 +47,7 @@ function makeWhereFromFilters(query) {
   let filters = [];
 
   if (query.name) {
-    
+
     filters.push(`name LiKE '%${query.name}%'`);
   }
   if (query.category) {
@@ -65,7 +65,6 @@ router.get("/", async function (req, res) {
   let sql = `
       SELECT clubs.*
       FROM clubs
-      ORDER BY name 
       `;
 
   let where = makeWhereFromFilters(req.query);
@@ -74,7 +73,6 @@ router.get("/", async function (req, res) {
     sql = `SELECT clubs.*
           FROM clubs
           WHERE ${where}
-          ORDER BY name
           `;
   }
 
