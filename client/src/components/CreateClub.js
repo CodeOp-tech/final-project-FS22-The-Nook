@@ -60,13 +60,13 @@ function CreateClub() {
 
       <form onSubmit={handleSubmit}>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <label for="clubName" className="form-label">
             Club Name 
           </label>
           <input
             type="text"
-            class="form-control-sm"
+            className="form-control-sm"
             id="nameInput"
             name="name"
             
@@ -76,13 +76,13 @@ function CreateClub() {
           />
         </div>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <label for="clubCategory" className="form-label">
             Category
           </label>
           <input
             type="text"
-            class="form-control-sm"
+            className="form-control-sm"
             id="categoryInput"
             name="category"
             placeholder="e.g. Romance"
@@ -91,13 +91,13 @@ function CreateClub() {
           />
         </div>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <label for="clubLocation" className="form-label">
             Location
           </label>
           <input
             type="text"
-            class="form-control-sm"
+            className="form-control-sm"
             id="locationInput"
             name="location"
             placeholder="e.g. Paris"
@@ -106,13 +106,13 @@ function CreateClub() {
           />
         </div>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <label for="clubImage" className="form-label">
             Image URL
           </label>
           <input
             type="url"
-            class="form-control-sm"
+            className="form-control-sm"
             id="imageInput"
             name="image"
             placeholder="Add Link Here"
