@@ -63,4 +63,35 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+router.patch("/:id", async function (req, res) {
+  let bookId = Number(req.params.id);
+  let {rating, date_read, favorite, user_id} = req.body;
+  let sql = `
+  UPDATE user_book
+  SET
+    rating = "${rating}",
+    date_read = "${date_read}",
+    favorite = "${favorite}"
+    WHERE
+    book_id = ${bookId} 
+  AND 
+    user_id = ${user_id};
+`;
+try {
+let book = await db(`SELECT * FROM user_book  WHERE
+book_id = ${bookId} AND user_id = ${user_id};`);
+if (book.data.length === 0) {
+  res.status(404).send({ error: "Book does not exist." });
+} else {
+  await db(sql);
+  let result = await db(
+    `SELECT * FROM user_book WHERE book_id = ${bookId}`
+  );
+  res.status(201).send(result.data);
+}
+} catch (err) {
+res.status(500).send({ error: err.message });
+}
+});
+
 module.exports = router;

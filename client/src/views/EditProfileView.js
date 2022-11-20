@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState} from "react";
 // import { useParams } from 'react-router-dom';
 // import Api from '../helpers/Api';
 import ReactStars from 'react-stars';
@@ -7,15 +7,14 @@ import "./EditProfileView.css";
 
 function EditProfileView(props){
 
-let user = props.user;
 
+let user = props.user;
+let [updatedBook, setUpdatedBook] = useState();
 
 async function exitGroup(event){
     let clubName = event.target.name; 
     let club = props.clubs.find(c => (c.name === (clubName)))
-    console.log(event.target.name)
-    console.log(props.clubs)
-    console.log(club.id)
+
     
     let confirmation = confirm(`Do you really want to leave the club "${club.name}"?`)
     if(confirmation){
@@ -26,11 +25,15 @@ async function exitGroup(event){
 
 
 const ratingChanged = (newRating) => {
+    //let book = name;
     console.log(newRating)
+    setUpdatedBook()
   }
 
 
-  function toggleFavorite () {    
+  function toggleFavorite (book) {    
+    book.favorite === 1 ? book.favorite=0 : book.favorite=1;
+    console.log(book)
 }
 
 
@@ -81,10 +84,11 @@ return(
                             <h6 className="card-text">By {b.author}</h6>
                     
                             <button key={b.id} 
-                                id="button" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" className="btn btn-outline-danger favoritebtn py-0" onClick={toggleFavorite}>
+                                id="button" type="button" className="btn btn-outline-danger favoritebtn py-0" name={b.title} onClick={e => toggleFavorite(b
+                                )}>
                                 {b.favorite === 1 ?               
-                                <i  className="bi bi-heart-fill heart"></i>                        
-                                :<i className="bi bi-heart heart"></i>}
+                                <i  className="bi bi-heart-fill heart" ></i>                        
+                                :<i className="bi bi-heart heart"  name={b.title}  ></i>}
                             </button>
                         </div>
                         </div>
