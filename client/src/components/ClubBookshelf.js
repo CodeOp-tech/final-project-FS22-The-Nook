@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Api from "../helpers/Api";
+import React from "react";
 
 function ClubBookshelf(props) {
   function formatDate(date) {
@@ -32,7 +31,7 @@ function ClubBookshelf(props) {
           {props.clubBooks &&
             props.clubBooks.map((b) => (
               <div key={b.id} className="col">
-                <div className="card mh-290px" style={{ width: "12rem" }}>
+                <div className="card mh-290px pb-2" style={{ width: "12rem" }}>
                   <div style={{ width: "12rem", height: "23rem" }} key={b.id}>
                     <div>
                       <img
@@ -45,7 +44,8 @@ function ClubBookshelf(props) {
                       {/* <h5 className="card-title">{b.title}</h5>
                       <h6 className="card-text">By {b.author}</h6> */}
                       <h6 className="card-text pt-0 mt-0">
-                        Discussed {formatDate(b.date)}
+                        Discussed <br />
+                        {formatDate(b.date)}
                       </h6>
                     </div>
                   </div>

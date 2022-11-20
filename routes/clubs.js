@@ -8,9 +8,16 @@ const {
   booksSql,
   clubMembersListSql,
 } = require("./commonfunctions");
+var _ = require("lodash");
 
-function joinToJsonCount(result, count) {
+function joinToJsonCountAndMembers(result, count, clubMembersResults) {
   let completeResult = [];
+
+  const grouped = _.groupBy(
+    clubMembersResults.data,
+    (userInfo) => userInfo.club_id
+  );
+
   completeResult = result.data.map((c, ind) => ({
     id: c.id,
     name: c.name,
@@ -23,20 +30,21 @@ function joinToJsonCount(result, count) {
     next_mtg_country: c.next_mtg_country,
     image: c.image,
     membersCount: count.data[ind] ? count.data[ind].j : 0,
+    membersList: grouped[+c.id],
   }));
-
+  console.log("complete result", completeResult);
   return completeResult;
 }
 
 function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
   let clubInfoWithMembers = clubInfoResults.data[0];
-  let members = [];
-  members = clubMembersResults.data.map((m) => ({
+  let membersList = [];
+  membersList = clubMembersResults.data.map((m) => ({
     username: m.username,
     id: m.id,
   }));
 
-  clubInfoWithMembers.members = members;
+  clubInfoWithMembers.membersList = membersList;
 
   return clubInfoWithMembers;
 }
@@ -47,7 +55,6 @@ function makeWhereFromFilters(query) {
   let filters = [];
 
   if (query.name) {
-
     filters.push(`name LiKE '%${query.name}%'`);
   }
   if (query.category) {
@@ -56,7 +63,6 @@ function makeWhereFromFilters(query) {
   if (query.next_mtg_city) {
     filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
-
 
   return filters.join(" AND ");
 }
@@ -87,13 +93,17 @@ router.get("/", async function (req, res) {
 
     let count = await db(countSql);
 
-    res.status(200).send(joinToJsonCount(result, count));
+    let clubMembersResults = await db(clubMembersListSql);
+
+    res
+      .status(200)
+      .send(joinToJsonCountAndMembers(result, count, clubMembersResults));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
 
-// Get info for a specific club
+// Get info for a specific club including members list
 router.get("/:id", async function (req, res) {
   let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
 
@@ -110,7 +120,7 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-// add a user to a club 
+// add a user to a club
 
 router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let userId = res.locals.user;
@@ -162,10 +172,19 @@ router.patch("/:id", async function (req, res) {
       res.status(404).send({ error: "Club does not exist." });
     } else {
       await db(sql);
-      let result = await db(
-        `SELECT * FROM clubs WHERE id = ${req.body.club_id}`
-      );
-      res.status(201).send(result.data);
+      let result = await db(`SELECT * FROM clubs`);
+      let countSql = `
+      SELECT COUNT(user_id) AS j
+      FROM users_clubs
+      GROUP BY club_id
+      `;
+      let count = await db(countSql);
+
+      let clubMembersResults = await db(clubMembersListSql);
+
+      res
+        .status(201)
+        .send(joinToJsonCountAndMembers(result, count, clubMembersResults));
     }
   } catch (err) {
     res.status(500).send({ error: err.message });

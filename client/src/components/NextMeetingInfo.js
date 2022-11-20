@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 function NextMeetingInfo(props) {
+  console.log("clubBooks", props.clubBooks);
 
+  let { clubId } = useParams();
+  let ix = clubId - 1;
   return (
     <div className="NextMeetingInfo">
       <div className="container border ms-0">
@@ -20,11 +24,11 @@ function NextMeetingInfo(props) {
                 <h6>{props.clubBooks[props.clubBooks.length - 1].author}</h6>
               </>
             ) : (
-              <img src={props.club.image} />
+              <img src={props.clubs[ix].image} />
             )}
           </div>
           <div className="col w-75 mb-6 my-auto">
-            {props.club && props.clubBooks.length ? (
+            {props.clubs && props.clubBooks.length ? (
               <div>
                 <h3>
                   Date:{" "}
@@ -33,12 +37,13 @@ function NextMeetingInfo(props) {
                     10
                   )}
                 </h3>
-                <h3>Time: {props.club.next_mtg_time.slice(0, 5)}</h3>
-                <h3>Location: {props.club.next_mtg_location_name}</h3>
+                <h3>Time: {props.clubs[ix].next_mtg_time.slice(0, 5)}</h3>
+                <h3>Location: {props.clubs[ix].next_mtg_location_name}</h3>
                 <h4>
-                  Address: {props.club.next_mtg_address},{" "}
-                  {props.club.next_mtg_city}, {props.club.next_mtg_postal_code},{" "}
-                  {props.club.next_mtg_country}
+                  Address: {props.clubs[ix].next_mtg_address},{" "}
+                  {props.clubs[ix].next_mtg_city},{" "}
+                  {props.clubs[ix].next_mtg_postal_code},{" "}
+                  {props.clubs[ix].next_mtg_country}
                 </h4>
               </div>
             ) : (

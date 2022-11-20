@@ -3,14 +3,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import CountryList from "./DropdownCountries.js";
 
 function AddMeetingForm(props) {
-  const { id } = useParams();
+  const { clubId } = useParams();
+  let ix = clubId - 1;
+
+  console.log("clubs", props.clubs);
+  console.log("id", clubId);
+  console.log("clubsatix", props.clubs[0]);
 
   const EMPTY_NEXT_BOOK_FORM = {
     author: "",
     title: "",
     image: "",
     date: "",
-    club_id: 1, //TODO change to id once params are available
+    club_id: clubId, //TODO change to id once params are available
   };
   const EMPTY_MEETING_DETAILS_FORM = {
     time: "",
@@ -19,7 +24,7 @@ function AddMeetingForm(props) {
     city: "",
     postalCode: "",
     country: "",
-    club_id: 1, //TODO change to id once params are available
+    club_id: clubId, //TODO change to id once params are available
   };
 
   const [nextBookFormData, setNextBookFormData] =
@@ -31,9 +36,6 @@ function AddMeetingForm(props) {
   const [newBook, setNewBook] = useState({});
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  console.log("nextmtg1", nextMeeting);
-  console.log("newBook1", newBook);
 
   function handleNewBookChange(event) {
     const value = event.target.value;
@@ -58,9 +60,9 @@ function AddMeetingForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
     meetingDetailsFormData.time = `${meetingDetailsFormData.time}:00`;
-    meetingDetailsFormData.name = props.club.name;
-    meetingDetailsFormData.category = props.club.category;
-    meetingDetailsFormData.image = props.club.image;
+    meetingDetailsFormData.name = props.clubs[ix].name;
+    meetingDetailsFormData.category = props.clubs[ix].category;
+    meetingDetailsFormData.image = props.clubs[ix].image;
     props.postBookAndPatchClubCb(meetingDetailsFormData, nextBookFormData);
     setError("");
     setMeetingDetailsFormData(EMPTY_MEETING_DETAILS_FORM);

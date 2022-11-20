@@ -28,7 +28,7 @@ function App() {
 
   const [club, setClub] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
-  const [clubBooks, setClubBooks] = useState([]);
+  // const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
   const [clubs, setClubs] = useState([]);
@@ -37,14 +37,15 @@ function App() {
 
   useEffect(() => {
     getUserInfo();
+    getClubs();
+    fetchClub();
   }, [user]);
 
   async function getUserInfo() {
-    if(user) {
-    let response = await Api.getUser(user.id);
-    setUserInfo(response.data);
-  }
-    else setUserInfo(null)
+    if (user) {
+      let response = await Api.getUser(user.id);
+      setUserInfo(response.data);
+    } else setUserInfo(null);
   }
 
   //get the clubs first
@@ -65,24 +66,25 @@ function App() {
     }
     setLoading(false);
   }
-  let id = 1; // TODO: remove hardcoding when able
 
-  useEffect(() => {
-    fetchClub(id);
-    fetchClubBooks(id);
-  }, []);
+  console.log("clubs", clubs);
 
-  async function fetchClubBooks(id) {
-    let myresponse = await Api.getClubBooks(`${id}`); //TODO: Change to ${club.id}
-    if (myresponse.ok) {
-      setClubBooks(myresponse.data);
-      setErrorMsg("");
-    } else {
-      setClubBooks([]);
-      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-      setErrorMsg(msg);
-    }
-  }
+  // useEffect(() => {
+  //   // fetchClub(id);
+  //   fetchClubBooks(id);
+  // }, []);
+
+  // async function fetchClubBooks(club) {
+  //   let myresponse = await Api.getClubBooks(`${club.id}`); //TODO: Change to ${club.id}
+  //   if (myresponse.ok) {
+  //     setClubBooks(myresponse.data);
+  //     setErrorMsg("");
+  //   } else {
+  //     setClubBooks([]);
+  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+  //     setErrorMsg(msg);
+  //   }
+  // }
 
   async function fetchClub(id) {
     let myresponse = await Api.getClub(id);
@@ -96,19 +98,19 @@ function App() {
     }
   }
 
-  const postBookAndPatchClub = async (meetingDetails, BookData) => {
+  const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
-      setClub(responsePatch.data[0]);
+      setClubs(responsePatch.data);
     }
-    let responsePostBook = await Api.postBook(BookData);
-    if (responsePostBook.ok) {
-      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`); //TODO: Change to ${club.id}
-      if (getClubBooks.ok) {
-        setClubBooks(getClubBooks.data);
-      }
-      navigate(`/clubs/${meetingDetails.club_id}`);
-    }
+    let responsePostBook = await Api.postBook(bookData);
+    // if (responsePostBook.ok) {
+    //   let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
+    //   if (getClubBooks.ok) {
+    //     setClubBooks(getClubBooks.data);
+    //   }
+    navigate(`/clubs/${meetingDetails.club_id}`);
+    // }
   };
 
   async function doLogin(username, password) {
@@ -132,7 +134,7 @@ function App() {
 
   function doLogout() {
     Local.removeUserInfo();
-    setUserInfo(null)
+    setUserInfo(null);
     setUser(null);
   }
 
@@ -216,22 +218,23 @@ function App() {
             path="clubs/:clubId"
             element={
               <SingleClubView
+                clubs={clubs}
                 club={club}
-                clubBooks={clubBooks}
-                fetchClubBooks={fetchClubBooks}
-                fetchClub={fetchClub}
+                // clubBooks={clubBooks}
+                // fetchClubBooks={fetchClubBooks}
+                // fetchClub={fetchClub}
                 user={user}
                 setUser={(user) => setUser(user)}
               />
             }
           />
           <Route
-            path="clubs/:clubId/club-admin"
+            path="clubs/club-admin/:clubId"
             element={
               <ClubAdminView
-                club={club}
-                setClubCb={setClub}
-                setClubBooksCb={setClubBooks}
+                clubs={clubs}
+                // setClubCb={setClub}
+                // setClubBooksCb={setClubBooks}
                 postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }

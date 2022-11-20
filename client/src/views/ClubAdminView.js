@@ -10,7 +10,7 @@ function ClubAdminView(props) {
           setClubCb={props.setClubCb}
           setClubBooksCb={props.setClubBooksCb}
           postBookAndPatchClubCb={props.postBookAndPatchClubCb}
-          club={props.club}
+          clubs={props.clubs}
         />
       </div>
 
