@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 function NextMeetingInfo(props) {
-  console.log("club", props.club);
-  console.log("clubBooks", props.clubBooks);
 
   return (
     <div className="NextMeetingInfo">

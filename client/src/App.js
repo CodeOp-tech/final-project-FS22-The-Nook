@@ -37,11 +37,14 @@ function App() {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [user]);
 
   async function getUserInfo() {
+    if(user) {
     let response = await Api.getUser(user.id);
     setUserInfo(response.data);
+  }
+    else setUserInfo(null)
   }
 
   //get the clubs first
@@ -64,8 +67,6 @@ function App() {
   }
   let id = 1; // TODO: remove hardcoding when able
 
-  console.log("club", club);
-  console.log("clubBooks", clubBooks);
 
   useEffect(() => {
     fetchClub(id);
@@ -122,7 +123,6 @@ function App() {
         myresponse.data.token
       );
       setUser(myresponse.data.user);
-      getUserInfo();
       
       setLoginErrorMsg("");
       navigate("/");
@@ -133,6 +133,7 @@ function App() {
 
   function doLogout() {
     Local.removeUserInfo();
+    setUserInfo(null)
     setUser(null);
   }
 
