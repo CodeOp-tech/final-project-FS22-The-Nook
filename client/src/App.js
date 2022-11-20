@@ -39,11 +39,13 @@ function App() {
     getUserInfo();
     getClubs();
     fetchClub();
-  }, []);
+  }, [user]);
 
   async function getUserInfo() {
-    let response = await Api.getUser(user.id);
-    setUserInfo(response.data);
+    if (user) {
+      let response = await Api.getUser(user.id);
+      setUserInfo(response.data);
+    } else setUserInfo(null);
   }
 
   //get the clubs first
@@ -122,7 +124,6 @@ function App() {
         myresponse.data.token
       );
       setUser(myresponse.data.user);
-      getUserInfo();
 
       setLoginErrorMsg("");
       navigate("/");
@@ -133,6 +134,7 @@ function App() {
 
   function doLogout() {
     Local.removeUserInfo();
+    setUserInfo(null);
     setUser(null);
   }
 
