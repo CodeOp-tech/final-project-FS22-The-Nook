@@ -26,8 +26,8 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
-  // const [club, setClub] = useState({});
-  // const [errorMsg, setErrorMsg] = useState("");
+  const [club, setClub] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
   // const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
@@ -38,6 +38,7 @@ function App() {
   useEffect(() => {
     getUserInfo();
     getClubs();
+    fetchClub();
   }, []);
 
   async function getUserInfo() {
@@ -83,23 +84,23 @@ function App() {
   //   }
   // }
 
-  // async function fetchClub(id) {
-  //   let myresponse = await Api.getClub(id);
-  //   if (myresponse.ok) {
-  //     setClub(myresponse.data);
-  //     setErrorMsg("");
-  //   } else {
-  //     setClub([]);
-  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-  //     setErrorMsg(msg);
-  //   }
-  // }
+  async function fetchClub(id) {
+    let myresponse = await Api.getClub(id);
+    if (myresponse.ok) {
+      setClub(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClub([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
 
   const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
-    // if (responsePatch.ok) {
-    //   setClubs(responsePatch.data[0]);
-    // }
+    if (responsePatch.ok) {
+      setClubs(responsePatch.data);
+    }
     let responsePostBook = await Api.postBook(bookData);
     // if (responsePostBook.ok) {
     //   let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);

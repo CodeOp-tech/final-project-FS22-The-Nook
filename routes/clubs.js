@@ -12,14 +12,11 @@ var _ = require("lodash");
 
 function joinToJsonCountAndMembers(result, count, clubMembersResults) {
   let completeResult = [];
-  console.log("CMR data", clubMembersResults.data);
 
   const grouped = _.groupBy(
     clubMembersResults.data,
     (userInfo) => userInfo.club_id
   );
-
-  console.log("grouped", grouped);
 
   completeResult = result.data.map((c, ind) => ({
     id: c.id,
@@ -35,7 +32,7 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
-
+  console.log("complete result", completeResult);
   return completeResult;
 }
 
@@ -171,13 +168,24 @@ router.patch("/:id", async function (req, res) {
       res.status(404).send({ error: "Club does not exist." });
     } else {
       await db(sql);
-      let clubInfoResults = await db(
-        `SELECT * FROM clubs WHERE id = ${req.body.club_id}`
-      );
+      let result = await db(`SELECT * FROM clubs`);
+      let countSql = `
+      SELECT COUNT(user_id) AS j
+      FROM users_clubs
+      GROUP BY club_id
+      `;
+      let count = await db(countSql);
+
+      let clubMembersResults = await db(clubMembersListSql);
+
+      //  WHERE id = ${req.body.club_id}
       // let clubMembersResults = await db(
       //   clubMembersListSql + ` WHERE users_clubs.club_id=${req.body.club_id}`
       // );
-      res.status(201).send(clubInfoResults.data[0]);
+
+      res
+        .status(201)
+        .send(joinToJsonCountAndMembers(result, count, clubMembersResults));
     }
   } catch (err) {
     res.status(500).send({ error: err.message });
