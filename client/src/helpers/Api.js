@@ -62,6 +62,15 @@ class Api {
     );
   }
 
+    //Fetch call for PATCH book.
+    static async patchBook(body, book_id) {
+      return await this._doFetch(
+        `/books/${book_id}`,
+        "PATCH",
+        body
+      );
+    }
+
   //Fetch call for POST book.
   static async postBook(bookData) {
     return await this._doFetch("/books", "POST", bookData);

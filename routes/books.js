@@ -4,6 +4,8 @@ const db = require("../model/helper");
 require("dotenv").config();
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
+
 
 /**
  * Get all books or all books by club
@@ -67,7 +69,7 @@ router.patch("/:id", async function (req, res) {
   let bookId = Number(req.params.id);
   let {rating, date_read, favorite, user_id} = req.body;
   let sql = `
-  UPDATE user_book
+  UPDATE users_books
   SET
     rating = "${rating}",
     date_read = "${date_read}",
@@ -78,16 +80,15 @@ router.patch("/:id", async function (req, res) {
     user_id = ${user_id};
 `;
 try {
-let book = await db(`SELECT * FROM user_book  WHERE
+let book = await db(`SELECT * FROM users_books  WHERE
 book_id = ${bookId} AND user_id = ${user_id};`);
 if (book.data.length === 0) {
   res.status(404).send({ error: "Book does not exist." });
 } else {
   await db(sql);
-  let result = await db(
-    `SELECT * FROM user_book WHERE book_id = ${bookId}`
-  );
-  res.status(201).send(result.data);
+  let booksResults = await db(booksSql + ` WHERE user_id = '${user_id}'`);
+  let clubsResults = await db(clubsSql + ` WHERE user_id = '${user_id}'`);
+  res.send(joinToJson(booksResults, clubsResults));
 }
 } catch (err) {
 res.status(500).send({ error: err.message });

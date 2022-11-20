@@ -4,11 +4,12 @@ import React,{useState} from "react";
 import ReactStars from 'react-stars';
 import Api from "../helpers/Api";
 import "./EditProfileView.css";
+import { DateTime } from "luxon";
+
 
 function EditProfileView(props){
+    let user = props.user;
 
-
-let user = props.user;
 let [updatedBook, setUpdatedBook] = useState();
 
 async function exitGroup(event){
@@ -31,9 +32,19 @@ const ratingChanged = (newRating) => {
   }
 
 
-  function toggleFavorite (book) {    
+async function toggleFavorite (book) {    
     book.favorite === 1 ? book.favorite=0 : book.favorite=1;
-    console.log(book)
+    let date_read = DateTime.fromISO(book.date_read).toFormat('yyyy-LL-dd');
+    let body ={
+        rating: `${book.rating}`, 
+        date_read: `${date_read}`, 
+        favorite: `${book.favorite}`, 
+        user_id: `${user.id}`,
+    }
+    let responsePatch = await Api.patchBook(body, book.book_id);
+    if (responsePatch.ok) {
+      props.setUser(responsePatch.data);
+    }   
 }
 
 
