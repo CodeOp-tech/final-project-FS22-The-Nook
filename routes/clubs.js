@@ -178,11 +178,6 @@ router.patch("/:id", async function (req, res) {
 
       let clubMembersResults = await db(clubMembersListSql);
 
-      //  WHERE id = ${req.body.club_id}
-      // let clubMembersResults = await db(
-      //   clubMembersListSql + ` WHERE users_clubs.club_id=${req.body.club_id}`
-      // );
-
       res
         .status(201)
         .send(joinToJsonCountAndMembers(result, count, clubMembersResults));

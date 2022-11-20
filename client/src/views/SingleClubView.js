@@ -46,14 +46,22 @@ function SingleClubView(props) {
   //   }
   // }
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("user", user.id);
+  let admin = props.clubs[ix].membersList.find((m) => m.id === user.id).admin;
+  console.log("admin", admin);
+
   return (
     <div className="SingleClubView mt-0">
-      <Link
-        to={`/clubs/club-admin/${clubId}`}
-        className="btn btn-outline-light mx-2 btn-sm user"
-      >
-        <h4>CLUB ADMIN</h4>
-      </Link>
+      {admin ? (
+        <Link
+          to={`/clubs/club-admin/${clubId}`}
+          className="btn btn-outline-light mx-2 btn-sm user"
+        >
+          <h4>CLUB ADMIN</h4>
+        </Link>
+      ) : null}
+
       {props.clubs[ix].name ? (
         <div className="card text-bg-dark w-100">
           <img
