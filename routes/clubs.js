@@ -55,7 +55,6 @@ function makeWhereFromFilters(query) {
   let filters = [];
 
   if (query.name) {
-    
     filters.push(`name LiKE '%${query.name}%'`);
   }
   if (query.category) {
@@ -65,7 +64,6 @@ function makeWhereFromFilters(query) {
     filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
 
-
   return filters.join(" AND ");
 }
 
@@ -73,7 +71,6 @@ router.get("/", async function (req, res) {
   let sql = `
       SELECT clubs.*
       FROM clubs
-      ORDER BY name 
       `;
 
   let where = makeWhereFromFilters(req.query);
@@ -82,7 +79,6 @@ router.get("/", async function (req, res) {
     sql = `SELECT clubs.*
           FROM clubs
           WHERE ${where}
-          ORDER BY name
           `;
   }
 
@@ -124,7 +120,7 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-// add a user to a club 
+// add a user to a club
 
 router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let userId = res.locals.user;
