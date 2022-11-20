@@ -31,7 +31,7 @@ function ClubSearchView(props) {
         const query = new URLSearchParams({
             name: name,
             category: category,
-            // next_mtg_city: location,
+            next_mtg_city: location,
         }).toString();
 
         try {

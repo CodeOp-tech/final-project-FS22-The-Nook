@@ -75,7 +75,7 @@ ALTER TABLE
 
 
 INSERT INTO users (username, email, password)
-    VALUES ('johndoe', 'johndoe@example.com', '$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W'), ('janedoe', 'janedoe@example.com', '$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6'), ('jackiejoe', 'jackiejoe@example.com', '$2b$12$usDo.9.Z99Uo2JqtFewLie63m3iGQ8H7VOuqeZW8XSOSSysoiCKP6'), ('juandoe', 'juandoe@example.com', '$2b$12$QcZ51hN02wzDO1IyB/7lDOQehjCG0S1hn7IUhL62F8qKZ9b46e54i'), ('normanoe', 'normanoe@example.com', '$2b$12$whP9PNN.MwXJv84GlsGO9Ob7leE4LMKA07OP/Pqm7HzhLDhu3jZLm'), ('paulapoe', 'paulapoe@example.com', '$2b$12$A649mxNpFM978EkPBCErUOtBtvJu.7pSsVU3GJaFCL5XqSui20m2e');
+    VALUES ('johndoe', 'johndoe@example.com', '$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W'), ('janedoe', 'janedoe@example.com', '$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6'), ('jackiejoe', 'jackiejoe@example.com', '$2b$12$usDo.9.Z99Uo2JqtFewLie63m3iGQ8H7VOuqeZW8XSOSSysoiCKP6'), ('juandoe', 'juandoe@example.com', '$2b$12$QcZ51hN02wzDO1IyB/7lDOQehjCG0S1hn7IUhL62F8qKZ9b46e54i'), ('normanoe', 'normanoe@example.com', '$2b$12$whP9PNN.MwXJv84GlsGO9Ob7leE4LMKA07OP/Pqm7HzhLDhu3jZLm'), ('paulapoe', 'paulapoe@example.com', '$2b$12$A649mxNpFM978EkPBCErUOtBtvJu.7pSsVU3GJaFCL5XqSui20m2e'), ('martamoe', 'martamoe@example.com', '$2b$12$1InTc5v8jaLno9PXjoJi/OVHw2x3JD2WmiEm1FWZR0mJJK4W2M132'), ('robertroe', 'robertroe@example.com', '$2b$12$4HTVeBjJYx57YbNmQVHABOHpkXzxYkJZGXLElo3D73LgrMWAx/Lsa'), ('sammysoe', 'sammysoe@example.com', '$2b$12$Kz6ccjM8EiFdl0qjvmdmruP54d2vJXSJsjfYIhuG9Kn33n0v0BdPe'), ('tommytoe', 'tommytoe@example.com', '$2b$12$z1YkdM0OcwrY9TKbnP9opuJ2cYBFiueWXuM2wnpz.AV33Lv5/Szf.');
 
 INSERT INTO books (title, author, image)
     VALUES ("La Divina Commedia", "Dante Alighieri", "https://m.media-amazon.com/images/I/51v2k7bvlUL.jpg"), ("Don Quijote de la Mancha", "Miguel Cervantes", "https://imagenes.elpais.com/resizer/ny6-0RsNhSHBhQyWmel5nDGK3Wk=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/7BN7MROFVTFLCFQ2FXZPUC3Y3E.jpg");
@@ -95,4 +95,4 @@ INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (1, 1, "2022-10-01"), (2, 1, "2022-11-01");
 
 INSERT INTO users_clubs (club_id, user_id, admin)
-    VALUES (1, 1, 0), (1, 3, 0), (2, 1, 0), (2, 5, 0), (3, 4, 0), (3, 5, 0), (3, 6, 0), (4, 6, 0), (4, 5, 0), (5, 1, 0), (5, 6, 0), (5, 3, 0), (5, 4, 0), (5, 5, 0), (6, 3, 0), (7, 6, 0), (7, 5, 0), (8, 1, 0), (9, 1, 0), (9, 4, 0), (9, 5, 0), (9, 6, 0), (10, 3, 0), (10, 4, 0), (10, 5, 0), (10, 6, 0);
+    VALUES (1, 1, 0), (1, 3, 0), (1, 4, 0), (1, 5, 0), (1, 6, 0), (2, 1, 0), (2, 5, 0), (3, 4, 0), (3, 5, 0), (3, 6, 0), (4, 6, 0), (4, 5, 0), (5, 1, 0), (5, 6, 0), (5, 3, 0), (5, 4, 0), (5, 5, 0), (6, 3, 0), (7, 6, 0), (7, 5, 0), (8, 1, 0), (9, 1, 0), (9, 4, 0), (9, 5, 0), (9, 6, 0), (10, 3, 0), (10, 4, 0), (10, 5, 0), (10, 6, 0);

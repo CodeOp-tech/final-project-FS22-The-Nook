@@ -72,7 +72,8 @@ async function canJoin(club) {
             <div className="row mt-5">
               <div className="col-4">
 
-            {
+
+            {/* {
                 props.user 
                 ? props.club.members.map((m) => m.id).includes(props.user.id)
                     ? null
@@ -82,6 +83,22 @@ async function canJoin(club) {
                 : <button type="button" className="btn btn-outline-light mb-3" onClick={redirect}>
                 JOIN
                 </button>
+            } */}
+
+            {
+                props.user ?
+          
+                    props.club.members.map((m) => m.id).includes(props.user.id) ?
+                        null
+                        : props.club.members.length >= 10 ?
+                           <p>club is full</p>
+                           : <button type="button" className="btn btn-outline-light mb-3" onClick={(e) => canJoin(props.club)}>
+                        JOIN
+                        </button>
+                    
+                 : <button type="button" className="btn btn-outline-light mb-3" onClick={redirect}>
+                  JOIN
+                  </button>
             }
 
                 <h2>Members</h2>
