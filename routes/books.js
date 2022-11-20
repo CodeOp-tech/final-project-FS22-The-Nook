@@ -5,14 +5,40 @@ require("dotenv").config();
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
+
+
+
+  function makeWhereFromFilters(query) {
+    let filters = [];
+  
+    if (query.title) {
+      filters.push(`title LIKE '%${query.title}%'`);
+    }
+    if (query.author) {
+      filters.push(`author LIKE '%${query.author}%'`);
+    }
+    return filters.join(" AND ");
+  }
+
+
 /**
- * Get all books or all books by club
+ * Get all books or all books by club or do search 
  **/
 router.get("/", async function (req, res) {
   let sql = "SELECT * FROM books";
 
+  let where = makeWhereFromFilters(req.query);
+  
+  if (where) {
+    sql = `SELECT * FROM books WHERE ${where}`;
+  }
+
   if (req.query.club_id) {
-    sql = `SELECT books.*, books_clubs.* FROM books LEFT JOIN books_clubs ON books.id = books_clubs.book_id WHERE books_clubs.club_id=${req.query.club_id}`;
+    sql = `
+      SELECT books.*, books_clubs.* 
+      FROM books 
+      LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
+      WHERE books_clubs.club_id=${req.query.club_id}`;
   }
 
   try {
@@ -23,6 +49,44 @@ router.get("/", async function (req, res) {
     res.status(500).send({ error: err.message });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /**
+//  * Get all books or all books by club
+//  **/
+//  router.get("/", async function (req, res) {
+//   let sql = "SELECT * FROM books";
+
+//   if (req.query.club_id) {
+//     sql = `
+//       SELECT books.*, books_clubs.* 
+//       FROM books 
+//       LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
+//       WHERE books_clubs.club_id=${req.query.club_id}`;
+//   }
+
+//   try {
+//     let results = await db(sql);
+//     let books = results.data;
+//     res.send(books);
+//   } catch (err) {
+//     res.status(500).send({ error: err.message });
+//   }
+// });
+
+
 
 /**
  * Add one book to a club's book list.
@@ -62,5 +126,6 @@ router.post("/", async function (req, res, next) {
     res.status(500).send({ error: err.message });
   }
 });
+
 
 module.exports = router;

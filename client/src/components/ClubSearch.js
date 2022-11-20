@@ -40,15 +40,15 @@ function ClubSearch(props) {
             />
 
             <input
-                className="form-control"
+                className="form-control mt-2"
                 type="search"
                 placeholder="Location"
-                aria-label="Location"
+                aria-label="Search by Location"
                 value={searchLocation}
                 onChange={(e) => setSearchLocation(e.target.value)}
             />
 
-            <div className="mt-3">
+            <div className="mt-2">
                 {/* <label htmlFor="floatingSelect">Choose a category</label> */}
                 <select
                     className="form-select"
