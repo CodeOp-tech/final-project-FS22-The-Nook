@@ -7,19 +7,18 @@ import Api from "../helpers/Api";
 import "./SingleClubView.css";
 
 function SingleClubView(props) {
-  // const [club, setClub] = useState({});
   const [clubBooks, setClubBooks] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
   let { clubId } = useParams();
   let ix = clubId - 1;
+  const user = JSON.parse(localStorage.getItem("user"));
+  let admin = props.clubs[ix].membersList.find((m) => m.id === user.id).admin;
   console.log("clubs", props.clubs);
   console.log("clubId", clubId);
-  // console.log("CLUB", club);
 
   useEffect(() => {
     fetchClubBooks(clubId);
-    // fetchClub(clubId);
   }, []);
 
   async function fetchClubBooks(clubId) {
@@ -34,23 +33,6 @@ function SingleClubView(props) {
     }
   }
 
-  // async function fetchClub(id) {
-  //   let myresponse = await Api.getClub(id);
-  //   if (myresponse.ok) {
-  //     setClub(myresponse.data);
-  //     setErrorMsg("");
-  //   } else {
-  //     setClub([]);
-  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-  //     setErrorMsg(msg);
-  //   }
-  // }
-
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log("user", user.id);
-  let admin = props.clubs[ix].membersList.find((m) => m.id === user.id).admin;
-  console.log("admin", admin);
-
   return (
     <div className="SingleClubView mt-0">
       {admin ? (
@@ -58,7 +40,7 @@ function SingleClubView(props) {
           to={`/clubs/club-admin/${clubId}`}
           className="btn btn-outline-light mx-2 btn-sm user"
         >
-          <h4>CLUB ADMIN</h4>
+          <h4 className="mb-0">CLUB ADMIN</h4>
         </Link>
       ) : null}
 

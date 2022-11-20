@@ -64,7 +64,7 @@ function App() {
     }
     setLoading(false);
   }
-  // let id = 1; // TODO: remove hardcoding when able
+
   console.log("clubs", clubs);
 
   // useEffect(() => {
