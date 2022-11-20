@@ -47,11 +47,16 @@ function makeWhereFromFilters(query) {
   let filters = [];
 
   if (query.name) {
+
     filters.push(`name LiKE '%${query.name}%'`);
   }
   if (query.category) {
     filters.push(`category LIKE '%${query.category}%'`);
   }
+  if (query.next_mtg_city) {
+    filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
+  }
+
 
   return filters.join(" AND ");
 }
@@ -79,6 +84,7 @@ router.get("/", async function (req, res) {
       FROM users_clubs
       GROUP BY club_id
       `;
+
     let count = await db(countSql);
 
     res.status(200).send(joinToJsonCount(result, count));
@@ -104,7 +110,7 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-// add a user to a club (add the user to the user_club junction table when a user wants to join a club)
+// add a user to a club 
 
 router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let userId = res.locals.user;

@@ -1,0 +1,26 @@
+.info-bg {
+    background-color: white;
+    opacity: 0.8;
+    /* text-align: left; */
+    /* padding-left: 10px; */
+}
+
+.card:hover .info-bg {
+    opacity: 1;
+    background-color: white;
+    color: black;
+    border: 2px solid #AA8B56;
+}
+
+.card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.test {
+    border: 3px solid red;
+}
+
+
