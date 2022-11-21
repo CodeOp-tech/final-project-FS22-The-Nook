@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -19,7 +19,7 @@ function ClubSearchProfile(props) {
       
       function changeUrl(){
         navigate(`/users/${user.id}/edit/?search=${searchInput}&location=${searchLocation}&category=${category}`)
-        props.getClubs()
+        props.getClubs && props.getClubs()
         
       }
 

@@ -7,6 +7,8 @@ import "./EditProfileView.css";
 import { DateTime } from "luxon";
 import EditCommentModal from '../components/EditCommentModal'
 import ClubSearchProfile from '../components/ClubSearchProfile'
+import BookSearchProfile from '../components/BookSearchProfile'
+
 
 
 
@@ -15,15 +17,18 @@ function EditProfileView(props){
     let user = props.user;
     let [book, setBook] = useState({})
     let [shownClubs, setShownClubs] = useState(user.clubs)
+    let [shownBooks, setShownBooks] = useState(user.books)
+
     
     const name = searchParams.get("search") || "";
     const category = searchParams.get("category") || "";
     const location = searchParams.get("location") || "";
+    const title = searchParams.get("title") || "";
+    const author = searchParams.get("author") || "";
 
 
 // club search function 
 async function getClubs() {
-    console.log("this is the getclubs function")
     const query = new URLSearchParams({
         name: name,
         category: category,
@@ -32,12 +37,24 @@ async function getClubs() {
 
     let url = `/users/${user.id}/?${query}`;
     let response = await Api.getUserFiltered(url);
-    console.log("response", response.data)
 
     if(response.data) {
-        console.log("hello")
         setShownClubs(response.data.clubs)}
-    console.log("user", shownClubs)
+};
+
+// book search function 
+async function getBooks() {
+    console.log("this is the getbooks function")
+    const query = new URLSearchParams({
+        title: title,
+        author: author,
+    }).toString();
+
+    let url = `/users/${user.id}/?${query}`;
+    let response = await Api.getUserFiltered(url);
+
+    if(response.data) {
+        setShownBooks(response.data.books)}
 };
 
 
@@ -50,6 +67,7 @@ async function exitGroup(event){
     if(confirmation){
         let response = await Api.leaveClub(user.id, club.id)
         props.setUser(response.data)
+        setShownClubs(response.data.clubs)
     }
 }
 
@@ -84,6 +102,7 @@ async function updateBook(book) {
     let responsePatch = await Api.patchBook(body, book.book_id);
     if (responsePatch.ok) {
       props.setUser(responsePatch.data);
+      setShownBooks(responsePatch.data.books)
     }   
 }
 
@@ -119,7 +138,9 @@ return(
         <br/>
         
         <h2 className="title">Edit Your Bookshelf</h2>
-                {user.books.map((b) => (
+            <BookSearchProfile user={user} getBooks={e=> getBooks()}/>
+
+                {shownBooks &&shownBooks.map((b) => (
                     <div key={b.author} className="d-inline-flex">
                     
                     <div key={b.title} className="card me-5" style={{ width: "18rem" }}>

@@ -5,7 +5,7 @@ const db = require("../model/helper");
 const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
 
 
-function makeWhereFromFilters(query) {
+function clubsFilters(query) {
     let filters = [];
   
     if (query.name) {
@@ -20,6 +20,20 @@ function makeWhereFromFilters(query) {
   
     return filters.join(" AND ");
   }
+
+  function bookFilters(query) {
+    let filters = [];
+  
+    if (query.title) {
+      filters.push(`books.title LIKE '%${query.title}%'`);
+    }
+    if (query.author) {
+      filters.push(`books.author LIKE '%${query.author}%'`);
+    }
+    return filters.join(" AND ");
+  }
+
+
 
 /**
  * Get all users
@@ -43,19 +57,17 @@ function makeWhereFromFilters(query) {
  **/
 
  router.get('/:userId', ensureSameUser, async function(req, res) {
-
   let { userId } = req.params;
-  let where = makeWhereFromFilters(req.query);
-  let cSql = ";"
+  let whereC = clubsFilters(req.query);
+  let whereB = bookFilters(req.query);
+  let cSql = "";
+  let bSql = "";
+
   try {
     
-    if(where) {
-        cSql = `${clubsSql} WHERE ${where} AND user_id = '${userId}'` 
-    } else {
-        cSql = `${clubsSql} WHERE user_id = '${userId}'`;
-    }
+    whereC ? cSql = `${clubsSql} WHERE ${whereC} AND user_id = '${userId}'` : cSql = `${clubsSql} WHERE user_id = '${userId}'`;
 
-    let bSql = `${booksSql} WHERE user_id = '${userId}'`;
+    whereB ? bSql = `${booksSql} WHERE ${whereB} AND user_id = '${userId}'` : bSql = `${booksSql} WHERE user_id = '${userId}'`;
 
       let booksResults = await db(bSql);
       let clubsResults = await db(cSql);
