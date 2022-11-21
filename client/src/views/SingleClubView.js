@@ -16,8 +16,8 @@ function SingleClubView(props) {
   let ix = clubId - 1;
   const user = JSON.parse(localStorage.getItem("user"));
   let admin = props.clubs[ix].membersList.find((m) => m.id === user.id).admin;
-  console.log("clubs", props.clubs);
-  console.log("clubId", clubId);
+  // console.log("clubs", props.clubs);
+  // console.log("clubId", clubId);
 
   const navigate = useNavigate();
 
@@ -43,10 +43,6 @@ function SingleClubView(props) {
       if (response.ok) {
         let json = await response.json();
         props.setUser(json);
-        console.log(
-          "this is the reply the client receives from the backend and saves it as user:",
-          json
-        );
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }

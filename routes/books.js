@@ -6,6 +6,36 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 
+    function joinToJsonBooksClubsUsers(results) {
+
+      let booksread = {}
+
+      results.data.map((c) => (
+        booksread[c.title] ? booksread[c.title] += `, ${c.name}` : booksread[c.title] = c.name
+      ))
+
+
+       let reallyFinal = [];
+
+     let finalResult = results.data.map((b) => ({
+        book_id: b.book_id,
+        title: b.title,
+        author: b.author,
+        image: b.image,
+        clubs: booksread[b.title]
+      }))
+
+      reallyFinal = finalResult.filter((e, ind) => 
+
+        { if (ind < finalResult.length -1) {
+           return e.title !== finalResult[ind + 1].title ? e : null 
+        } else {
+            return e
+        }
+        })
+
+     return reallyFinal
+   }  
 
 
   function makeWhereFromFilters(query) {
@@ -25,12 +55,17 @@ const fetch = (...args) =>
  * Get all books or all books by club or do search 
  **/
 router.get("/", async function (req, res) {
-  let sql = "SELECT * FROM books";
+  let sql = `
+        SELECT books.*, books.id AS book_id, books_clubs.club_id AS bc_cid, clubs.id AS c_id, clubs.name, books_clubs.book_id AS bc_bid 
+        FROM books
+        LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
+        LEFT JOIN clubs ON clubs.id = books_clubs.club_id
+        `;
 
   let where = makeWhereFromFilters(req.query);
   
   if (where) {
-    sql = `SELECT * FROM books WHERE ${where}`;
+    sql += `WHERE ${where}`;
   }
 
   if (req.query.club_id) {
@@ -43,49 +78,11 @@ router.get("/", async function (req, res) {
 
   try {
     let results = await db(sql);
-    let books = results.data;
-    res.send(books);
+    res.send(joinToJsonBooksClubsUsers(results));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// /**
-//  * Get all books or all books by club
-//  **/
-//  router.get("/", async function (req, res) {
-//   let sql = "SELECT * FROM books";
-
-//   if (req.query.club_id) {
-//     sql = `
-//       SELECT books.*, books_clubs.* 
-//       FROM books 
-//       LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
-//       WHERE books_clubs.club_id=${req.query.club_id}`;
-//   }
-
-//   try {
-//     let results = await db(sql);
-//     let books = results.data;
-//     res.send(books);
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
-
 
 
 /**

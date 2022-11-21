@@ -67,7 +67,6 @@ function App() {
     setLoading(false);
   }
 
-  console.log("clubs", clubs);
 
   // useEffect(() => {
   //   // fetchClub(id);

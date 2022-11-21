@@ -20,6 +20,7 @@ function BookList(props) {
                        <div className="text-start">
                        <p><b>Title: </b>{b.title}</p>
                        <p><b>Author: </b>{b.author}</p>
+                       <p><b>Clubs: </b>{b.clubs}</p>
                        </div>
                    </div>
                  ))

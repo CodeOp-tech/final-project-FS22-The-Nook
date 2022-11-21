@@ -32,7 +32,7 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
-  console.log("complete result", completeResult);
+
   return completeResult;
 }
 
@@ -76,7 +76,7 @@ router.get("/", async function (req, res) {
   let where = makeWhereFromFilters(req.query);
 
   if (where) {
-    sql = `SELECT clubs.*
+    sql += `SELECT clubs.*
           FROM clubs
           WHERE ${where}
           `;
