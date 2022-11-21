@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateClub.css";
 import CountryList from "./DropdownCountries";
+import Local from "../helpers/Local";
+import Api from "../helpers/Api";
+// import { response } from "express";
 
 const EMPTY_NEW_CLUB_FORM = {
   name: "",
@@ -12,7 +15,7 @@ const EMPTY_NEW_CLUB_FORM = {
   members: 0,
 };
 
-function CreateClub() {
+function CreateClub(props) {
   const [fields, setFields] = useState(EMPTY_NEW_CLUB_FORM);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -26,36 +29,30 @@ function CreateClub() {
       [name]: value,
     }));
   }
-
-  async function addClub(fields) {
-    try {
-      // create response - fetch data, method post
-      let response = await fetch("/clubs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fields),
-      });
-      //if response fetch works
-      if (response.ok) {
-        nav(`/clubs/${response.data[data.length - 1].id}`);
-      } else {
-        console.log(`Server Error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`Network Error: ${err.message}`);
-    }
-  }
+  let user = Local.getUser();
 
   const handleClubSubmit = (e) => {
     e.preventDefault();
-    addClub(fields);
+    postClubAndPostAdminMember(fields, user);
     setError("");
     console.log("You have created a new book club!");
     setFields(EMPTY_NEW_CLUB_FORM);
-    // navigate(`/clubs`);
   };
+
+  async function postClubAndPostAdminMember(fields, user) {
+    // create response - fetch data, method post
+    let responsePostClub = await Api.postClub(fields);
+    //if response fetch works
+    if (responsePostClub.ok) {
+      props.setClubs(responsePostClub.data);
+      let newClubId =
+        responsePostClub.data[responsePostClub.data.length - 1].id;
+      await Api.postAdminMember(user, newClubId);
+    }
+    if (responsePostAdminMember.ok) {
+      navigate(`/clubs/${newClubId}`);
+    }
+  }
 
   return (
     <div className="CreateClubContainer text-centered">
@@ -119,7 +116,7 @@ function CreateClub() {
             value={fields.country}
             onChange={(e) => handleNewClubChange(e)}
           >
-            <option hidden></option>
+            <option hidden> </option>
             {CountryList.map((c) => (
               <option className="dropdown-item" key={c} value={c}>
                 {c}

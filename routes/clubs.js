@@ -103,7 +103,7 @@ router.get("/", async function (req, res) {
   }
 });
 
-/*Create a new club */
+/*Create a new club AND add creator as admin member */
 router.post("/", async function (req, res) {
   let { name, category, city, country, image } = req.body;
   // sql command line for inserting club (as completed in initial set up)
@@ -114,6 +114,8 @@ router.post("/", async function (req, res) {
     await db(sql); // add club when function called
     let list = await db(`SELECT * FROM clubs`); // return whole club list
     let clubs = list.data; // add managable & comprehensive variable
+
+    // let clubAdmin = await db(addClubAdminSql);
     res.status(201).send(clubs); // send updated array
     // server error
   } catch (err) {
