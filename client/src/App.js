@@ -26,9 +26,8 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
-  // const [club, setClub] = useState({});
-  // const [errorMsg, setErrorMsg] = useState("");
-  // const [clubBooks, setClubBooks] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
   const [clubs, setClubs] = useState([]);
@@ -38,7 +37,6 @@ function App() {
   useEffect(() => {
     getUserInfo();
     getClubs();
-    // fetchClub();
   }, [user]);
 
   async function getUserInfo() {
@@ -67,50 +65,31 @@ function App() {
     setLoading(false);
   }
 
-  console.log("clubs", clubs);
-
-  // useEffect(() => {
-  //   fetchClubBooks(id);
-  // }, []);
-
-  // async function fetchClub(id) {
-  //   let myresponse = await Api.getClub(id);
-  //   if (myresponse.ok) {
-  //     setClub(myresponse.data);
-  //     setErrorMsg("");
-  //   } else {
-  //     setClub([]);
-  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-  //     setErrorMsg(msg);
-  //   }
-  // }
-
-  // async function fetchClubBooks(clubId) {
-  //   let myresponse = await Api.getClubBooks(`${clubId}`);
-  //   if (myresponse.ok) {
-  //     setClubBooks(myresponse.data);
-  //     setErrorMsg("");
-  //   } else {
-  //     setClubBooks([]);
-  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-  //     setErrorMsg(msg);
-  //   }
-  // }
+  async function fetchClubBooks(id) {
+    let myresponse = await Api.getClubBooks(`${id}`);
+    if (myresponse.ok) {
+      setClubBooks(myresponse.data);
+      setErrorMsg("");
+    } else {
+      setClubBooks([]);
+      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
+      setErrorMsg(msg);
+    }
+  }
 
   const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
       setClubs(responsePatch.data);
-      // setClub(responsePatch.data[meetingDetails.club_id - 1]);
     }
     let responsePostBook = await Api.postBook(bookData);
-    // if (responsePostBook.ok) {
-    //   let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
-    //   if (getClubBooks.ok) {
-    //     setClubBooks(getClubBooks.data);
-    //   }
-    navigate(`/clubs/${meetingDetails.club_id}`);
-    // }
+    if (responsePostBook.ok) {
+      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
+      if (getClubBooks.ok) {
+        setClubBooks(getClubBooks.data);
+      }
+      navigate(`/clubs/${meetingDetails.club_id}`);
+    }
   };
 
   async function doLogin(username, password) {
@@ -214,12 +193,9 @@ function App() {
             element={
               <SingleClubView
                 clubs={clubs}
-                // club={club}
-                // setClubCb={setClub}
                 getClubs={getClubs}
-                // clubBooks={clubBooks}
-                // fetchClubBooksCb={fetchClubBooks}
-                // fetchClubCb={fetchClub}
+                clubBooks={clubBooks}
+                fetchClubBooksCb={fetchClubBooks}
                 user={user}
                 setUser={(user) => setUser(user)}
               />
@@ -230,8 +206,6 @@ function App() {
             element={
               <ClubAdminView
                 clubs={clubs}
-                // setClubCb={setClub}
-                // setClubBooksCb={setClubBooks}
                 postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }

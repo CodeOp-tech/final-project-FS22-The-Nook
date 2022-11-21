@@ -11,8 +11,6 @@ function SingleClubView(props) {
   const navigate = useNavigate();
   let { id } = useParams();
 
-  const [clubBooks, setClubBooks] = useState(null);
-  const [errorMsg, setErrorMsg] = useState("");
   const [currentClub, setCurrentClub] = useState(
     props.clubs.find((c) => +c.id === +id)
   );
@@ -22,28 +20,11 @@ function SingleClubView(props) {
     props.clubs.find((c) => +c.id === +id)
   );
 
-  async function fetchClubBooks(id) {
-    let myresponse = await Api.getClubBooks(id);
-    if (myresponse.ok) {
-      setClubBooks(myresponse.data);
-      setErrorMsg("");
-    } else {
-      setClubBooks([]);
-      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-      setErrorMsg(msg);
-    }
-  }
-
   useEffect(() => {
-    fetchClubBooks(id);
-    // props.getClubs();
+    props.fetchClubBooksCb(id);
+
     setCurrentClub(props.clubs.find((c) => +c.id === +id));
   }, [id, props.clubs]);
-
-  console.log("clubs", props.clubs);
-  console.log("clubs[Ix]", currentClub);
-  // console.log("cLUB", props.club);
-  console.log("clubBooksSCV", clubBooks);
 
   function redirect() {
     navigate("/login");
@@ -64,7 +45,7 @@ function SingleClubView(props) {
     }
 
     try {
-      let response = await fetch(`clubs/${currentClub.id}`, options);
+      let response = await fetch(`/clubs/${currentClub.id}`, options);
       if (response.ok) {
         let json = await response.json();
         props.setUser(json);
@@ -161,14 +142,20 @@ function SingleClubView(props) {
           </div>
 
           <div className="col-8">
-            <NextMeetingInfo clubBooks={clubBooks} currentClub={currentClub} />
+            <NextMeetingInfo
+              clubBooks={props.clubBooks}
+              currentClub={currentClub}
+            />
           </div>
 
           <div className="col-4"></div>
         </div>
         <div className="row mt-3">
           <div className="col">
-            <ClubBookshelf clubBooks={clubBooks} currentClub={currentClub} />
+            <ClubBookshelf
+              clubBooks={props.clubBooks}
+              currentClub={currentClub}
+            />
           </div>
         </div>
       </div>
