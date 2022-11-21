@@ -146,7 +146,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<HomeView clubs={clubs} getClubs={getClubs} />}
+            element={<HomeView clubs={clubs} getClubs={getClubs} user={user} />}
           />
 
           <Route path="/books" element={<AllBooksView />} />

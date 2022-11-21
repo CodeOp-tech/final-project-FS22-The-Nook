@@ -1,11 +1,10 @@
-.Navbar li {
+ .nav-item, .nav-link {
   display: inline-block;
   list-style: none;
-  padding: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-  font-size: 24px;
-  color:rgb(57, 81, 68);;
+  font-size: 16px;
+  color:rgb(57, 81, 28);
   
 } 
 
@@ -13,41 +12,19 @@
   width: 100px;
   height: 70px;
   margin: auto;
-  
 }
 
-.navbar-brand{
-  color: rgb(57, 81, 68);
-  
-}
-
-.nav-link{
-  color: rgb(57, 81, 68);
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.d-flex {
-  margin-left: 20px !important;
-}
-.Navbar{
+.navbar{
   background-color: bisque;
- 
 }
 
 .navbar-toggler{
   color: rgb(57, 81, 68);
-  display: flex;
   border-color: rgb(57, 81, 68);
-  
-  
-  
 }
 
+.navbar-toggler-icon{
+  color: rgb(57, 81, 68);
+ 
+}
 
-
-
-/* .navbar-nav {
-  display: inline;
-  text-align: right;
-  margin-left: 700px;
-} */
