@@ -134,7 +134,7 @@ router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let postSql = `
     INSERT INTO users_clubs (club_id, user_id, admin)
     VALUES
-      (${clubId}, ${res.locals.user}, 1)
+      (${clubId}, ${res.locals.user}, 0)
   `;
 
   try {
