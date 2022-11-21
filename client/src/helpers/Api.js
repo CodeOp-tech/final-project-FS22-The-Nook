@@ -27,6 +27,16 @@ class Api {
     return await this._doFetch(`/users/${userId}`);
   }
 
+
+   /**
+   * Get data for user with ID 'userId' and Club filters
+   **/
+
+    static async getUserFiltered(url) {
+      return await this._doFetch(`${url}`);
+    }
+
+
   /**
    * Delete a user from a club'
    **/

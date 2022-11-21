@@ -1,16 +1,44 @@
 import React,{useState} from "react";
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import ReactStars from 'react-stars';
 import Api from "../helpers/Api";
 import "./EditProfileView.css";
 import { DateTime } from "luxon";
 import EditCommentModal from '../components/EditCommentModal'
+import ClubSearchProfile from '../components/ClubSearchProfile'
+
 
 
 function EditProfileView(props){
+    const [searchParams] = useSearchParams({});
     let user = props.user;
     let [book, setBook] = useState({})
+    let [shownClubs, setShownClubs] = useState(user.clubs)
+    
+    const name = searchParams.get("search") || "";
+    const category = searchParams.get("category") || "";
+    const location = searchParams.get("location") || "";
+
+
+// club search function 
+async function getClubs() {
+    console.log("this is the getclubs function")
+    const query = new URLSearchParams({
+        name: name,
+        category: category,
+        next_mtg_city: location,
+    }).toString();
+
+    let url = `/users/${user.id}/?${query}`;
+    let response = await Api.getUserFiltered(url);
+    console.log("response", response.data)
+
+    if(response.data) {
+        console.log("hello")
+        setShownClubs(response.data.clubs)}
+    console.log("user", shownClubs)
+};
 
 
 async function exitGroup(event){
@@ -69,20 +97,26 @@ return(
 
         <h2 className="title">Edit Your Clubs</h2>
 
-            <label>Want to find more?<button><Link to="/clubs">Join more clubs</Link></button></label>
-            <br/>
-            {user.clubs.map((c) => (
-                <div key={c.name} className="d-inline-flex">
-                <div key={c.category} className="card me-5" style={{ width: "18rem" }}>
-                    <div >
-                    <div className="card-body">
-                        <h5 className="card-title">{c.name}</h5>
-                        <button type="button" className="btn btn-outline-dark exit" onClick={e => exitGroup(e)} name={c.name}>Leave club</button>
-                    </div>
-                    </div>
+
+        <ClubSearchProfile user={user} getClubs={e=> getClubs()}/>
+
+        {shownClubs && shownClubs.map((c) => (
+            <div key={c.name} className="d-inline-flex">
+            <div key={c.category} className="card me-5" style={{ width: "18rem" }}>
+                <div >
+                <div className="card-body">
+                    <h5 className="card-title">{c.name}</h5>
+                    <button type="button" className="btn btn-outline-dark exit" onClick={e => exitGroup(e)} name={c.name}>Leave club</button>
                 </div>
                 </div>
-            ))}
+            </div>
+            </div>
+        ))}
+
+
+        <br/>
+        <label>Want to find more?<button><Link to="/clubs">Join more clubs</Link></button></label>
+        <br/>
         
         <h2 className="title">Edit Your Bookshelf</h2>
                 {user.books.map((b) => (

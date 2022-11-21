@@ -37,7 +37,7 @@ function joinToJson(booksResult, clubsResult) {
     // next_mtg_time: c.next_mtg_time,
     // next_mtg_location_name: c.next_mtg_location_name,
     // next_mtg_address: c.next_mtg_address,
-    // next_mtg_city: c.next_mtg_city,
+    next_mtg_city: c.next_mtg_city,
     // next_mtg_postal_code: c.next_mtg_postal_code,
     // next_mtg_country: next_mtg_country,
   }));
