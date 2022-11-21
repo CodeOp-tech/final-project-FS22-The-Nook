@@ -93,13 +93,13 @@ function CreateClub() {
           />
         </div>
 
-        <div class="mb-3">
-          <label for="clubCity" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="clubCity" className="form-label">
             City
           </label>
           <input
             type="text"
-            class="form-control-sm"
+            className="form-control-sm"
             id="cityInput"
             name="city"
             placeholder="e.g. Paris"
@@ -109,8 +109,8 @@ function CreateClub() {
         </div>
 
 
-        <div class="mb-3 dropdown">
-          <label for="clubCountry" className="form-label">
+        <div className="mb-3 dropdown">
+          <label htmlFor="clubCountry" className="form-label">
             Country
           </label>
           <select
@@ -131,8 +131,8 @@ function CreateClub() {
               </select>
         </div>
 
-        <div class="mb-3">
-          <label for="clubImage" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="clubImage" className="form-label">
 
             Image URL
           </label>
