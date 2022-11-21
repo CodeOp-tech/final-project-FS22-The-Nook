@@ -8,28 +8,27 @@ import "./SingleClubView.css";
 import Local from "../helpers/Local";
 
 function SingleClubView(props) {
-  const [clubBooks, setClubBooks] = useState([]);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [currentClub, setCurrentClub] = useState(null);
-
   const navigate = useNavigate();
   let { id } = useParams();
+
+  const [clubBooks, setClubBooks] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [currentClub, setCurrentClub] = useState(
+    props.clubs.find((c) => +c.id === +id)
+  );
 
   console.log(
     "curClub",
     props.clubs.find((c) => +c.id === +id)
   );
-  // setCurrentClub(props.clubs.find((c) => +c.id === +id));
-  //TODO: find for club matching ID
-  // props.clubs[id - 1];
 
   useEffect(() => {
-    fetchClubBooks();
+    fetchClubBooks(id);
     // props.getClubs();
     setCurrentClub(props.clubs.find((c) => +c.id === +id));
-  }, []);
+  }, [id, props.clubs]);
 
-  async function fetchClubBooks() {
+  async function fetchClubBooks(id) {
     let myresponse = await Api.getClubBooks(id);
     if (myresponse.ok) {
       setClubBooks(myresponse.data);
@@ -167,11 +166,11 @@ function SingleClubView(props) {
 
           <div className="col-4"></div>
         </div>
-        <div className="row mt-3">
+        {/* <div className="row mt-3">
           <div className="col">
             <ClubBookshelf clubBooks={clubBooks} currentClub={currentClub} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
