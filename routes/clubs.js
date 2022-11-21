@@ -103,20 +103,17 @@ router.get("/", async function (req, res) {
   }
 });
 
-/*Create a new club AND add creator as admin member */
+/*Create a new club  */
 router.post("/", async function (req, res) {
   let { name, category, city, country, image } = req.body;
   // sql command line for inserting club (as completed in initial set up)
   let sql = `INSERT INTO clubs (name, category, next_mtg_city, next_mtg_country, image)
-    VALUES ('${name}', '${category}', '${city}', '${country}', '${image}')`;
+    VALUES ('${name}', '${category}', '${city}', '${country}', '${image}'); SELECT LAST_INSERT_ID();`;
   // adding new club
   try {
-    await db(sql); // add club when function called
-    let list = await db(`SELECT * FROM clubs`); // return whole club list
-    let clubs = list.data; // add managable & comprehensive variable
-
-    // let clubAdmin = await db(addClubAdminSql);
-    res.status(201).send(clubs); // send updated array
+    let results = await db(sql); // add club when function called
+    console.log("results", results);
+    res.status(201).send({ club_id: results.data[0].insertId }); // send club id
     // server error
   } catch (err) {
     res.status(500).send(err.message);

@@ -35,7 +35,7 @@ function CreateClub(props) {
     e.preventDefault();
     postClubAndPostAdminMember(fields, user);
     setError("");
-    console.log("You have created a new book club!");
+
     setFields(EMPTY_NEW_CLUB_FORM);
   };
 
@@ -44,11 +44,11 @@ function CreateClub(props) {
     let responsePostClub = await Api.postClub(fields);
     //if response fetch works
     if (responsePostClub.ok) {
-      props.setClubs(responsePostClub.data);
-      let newClubId = props.clubs[props.clubs.length - 1].id;
+      // props.setClubs(responsePostClub.data);
+      let newClubId = responsePostClub.data.club_id;
       let responsePostAdminMember = await Api.postAdminMember(user, newClubId);
       if (responsePostAdminMember.ok) {
-        navigate(`/clubs/${props.clubs[props.clubs.length - 1].id}`);
+        navigate(`/clubs/${newClubId}`);
       }
     }
   }
