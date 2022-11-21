@@ -62,10 +62,6 @@ function ClubSearchView(props) {
            <ClubList clubs={clubs} userJoinsClubCb={(c)=> joinClub(c)} user={props.user} />
         </div>
 
-        <div className="col-md-3">
-          
-          <CreateClub/>
-        </div>
         
       </div>
     </div>
