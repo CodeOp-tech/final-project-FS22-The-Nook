@@ -1,7 +1,6 @@
 import React from "react";
 
 function NextMeetingInfo(props) {
-  console.log("clubBooks", props.clubBooks);
 
   return (
     <div className="NextMeetingInfo">

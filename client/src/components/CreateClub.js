@@ -49,7 +49,6 @@ function CreateClub() {
     e.preventDefault();
     addClub();
     setError("");
-    console.log("You have created a new book club!");
     setFields(EMPTY_NEW_CLUB_FORM);
     navigate(`/clubs`);
   };

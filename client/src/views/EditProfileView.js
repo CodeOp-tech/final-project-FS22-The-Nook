@@ -1,12 +1,17 @@
 import React,{useState} from "react";
+import { Link } from 'react-router-dom';
+
 import ReactStars from 'react-stars';
 import Api from "../helpers/Api";
 import "./EditProfileView.css";
 import { DateTime } from "luxon";
+import EditCommentModal from '../components/EditCommentModal'
 
 
 function EditProfileView(props){
     let user = props.user;
+    let [book, setBook] = useState({})
+
 
 async function exitGroup(event){
     let clubName = event.target.name; 
@@ -38,12 +43,14 @@ function changeDate (event, book) {
     updateBook(book);
 }
 
+
 async function updateBook(book) {
     let date_read = DateTime.fromISO(book.date_read).toFormat('yyyy-LL-dd');
     let body ={
         rating: `${book.rating}`, 
         date_read: `${date_read}`, 
         favorite: `${book.favorite}`, 
+        comment: `${book.comment}`,
         user_id: `${user.id}`,
     }
     let responsePatch = await Api.patchBook(body, book.book_id);
@@ -61,6 +68,9 @@ return(
 
 
         <h2 className="title">Edit Your Clubs</h2>
+
+            <label>Want to find more?<button><Link to="/clubs">Join more clubs</Link></button></label>
+            <br/>
             {user.clubs.map((c) => (
                 <div key={c.name} className="d-inline-flex">
                 <div key={c.category} className="card me-5" style={{ width: "18rem" }}>
@@ -121,17 +131,15 @@ return(
 
                             
                             <br/>
-                            <a>Edit/View Comment</a>
+                            <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> Edit/View Review</a>
+                            </div>
 
-
-
-         </div>
-                           
+                            <EditCommentModal id="myModal" book={book} updateBook={book=>updateBook(book)}/>
                 
-                        </div>
-                    </div>
-                    </div>
-                ))}
+                                </div>
+                            </div>
+                            </div>
+                        ))}
 
         </div>
     )

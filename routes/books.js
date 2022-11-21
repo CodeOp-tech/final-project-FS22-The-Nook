@@ -31,7 +31,6 @@ router.get("/", async function (req, res) {
  **/
 
 router.post("/", async function (req, res, next) {
-  console.log("req", req.body);
   let title = req.body.title.replaceAll(" ", "+");
   let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
@@ -67,13 +66,15 @@ router.post("/", async function (req, res, next) {
 
 router.patch("/:id", async function (req, res) {
   let bookId = Number(req.params.id);
-  let {rating, date_read, favorite, user_id} = req.body;
+  let {rating, date_read, favorite, comment, user_id} = req.body;
   let sql = `
   UPDATE users_books
   SET
     rating = "${rating}",
     date_read = "${date_read}",
     favorite = "${favorite}"
+    comment = "${comment}"
+
     WHERE
     book_id = ${bookId} 
   AND 
