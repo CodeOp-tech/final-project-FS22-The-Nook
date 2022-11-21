@@ -41,8 +41,8 @@ class Api {
    * Get all books from books table associated with club with ID 'club_id'
    **/
 
-  static async getClubBooks(club_id) {
-    return await this._doFetch(`/books/?club_id=${club_id}`);
+  static async getClubBooks(id) {
+    return await this._doFetch(`/books/?club_id=${id}`);
   }
 
   /**

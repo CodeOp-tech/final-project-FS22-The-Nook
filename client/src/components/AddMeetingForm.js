@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CountryList from "./DropdownCountries.js";
 
 function AddMeetingForm(props) {
   const { id } = useParams();
+  const [currentClub, setCurrentClub] = useState(
+    props.clubs.find((c) => +c.id === +id)
+  );
 
   const EMPTY_NEXT_BOOK_FORM = {
     author: "",
     title: "",
     image: "",
     date: "",
-    club_id: 1, //TODO change to id once params are available
+    club_id: id,
   };
   const EMPTY_MEETING_DETAILS_FORM = {
     time: "",
@@ -19,7 +22,7 @@ function AddMeetingForm(props) {
     city: "",
     postalCode: "",
     country: "",
-    club_id: 1, //TODO change to id once params are available
+    club_id: id,
   };
 
   const [nextBookFormData, setNextBookFormData] =
@@ -27,13 +30,6 @@ function AddMeetingForm(props) {
   const [meetingDetailsFormData, setMeetingDetailsFormData] = useState(
     EMPTY_MEETING_DETAILS_FORM
   );
-  const [nextMeeting, setNextMeeting] = useState({});
-  const [newBook, setNewBook] = useState({});
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  console.log("nextmtg1", nextMeeting);
-  console.log("newBook1", newBook);
 
   function handleNewBookChange(event) {
     const value = event.target.value;
@@ -57,12 +53,10 @@ function AddMeetingForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    meetingDetailsFormData.time = `${meetingDetailsFormData.time}:00`;
-    meetingDetailsFormData.name = props.club.name;
-    meetingDetailsFormData.category = props.club.category;
-    meetingDetailsFormData.image = props.club.image;
+    meetingDetailsFormData.name = currentClub.name;
+    meetingDetailsFormData.category = currentClub.category;
+    meetingDetailsFormData.image = currentClub.image;
     props.postBookAndPatchClubCb(meetingDetailsFormData, nextBookFormData);
-    setError("");
     setMeetingDetailsFormData(EMPTY_MEETING_DETAILS_FORM);
     setNextBookFormData(EMPTY_NEXT_BOOK_FORM);
   }
