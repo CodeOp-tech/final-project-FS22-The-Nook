@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
 import MembersList from "../components/MembersList";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
-import { useNavigate } from "react-router-dom";
 import Local from "../helpers/Local";
 
 function SingleClubView(props) {
-  const [clubBooks, setClubBooks] = useState([]);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  let { clubId } = useParams();
-  let ix = clubId - 1;
-  const user = JSON.parse(localStorage.getItem("user"));
-  let admin = props.clubs[ix].membersList.find((m) => m.id === user.id).admin;
-  // console.log("clubs", props.clubs);
-  // console.log("clubId", clubId);
-
   const navigate = useNavigate();
+  let { id } = useParams();
+
+  const [currentClub, setCurrentClub] = useState(
+    props.clubs.find((c) => +c.id === +id)
+  );
+
+  console.log(
+    "curClub",
+    props.clubs.find((c) => +c.id === +id)
+  );
+
+  useEffect(() => {
+    props.fetchClubBooksCb(id);
+
+    setCurrentClub(props.clubs.find((c) => +c.id === +id));
+  }, [id, props.clubs]);
 
   function redirect() {
     navigate("/login");
   }
 
-  async function canJoin(club) {
+  async function canJoin(currentClub) {
+    console.log("currentClub", currentClub);
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(club),
+      body: JSON.stringify(currentClub),
     };
 
     // add token to the header if it exists in local storage
@@ -39,7 +45,7 @@ function SingleClubView(props) {
     }
 
     try {
-      let response = await fetch(`/clubs/${club.id}`, options);
+      let response = await fetch(`/clubs/${currentClub.id}`, options);
       if (response.ok) {
         let json = await response.json();
         props.setUser(json);
@@ -50,50 +56,48 @@ function SingleClubView(props) {
       console.log(`Network error: ${err.message}`);
     }
   }
-  useEffect(() => {
-    fetchClubBooks(clubId);
-  }, []);
 
-  async function fetchClubBooks(clubId) {
-    let myresponse = await Api.getClubBooks(`${clubId}`);
-    if (myresponse.ok) {
-      setClubBooks(myresponse.data);
-      setErrorMsg("");
-    } else {
-      setClubBooks([]);
-      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-      setErrorMsg(msg);
-    }
+  if (!currentClub) {
+    return <h2>Loading</h2>;
+  }
+
+  let user = JSON.parse(localStorage.getItem("user"));
+  let userMember = currentClub.membersList.some((m) => m.id === user.id);
+  let userMemberAdmin = 0;
+  if (userMember) {
+    userMemberAdmin = currentClub.membersList.find(
+      (m) => m.id === user.id
+    ).admin;
   }
 
   return (
     <div className="SingleClubView mt-0">
-      {admin ? (
+      {userMemberAdmin ? (
         <Link
-          to={`/clubs/club-admin/${clubId}`}
+          to={`/clubs/${id}/club-admin`}
           className="btn btn-outline-light mx-2 btn-sm user"
         >
           <h4 className="mb-0">CLUB ADMIN</h4>
         </Link>
       ) : null}
 
-      {props.clubs[ix].name ? (
+      {currentClub.name ? (
         <div className="card text-bg-dark w-100">
           <img
-            src={props.clubs[ix].image}
+            src={currentClub.image}
             id="header-img"
             style={{ height: "18rem" }}
             className="card-img mb-0"
-            alt={props.clubs[ix].name}
+            alt={currentClub.name}
           />
           <div className="card-img-overlay">
-            <h1 className="card-title">{props.clubs[ix].name}</h1>
+            <h1 className="card-title">{currentClub.name}</h1>
             <h3 className="card-subtitle lh-lg">
-              Category: {props.clubs[ix].category}
+              Category: {currentClub.category}
             </h3>
             <h3 className="card-subtitle lh-lg">
-              Location: {props.clubs[ix].next_mtg_city},{" "}
-              {props.clubs[ix].next_mtg_country}
+              Location: {currentClub.next_mtg_city},{" "}
+              {currentClub.next_mtg_country}
             </h3>
           </div>
         </div>
@@ -104,16 +108,16 @@ function SingleClubView(props) {
         <div className="row mt-5">
           <div className="col-4">
             {props.user ? (
-              props.club.members
+              currentClub.membersList
                 .map((m) => m.id)
-                .includes(props.user.id) ? null : props.club.members.length >=
-                10 ? (
+                .includes(props.user.id) ? null : currentClub.membersList
+                  .length >= 10 ? (
                 <p>club is full</p>
               ) : (
                 <button
                   type="button"
                   className="btn btn-outline-light mb-3"
-                  onClick={(e) => canJoin(props.club)}
+                  onClick={(e) => canJoin(currentClub)}
                 >
                   JOIN
                 </button>
@@ -129,18 +133,25 @@ function SingleClubView(props) {
             )}
             <h2>Members</h2>
             <div>
-              <MembersList club={props.club} />
+              <MembersList currentClub={currentClub} />
             </div>
           </div>
+
           <div className="col-8">
-            <NextMeetingInfo club={props.club} clubBooks={props.clubBooks} />
+            <NextMeetingInfo
+              clubBooks={props.clubBooks}
+              currentClub={currentClub}
+            />
           </div>
 
           <div className="col-4"></div>
         </div>
         <div className="row mt-3">
           <div className="col">
-            <ClubBookshelf clubBooks={clubBooks} />
+            <ClubBookshelf
+              clubBooks={props.clubBooks}
+              currentClub={currentClub}
+            />
           </div>
         </div>
       </div>

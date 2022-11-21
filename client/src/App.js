@@ -26,9 +26,8 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
-  const [club, setClub] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
-  // const [clubBooks, setClubBooks] = useState([]);
+  const [clubBooks, setClubBooks] = useState([]);
 
   const navigate = useNavigate();
   const [clubs, setClubs] = useState([]);
@@ -38,7 +37,6 @@ function App() {
   useEffect(() => {
     getUserInfo();
     getClubs();
-    fetchClub();
   }, [user]);
 
   async function getUserInfo() {
@@ -67,31 +65,13 @@ function App() {
     setLoading(false);
   }
 
-
-  // useEffect(() => {
-  //   // fetchClub(id);
-  //   fetchClubBooks(id);
-  // }, []);
-
-  // async function fetchClubBooks(club) {
-  //   let myresponse = await Api.getClubBooks(`${club.id}`); //TODO: Change to ${club.id}
-  //   if (myresponse.ok) {
-  //     setClubBooks(myresponse.data);
-  //     setErrorMsg("");
-  //   } else {
-  //     setClubBooks([]);
-  //     let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-  //     setErrorMsg(msg);
-  //   }
-  // }
-
-  async function fetchClub(id) {
-    let myresponse = await Api.getClub(id);
+  async function fetchClubBooks(id) {
+    let myresponse = await Api.getClubBooks(`${id}`);
     if (myresponse.ok) {
-      setClub(myresponse.data);
+      setClubBooks(myresponse.data);
       setErrorMsg("");
     } else {
-      setClub([]);
+      setClubBooks([]);
       let msg = `Error ${myresponse.status}: ${myresponse.error}`;
       setErrorMsg(msg);
     }
@@ -103,13 +83,13 @@ function App() {
       setClubs(responsePatch.data);
     }
     let responsePostBook = await Api.postBook(bookData);
-    // if (responsePostBook.ok) {
-    //   let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
-    //   if (getClubBooks.ok) {
-    //     setClubBooks(getClubBooks.data);
-    //   }
-    navigate(`/clubs/${meetingDetails.club_id}`);
-    // }
+    if (responsePostBook.ok) {
+      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
+      if (getClubBooks.ok) {
+        setClubBooks(getClubBooks.data);
+      }
+      navigate(`/clubs/${meetingDetails.club_id}`);
+    }
   };
 
   async function doLogin(username, password) {
@@ -166,7 +146,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<HomeView clubs={clubs} getClubs={getClubs} />}
+            element={<HomeView clubs={clubs} getClubs={getClubs} user={user} />}
           />
 
           <Route path="/books" element={<AllBooksView />} />
@@ -209,40 +189,38 @@ function App() {
           />
 
           <Route
-            path="*"
-            element={<ErrorView code="404" text="Page not found" />}
-          />
-
-          <Route
-            path="clubs/:clubId"
+            path="/clubs/:id"
             element={
               <SingleClubView
                 clubs={clubs}
-                club={club}
-                // clubBooks={clubBooks}
-                // fetchClubBooks={fetchClubBooks}
-                // fetchClub={fetchClub}
+                getClubs={getClubs}
+                clubBooks={clubBooks}
+                fetchClubBooksCb={fetchClubBooks}
                 user={user}
                 setUser={(user) => setUser(user)}
               />
             }
           />
           <Route
-            path="clubs/club-admin/:clubId"
+            path="/clubs/:id/club-admin"
             element={
               <ClubAdminView
                 clubs={clubs}
-                // setClubCb={setClub}
-                // setClubBooksCb={setClubBooks}
                 postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }
           />
           <Route
+            exact
             path="/clubs"
             element={
               <ClubSearchView user={user} setUser={(user) => setUser(user)} />
             }
+          />
+
+          <Route
+            path="*"
+            element={<ErrorView code="404" text="Page not found" />}
           />
         </Routes>
       </div>

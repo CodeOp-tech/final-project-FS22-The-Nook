@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './CreateClub.css'
+import CountryList from "./DropdownCountries";
 
 const EMPTY_NEW_CLUB_FORM = {
   name: "",
   category: "",
-  location: "",
+  city: "",
+  country: "",
   image: "",
+  members: 0,
 };
 
 function CreateClub() {
@@ -45,20 +48,20 @@ function CreateClub() {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleClubSubmit = (e) => {
     e.preventDefault();
     addClub();
     setError("");
     console.log("You have created a new book club!");
     setFields(EMPTY_NEW_CLUB_FORM);
-    navigate(`/clubs`);
+    // navigate(`/clubs`);
   };
 
   return (
     <div className="CreateClubContainer text-centered">
-      <h2 className="CreateClubH">Create A New Club</h2>
+      <h3 className="CreateClubH">Create A New Club</h3>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleClubSubmit}>
 
         <div className="mb-3">
           <label for="clubName" className="form-label">
@@ -91,22 +94,44 @@ function CreateClub() {
           />
         </div>
 
-        <div className="mb-3">
-          <label for="clubLocation" className="form-label">
-            Location
+        <div class="mb-3">
+          <label for="clubCity" className="form-label">
+            City
           </label>
           <input
             type="text"
-            className="form-control-sm"
-            id="locationInput"
-            name="location"
+            class="form-control-sm"
+            id="cityInput"
+            name="city"
             placeholder="e.g. Paris"
-            value={fields.location}
+            value={fields.city}
             onChange={(e) => handleNewClubChange(e)}
           />
         </div>
 
-        <div className="mb-3">
+        <div class="mb-3 dropdown">
+          <label for="clubCountry" className="form-label">
+            Country
+          </label>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            id="countryInput"
+            name="country"
+            
+            value={fields.country}
+            onChange={(e) => handleNewClubChange(e)}
+          >
+          <option hidden >e.g. France</option>
+              {CountryList.map((c) => (
+                <option className="dropdown-item" key={c} value={c}>
+                  {c}
+                </option>
+              ))};
+              </select>
+        </div>
+
+        <div class="mb-3">
           <label for="clubImage" className="form-label">
             Image URL
           </label>

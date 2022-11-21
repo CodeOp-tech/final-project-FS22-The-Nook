@@ -6,8 +6,6 @@ import TopBooks from "../components/TopBooks";
 function HomeView(props) {
   return (
     <div className="homePage">
-    
-
       <div className="clubCarousel">
         <h1>Featured Clubs</h1>
         <Carousel4Wide clubs={props.clubs} getClubs={props.getClubs} />
@@ -33,13 +31,24 @@ function HomeView(props) {
         </a>
       </div>
 
+
+
       <div className="buttonArea">
-        <div className="buttonArea">
-          <h1> Want to find a book club?</h1>
-          <a type="button" className="btn btn-light" href="login">
-            Join!
-          </a>
-        </div>
+        {props.user ? (
+          <div className="buttonAreaFind">
+            <h1>Find more book clubs</h1>
+            <a type="button" className="btn btn-light" href="/clubs">
+              All Clubs
+            </a>
+          </div>
+        ) : (
+          <div className="buttonAreaJoin">
+            <h1> Want to find a book club?</h1>
+            <a type="button" className="btn btn-light" href="/register">
+              Join!
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

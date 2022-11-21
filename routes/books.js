@@ -97,8 +97,8 @@ router.post("/", async function (req, res, next) {
   try {
     let response = await fetch(url);
     if (response.ok) {
-      let results = await response.json(); //converts JSON to JS
-      // console.log("results", results.items);
+      let results = await response.json();
+
       let book = results.items.filter((e) => e.volumeInfo.language === "en");
       console.log("book", book[0].volumeInfo.categories);
       let bookObj = {
@@ -106,7 +106,7 @@ router.post("/", async function (req, res, next) {
         title: book[0].volumeInfo.title,
         image: book[0].volumeInfo.imageLinks.thumbnail,
         date: req.body.date,
-        club_id: 1, // TODO: change from hard-coded value once connected to club
+        club_id: req.body.club_id,
       };
 
       let idResult = await db(`INSERT INTO books (title, author, image)
