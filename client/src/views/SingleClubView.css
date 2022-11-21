@@ -1,7 +1,6 @@
-#header-image {
+#header-img {
   object-fit: cover;
-  max-height: 250px;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 #book-cover-img {
@@ -9,6 +8,15 @@
   height: auto;
 }
 
-.SingleClubView{
-  color: antiquewhite;
+.SingleClubView {
+  color: bisque;
+}
+
+.card-text {
+  color: black;
+}
+
+.user {
+  color: bisque !important;
+  border-color: bisque !important;
 }
