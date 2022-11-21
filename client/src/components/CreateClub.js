@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './CreateClub.css'
+import "./CreateClub.css";
 import CountryList from "./DropdownCountries";
 
 const EMPTY_NEW_CLUB_FORM = {
@@ -39,7 +39,7 @@ function CreateClub() {
       });
       //if response fetch works
       if (response.ok) {
-        nav("/clubs");
+        nav(`/clubs/${response.data[data.length - 1].id}`);
       } else {
         console.log(`Server Error: ${response.status} ${response.statusText}`);
       }
@@ -50,7 +50,7 @@ function CreateClub() {
 
   const handleClubSubmit = (e) => {
     e.preventDefault();
-    addClub();
+    addClub(fields);
     setError("");
     console.log("You have created a new book club!");
     setFields(EMPTY_NEW_CLUB_FORM);
@@ -62,17 +62,15 @@ function CreateClub() {
       <h2 className="CreateClubH">Create A New Club</h2>
 
       <form onSubmit={handleClubSubmit}>
-
         <div className="mb-3">
-          <label for="clubName" className="form-label">
-            Club Name 
+          <label htmlFor="clubName" className="form-label">
+            Club Name
           </label>
           <input
             type="text"
             className="form-control-sm"
             id="nameInput"
             name="name"
-            
             placeholder="e.g. Les Bibliophiles"
             value={fields.name}
             onChange={(e) => handleNewClubChange(e)}
@@ -80,7 +78,7 @@ function CreateClub() {
         </div>
 
         <div className="mb-3">
-          <label for="clubCategory" className="form-label">
+          <label htmlFor="clubCategory" className="form-label">
             Category
           </label>
           <input
@@ -94,13 +92,13 @@ function CreateClub() {
           />
         </div>
 
-        <div class="mb-3">
-          <label for="clubCity" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="clubCity" className="form-label">
             City
           </label>
           <input
             type="text"
-            class="form-control-sm"
+            className="form-control-sm"
             id="cityInput"
             name="city"
             placeholder="e.g. Paris"
@@ -109,8 +107,8 @@ function CreateClub() {
           />
         </div>
 
-        <div class="mb-3 dropdown">
-          <label for="clubCountry" className="form-label">
+        <div className="mb-3 dropdown">
+          <label htmlFor="clubCountry" className="form-label">
             Country
           </label>
           <select
@@ -118,21 +116,21 @@ function CreateClub() {
             aria-label="Default select example"
             id="countryInput"
             name="country"
-            
             value={fields.country}
             onChange={(e) => handleNewClubChange(e)}
           >
-          <option hidden >e.g. France</option>
-              {CountryList.map((c) => (
-                <option className="dropdown-item" key={c} value={c}>
-                  {c}
-                </option>
-              ))};
-              </select>
+            <option hidden></option>
+            {CountryList.map((c) => (
+              <option className="dropdown-item" key={c} value={c}>
+                {c}
+              </option>
+            ))}
+            ;
+          </select>
         </div>
 
-        <div class="mb-3">
-          <label for="clubImage" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="clubImage" className="form-label">
             Image URL
           </label>
           <input
@@ -149,7 +147,6 @@ function CreateClub() {
         <button className="createClubButton" type="submit">
           Create Club
         </button>
-
       </form>
     </div>
   );
