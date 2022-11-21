@@ -10,7 +10,7 @@ function MembersList(props) {
     <div className="container MembersList">
       <div className="row">
         <div className="col">
-          {props.clubs[ix].membersList.map((m) => (
+          {props.currentClub.membersList.map((m) => (
             <Link
               to={`/users/${m.id}`}
               className="btn btn-outline-light mx-2 btn-sm user"

@@ -54,7 +54,7 @@ function App() {
     setError("");
 
     try {
-      let response = await fetch(`clubs`);
+      let response = await fetch(`/clubs`);
       if (response.ok) {
         let data = await response.json();
         setClubs(data);
@@ -210,11 +210,6 @@ function App() {
           />
 
           <Route
-            path="*"
-            element={<ErrorView code="404" text="Page not found" />}
-          />
-
-          <Route
             path="/clubs/:id"
             element={
               <SingleClubView
@@ -231,7 +226,7 @@ function App() {
             }
           />
           <Route
-            path="clubs/:id/club-admin"
+            path="/clubs/:id/club-admin"
             element={
               <ClubAdminView
                 clubs={clubs}
@@ -242,10 +237,16 @@ function App() {
             }
           />
           <Route
+            exact
             path="/clubs"
             element={
               <ClubSearchView user={user} setUser={(user) => setUser(user)} />
             }
+          />
+
+          <Route
+            path="*"
+            element={<ErrorView code="404" text="Page not found" />}
           />
         </Routes>
       </div>
