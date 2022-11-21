@@ -45,12 +45,12 @@ function CreateClub(props) {
     //if response fetch works
     if (responsePostClub.ok) {
       props.setClubs(responsePostClub.data);
-      let newClubId =
-        responsePostClub.data[responsePostClub.data.length - 1].id;
-      await Api.postAdminMember(user, newClubId);
     }
+    let newClubId = props.clubs[props.clubs.length - 1].id;
+    let responsePostAdminMember = await Api.postAdminMember(user, newClubId);
+
     if (responsePostAdminMember.ok) {
-      navigate(`/clubs/${newClubId}`);
+      navigate(`/clubs/${props.clubs[props.clubs.length - 1].id}`);
     }
   }
 
