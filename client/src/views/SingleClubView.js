@@ -120,7 +120,7 @@ function SingleClubView(props) {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-outline-light mb-3"
+                  className="btn btn-light mb-3"
                   onClick={(e) => canJoin(currentClub)}
                 >
                   JOIN
@@ -129,7 +129,7 @@ function SingleClubView(props) {
             ) : (
               <button
                 type="button"
-                className="btn btn-outline-light mb-3"
+                className="btn btn-light mb-3"
                 onClick={redirect}
               >
                 JOIN

@@ -100,7 +100,7 @@ INSERT INTO books (title, author, image)
     ("Matilda", "Roald Dahl", "https://m.media-amazon.com/images/I/81LWiusthFL.jpg"),
     ("Twenty Thousand Leagues Under the Sea", "Jules Verne", "https://kbimages1-a.akamaihd.net/7b52de9d-e8be-4dac-992d-cc3a75ca9786/1200/1200/False/twenty-thousand-leagues-under-the-sea-67.jpg"),
     ("The Help", "Kathryn Stockett", "https://upload.wikimedia.org/wikipedia/en/e/ef/Thehelpbookcover.jpg"),
-    ("The Autobiography of Malcolm X", "Malcolm X", "https://fr.shopping.rakuten.com/photo/1513033343_L.jpg");
+    ("The Autobiography of Malcolm X", "Malcolm X", "https://m.media-amazon.com/images/I/81+HAUO0NiL.jpg");
 
 INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0),
@@ -129,7 +129,7 @@ INSERT INTO books_clubs (book_id, club_id, date)
     (6, 4, "2022-11-30"), (11, 4, "2022-10-30"),
     (9, 5, "2022-12-27"), (8, 5, "2022-10-28"), (12, 5, "2022-11-13"), (10, 5, "2022-11-28"),
     (10, 6, "2022-11-30"),
-    (8, 7, "2022-12-21"), (14, 7, "2022-11-10"), (4, 7, "2022-12-1"),
+    (8, 7, "2022-12-21"), (4, 7, "2022-12-1"), (14, 7, "2023-1-10"),
     (7, 8, "2022-12-10"), (11, 8, "2022-11-10"),
     (12, 9, "2022-11-13"),
     (13, 10, "2022-12-22");
