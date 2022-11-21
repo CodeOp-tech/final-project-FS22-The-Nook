@@ -11,7 +11,7 @@ function SingleClubView(props) {
   const navigate = useNavigate();
   let { id } = useParams();
 
-  const [clubBooks, setClubBooks] = useState([]);
+  const [clubBooks, setClubBooks] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [currentClub, setCurrentClub] = useState(
     props.clubs.find((c) => +c.id === +id)
@@ -21,12 +21,6 @@ function SingleClubView(props) {
     "curClub",
     props.clubs.find((c) => +c.id === +id)
   );
-
-  useEffect(() => {
-    fetchClubBooks(id);
-    // props.getClubs();
-    setCurrentClub(props.clubs.find((c) => +c.id === +id));
-  }, [id, props.clubs]);
 
   async function fetchClubBooks(id) {
     let myresponse = await Api.getClubBooks(id);
@@ -39,6 +33,12 @@ function SingleClubView(props) {
       setErrorMsg(msg);
     }
   }
+
+  useEffect(() => {
+    fetchClubBooks(id);
+    // props.getClubs();
+    setCurrentClub(props.clubs.find((c) => +c.id === +id));
+  }, [id, props.clubs]);
 
   console.log("clubs", props.clubs);
   console.log("clubs[Ix]", currentClub);
@@ -166,11 +166,11 @@ function SingleClubView(props) {
 
           <div className="col-4"></div>
         </div>
-        {/* <div className="row mt-3">
+        <div className="row mt-3">
           <div className="col">
             <ClubBookshelf clubBooks={clubBooks} currentClub={currentClub} />
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
