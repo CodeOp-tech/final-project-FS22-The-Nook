@@ -76,7 +76,7 @@ router.get("/", async function (req, res) {
   let where = makeWhereFromFilters(req.query);
 
   if (where) {
-    sql += `SELECT clubs.*
+    sql = `SELECT clubs.*
           FROM clubs
           WHERE ${where}
           `;

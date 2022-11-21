@@ -54,7 +54,7 @@ function App() {
     setError("");
 
     try {
-      let response = await fetch(`clubs`);
+      let response = await fetch(`/clubs`);
       if (response.ok) {
         let data = await response.json();
         setClubs(data);
