@@ -101,7 +101,7 @@ function App() {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
       setClubs(responsePatch.data);
-      setClub(responsePatch.data[meetingDetails.club_id - 1]);
+      // setClub(responsePatch.data[meetingDetails.club_id - 1]);
     }
     let responsePostBook = await Api.postBook(bookData);
     // if (responsePostBook.ok) {
