@@ -2,10 +2,22 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 const { ensureUserLoggedIn } = require("../middleware/guards");
-const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
+const {
+  joinToJson,
+  clubsSql,
+  booksSql,
+  clubMembersListSql,
+} = require("./commonfunctions");
+var _ = require("lodash");
 
-function joinToJsonCount(result, count) {
+function joinToJsonCountAndMembers(result, count, clubMembersResults) {
   let completeResult = [];
+
+  const grouped = _.groupBy(
+    clubMembersResults.data,
+    (userInfo) => userInfo.club_id
+  );
+
   completeResult = result.data.map((c, ind) => ({
     id: c.id,
     name: c.name,
@@ -18,11 +30,24 @@ function joinToJsonCount(result, count) {
     next_mtg_country: c.next_mtg_country,
     image: c.image,
     membersCount: count.data[ind] ? count.data[ind].j : 0,
+    membersList: grouped[+c.id],
   }));
-
+  // console.log("complete result", completeResult);
   return completeResult;
 }
 
+function clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults) {
+  let clubInfoWithMembers = clubInfoResults.data[0];
+  let membersList = [];
+  membersList = clubMembersResults.data.map((m) => ({
+    username: m.username,
+    id: m.id,
+  }));
+
+  clubInfoWithMembers.membersList = membersList;
+
+  return clubInfoWithMembers;
+}
 
 // list all clubs
 
@@ -34,6 +59,9 @@ function makeWhereFromFilters(query) {
   }
   if (query.category) {
     filters.push(`category LIKE '%${query.category}%'`);
+  }
+  if (query.next_mtg_city) {
+    filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
 
   return filters.join(" AND ");
@@ -56,39 +84,47 @@ router.get("/", async function (req, res) {
 
   try {
     let result = await db(sql);
-    
+
     let countSql = `
       SELECT COUNT(user_id) AS j
       FROM users_clubs
       GROUP BY club_id
       `;
+
     let count = await db(countSql);
 
-    res.status(200).send(joinToJsonCount(result, count));
-    
+    let clubMembersResults = await db(clubMembersListSql);
+
+    res
+      .status(200)
+      .send(joinToJsonCountAndMembers(result, count, clubMembersResults));
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
 
-// Get info for a specific club
+// Get info for a specific club including members list
 router.get("/:id", async function (req, res) {
   let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
 
   try {
-    let result = await db(sql);
-    res.send(result.data[0]);
+    let clubInfoResults = await db(sql);
+    let clubMembersResults = await db(
+      clubMembersListSql + ` WHERE users_clubs.club_id =${req.params.id}`
+    );
+    res.send(
+      clubInfoWithMembersJoinToJson(clubInfoResults, clubMembersResults)
+    );
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
 
-// add a user to a club (add the user to the user_club junction table when a user wants to join a club)
+// add a user to a club
 
-router.post("/:id", ensureUserLoggedIn, async function(req, res) {
-
+router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let userId = res.locals.user;
-  let clubId = req.params.id 
+  let clubId = req.params.id;
   let checkUserSql = `
       SELECT *
       FROM users_clubs
@@ -105,14 +141,12 @@ router.post("/:id", ensureUserLoggedIn, async function(req, res) {
     let check = await db(checkUserSql);
     if (check.data.length === 0) {
       await db(postSql);
-      let booksResults = await db(booksSql +` WHERE user_id = '${userId}'`) ;
-      let clubsResults = await db(clubsSql +` WHERE user_id = '${userId}'`)
+      let booksResults = await db(booksSql + ` WHERE user_id = '${userId}'`);
+      let clubsResults = await db(clubsSql + ` WHERE user_id = '${userId}'`);
       res.send(joinToJson(booksResults, clubsResults));
     } else {
-       res.status(403).send("User already joined")
+      res.status(403).send("User already joined");
     }
-
-
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -138,10 +172,19 @@ router.patch("/:id", async function (req, res) {
       res.status(404).send({ error: "Club does not exist." });
     } else {
       await db(sql);
-      let result = await db(
-        `SELECT * FROM clubs WHERE id = ${req.body.club_id}`
-      );
-      res.status(201).send(result.data);
+      let result = await db(`SELECT * FROM clubs`);
+      let countSql = `
+      SELECT COUNT(user_id) AS j
+      FROM users_clubs
+      GROUP BY club_id
+      `;
+      let count = await db(countSql);
+
+      let clubMembersResults = await db(clubMembersListSql);
+
+      res
+        .status(201)
+        .send(joinToJsonCountAndMembers(result, count, clubMembersResults));
     }
   } catch (err) {
     res.status(500).send({ error: err.message });

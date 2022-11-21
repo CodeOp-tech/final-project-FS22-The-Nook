@@ -8,6 +8,13 @@ let clubsSql = `SELECT users.*, users.id AS user_id, clubs.*
   LEFT JOIN users_clubs AS uc ON users.id = uc.user_id
   LEFT JOIN clubs ON uc.club_id = clubs.id`;
 
+let clubMembersListSql = `
+        SELECT clubs.id AS club_id, users.username, users.id, users_clubs.admin
+        FROM clubs
+        INNER JOIN users_clubs on clubs.id = users_clubs.club_id
+        INNER JOIN users ON users_clubs.user_id = users.id
+        `;
+
 function joinToJson(booksResult, clubsResult) {
   let row0 = booksResult.data[0];
 
@@ -49,4 +56,5 @@ module.exports = {
   joinToJson,
   clubsSql,
   booksSql,
+  clubMembersListSql,
 };

@@ -26,7 +26,6 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
-  const [club, setClub] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
   const [clubBooks, setClubBooks] = useState([]);
 
@@ -37,11 +36,14 @@ function App() {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+    getClubs();
+  }, [user]);
 
   async function getUserInfo() {
-    let response = await Api.getUser(user.id);
-    setUserInfo(response.data);
+    if (user) {
+      let response = await Api.getUser(user.id);
+      setUserInfo(response.data);
+    } else setUserInfo(null);
   }
 
   //get the clubs first
@@ -50,7 +52,7 @@ function App() {
     setError("");
 
     try {
-      let response = await fetch(`clubs`);
+      let response = await fetch(`/clubs`);
       if (response.ok) {
         let data = await response.json();
         setClubs(data);
@@ -62,18 +64,9 @@ function App() {
     }
     setLoading(false);
   }
-  let id = 1; // TODO: remove hardcoding when able
-
-  console.log("club", club);
-  console.log("clubBooks", clubBooks);
-
-  useEffect(() => {
-    fetchClub(id);
-    fetchClubBooks(id);
-  }, []);
 
   async function fetchClubBooks(id) {
-    let myresponse = await Api.getClubBooks(`${id}`); //TODO: Change to ${club.id}
+    let myresponse = await Api.getClubBooks(`${id}`);
     if (myresponse.ok) {
       setClubBooks(myresponse.data);
       setErrorMsg("");
@@ -84,26 +77,14 @@ function App() {
     }
   }
 
-  async function fetchClub(id) {
-    let myresponse = await Api.getClub(id);
-    if (myresponse.ok) {
-      setClub(myresponse.data);
-      setErrorMsg("");
-    } else {
-      setClub([]);
-      let msg = `Error ${myresponse.status}: ${myresponse.error}`;
-      setErrorMsg(msg);
-    }
-  }
-
-  const postBookAndPatchClub = async (meetingDetails, BookData) => {
+  const postBookAndPatchClub = async (meetingDetails, bookData) => {
     let responsePatch = await Api.patchClub(meetingDetails);
     if (responsePatch.ok) {
-      setClub(responsePatch.data[0]);
+      setClubs(responsePatch.data);
     }
-    let responsePostBook = await Api.postBook(BookData);
+    let responsePostBook = await Api.postBook(bookData);
     if (responsePostBook.ok) {
-      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`); //TODO: Change to ${club.id}
+      let getClubBooks = await Api.getClubBooks(`${meetingDetails.club_id}`);
       if (getClubBooks.ok) {
         setClubBooks(getClubBooks.data);
       }
@@ -122,8 +103,7 @@ function App() {
         myresponse.data.token
       );
       setUser(myresponse.data.user);
-      getUserInfo();
-      
+
       setLoginErrorMsg("");
       navigate("/");
     } else {
@@ -133,6 +113,7 @@ function App() {
 
   function doLogout() {
     Local.removeUserInfo();
+    setUserInfo(null);
     setUser(null);
   }
 
@@ -208,35 +189,38 @@ function App() {
           />
 
           <Route
-            path="*"
-            element={<ErrorView code="404" text="Page not found" />}
-          />
-
-          <Route
-            path="clubs/:clubId"
+            path="/clubs/:id"
             element={
               <SingleClubView
-                club={club}
+                clubs={clubs}
+                getClubs={getClubs}
                 clubBooks={clubBooks}
-                fetchClubBooks={fetchClubBooks}
-                fetchClub={fetchClub}
+                fetchClubBooksCb={fetchClubBooks}
+                user={user}
+                setUser={(user) => setUser(user)}
               />
             }
           />
           <Route
-            path="clubs/:clubId/club-admin"
+            path="/clubs/:id/club-admin"
             element={
               <ClubAdminView
-                club={club}
-                setClubCb={setClub}
-                setClubBooksCb={setClubBooks}
+                clubs={clubs}
                 postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }
           />
           <Route
+            exact
             path="/clubs"
-            element={<ClubSearchView setUser={(user) => setUser(user)} />}
+            element={
+              <ClubSearchView user={user} setUser={(user) => setUser(user)} />
+            }
+          />
+
+          <Route
+            path="*"
+            element={<ErrorView code="404" text="Page not found" />}
           />
         </Routes>
       </div>

@@ -1,71 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import "./ClubList.css";
 
 function ClubList(props) {  
 
   const navigate = useNavigate();
 
-    function joinClub(club) {
-    if (props.user) {
-      props.userJoinsClubCb(club) 
-    } else {
-      navigate('/login')
-    }
-  }
-
-  // function joinClub(club) {
-  //   if (props.user && props.user.clubs.name === club.name) {
-  //     // props.userJoinsClubCb(club) 
-  //     console.log("user is logged in and is already a member of the club")
-  //   } else if (props.user.clubs.name !== club.name){
-  //     // navigate('/login')
-  //     console.log("user is logged in and not a member of the club")
-  //   } else {
-  //     console.log("user is not logged in")
-  //   }
-  // }
-  
-  // function joinClub(club) {
-  //   if (props.user) { 
-  //     if (props.user.clubs.name !== club.name) {
-  //       // props.userJoinsClubCb(club) 
-  //       console.log("user is logged in and not a member")
-  //     }
-
-  //   } else {
-  
-  //     console.log("user is logged in and already a member")
-
-  //   }
-  //   // console.log("not a user and should go to login")
-  //   // return navigate('/login')
-
-  // }
-
- 
-
-
+function redirect(clubId) {
+  navigate(`./${clubId}`)
+}
 
   return (
-    <div className="container ClubSearch">
-      <div className="row">
+    <div className="container">
+      <div className="row  justify-content-center">
       
             {
                 props.clubs.map(c => (
-
-                    <div className="col border bg-light" key={c.id}>
-                        <p className="fs-3">{c.name}</p>
-                        <p><b>Genre:</b> {c.category}</p>
-                        <p><b>Location:</b></p>
-                        <p><b>Members:</b> {c.membersCount}</p>
-                        <button className="btn btn-outline-secondary mt-3" type="button" onClick={(e) => joinClub(c)}>Join</button>   
+                  <div className="col-md-5 col-lg-4">
+                    <div className="card m-1" key={c.id}>
+                        <img 
+                          className="card-img" 
+                          src={c.image} 
+                          alt={c.name}
+                        />
+                         <div className="card-img-overlay info-bg">
+                            <h4>{c.name}</h4>
+                            <p className="mb-0 mt-3 text-left"><b>Genre:</b> {c.category}</p>
+                            <p className="mb-0"><b>Location: </b>{c.next_mtg_city}</p>
+                            <p className="mb-0"><b>Members:</b> {c.membersCount}</p>
+                            <button className="btn btn-outline-secondary mt-5" type="button" onClick={e => redirect(c.id)}>More Info</button>   
+                         </div>               
                     </div>
+                  </div>
                 ))
             }
      </div>
     </div>
+
   );
 }
+
+
 
 export default ClubList;
