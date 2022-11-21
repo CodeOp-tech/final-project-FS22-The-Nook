@@ -190,4 +190,29 @@ router.patch("/:id", async function (req, res) {
   }
 });
 
+/*Create a new club */
+router.post("/", async function (req, res) {
+  let {
+    name,
+    category,
+    next_mtg_city,
+    next_mtg_country,
+    image,
+  } = req.body;
+  // sql command line for inserting club (as completed in initial set up)
+  let sql = `INSERT INTO clubs (name, category, next_mtg_city, next_mtg_country, image)
+    VALUES ('${name}', '${category}', '${next_mtg_city}', '${next_mtg_country}', '${image}')`;
+  // adding new club
+  try {
+    await db(sql); // add club when function called
+    let list = await db(`SELECT * FROM clubs`); // return whole club list
+    let clubs = list.data; // add managable & comprehensive variable
+    res.status(201).send(clubs); // send updated array
+    // server error
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+
 module.exports = router;
