@@ -59,7 +59,7 @@ function CreateClub() {
 
   return (
     <div className="CreateClubContainer text-centered">
-      <h2 className="CreateClubH">Create A New Club</h2>
+      <h3 className="CreateClubH">Create A New Club</h3>
 
       <form onSubmit={handleClubSubmit}>
 
