@@ -49,7 +49,7 @@ function ClubSearch(props) {
             />
 
             <div className="mt-3">
-                {/* <label htmlFor="floatingSelect">Choose a category</label> */}
+                {/* <label htmlhtmlFor="floatingSelect">Choose a category</label> */}
                 <select
                     className="form-select"
                     id="floatingSelect"

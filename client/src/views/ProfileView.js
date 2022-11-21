@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import { DateTime } from "luxon";
 import ReactStars from 'react-stars'
 import "./ProfileView.css"
 
@@ -67,6 +68,7 @@ function ProfileView(props) {
                             />
                         </div>
                         <div className="card-body">
+                        <p>My rating:</p>
                         <ReactStars 
                         count={5}
                         size={24}
@@ -75,6 +77,8 @@ function ProfileView(props) {
                         color2={'#ffd700'} />
                             <h5 className="card-title">{b.title}</h5>
                             <h6 className="card-text">By {b.author}</h6>
+                            <p>Read on: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
+
                         </div>
                         </div>
                     </div>
@@ -95,15 +99,23 @@ function ProfileView(props) {
                             alt={`${b.title}`}
                             />
                         </div>
+
                         <div className="card-body">
-                        <ReactStars
-                        count={5}
-                        size={24}
-                        value={b.rating}
-                        edit={false}
-                        color2={'#ffd700'} />
-                        <h5 className="card-title">{b.title}</h5>
-                        <h6 className="card-text">By {b.author}</h6>
+
+                            <p>My rating:</p>
+                            <ReactStars
+                            count={5}
+                            size={24}
+                            value={b.rating}
+                            edit={false}
+                            color2={'#ffd700'} />
+
+                            <h5 className="card-title">{b.title}</h5>
+                            
+                            <h6 className="card-text">By {b.author}</h6>
+                            
+                            <p>Read on: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
+
 
                         <button key={b.id} 
                                 type="button" className="btn btn-outline-danger favoritebtn py-0" data-toggle="button" aria-pressed="false" readOnly={true} disabled>

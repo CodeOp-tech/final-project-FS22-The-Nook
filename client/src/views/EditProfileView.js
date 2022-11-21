@@ -1,6 +1,4 @@
 import React,{useState} from "react";
-// import { useParams } from 'react-router-dom';
-// import Api from '../helpers/Api';
 import ReactStars from 'react-stars';
 import Api from "../helpers/Api";
 import "./EditProfileView.css";
@@ -9,8 +7,6 @@ import { DateTime } from "luxon";
 
 function EditProfileView(props){
     let user = props.user;
-
-let [updatedBook, setUpdatedBook] = useState();
 
 async function exitGroup(event){
     let clubName = event.target.name; 
@@ -25,15 +21,24 @@ async function exitGroup(event){
 }
 
 
-const ratingChanged = (newRating) => {
-    //let book = name;
-    console.log(newRating)
-    setUpdatedBook()
-  }
+const ratingChanged = (newRating, book) => {
+    book.rating = newRating;
+    updateBook(book)
+}
 
 
-async function toggleFavorite (book) {    
+function toggleFavorite (book) {    
     book.favorite === 1 ? book.favorite=0 : book.favorite=1;
+    updateBook(book)
+    
+}
+
+function changeDate (event, book) {
+    book.date_read = event.target.value;
+    updateBook(book);
+}
+
+async function updateBook(book) {
     let date_read = DateTime.fromISO(book.date_read).toFormat('yyyy-LL-dd');
     let body ={
         rating: `${book.rating}`, 
@@ -85,23 +90,44 @@ return(
 
                         <div className="card-body">
 
+                             <p>My rating:</p>
                             <ReactStars
                             count={5}
                             size={24}
                             value={b.rating}
-                            onChange={ratingChanged}
+                            onChange={r=> ratingChanged(r, b)}
                             color2={'#ffd700'} />
+
                             <h5 className="card-title">{b.title}</h5>
+                            
                             <h6 className="card-text">By {b.author}</h6>
                     
+                            <label>Read on: 
+                                <input type="date" 
+                                defaultValue={DateTime.fromISO(b.date_read).toFormat('yyyy-LL-dd')} 
+                                onChange={e => changeDate(e, b)}
+                                />
+                                </label>
+
                             <button key={b.id} 
-                                id="button" type="button" className="btn btn-outline-danger favoritebtn py-0" name={b.title} onClick={e => toggleFavorite(b
-                                )}>
+                                id="button" type="button" 
+                                className="btn btn-outline-danger favoritebtn py-0" 
+                                name={b.title} 
+                                onClick={e => toggleFavorite(b)}>
                                 {b.favorite === 1 ?               
                                 <i  className="bi bi-heart-fill heart" ></i>                        
                                 :<i className="bi bi-heart heart"  name={b.title}  ></i>}
                             </button>
-                        </div>
+
+                            
+                            <br/>
+                            <a>Edit/View Comment</a>
+
+
+
+         </div>
+                           
+                
                         </div>
                     </div>
                     </div>

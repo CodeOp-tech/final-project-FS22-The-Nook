@@ -61,7 +61,7 @@ function CreateClub() {
       <form onSubmit={handleSubmit}>
 
         <div className="mb-3">
-          <label for="clubName" className="form-label">
+          <label htmlFor="clubName" className="form-label">
             Club Name 
           </label>
           <input
@@ -77,7 +77,7 @@ function CreateClub() {
         </div>
 
         <div className="mb-3">
-          <label for="clubCategory" className="form-label">
+          <label htmlFor="clubCategory" className="form-label">
             Category
           </label>
           <input
@@ -92,7 +92,7 @@ function CreateClub() {
         </div>
 
         <div className="mb-3">
-          <label for="clubLocation" className="form-label">
+          <label htmlFor="clubLocation" className="form-label">
             Location
           </label>
           <input
@@ -107,7 +107,7 @@ function CreateClub() {
         </div>
 
         <div className="mb-3">
-          <label for="clubImage" className="form-label">
+          <label htmlFor="clubImage" className="form-label">
             Image URL
           </label>
           <input
