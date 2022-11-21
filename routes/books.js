@@ -12,7 +12,11 @@ router.get("/", async function (req, res) {
   let sql = "SELECT * FROM books";
 
   if (req.query.club_id) {
-    sql = `SELECT books.*, books_clubs.* FROM books LEFT JOIN books_clubs ON books.id = books_clubs.book_id WHERE books_clubs.club_id=${req.query.club_id}`;
+    sql = `SELECT books.*, books_clubs.*
+    FROM books
+    LEFT JOIN books_clubs ON books.id = books_clubs.book_id
+    WHERE books_clubs.club_id=${req.query.club_id}
+    ORDER BY date DESC`;
   }
 
   try {
@@ -29,7 +33,6 @@ router.get("/", async function (req, res) {
  **/
 
 router.post("/", async function (req, res, next) {
-  console.log("req", req.body);
   let title = req.body.title.replaceAll(" ", "+");
   let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
 
@@ -39,7 +42,6 @@ router.post("/", async function (req, res, next) {
       let results = await response.json();
 
       let book = results.items.filter((e) => e.volumeInfo.language === "en");
-      console.log("book", book[0].volumeInfo.categories);
       let bookObj = {
         author: book[0].volumeInfo.authors[0],
         title: book[0].volumeInfo.title,

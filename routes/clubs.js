@@ -32,7 +32,7 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
-  // console.log("complete result", completeResult);
+
   return completeResult;
 }
 
