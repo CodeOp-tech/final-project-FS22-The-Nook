@@ -23,7 +23,7 @@ import Api from "./helpers/Api";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState(null);
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");

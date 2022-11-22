@@ -18,37 +18,57 @@ function ProfileView(props) {
         navigate(`/users/${userId}/edit`)
     }
 
+    function redirect(clubId) {
+        navigate(`./${clubId}`)}
+
+    if (!user){
+        return <h2>Loading...</h2>
+    }
+
     return (
         <div className="ProfileView">
-            <div>
-            <h1 className="d-inline">Profile View</h1>
+            <div className="container FullProfile">
+            <h1>Profile View</h1>
 
-            <button type="button" onClick={handleClick} className="btn btn-outline-light edit py-1 float-end">Edit</button>
-            </div>
+            <button type="button" onClick={handleClick} className="btn btn-outline-light edit py-1">Edit</button>
+            
 
             <div className="UserInfo">
                 <h2>Personal Info</h2>
-       
-            Username: {user.username}
 
-            <br />
-            Email: {user.email}
+                <ul class="list-group">
+  <li class="list-group-item">Username: {user.username}</li>
+  <li class="list-group-item">Email: {user.email}</li>
+  
+</ul>
+       
         
             </div>
 
             <div className="JoinedClubs">
                 <h2>Your Book Clubs</h2>
-                {user.clubs.map((c) => (
+
+              
+             {user.clubs.map((c) => (
                     <div key={c.name} className="d-inline-flex">
-                    <div key={c.category} className="card me-5" style={{ width: "18rem" }}>
+                    <div key={c.category} className="card me-3 clubCards">
                         <div >
                         <div className="card-body">
                             <h5 className="card-title">{c.name}</h5>
                         </div>
+                       
+                        {/* <a
+          type="button"
+          className="btn btn-responsive btn-outline-dark"
+          onClick={e => redirect(c.id)}
+        >
+          More Info
+        </a> */}
+
                         </div>
                     </div>
                     </div>
-                ))}
+                ))} 
                 
             </div>
 
@@ -57,7 +77,7 @@ function ProfileView(props) {
                 {user.books.map((b) => (
                     b.favorite === 1 ? 
                     <div key={b.author} className="d-inline-flex">
-                    <div key={b.title} className="card me-5" style={{ width: "18rem" }}>
+                    <div key={b.title} className="card me-5 favoriteCards" >
                         <div >
                         <div>
                             <img
@@ -118,9 +138,9 @@ function ProfileView(props) {
                     </div>
                 ))}
             </div>
-
-
-        </div>
+</div>
+            </div>
+       
     );
 }
 

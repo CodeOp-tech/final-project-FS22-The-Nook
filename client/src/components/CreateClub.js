@@ -69,7 +69,7 @@ function CreateClub() {
           </label>
           <input
             type="text"
-            className="form-control-sm"
+            className="form-control create-input"
             id="nameInput"
             name="name"
             
@@ -85,7 +85,7 @@ function CreateClub() {
           </label>
           <input
             type="text"
-            className="form-control-sm"
+            className="form-control create-input"
             id="categoryInput"
             name="category"
             placeholder="e.g. Romance"
@@ -100,7 +100,7 @@ function CreateClub() {
           </label>
           <input
             type="text"
-            class="form-control-sm"
+            class="form-control create-input"
             id="cityInput"
             name="city"
             placeholder="e.g. Paris"
@@ -114,7 +114,7 @@ function CreateClub() {
             Country
           </label>
           <select
-            className="form-select"
+            className="form-select create-input"
             aria-label="Default select example"
             id="countryInput"
             name="country"
@@ -137,7 +137,7 @@ function CreateClub() {
           </label>
           <input
             type="url"
-            className="form-control-sm"
+            className="form-control create-input"
             id="imageInput"
             name="image"
             placeholder="Add Link Here"
@@ -146,7 +146,7 @@ function CreateClub() {
           />
         </div>
 
-        <button className="createClubButton" type="submit">
+        <button className="btn btn-outline-dark btn-sm create-button" type="submit">
           Create Club
         </button>
 

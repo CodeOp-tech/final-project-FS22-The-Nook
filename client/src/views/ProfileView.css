@@ -1,16 +1,58 @@
+.FullProfile{
+    background-color: bisque;
+    margin: auto;
+}
+
+.ProfileView h1{
+    font-size: 40px;
+}
+
+
 .UserInfo{
-    color: white;
+    color: black;
+    margin: auto;
+}
+.list-group{
+    margin: auto;
+}
+
+
+.list-group-item{
+    width: 40%;
+    margin: auto;
 }
 
 .ProfileView h2{
-    color: bisque
+    color: black;
+    text-align: center;
 }
 
 .ProfileView .edit{
     width: 4rem;
     height: 2rem;
     font-size: 16px;
+    background-color: burlywood;
+    margin: auto;
+    color: white;
 }
+
+.ProfileView .clubCards{
+    display: flex;
+    margin: auto 0px 10px;
+    height: 6rem;
+    width: 18rem;
+    
+}
+
+.ProfileView .card-title{
+    text-align: center;
+    margin: auto;
+    
+}
+
+
+
+
 .ProfileView .heart {
     color: red;
     padding: 5px

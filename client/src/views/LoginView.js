@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './LoginView.css'
 
 
 function LoginView(props) {
@@ -27,7 +28,7 @@ function LoginView(props) {
 
     return (
         <div>
-            <div>
+            <div className="container container-login">
                 <h2>Login</h2>
                 
                 {
@@ -36,33 +37,39 @@ function LoginView(props) {
                     )
                 }
 
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Username
+                <form class="mb-3" onSubmit={handleSubmit}>
+                    <div class="col-auto">
+                    <label>Username</label>
                             <input
+                            class="form-control form-control-sm loginInputsFields"
                                 type="text"
                                 name="usernameInput"
                                 required
                                 value={username}
                                 onChange={handleChange}
                             />
-                        </label>
+                        
                     </div>
 
                     <div>
-                        <label>Password
+                        <label>Password</label>
                             <input
+                            class="form-control form-control-sm loginInputsFields"
                                 type="password"
                                 name="passwordInput"
                                 required
                                 value={password}
                                 onChange={handleChange}
                             />
-                        </label>
+                        
                     </div>
 
-                    <button type="submit">Submit</button>
-                    <p>Don't have an account yet? <Link to="/register">Sign Up</Link></p> 
+                    <button type="submit" className="btn btn-outline-dark btn-sm login-button" >Submit</button>
+
+                    <p>Don't have an account yet? </p>
+                        
+                    <a type="button" className="btn btn-outline-dark btn-sm signup-button" href="/register" >Sign Up</a>
+
                 </form>
             </div>
         </div>
