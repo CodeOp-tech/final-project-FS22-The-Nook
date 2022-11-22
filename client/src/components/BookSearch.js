@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function BookSearch() {
-    const nav = useNavigate();
+function BookSearch(props) {
+    const navigate = useNavigate();
     const [searchInput, setSearchInput] = useState("");
     const [searchAuthor, setSearchAuthor] = useState("");
 
+    useEffect(() => {
+        changeUrl();
+        }, [searchInput, searchAuthor])
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        nav(
-            "/books/?title=" +
-            searchInput +
-            "&author=" +
-            searchAuthor 
-        );
+        function changeUrl(){
+            navigate(`/books/?title=${searchInput}&author=${searchAuthor}`)
+            props.getBooks() 
+          }
 
-        //reset search input fields
-        setSearchInput("");
-        setSearchAuthor("");
-    }
+   
     return (
         <div className="pt-4">
-             <form role="search" onSubmit={handleSubmit}>
+             <form role="search">
                 <input
                     className="form-control"
                     type="search"
@@ -41,7 +37,6 @@ function BookSearch() {
                     onChange={(e) => setSearchAuthor(e.target.value)}
                 />
 
-                <button className="btn btn-outline-secondary mt-3" type="submit">Search</button>
              </form>
         </div>
 
