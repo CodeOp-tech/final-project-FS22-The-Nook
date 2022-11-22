@@ -112,7 +112,6 @@ router.post("/", async function (req, res) {
   // adding new club
   try {
     let results = await db(sql); // add club when function called
-    console.log("results", results);
     res.status(201).send({ club_id: results.data[0].insertId }); // send club id
     // server error
   } catch (err) {
