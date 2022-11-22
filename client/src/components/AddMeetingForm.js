@@ -63,7 +63,7 @@ function AddMeetingForm(props) {
 
   return (
     <div className="AddMeetingForm">
-      <form onSubmit={handleSubmit}>
+      <form className=" w-100 mx-0" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col mb-6">
             <label htmlhtmlFor="title" className="form-label">

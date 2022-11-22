@@ -29,6 +29,7 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     next_mtg_postal_code: c.next_mtg_postal_code,
     next_mtg_country: c.next_mtg_country,
     image: c.image,
+    book_poll_info: c.book_poll_info,
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
@@ -63,8 +64,8 @@ function makeWhereFromFilters(query) {
   if (query.next_mtg_city) {
     filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
-  if(query.user){
-    filters.push(`user_id = '${query.user}'`)
+  if (query.user) {
+    filters.push(`user_id = '${query.user}'`);
   }
   return filters.join(" AND ");
 }
@@ -138,9 +139,6 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-
-
-
 // add a user to a club
 
 router.post("/:id", ensureUserLoggedIn, async function (req, res) {
@@ -173,9 +171,26 @@ router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   }
 });
 
-// Update the next meeting time and location
+// Update the next meeting time and location OR the book poll options
 router.patch("/:id", async function (req, res) {
-  let sql = `
+  let sql;
+  if (req.body.book1) {
+    sql = `
+      UPDATE clubs
+      SET
+        book_poll_info =
+          '{"book1":
+            {"title": "${req.body.book1}", "votes":${req.body.votes1}},
+            "book2":
+            {"title": "${req.body.book2}", "votes":${req.body.votes2}},
+            "book3":
+            {"title": "${req.body.book3}", "votes":${req.body.votes3}}
+          }'
+      WHERE
+        id = ${req.body.club_id};
+    `;
+  } else {
+    sql = `
       UPDATE clubs
       SET
         next_mtg_time = "${req.body.time}",
@@ -187,6 +202,8 @@ router.patch("/:id", async function (req, res) {
       WHERE
         id = ${req.body.club_id};
     `;
+  }
+
   try {
     let club = await db(`SELECT * FROM clubs WHERE id = ${req.body.club_id}`);
     if (club.data.length === 0) {
