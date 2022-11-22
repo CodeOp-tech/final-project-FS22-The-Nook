@@ -4,8 +4,10 @@ import "./NavBar.css";
 
 function NavBar(props) {
   return (
+
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
+
         {/* logo */}
         <a href="/" className="navbar-brand">
           <img
@@ -51,7 +53,13 @@ function NavBar(props) {
           {/* navbar items right */}
           {/*     log in/ log out showing up depending on user       */}
 
+
+{/* navbar items right */}
+{/*     log in/ log out showing up depending on user       */} 
+
+
           <div className="navbar-nav ms-auto">
+
             {props.user ? (
               <ul className="navbar-nav">
                 <li className="nav-item">

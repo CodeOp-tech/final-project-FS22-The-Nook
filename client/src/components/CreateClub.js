@@ -35,7 +35,6 @@ function CreateClub(props) {
     e.preventDefault();
     postClubAndPostAdminMember(fields, user);
     setError("");
-
     setFields(EMPTY_NEW_CLUB_FORM);
   };
 

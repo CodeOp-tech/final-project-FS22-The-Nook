@@ -15,6 +15,7 @@ function SingleClubView(props) {
     props.clubs.find((c) => +c.id === +id)
   );
 
+
   useEffect(() => {
     props.fetchClubBooksCb(id);
 
@@ -43,10 +44,6 @@ function SingleClubView(props) {
       if (response.ok) {
         let json = await response.json();
         props.setUser(json);
-        console.log(
-          "this is the reply the client receives from the backend and saves it as user:",
-          json
-        );
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }

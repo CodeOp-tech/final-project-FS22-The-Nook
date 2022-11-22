@@ -1,12 +1,15 @@
-import React from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import React, {useState} from "react";
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { DateTime } from "luxon";
 import ReactStars from 'react-stars'
 import "./ProfileView.css"
+import ViewReviewModal from "../components/ViewReviewModal"
 
 
 
 function ProfileView(props) {
-    //const [user, setUser] = useState(null);
+    let [book, setBook] = useState({})
+
     let { userId } = useParams();
 
     let navigate = useNavigate()
@@ -32,13 +35,16 @@ function ProfileView(props) {
             Username: {user.username}
 
             <br />
+            
             Email: {user.email}
-        
+           
             </div>
 
             <div className="JoinedClubs">
                 <h2>Your Book Clubs</h2>
-                {user.clubs.map((c) => (
+                {!user.clubs.length && 
+                <label>Seems like you are not part of any club yet.<button><Link to="/clubs">Join more clubs</Link></button></label>}
+                {user.clubs.length !==0 && user.clubs.map((c) => (
                     <div key={c.name} className="d-inline-flex">
                     <div key={c.category} className="card me-5" style={{ width: "18rem" }}>
                         <div >
@@ -67,6 +73,7 @@ function ProfileView(props) {
                             />
                         </div>
                         <div className="card-body">
+                        <p>My rating:</p>
                         <ReactStars 
                         count={5}
                         size={24}
@@ -75,6 +82,8 @@ function ProfileView(props) {
                         color2={'#ffd700'} />
                             <h5 className="card-title">{b.title}</h5>
                             <h6 className="card-text">By {b.author}</h6>
+                            <p>Read on: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
+
                         </div>
                         </div>
                     </div>
@@ -95,15 +104,23 @@ function ProfileView(props) {
                             alt={`${b.title}`}
                             />
                         </div>
+
                         <div className="card-body">
-                        <ReactStars
-                        count={5}
-                        size={24}
-                        value={b.rating}
-                        edit={false}
-                        color2={'#ffd700'} />
-                        <h5 className="card-title">{b.title}</h5>
-                        <h6 className="card-text">By {b.author}</h6>
+
+                            <p>My rating:</p>
+                            <ReactStars
+                            count={5}
+                            size={24}
+                            value={b.rating}
+                            edit={false}
+                            color2={'#ffd700'} />
+
+                            <h5 className="card-title">{b.title}</h5>
+                            
+                            <h6 className="card-text">By {b.author}</h6>
+                            
+                            <p>Read on: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
+
 
                         <button key={b.id} 
                                 type="button" className="btn btn-outline-danger favoritebtn py-0" data-toggle="button" aria-pressed="false" readOnly={true} disabled>
@@ -112,7 +129,15 @@ function ProfileView(props) {
                                 :<i className="bi bi-heart heart"></i>}
                         </button>
 
+                        <br/>
+
+                        <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> Edit/View Review</a>
                         </div>
+
+                        <ViewReviewModal id="myModal" book={book}/>
+
+
+                        
                         </div>
                     </div>
                     </div>

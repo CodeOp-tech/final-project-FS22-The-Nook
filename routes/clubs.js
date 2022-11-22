@@ -55,7 +55,7 @@ function makeWhereFromFilters(query) {
   let filters = [];
 
   if (query.name) {
-    filters.push(`name LiKE '%${query.name}%'`);
+    filters.push(`name LIKE '%${query.name}%'`);
   }
   if (query.category) {
     filters.push(`category LIKE '%${query.category}%'`);
@@ -63,7 +63,9 @@ function makeWhereFromFilters(query) {
   if (query.next_mtg_city) {
     filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
-
+  if(query.user){
+    filters.push(`user_id = '${query.user}'`)
+  }
   return filters.join(" AND ");
 }
 
@@ -135,6 +137,9 @@ router.get("/:id", async function (req, res) {
     res.status(500).send({ error: err.message });
   }
 });
+
+
+
 
 // add a user to a club
 

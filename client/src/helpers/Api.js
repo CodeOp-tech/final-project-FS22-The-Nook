@@ -27,6 +27,16 @@ class Api {
     return await this._doFetch(`/users/${userId}`);
   }
 
+
+   /**
+   * Get data for user with ID 'userId' and Club filters
+   **/
+
+    static async getUserFiltered(url) {
+      return await this._doFetch(`${url}`);
+    }
+
+
   /**
    * Delete a user from a club'
    **/
@@ -76,6 +86,16 @@ class Api {
       meetingData
     );
   }
+
+    //Fetch call for PATCH book.
+    static async patchBook(body, book_id) {
+      console.log(body, book_id)
+      return await this._doFetch(
+        `/books/${book_id}`,
+        "PATCH",
+        body
+      );
+    }
 
   //Fetch call for POST book.
   static async postBook(bookData) {
