@@ -28,7 +28,6 @@ function joinToJson(booksResult, clubsResult) {
     image: b.image,
   }));
 
-  console.log(clubsResult.data);
   let clubs = [];
   clubs = clubsResult.data.map((c) => ({
     name: c.name,

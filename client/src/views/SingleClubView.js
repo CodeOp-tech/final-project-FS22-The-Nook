@@ -15,11 +15,6 @@ function SingleClubView(props) {
     props.clubs.find((c) => +c.id === +id)
   );
 
-  console.log(
-    "curClub",
-    props.clubs.find((c) => +c.id === +id)
-  );
-
   useEffect(() => {
     props.fetchClubBooksCb(id);
 
@@ -75,7 +70,7 @@ function SingleClubView(props) {
       {userMemberAdmin ? (
         <Link
           to={`/clubs/${id}/club-admin`}
-          className="btn btn-outline-light mx-2 btn-sm user"
+          className="btn btn-outline-light mx-2 mt-4 btn-sm user"
         >
           <h4 className="mb-0">CLUB ADMIN</h4>
         </Link>
@@ -116,7 +111,7 @@ function SingleClubView(props) {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-outline-light mb-3"
+                  className="btn btn-light mb-3"
                   onClick={(e) => canJoin(currentClub)}
                 >
                   JOIN
@@ -125,7 +120,7 @@ function SingleClubView(props) {
             ) : (
               <button
                 type="button"
-                className="btn btn-outline-light mb-3"
+                className="btn btn-light mb-3"
                 onClick={redirect}
               >
                 JOIN

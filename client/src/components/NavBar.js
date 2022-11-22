@@ -2,14 +2,12 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./NavBar.css";
 
-
 function NavBar(props) {
   return (
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-
+    <nav className="navbar navbar-expand-lg">
+      <div className="container-fluid">
         {/* logo */}
-        <a href="/" class="navbar-brand">
+        <a href="/" className="navbar-brand">
           <img
             src="https://media4.giphy.com/media/khVofmhxrgVz4RsWv5/giphy.gif?cid=790b7611e80fc692840444e963e13c27831ec227f6566f23&rid=giphy.gif&ct=g"
             className="img-responsive"
@@ -20,27 +18,27 @@ function NavBar(props) {
         {/* collapse navbar button */}
         <button
           type="button"
-          class="navbar-toggler"
+          className="navbar-toggler"
           data-bs-toggle="collapse"
           data-bs-target="#navbarCollapse"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         {/* navbar items left */}
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <div class="navbar-nav">
-            <a href="/" class="nav-item nav-link ">
+        <div className="collapse navbar-collapse" id="navbarCollapse">
+          <div className="navbar-nav">
+            <a href="/" className="nav-item nav-link ">
               Home
             </a>
-            <a href="/clubs" class="nav-item nav-link">
+            <a href="/clubs" className="nav-item nav-link">
               Clubs
             </a>
-            <a href="/books" class="nav-item nav-link">
+            <a href="/books" className="nav-item nav-link">
               Books
             </a>
 
-{/* profile link showing up only if logged in */}
+            {/* profile link showing up only if logged in */}
             {props.user ? (
               <li className="nav-item">
                 <NavLink className="nav-link" to={`/users/${props.user.id}`}>
@@ -50,11 +48,10 @@ function NavBar(props) {
             ) : null}
           </div>
 
+          {/* navbar items right */}
+          {/*     log in/ log out showing up depending on user       */}
 
-{/* navbar items right */}
-{/*     log in/ log out showing up depending on user       */} 
-
-          <div class="navbar-nav ms-auto">
+          <div className="navbar-nav ms-auto">
             {props.user ? (
               <ul className="navbar-nav">
                 <li className="nav-item">
@@ -77,7 +74,6 @@ function NavBar(props) {
         </div>
       </div>
     </nav>
-
   );
 }
 
