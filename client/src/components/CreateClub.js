@@ -90,20 +90,6 @@ function CreateClub(props) {
             ;
           </select>
         </div>
-        {/* <div className="mb-3">
-          <label htmlFor="clubCategory" className="form-label">
-            Category
-          </label>
-          <input
-            type="text"
-            className="form-control-sm"
-            id="categoryInput"
-            name="category"
-            placeholder="e.g. Romance"
-            value={fields.category}
-            onChange={(e) => handleNewClubChange(e)}
-          />
-        </div> */}
 
         <div className="mb-3">
           <label htmlFor="clubCity" className="form-label">
