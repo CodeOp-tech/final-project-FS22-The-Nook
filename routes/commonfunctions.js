@@ -16,6 +16,7 @@ let clubMembersListSql = `
         `;
 
 function joinToJson(booksResult, clubsResult) {
+  console.log("booksResult", booksResult, "clubsResult", clubsResult)
   let row0 = {};
   booksResult.data.length ? row0 = booksResult.data[0] :row0 = clubsResult.data[0] ;
 

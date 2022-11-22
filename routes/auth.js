@@ -46,7 +46,7 @@ const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
             let passwordsEqual = await bcrypt.compare(password, user.password);
             if (passwordsEqual) {
                 // Passwords match
-                let payload = { userId: user.id };
+                let payload = { userId: user.user_id };
                 // Create token containing user ID
                 let token = jwt.sign(payload, SECRET_KEY);
 
