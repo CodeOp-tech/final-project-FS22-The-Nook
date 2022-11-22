@@ -26,7 +26,6 @@ function SingleClubView(props) {
   }
 
   async function canJoin(currentClub) {
-    console.log("currentClub", currentClub);
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
