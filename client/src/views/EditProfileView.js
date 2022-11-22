@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { Link, useSearchParams } from 'react-router-dom';
 
 import ReactStars from 'react-stars';
@@ -23,9 +23,18 @@ function EditProfileView(props){
     const name = searchParams.get("search") || "";
     const category = searchParams.get("category") || "";
     const location = searchParams.get("location") || "";
+    
     const title = searchParams.get("title") || "";
     const author = searchParams.get("author") || "";
 
+    // search effect function
+    useEffect(() => {
+        getClubs();
+    }, [name, category, location]);
+
+    useEffect(() => {
+        getBooks();
+    }, [title, author]); 
 
 // club search function 
 async function getClubs() {
@@ -35,6 +44,7 @@ async function getClubs() {
         next_mtg_city: location,
     }).toString();
 
+    
     let url = `/users/${user.id}/?${query}`;
     let response = await Api.getUserFiltered(url);
 
@@ -44,10 +54,10 @@ async function getClubs() {
 
 // book search function 
 async function getBooks() {
-    console.log("this is the getbooks function")
     const query = new URLSearchParams({
         title: title,
         author: author,
+        category: category
     }).toString();
 
     let url = `/users/${user.id}/?${query}`;
@@ -99,7 +109,6 @@ async function updateBook(book) {
         comment: `${book.comment}`,
         user_id: `${user.id}`,
     }
-    console.log(body, book.book_id)
     let responsePatch = await Api.patchBook(body, book.book_id);
     if (responsePatch.ok) {
       props.setUser(responsePatch.data);

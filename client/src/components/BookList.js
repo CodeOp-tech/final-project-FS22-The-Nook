@@ -10,7 +10,7 @@ function BookList(props) {
   
              {
                  props.books.map(b => (
-                   <div className="col-md-5 col-lg-3  book-card rounded m-3" key={b.id}>
+                   <div className="col-md-5 col-lg-3  book-card rounded m-3" key={b.book_id}>
                       <div>
                         <img
                             src={b.image}
