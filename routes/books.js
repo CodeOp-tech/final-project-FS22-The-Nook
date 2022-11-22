@@ -11,9 +11,8 @@ const fetch = (...args) =>
       let booksread = {}
 
       results.data.map((c) => (
-        booksread[c.title] ? booksread[c.title] += `, ${c.name}` : booksread[c.title] = c.name
+          booksread[c.title] ? booksread[c.title] += `, ${c.name}` : booksread[c.title] = c.name 
       ))
-
 
        let reallyFinal = [];
 
@@ -60,7 +59,19 @@ router.get("/", async function (req, res) {
         FROM books
         LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
         LEFT JOIN clubs ON clubs.id = books_clubs.club_id
+
         `;
+
+  // let sql = `
+  //     SELECT books.*, books.id AS book_id, books_clubs.club_id AS bc_cid, clubs.id AS c_id, clubs.name, books_clubs.book_id AS bc_bid, users.id, users_books.user_id 
+  //     FROM books, users
+  //     LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
+  //     LEFT JOIN clubs ON clubs.id = books_clubs.club_id
+  //     LEFT JOIN users ON users.id = users_books.user_id
+  // `;
+
+
+
 
   let where = makeWhereFromFilters(req.query);
   
@@ -78,6 +89,7 @@ router.get("/", async function (req, res) {
 
   try {
     let results = await db(sql);
+    // console.log(results)
     res.send(joinToJsonBooksClubsUsers(results));
   } catch (err) {
     res.status(500).send({ error: err.message });
