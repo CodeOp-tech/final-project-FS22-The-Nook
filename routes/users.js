@@ -65,12 +65,12 @@ function clubsFilters(query) {
 
   try {
     
-    whereC ? cSql = `${clubsSql} WHERE ${whereC} AND user_id = '${userId}'` : cSql = `${clubsSql} WHERE user_id = '${userId}'`;
+    whereC ? cSql = `${clubsSql} WHERE ${whereC} AND users.id = ${userId}` : cSql = `${clubsSql} WHERE users.id = ${userId}`;
+    whereB ? bSql = `${booksSql} WHERE ${whereB} AND users.id = ${userId}` : bSql = `${booksSql} WHERE users.id = ${userId}`;
 
-    whereB ? bSql = `${booksSql} WHERE ${whereB} AND user_id = '${userId}'` : bSql = `${booksSql} WHERE user_id = '${userId}'`;
-
-      let booksResults = await db(bSql);
+    let booksResults = await db(bSql);
       let clubsResults = await db(cSql);
+    
       res.send(joinToJson(booksResults, clubsResults));
   } catch (err) {
       res.status(500).send({ error: err.message });

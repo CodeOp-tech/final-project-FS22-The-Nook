@@ -5,12 +5,14 @@
     /* padding-left: 10px; */
 }
 
-/* .card:hover .info-bg {
+.card:hover .info-bg {
     opacity: 1;
     background-color: white;
     color: black;
-    border: 2px solid #AA8B56;
-} */
+}
+
+
+
 
 .card-img-top {
     height: 100%;
@@ -19,9 +21,7 @@
     
 }
 
-/* .test {
-    border: 3px solid red;
-} */
+
 
 
 
