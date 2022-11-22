@@ -99,6 +99,7 @@ async function updateBook(book) {
         comment: `${book.comment}`,
         user_id: `${user.id}`,
     }
+    console.log(body, book.book_id)
     let responsePatch = await Api.patchBook(body, book.book_id);
     if (responsePatch.ok) {
       props.setUser(responsePatch.data);

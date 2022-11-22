@@ -73,11 +73,10 @@ router.patch("/:id", async function (req, res) {
   let sql = `
   UPDATE users_books
   SET
-    rating = "${rating}",
+    rating = ${rating},
     date_read = "${date_read}",
-    favorite = "${favorite}"
+    favorite = ${favorite},
     comment = "${comment}"
-
     WHERE
     book_id = ${bookId} 
   AND 

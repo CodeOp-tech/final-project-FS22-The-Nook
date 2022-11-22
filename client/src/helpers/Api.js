@@ -89,6 +89,7 @@ class Api {
 
     //Fetch call for PATCH book.
     static async patchBook(body, book_id) {
+      console.log(body, book_id)
       return await this._doFetch(
         `/books/${book_id}`,
         "PATCH",
