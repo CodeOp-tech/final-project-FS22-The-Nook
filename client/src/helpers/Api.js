@@ -56,6 +56,21 @@ class Api {
   }
 
   /**
+   * Add a new club
+   **/
+
+  static async postClub(fields) {
+    return await this._doFetch(`/clubs`, "POST", fields);
+  }
+
+  /**
+   * Add a club creator as its admin
+   **/
+  static async postAdminMember(user, newClubId) {
+    return await this._doFetch(`/addClubAdmin/${newClubId}`, "POST", user);
+  }
+
+  /**
    * Get club with ID 'id'
    **/
 

@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./NavBar.css";
 
-
 function NavBar(props) {
   return (
+
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
 
@@ -40,7 +40,7 @@ function NavBar(props) {
               Books
             </a>
 
-{/* profile link showing up only if logged in */}
+            {/* profile link showing up only if logged in */}
             {props.user ? (
               <li className="nav-item">
                 <NavLink className="nav-link" to={`/users/${props.user.id}`}>
@@ -50,11 +50,16 @@ function NavBar(props) {
             ) : null}
           </div>
 
+          {/* navbar items right */}
+          {/*     log in/ log out showing up depending on user       */}
+
 
 {/* navbar items right */}
 {/*     log in/ log out showing up depending on user       */} 
 
+
           <div className="navbar-nav ms-auto">
+
             {props.user ? (
               <ul className="navbar-nav">
                 <li className="nav-item">
@@ -77,7 +82,6 @@ function NavBar(props) {
         </div>
       </div>
     </nav>
-
   );
 }
 

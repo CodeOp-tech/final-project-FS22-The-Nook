@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './CreateClub.css'
+import "./CreateClub.css";
 import CountryList from "./DropdownCountries";
+import Local from "../helpers/Local";
+import Api from "../helpers/Api";
 
 const EMPTY_NEW_CLUB_FORM = {
   name: "",
@@ -12,7 +14,7 @@ const EMPTY_NEW_CLUB_FORM = {
   members: 0,
 };
 
-function CreateClub() {
+function CreateClub(props) {
   const [fields, setFields] = useState(EMPTY_NEW_CLUB_FORM);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -26,52 +28,43 @@ function CreateClub() {
       [name]: value,
     }));
   }
-
-  async function addClub(fields) {
-    try {
-      // create response - fetch data, method post
-      let response = await fetch("/clubs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fields),
-      });
-      //if response fetch works
-      if (response.ok) {
-        nav("/clubs");
-      } else {
-        console.log(`Server Error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`Network Error: ${err.message}`);
-    }
-  }
+  let user = Local.getUser();
 
   const handleClubSubmit = (e) => {
     e.preventDefault();
-    addClub();
+    postClubAndPostAdminMember(fields, user);
     setError("");
     setFields(EMPTY_NEW_CLUB_FORM);
-    // navigate(`/clubs`);
   };
+
+  async function postClubAndPostAdminMember(fields, user) {
+    let responsePostClub = await Api.postClub(fields);
+
+    if (responsePostClub.ok) {
+      props.getClubsCb();
+
+      let newClubId = responsePostClub.data.club_id;
+      let responsePostAdminMember = await Api.postAdminMember(user, newClubId);
+      if (responsePostAdminMember.ok) {
+        navigate(`/clubs/${newClubId}`);
+      }
+    }
+  }
 
   return (
     <div className="CreateClubContainer text-centered">
       <h3 className="CreateClubH">Create A New Club</h3>
 
       <form onSubmit={handleClubSubmit}>
-
         <div className="mb-3">
           <label htmlFor="clubName" className="form-label">
-            Club Name 
+            Club Name
           </label>
           <input
             type="text"
             className="form-control-sm"
             id="nameInput"
             name="name"
-            
             placeholder="e.g. Les Bibliophiles"
             value={fields.name}
             onChange={(e) => handleNewClubChange(e)}
@@ -108,7 +101,6 @@ function CreateClub() {
           />
         </div>
 
-
         <div className="mb-3 dropdown">
           <label htmlFor="clubCountry" className="form-label">
             Country
@@ -118,22 +110,21 @@ function CreateClub() {
             aria-label="Default select example"
             id="countryInput"
             name="country"
-            
             value={fields.country}
             onChange={(e) => handleNewClubChange(e)}
           >
-          <option hidden >e.g. France</option>
-              {CountryList.map((c) => (
-                <option className="dropdown-item" key={c} value={c}>
-                  {c}
-                </option>
-              ))};
-              </select>
+            <option hidden> </option>
+            {CountryList.map((c) => (
+              <option className="dropdown-item" key={c} value={c}>
+                {c}
+              </option>
+            ))}
+            ;
+          </select>
         </div>
 
         <div className="mb-3">
           <label htmlFor="clubImage" className="form-label">
-
             Image URL
           </label>
           <input
@@ -150,7 +141,6 @@ function CreateClub() {
         <button className="createClubButton" type="submit">
           Create Club
         </button>
-
       </form>
     </div>
   );
