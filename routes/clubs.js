@@ -180,7 +180,7 @@ router.patch("/:id", async function (req, res) {
       SET
         book_poll_info =
           '[
-            {"id": 0, "text": "${req.body.book1}", "votes": "${req.body.votes1}", "percentage": 0},
+            {"id": 0, "text": "${req.body.book1}", "votes": ${req.body.votes1}, "percentage": 0},
             {"id": 1, "text": "${req.body.book2}", "votes": ${req.body.votes2}, "percentage": 0},
             {"id": 2, "text": "${req.body.book3}", "votes": ${req.body.votes3}, "percentage": 0}
           ]'
