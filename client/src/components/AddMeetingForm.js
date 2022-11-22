@@ -19,9 +19,9 @@ function AddMeetingForm(props) {
     time: "",
     locationName: "",
     address: "",
-    city: "",
+    city: currentClub.next_mtg_city,
     postalCode: "",
-    country: "",
+    country: currentClub.next_mtg_country,
     club_id: id,
   };
 
