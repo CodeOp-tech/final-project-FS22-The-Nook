@@ -13,11 +13,6 @@ function ClubAdminView(props) {
           clubs={props.clubs}
         />
       </div>
-
-      {/* <div className="CreateClubArea">
-        <h2>Create a new book club</h2>
-        <CreateClub />
-      </div> */}
     </div>
   );
 }

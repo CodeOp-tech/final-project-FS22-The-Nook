@@ -5,28 +5,27 @@ import './ClubSearch.css'
 
 
 function ClubSearch(props) {
-    const nav = useNavigate();
-    const [searchInput, setSearchInput] = useState("");
-    const [searchLocation, setSearchLocation] = useState("");
-    const [category, setCategory] = useState("");
+  const nav = useNavigate();
+  const [searchInput, setSearchInput] = useState("");
+  const [searchLocation, setSearchLocation] = useState("");
+  const [category, setCategory] = useState("");
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    nav(
+      "/clubs/?search=" +
+        searchInput +
+        "&location=" +
+        searchLocation +
+        "&category=" +
+        category
+    );
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        nav(
-            "/clubs/?search=" +
-            searchInput +
-            "&location=" +
-            searchLocation + 
-            "&category=" +
-            category
-        );
-
-        //reset search input fields
-        setSearchInput("");
-        setSearchLocation("");
-        setCategory("");
-    }
+    //reset search input fields
+    setSearchInput("");
+    setSearchLocation("");
+    setCategory("");
+  }
 
   return (
     <div className="ClubSearch pt-2">

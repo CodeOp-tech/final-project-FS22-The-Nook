@@ -214,7 +214,11 @@ function App() {
             exact
             path="/clubs"
             element={
-              <ClubSearchView user={user} setUser={(user) => setUser(user)} />
+              <ClubSearchView
+                user={user}
+                setUser={(user) => setUser(user)}
+                getClubs={getClubs}
+              />
             }
           />
 

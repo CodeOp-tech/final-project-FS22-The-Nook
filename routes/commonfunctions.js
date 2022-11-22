@@ -1,4 +1,4 @@
-let booksSql = `SELECT users.*, users.id AS user_id, ub.rating, ub.date_read, ub.favorite, books.*
+let booksSql = `SELECT users.*, users.id AS user_id, ub.rating, ub.date_read, ub.favorite, ub.comment, books.*, books.id AS book_id
   FROM users
   LEFT JOIN users_books AS ub ON users.id = ub.user_id
   LEFT JOIN books ON ub.book_id = books.id`;
@@ -16,19 +16,21 @@ let clubMembersListSql = `
         `;
 
 function joinToJson(booksResult, clubsResult) {
-  let row0 = booksResult.data[0];
+  let row0 = {};
+  booksResult.data.length ? row0 = booksResult.data[0] :row0 = clubsResult.data[0] ;
 
   let books = [];
   books = booksResult.data.map((b) => ({
+    book_id: b.book_id,
     title: b.title,
     author: b.author,
     rating: b.rating,
     date_read: b.date_read,
     favorite: b.favorite,
+    comment: b.comment,
     image: b.image,
   }));
 
-  console.log(clubsResult.data);
   let clubs = [];
   clubs = clubsResult.data.map((c) => ({
     name: c.name,
@@ -36,7 +38,7 @@ function joinToJson(booksResult, clubsResult) {
     // next_mtg_time: c.next_mtg_time,
     // next_mtg_location_name: c.next_mtg_location_name,
     // next_mtg_address: c.next_mtg_address,
-    // next_mtg_city: c.next_mtg_city,
+    next_mtg_city: c.next_mtg_city,
     // next_mtg_postal_code: c.next_mtg_postal_code,
     // next_mtg_country: next_mtg_country,
   }));

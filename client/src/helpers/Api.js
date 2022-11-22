@@ -27,6 +27,16 @@ class Api {
     return await this._doFetch(`/users/${userId}`);
   }
 
+
+   /**
+   * Get data for user with ID 'userId' and Club filters
+   **/
+
+    static async getUserFiltered(url) {
+      return await this._doFetch(`${url}`);
+    }
+
+
   /**
    * Delete a user from a club'
    **/
@@ -46,6 +56,21 @@ class Api {
   }
 
   /**
+   * Add a new club
+   **/
+
+  static async postClub(fields) {
+    return await this._doFetch(`/clubs`, "POST", fields);
+  }
+
+  /**
+   * Add a club creator as its admin
+   **/
+  static async postAdminMember(user, newClubId) {
+    return await this._doFetch(`/addClubAdmin/${newClubId}`, "POST", user);
+  }
+
+  /**
    * Get club with ID 'id'
    **/
 
@@ -61,6 +86,16 @@ class Api {
       meetingData
     );
   }
+
+    //Fetch call for PATCH book.
+    static async patchBook(body, book_id) {
+      console.log(body, book_id)
+      return await this._doFetch(
+        `/books/${book_id}`,
+        "PATCH",
+        body
+      );
+    }
 
   //Fetch call for POST book.
   static async postBook(bookData) {

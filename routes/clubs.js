@@ -32,7 +32,7 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
-  // console.log("complete result", completeResult);
+
   return completeResult;
 }
 
@@ -55,7 +55,7 @@ function makeWhereFromFilters(query) {
   let filters = [];
 
   if (query.name) {
-    filters.push(`name LiKE '%${query.name}%'`);
+    filters.push(`name LIKE '%${query.name}%'`);
   }
   if (query.category) {
     filters.push(`category LIKE '%${query.category}%'`);
@@ -63,7 +63,9 @@ function makeWhereFromFilters(query) {
   if (query.next_mtg_city) {
     filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
-
+  if(query.user){
+    filters.push(`user_id = '${query.user}'`)
+  }
   return filters.join(" AND ");
 }
 
@@ -103,6 +105,22 @@ router.get("/", async function (req, res) {
   }
 });
 
+/*Create a new club  */
+router.post("/", async function (req, res) {
+  let { name, category, city, country, image } = req.body;
+  // sql command line for inserting club (as completed in initial set up)
+  let sql = `INSERT INTO clubs (name, category, next_mtg_city, next_mtg_country, image)
+    VALUES ('${name}', '${category}', '${city}', '${country}', '${image}'); SELECT LAST_INSERT_ID();`;
+  // adding new club
+  try {
+    let results = await db(sql); // add club when function called
+    res.status(201).send({ club_id: results.data[0].insertId }); // send club id
+    // server error
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
 // Get info for a specific club including members list
 router.get("/:id", async function (req, res) {
   let sql = `SELECT * FROM clubs WHERE id=${req.params.id}`;
@@ -120,6 +138,9 @@ router.get("/:id", async function (req, res) {
   }
 });
 
+
+
+
 // add a user to a club
 
 router.post("/:id", ensureUserLoggedIn, async function (req, res) {
@@ -134,7 +155,7 @@ router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   let postSql = `
     INSERT INTO users_clubs (club_id, user_id, admin)
     VALUES
-      (${clubId}, ${res.locals.user}, 1)
+      (${clubId}, ${res.locals.user}, 0)
   `;
 
   try {
@@ -190,30 +211,5 @@ router.patch("/:id", async function (req, res) {
     res.status(500).send({ error: err.message });
   }
 });
-
-/*Create a new club */
-router.post("/", async function (req, res) {
-  let {
-    name,
-    category,
-    next_mtg_city,
-    next_mtg_country,
-    image,
-  } = req.body;
-  // sql command line for inserting club (as completed in initial set up)
-  let sql = `INSERT INTO clubs (name, category, next_mtg_city, next_mtg_country, image)
-    VALUES ('${name}', '${category}', '${next_mtg_city}', '${next_mtg_country}', '${image}')`;
-  // adding new club
-  try {
-    await db(sql); // add club when function called
-    let list = await db(`SELECT * FROM clubs`); // return whole club list
-    let clubs = list.data; // add managable & comprehensive variable
-    res.status(201).send(clubs); // send updated array
-    // server error
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
-
 
 module.exports = router;
