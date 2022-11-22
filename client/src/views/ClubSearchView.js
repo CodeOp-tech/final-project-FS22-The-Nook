@@ -62,7 +62,7 @@ function ClubSearchView(props) {
         </div>
 
         <div className="col-md-3">
-          <CreateClub getClubsCb={props.getClubs} clubs={clubs} />
+          <CreateClub getClubsCb={props.getClubs} />
         </div>
       </div>
     </div>
