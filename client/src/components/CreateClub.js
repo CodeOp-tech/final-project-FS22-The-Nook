@@ -4,7 +4,6 @@ import "./CreateClub.css";
 import CountryList from "./DropdownCountries";
 import Local from "../helpers/Local";
 import Api from "../helpers/Api";
-// import { response } from "express";
 
 const EMPTY_NEW_CLUB_FORM = {
   name: "",
@@ -40,11 +39,11 @@ function CreateClub(props) {
   };
 
   async function postClubAndPostAdminMember(fields, user) {
-    // create response - fetch data, method post
     let responsePostClub = await Api.postClub(fields);
-    //if response fetch works
+
     if (responsePostClub.ok) {
-      // props.setClubs(responsePostClub.data);
+      props.getClubsCb();
+
       let newClubId = responsePostClub.data.club_id;
       let responsePostAdminMember = await Api.postAdminMember(user, newClubId);
       if (responsePostAdminMember.ok) {
