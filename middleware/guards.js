@@ -24,10 +24,11 @@ function ensureUserLoggedIn(req, res, next) {
 
  function ensureSameUser(req, res, next) {
     let token = _getToken(req);
-
+    console.log("token", token)
     try {
         // Throws error on invalid/missing token
         let payload = jwt.verify(token, SECRET_KEY);
+        console.log("payload", payload)
         // If we get here, a valid token was passed
         if (payload.userId === Number(req.params.userId)) {
             next();

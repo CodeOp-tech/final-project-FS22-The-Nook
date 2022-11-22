@@ -16,6 +16,7 @@ let clubMembersListSql = `
         `;
 
 function joinToJson(booksResult, clubsResult) {
+  console.log("booksResult", booksResult, "clubsResult", clubsResult)
   let row0 = {};
   booksResult.data.length ? row0 = booksResult.data[0] :row0 = clubsResult.data[0] ;
 
@@ -31,6 +32,13 @@ function joinToJson(booksResult, clubsResult) {
     image: b.image,
   }));
 
+  if(!books[0].book_id) {
+    books = []
+  }
+  
+
+
+
   let clubs = [];
   clubs = clubsResult.data.map((c) => ({
     name: c.name,
@@ -42,6 +50,11 @@ function joinToJson(booksResult, clubsResult) {
     // next_mtg_postal_code: c.next_mtg_postal_code,
     // next_mtg_country: next_mtg_country,
   }));
+
+  if(!clubs[0].name) {
+    clubs = []
+  }
+
 
   let user = {
     id: row0.user_id,
