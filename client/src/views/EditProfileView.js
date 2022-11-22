@@ -30,8 +30,11 @@ function EditProfileView(props){
     // search effect function
     useEffect(() => {
         getClubs();
-    }, [name, category, location]); // useEfefct will run every time name and category are updated
+    }, [name, category, location]);
 
+    useEffect(() => {
+        getBooks();
+    }, [title, author]); 
 
 // club search function 
 async function getClubs() {
