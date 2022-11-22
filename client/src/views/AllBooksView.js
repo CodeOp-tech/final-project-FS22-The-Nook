@@ -24,7 +24,7 @@ function AllBooksView() {
             title: title,
             author: author,
         }).toString();
-
+        console.log(query)
         try {
          
             if (title !== "" || author !== "") {
@@ -55,7 +55,7 @@ return (
     <div className="container py-5 my-5 ClubSearchView">
       <div className="row">
         <div className="col-md-3">
-           <BookSearch />
+           <BookSearch getBooks={e=> getBooks()}/>
         </div>
 
         <div className="col-md-9">

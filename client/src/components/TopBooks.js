@@ -34,7 +34,7 @@ function TopBooks(props) {
     <div className="bookContainer">
       <div className="row row-cols-4">
         {books.map((b) => (
-          <div className="col" key={b.id}>
+          <div className="col" key={b.book_id} >
             <div className="card bookCard">
               <img src={b.image} className="card-img-top" alt="book 1" />
               <div className="card-body">
