@@ -1,33 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import categoryList from "./DropdownCategoryList.js";
 
 function ClubSearch(props) {
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
   const [category, setCategory] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    nav(
-      "/clubs/?search=" +
-        searchInput +
-        "&location=" +
-        searchLocation +
-        "&category=" +
-        category
-    );
 
-    //reset search input fields
-    setSearchInput("");
-    setSearchLocation("");
-    setCategory("");
-  }
+  useEffect(() => {
+    changeUrl();
+    }, [searchInput, searchLocation, category])
+
+
+    function changeUrl(){
+      navigate(`/clubs//?search=${searchInput}&location=${searchLocation}&category=${category}`)
+      props.getClubs && props.getClubs()
+      
+    }
+
 
   return (
     <div className="ClubSearch pt-2">
-      <form role="search" onSubmit={handleSubmit}>
+      <form role="search">
         <input
           className="form-control"
           type="search"
@@ -87,9 +83,6 @@ function ClubSearch(props) {
           </select>
         </div>
 
-        <button className="btn btn-outline-secondary mt-3" type="submit">
-          Search
-        </button>
       </form>
     </div>
   );
