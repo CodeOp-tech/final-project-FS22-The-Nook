@@ -17,6 +17,7 @@ import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
 import ClubSearchView from "./views/ClubSearchView";
 import SingleClubView from "./views/SingleClubView";
+import ContactView from "./views/ContactView";
 
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
@@ -226,6 +227,8 @@ function App() {
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
+
+          <Route path="/contact" element={<ContactView />} />
         </Routes>
       </div>
     </div>

@@ -33,7 +33,7 @@ function ProfileView(props) {
             <div className="container FullProfile">
             <h1>Profile View</h1>
 
-            <button type="button" onClick={handleClick} className="btn btn-outline-light edit py-1">Edit</button>
+            <button type="button" onClick={handleClick} className="btn btn-outline-dark edit py-1">Edit</button>
             
 
             <div className="UserInfo">

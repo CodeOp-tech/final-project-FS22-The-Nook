@@ -76,9 +76,9 @@ function CreateClub(props) {
           <label for="clubCategory" className="form-label">
             Category
           </label>
-          <input
+          <select
             type="text"
-            className="form-control create-input"
+            className="form-select create-input"
             id="categoryInput"
             name="category"
             aria-label="Choose category"
@@ -122,7 +122,7 @@ function CreateClub(props) {
             value={fields.country}
             onChange={(e) => handleNewClubChange(e)}
           >
-            <option hidden> </option>
+            <option hidden>e.g. France</option>
             {CountryList.map((c) => (
               <option className="dropdown-item" key={c} value={c}>
                 {c}

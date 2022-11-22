@@ -38,9 +38,9 @@ function TopBooks(props) {
             <div className="card bookCard">
               <img src={b.image} className="card-img-top" alt="book 1" />
               <div className="card-body">
-                <Link to={`/books/${b.id}`} className="card-title">
+                <div className="card-title">
                   {b.title}
-                </Link>
+                </div>
                 <h5 className="card-title">by {b.author}</h5>
                 
               </div>

@@ -31,9 +31,8 @@
     width: 4rem;
     height: 2rem;
     font-size: 16px;
-    background-color: burlywood;
-    margin: auto;
-    color: white;
+    margin: auto 20px 20px;
+   
 }
 
 .ProfileView .clubCards{
