@@ -59,6 +59,9 @@ function SingleClubView(props) {
   let user = JSON.parse(localStorage.getItem("user"));
   let userMember = currentClub.membersList.some((m) => m.id === user.id);
   let userMemberAdmin = 0;
+
+  let pollInfo = JSON.parse(currentClub.book_poll_info);
+
   if (userMember) {
     userMemberAdmin = currentClub.membersList.find(
       (m) => m.id === user.id
@@ -138,8 +141,9 @@ function SingleClubView(props) {
               currentClub={currentClub}
             />
           </div>
-          {currentClub.book_poll_info ? (
-            <div className="">
+
+          {pollInfo ? (
+            <div className="col-12">
               <Poll currentClub={currentClub} />
             </div>
           ) : null}
