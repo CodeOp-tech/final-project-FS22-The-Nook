@@ -13,7 +13,7 @@ function EditCommentModal (props){
     function submitReview (book) {
         book.comment = review;
         setReview("");
-        props.updateBook = (book);
+        props.updateBook(book);
     }
     
 
