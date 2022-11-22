@@ -5,13 +5,18 @@ import BookList from "../components/BookList";
 
 function AllBooksView() {
     const [searchParams] = useSearchParams({});
-    const title = searchParams.get("search") || "";
+    const title = searchParams.get("title") || "";
     const author = searchParams.get("author") || "";
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
         getBooks();
+    }, []); 
+    
+    useEffect(() => {
+        getBooks();
     }, [title, author]); 
+
 
     // search function 
     async function getBooks() {
@@ -21,13 +26,25 @@ function AllBooksView() {
         }).toString();
 
         try {
-            let response = await fetch("/books/?" + query);
-            if (response.ok) {
-                let books = await response.json();
-                setBooks(books)
-            } else {
-                console.log(`Server error: ${response.status} ${response.StatusText}`);
+         
+            if (title !== "" || author !== "") {
+                let response = await fetch("/books/?" + query);
+                if (response.ok) {
+                    let books = await response.json();
+                    setBooks(books)
+                } else {
+                    console.log(`Server error: ${response.status} ${response.StatusText}`);
+                }
+            } else if (title === "" && author === "") {
+                let response = await fetch("/books");
+                if (response.ok) {
+                    let books = await response.json();
+                    setBooks(books)
+                } else {
+                    console.log(`Server error: ${response.status} ${response.StatusText}`);
+                }
             }
+
         } catch (err) {
                 console.log(`Network error: ${err.message}`);
         }

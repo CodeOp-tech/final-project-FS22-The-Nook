@@ -10,7 +10,7 @@ function BookSearch() {
     function handleSubmit(e) {
         e.preventDefault();
         nav(
-            "/books/?search=" +
+            "/books/?title=" +
             searchInput +
             "&author=" +
             searchAuthor 
