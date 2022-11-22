@@ -44,7 +44,6 @@ async function getClubs() {
         next_mtg_city: location,
     }).toString();
 
-    console.log(query)
     
     let url = `/users/${user.id}/?${query}`;
     let response = await Api.getUserFiltered(url);
@@ -55,7 +54,6 @@ async function getClubs() {
 
 // book search function 
 async function getBooks() {
-    console.log("this is the getbooks function")
     const query = new URLSearchParams({
         title: title,
         author: author,
@@ -111,7 +109,6 @@ async function updateBook(book) {
         comment: `${book.comment}`,
         user_id: `${user.id}`,
     }
-    console.log(body, book.book_id)
     let responsePatch = await Api.patchBook(body, book.book_id);
     if (responsePatch.ok) {
       props.setUser(responsePatch.data);
