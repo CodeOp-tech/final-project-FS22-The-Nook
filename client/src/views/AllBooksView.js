@@ -24,7 +24,6 @@ function AllBooksView() {
             title: title,
             author: author,
         }).toString();
-        console.log(query)
         try {
          
             if (title !== "" || author !== "") {
