@@ -66,7 +66,7 @@ function AddMeetingForm(props) {
       <form className=" w-100 mx-0" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col mb-6">
-            <label htmlhtmlFor="title" className="form-label">
+            <label htmlFor="title" className="form-label">
               Book Title
             </label>
             <input
@@ -79,7 +79,7 @@ function AddMeetingForm(props) {
             />
           </div>
           <div className="col mb-2">
-            <label htmlhtmlFor="title" className="form-label">
+            <label htmlFor="title" className="form-label">
               Meeting Date
             </label>
             <input
@@ -93,7 +93,7 @@ function AddMeetingForm(props) {
           </div>
 
           <div className="col mb-2">
-            <label htmlhtmlFor="title" className="form-label">
+            <label htmlFor="title" className="form-label">
               Meeting Time
             </label>
             <input
@@ -108,7 +108,7 @@ function AddMeetingForm(props) {
         </div>
         <div className="row">
           <div className="col-6">
-            <label htmlhtmlFor="locationName" className="form-label">
+            <label htmlFor="locationName" className="form-label">
               Location Name
             </label>
             <input
@@ -123,7 +123,7 @@ function AddMeetingForm(props) {
           </div>
 
           <div className="col-6">
-            <label htmlhtmlFor="inputAddress" className="form-label">
+            <label htmlFor="inputAddress" className="form-label">
               Address
             </label>
             <input
@@ -140,7 +140,7 @@ function AddMeetingForm(props) {
 
         <div className="row">
           <div className="col-md-5">
-            <label htmlhtmlFor="inputCity" className="form-label">
+            <label htmlFor="inputCity" className="form-label">
               City
             </label>
             <input
@@ -154,7 +154,7 @@ function AddMeetingForm(props) {
           </div>
 
           <div className="col-md-2">
-            <label htmlhtmlFor="inputZip" className="form-label">
+            <label htmlFor="inputZip" className="form-label">
               Postal Code
             </label>
             <input
@@ -168,7 +168,7 @@ function AddMeetingForm(props) {
           </div>
 
           <div className="col-md-5 my-auto dropdown">
-            <label htmlhtmlFor="inputCountry" className="form-label">
+            <label htmlFor="inputCountry" className="form-label">
               Country
             </label>
             <select

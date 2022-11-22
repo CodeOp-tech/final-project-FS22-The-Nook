@@ -179,15 +179,26 @@ router.patch("/:id", async function (req, res) {
       UPDATE clubs
       SET
         book_poll_info =
-          '{"book1":
-            {"title": "${req.body.book1}", "votes":${req.body.votes1}},
-            "book2":
-            {"title": "${req.body.book2}", "votes":${req.body.votes2}},
-            "book3":
-            {"title": "${req.body.book3}", "votes":${req.body.votes3}}
-          }'
+          '[
+            {"id": 0, "text": "${req.body.book1}", "votes": "${req.body.votes1}", "percentage": 0},
+            {"id": 1, "text": "${req.body.book2}", "votes": ${req.body.votes2}, "percentage": 0},
+            {"id": 2, "text": "${req.body.book3}", "votes": ${req.body.votes3}, "percentage": 0}
+          ]'
       WHERE
-        id = ${req.body.club_id};
+        id = ${req.params.id};
+    `;
+  } else if (req.body[0].percentage) {
+    sql = `
+      UPDATE clubs
+      SET
+        book_poll_info =
+          '[
+            {"id": 0, "text": "${req.body[0].text}", "votes": ${req.body[0].votes}, "percentage": ${req.body[0].percentage}},
+            {"id": 1, "text": "${req.body[1].text}", "votes": ${req.body[1].votes}, "percentage": ${req.body[1].percentage}},
+            {"id": 2, "text": "${req.body[2].text}", "votes": ${req.body[2].votes}, "percentage": ${req.body[2].percentage}}
+          ]'
+      WHERE
+        id = ${req.params.id};
     `;
   } else {
     sql = `
@@ -200,12 +211,12 @@ router.patch("/:id", async function (req, res) {
         next_mtg_postal_code = "${req.body.postalCode}",
         next_mtg_country = "${req.body.country}"
       WHERE
-        id = ${req.body.club_id};
+        id = ${req.params.id};
     `;
   }
 
   try {
-    let club = await db(`SELECT * FROM clubs WHERE id = ${req.body.club_id}`);
+    let club = await db(`SELECT * FROM clubs WHERE id = ${req.params.id}`);
     if (club.data.length === 0) {
       res.status(404).send({ error: "Club does not exist." });
     } else {

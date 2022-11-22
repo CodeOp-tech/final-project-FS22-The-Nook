@@ -1,6 +1,7 @@
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
 import React from "react";
+import Api from "../helpers/Api";
 
 function Poll(props) {
   let options = JSON.parse(props.currentClub.book_poll_info);
@@ -21,6 +22,11 @@ function Poll(props) {
   };
 
   function vote(item: Result, results: Result[]) {
+    // resData[id];
+    console.log("hi");
+    console.log("item", item);
+    console.log("results", results);
+
     // Here you probably want to manage
     // and return the modified data to the server.
   }
