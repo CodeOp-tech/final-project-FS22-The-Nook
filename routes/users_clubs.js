@@ -29,6 +29,30 @@ router.post("/joinclub/:id", ensureUserLoggedIn, async function (req, res) {
 });
 
 /**
+ * Add an admin to a club and return updated member list.
+ **/
+
+router.post("/addClubAdmin/:id", ensureUserLoggedIn, async function (req, res) {
+  let clubId = Number(req.params.id);
+  let userId = req.body.id;
+  let getClubMembersSql = `
+        SELECT clubs.id, users.*
+        FROM clubs
+        INNER JOIN users_clubs on clubs.id = users_clubs.club_id
+        INNER JOIN users ON users_clubs.user_id = users.id
+        WHERE users_clubs.club_id =${clubId}`;
+  try {
+    await db(`INSERT INTO users_clubs (club_id, user_id, admin)
+    VALUES (${clubId}, ${userId}, 1)`);
+    let clubMembers = await db(getClubMembersSql);
+    clubMembers.data.map((m) => delete m.password);
+    res.send(clubMembers.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
+/**
  * Delete user from club.
  **/
 
