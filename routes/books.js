@@ -10,11 +10,20 @@ const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
 
 function joinToJsonBooksClubsUsers(results) {
 
-  let booksread = {}
+  let booksreadId = {}
 
   results.data.map((c) => (
-      booksread[c.title] ? booksread[c.title] += `, ${c.name}` : booksread[c.title] = c.name 
+      booksreadId[c.title] ? booksreadId[c.title] += `, ${c.c_id}` : booksreadId[c.title] = c.c_id  
+      
   ))
+
+  let booksreadName = {}
+  results.data.map((c) => (
+    booksreadName[c.title] ? booksreadName[c.title] += `, ${c.name}` : booksreadName[c.title] = c.name 
+    
+))
+
+
 
    let reallyFinal = [];
 
@@ -23,8 +32,12 @@ function joinToJsonBooksClubsUsers(results) {
     title: b.title,
     author: b.author,
     image: b.image,
-    clubs: booksread[b.title]
+    clubIds: booksreadId[b.title],
+    clubNames: booksreadName[b.title],
+   
   }))
+
+  // console.log("--------------finalresult", finalResult)
 
   reallyFinal = finalResult.filter((e, ind) => 
 

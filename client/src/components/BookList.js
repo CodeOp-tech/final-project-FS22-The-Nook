@@ -7,6 +7,7 @@ function BookList(props) {
     return (
         <div className="container">  
           <div className="row justify-content-center">
+  
              {
                  props.books.map(b => (
                    <div className="col-md-5 col-lg-3  book-card rounded m-3" key={b.id}>
@@ -20,14 +21,11 @@ function BookList(props) {
                        <div className="text-start">
                        <p><b>Title: </b>{b.title}</p>
                        <p><b>Author: </b>{b.author}</p>
-                       <p><b>Clubs: </b>{b.clubs}</p>
-                       {/* {
-                        b.clubs.map((c) => (
-                   
-                          <p>{c}</p>
-                         
-                        ))
-                       } */}
+                       <p><b>ClubIds: </b>{b.clubIds}</p>
+                       <p><b>ClubNames: </b>{b.clubNames}</p>
+    
+                     
+
                        </div>
                    </div>
                  ))
