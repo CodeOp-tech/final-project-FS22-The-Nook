@@ -15,6 +15,7 @@ function ClubSearch(props) {
 
 
     function changeUrl(){
+
       navigate(`/clubs//?search=${searchInput}&location=${searchLocation}&category=${category}`)
       props.getClubs && props.getClubs()
       
