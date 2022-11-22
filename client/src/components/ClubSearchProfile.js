@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import categoryList from "./DropdownCategoryList.js";
 
 function ClubSearchProfile(props) {
+  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
   const [category, setCategory] = useState("");
 
   let user = props.user;
-  let navigate = useNavigate();
 
   useEffect(() => {
     changeUrl();
   }, [searchInput, searchLocation, category]);
+
+  function changeUrl() {
+    navigate(
+      `/users/${user.id}/edit/?search=${searchInput}&location=${searchLocation}&category=${category}`
+    );
+    props.getClubs && props.getClubs();
+  }
 
   function changeUrl() {
     navigate(
@@ -41,8 +49,8 @@ function ClubSearchProfile(props) {
           onChange={(e) => setSearchLocation(e.target.value)}
         />
 
-        <div className="mt-3">
-          {/* <label htmlFor="floatingSelect">Choose a category</label> */}
+        {/* <div className="mt-3">
+          <label htmlFor="floatingSelect">Choose a category</label>
           <select
             className="form-select"
             id="floatingSelect"
@@ -60,6 +68,29 @@ function ClubSearchProfile(props) {
             <option data-tokens="5">historical fiction</option>
             <option data-tokens="6">sci-fi</option>
             <option data-tokens="7">travel</option>
+          </select>
+        </div> */}
+
+        <div className="mb-3 dropdown">
+          <select
+            className="form-select"
+            id="floatingSelect"
+            name="category"
+            aria-label="Choose category"
+            value={category}
+            onChange={(e) =>
+              e.target.value === "Choose a category"
+                ? setCategory("")
+                : setCategory(e.target.value)
+            }
+          >
+            <option defaultValue>Choose a category</option>
+            {categoryList.map((c) => (
+              <option className="dropdown-item" key={c} value={c}>
+                {c}
+              </option>
+            ))}
+            ;
           </select>
         </div>
       </form>

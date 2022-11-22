@@ -1,4 +1,5 @@
 var express = require("express");
+const { UNSAFE_enhanceManualRouteObjects } = require("react-router-dom");
 var router = express.Router();
 const db = require("../model/helper");
 require("dotenv").config();
@@ -7,28 +8,93 @@ const fetch = (...args) =>
 const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
 
 
+function joinToJsonBooksClubsUsers(results) {
+
+  let booksread = {}
+
+  results.data.map((c) => (
+      booksread[c.title] ? booksread[c.title] += `, ${c.name}` : booksread[c.title] = c.name 
+  ))
+
+   let reallyFinal = [];
+
+ let finalResult = results.data.map((b) => ({
+    book_id: b.book_id,
+    title: b.title,
+    author: b.author,
+    image: b.image,
+    clubs: booksread[b.title]
+  }))
+
+  reallyFinal = finalResult.filter((e, ind) => 
+
+    { if (ind < finalResult.length -1) {
+       return e.title !== finalResult[ind + 1].title ? e : null 
+    } else {
+        return e
+    }
+    })
+
+ return reallyFinal
+}  
+
+  function makeWhereFromFilters(query) {
+  let filters = [];
+
+  if (query.title) {
+    filters.push(`title LIKE '%${query.title}%'`);
+  }
+  if (query.author) {
+    filters.push(`author LIKE '%${query.author}%'`);
+  }
+  return filters.join(" AND ");
+  }
+
+
 /**
- * Get all books or all books by club
- **/
+* Get all books or all books by club or do search 
+**/
 router.get("/", async function (req, res) {
-  let sql = "SELECT * FROM books";
+
+  let sql = `
+    SELECT books.*, books.id AS book_id, books_clubs.club_id AS bc_cid, clubs.id AS c_id, clubs.name, books_clubs.book_id AS bc_bid 
+    FROM books
+    LEFT JOIN books_clubs ON books.id = books_clubs.book_id 
+    LEFT JOIN clubs ON clubs.id = books_clubs.club_id
+  `;
+
+
+  let where = makeWhereFromFilters(req.query);
+  
+
+  if (Object.keys(req.query)[0] === "title") {
+    sql += ` WHERE ${where}`;
+  } 
 
   if (req.query.club_id) {
     sql = `SELECT books.*, books_clubs.*
-    FROM books
-    LEFT JOIN books_clubs ON books.id = books_clubs.book_id
-    WHERE books_clubs.club_id=${req.query.club_id}
-    ORDER BY date DESC`;
+      FROM books
+      LEFT JOIN books_clubs ON books.id = books_clubs.book_id
+      WHERE books_clubs.club_id=${req.query.club_id}
+      ORDER BY date DESC`;
   }
-
+  
   try {
+
     let results = await db(sql);
-    let books = results.data;
-    res.send(books);
+    if (Object.keys(req.query)[0] === "title" ) {
+      res.send(joinToJsonBooksClubsUsers(results));
+    } else if (req.query.club_id) {
+      res.send(results.data)
+    } else {
+      res.send(joinToJsonBooksClubsUsers(results));    
+    }
+
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
+
 
 /**
  * Add one book to a club's book list.

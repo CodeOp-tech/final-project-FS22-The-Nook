@@ -15,6 +15,7 @@ function ClubSearch(props) {
 
 
     function changeUrl(){
+
       navigate(`/clubs//?search=${searchInput}&location=${searchLocation}&category=${category}`)
       props.getClubs && props.getClubs()
       
@@ -71,7 +72,7 @@ function ClubSearch(props) {
             name="category"
             aria-label="Choose category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => e.target.value === "Choose a category" ? setCategory("") : setCategory(e.target.value)}
           >
             <option defaultValue>Choose a category</option>
             {categoryList.map((c) => (
@@ -82,6 +83,7 @@ function ClubSearch(props) {
             ;
           </select>
         </div>
+
 
       </form>
     </div>
