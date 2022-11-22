@@ -7,7 +7,6 @@ const { SECRET_KEY } = require("../config");
 
 function ensureUserLoggedIn(req, res, next) {
     let token = _getToken(req) 
-    console.log("*****", token)
     try {
         let payload = jwt.verify(token, SECRET_KEY); 
         let userId = payload.userId; 

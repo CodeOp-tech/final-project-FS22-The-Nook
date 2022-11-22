@@ -5,6 +5,36 @@ const db = require("../model/helper");
 const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
 
 
+function clubsFilters(query) {
+    let filters = [];
+  
+    if (query.name) {
+      filters.push(`clubs.name LIKE '%${query.name}%'`);
+    }
+    if (query.category) {
+      filters.push(`clubs.category LIKE '%${query.category}%'`);
+    }
+    if (query.next_mtg_city) {
+      filters.push(`clubs.next_mtg_city LIKE '%${query.next_mtg_city}%'`);
+    }
+  
+    return filters.join(" AND ");
+  }
+
+  function bookFilters(query) {
+    let filters = [];
+  
+    if (query.title) {
+      filters.push(`books.title LIKE '%${query.title}%'`);
+    }
+    if (query.author) {
+      filters.push(`books.author LIKE '%${query.author}%'`);
+    }
+    return filters.join(" AND ");
+  }
+
+
+
 /**
  * Get all users
  **/
@@ -27,12 +57,20 @@ const {  joinToJson, clubsSql, booksSql } = require('./commonfunctions');
  **/
 
  router.get('/:userId', ensureSameUser, async function(req, res) {
-
   let { userId } = req.params;
-  
+  let whereC = clubsFilters(req.query);
+  let whereB = bookFilters(req.query);
+  let cSql = "";
+  let bSql = "";
+
   try {
-      let booksResults = await db(booksSql +` WHERE user_id = '${userId}'`) ;
-      let clubsResults = await db(clubsSql +` WHERE user_id = '${userId}'`)
+    
+    whereC ? cSql = `${clubsSql} WHERE ${whereC} AND user_id = '${userId}'` : cSql = `${clubsSql} WHERE user_id = '${userId}'`;
+
+    whereB ? bSql = `${booksSql} WHERE ${whereB} AND user_id = '${userId}'` : bSql = `${booksSql} WHERE user_id = '${userId}'`;
+
+      let booksResults = await db(bSql);
+      let clubsResults = await db(cSql);
       res.send(joinToJson(booksResults, clubsResults));
   } catch (err) {
       res.status(500).send({ error: err.message });

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateClub.css";
 import CountryList from "./DropdownCountries";
+import categoryList from "./DropdownCategoryList.js";
 import Local from "../helpers/Local";
 import Api from "../helpers/Api";
 
@@ -34,7 +35,6 @@ function CreateClub(props) {
     e.preventDefault();
     postClubAndPostAdminMember(fields, user);
     setError("");
-
     setFields(EMPTY_NEW_CLUB_FORM);
   };
 
@@ -71,20 +71,23 @@ function CreateClub(props) {
             onChange={(e) => handleNewClubChange(e)}
           />
         </div>
-
-        <div className="mb-3">
-          <label htmlFor="clubCategory" className="form-label">
-            Category
-          </label>
-          <input
-            type="text"
-            className="form-control-sm"
-            id="categoryInput"
+        <div className="mb-3 dropdown">
+          <select
+            className="form-select"
+            id="floatingSelect"
             name="category"
-            placeholder="e.g. Romance"
+            aria-label="Choose category"
             value={fields.category}
-            onChange={(e) => handleNewClubChange(e)}
-          />
+            onChange={handleNewClubChange}
+          >
+            <option defaultValue>Choose a category</option>
+            {categoryList.map((c) => (
+              <option className="dropdown-item" key={c} value={c}>
+                {c}
+              </option>
+            ))}
+            ;
+          </select>
         </div>
 
         <div className="mb-3">

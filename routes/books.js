@@ -4,50 +4,7 @@ const db = require("../model/helper");
 require("dotenv").config();
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-
-
-    function joinToJsonBooksClubsUsers(results) {
-
-      let booksread = {}
-
-      results.data.map((c) => (
-          booksread[c.title] ? booksread[c.title] += `, ${c.name}` : booksread[c.title] = c.name 
-      ))
-
-       let reallyFinal = [];
-
-     let finalResult = results.data.map((b) => ({
-        book_id: b.book_id,
-        title: b.title,
-        author: b.author,
-        image: b.image,
-        clubs: booksread[b.title]
-      }))
-
-      reallyFinal = finalResult.filter((e, ind) => 
-
-        { if (ind < finalResult.length -1) {
-           return e.title !== finalResult[ind + 1].title ? e : null 
-        } else {
-            return e
-        }
-        })
-
-     return reallyFinal
-   }  
-
-
-  function makeWhereFromFilters(query) {
-    let filters = [];
-  
-    if (query.title) {
-      filters.push(`title LIKE '%${query.title}%'`);
-    }
-    if (query.author) {
-      filters.push(`author LIKE '%${query.author}%'`);
-    }
-    return filters.join(" AND ");
-  }
+const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
 
 
 /**
@@ -134,5 +91,35 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+router.patch("/:id", async function (req, res) {
+  let bookId = Number(req.params.id);
+  let {rating, date_read, favorite, comment, user_id} = req.body;
+  let sql = `
+  UPDATE users_books
+  SET
+    rating = ${rating},
+    date_read = "${date_read}",
+    favorite = ${favorite},
+    comment = "${comment}"
+    WHERE
+    book_id = ${bookId} 
+  AND 
+    user_id = ${user_id};
+`;
+try {
+let book = await db(`SELECT * FROM users_books  WHERE
+book_id = ${bookId} AND user_id = ${user_id};`);
+if (book.data.length === 0) {
+  res.status(404).send({ error: "Book does not exist." });
+} else {
+  await db(sql);
+  let booksResults = await db(booksSql + ` WHERE user_id = '${user_id}'`);
+  let clubsResults = await db(clubsSql + ` WHERE user_id = '${user_id}'`);
+  res.send(joinToJson(booksResults, clubsResults));
+}
+} catch (err) {
+res.status(500).send({ error: err.message });
+}
+});
 
 module.exports = router;

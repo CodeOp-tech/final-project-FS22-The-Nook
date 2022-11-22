@@ -15,6 +15,7 @@ function SingleClubView(props) {
     props.clubs.find((c) => +c.id === +id)
   );
 
+
   useEffect(() => {
     props.fetchClubBooksCb(id);
 
@@ -26,7 +27,6 @@ function SingleClubView(props) {
   }
 
   async function canJoin(currentClub) {
-    console.log("currentClub", currentClub);
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

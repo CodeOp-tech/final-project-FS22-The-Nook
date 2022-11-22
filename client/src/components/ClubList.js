@@ -17,7 +17,7 @@ function redirect(clubId) {
             {
                 props.clubs.map(c => (
                   <div className="col-md-5 col-lg-4" key={c.id}>
-                    <div className="card mb-4">
+                    <div className="card m-1" key={c.id}>
                         <img 
                           className="card-img" 
                           src={c.image} 
