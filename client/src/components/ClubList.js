@@ -12,7 +12,7 @@ function redirect(clubId) {
 
   return (
     <div className="container">
-      <div className="row  justify-content-center">
+      <div className="row justify-content-center">
       
             {
                 props.clubs.map(c => (
@@ -23,7 +23,7 @@ function redirect(clubId) {
                           src={c.image} 
                           alt={c.name}
                         />
-                         <div className="card-img-overlay info-bg">
+                         <div className="card-img-overlay info-bg pt-5">
                             <h4>{c.name}</h4>
                             <p className="mb-0 mt-3 text-left"><b>Genre:</b> {c.category}</p>
                             <p className="mb-0"><b>Location: </b>{c.next_mtg_city}</p>
