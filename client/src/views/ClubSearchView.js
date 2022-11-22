@@ -50,8 +50,11 @@ function ClubSearchView(props) {
     <div className="container py-5 my-5 ClubSearchView">
       <div className="row">
         <div className="col-md-3">
+
           <ClubSearch />
+
         </div>
+
 
         <div className="col-md-9">
           <ClubList
@@ -61,9 +64,11 @@ function ClubSearchView(props) {
           />
         </div>
 
+
         <div className="col-md-3">
           <CreateClub getClubsCb={props.getClubs} clubs={clubs} />
         </div>
+
       </div>
     </div>
   );
