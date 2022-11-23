@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./HomeView.css";
+import "./HomeView.scss";
 import Carousel4Wide from "../components/Carousel4Wide";
 import TopBooks from "../components/TopBooks";
 
 function HomeView(props) {
   return (
     <div className="homePage">
-      <div className="clubCarousel">
+      <div className="clubCarousel container-fluid">
         <h1>Featured Clubs</h1>
         <Carousel4Wide clubs={props.clubs} getClubs={props.getClubs} />
 
