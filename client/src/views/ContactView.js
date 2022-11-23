@@ -36,6 +36,7 @@ function ContactView() {
         details,
         'ZkeMx-qjSurPuwe4j'
       )
+
         .then((response) => {
           console.log('SUCCESS!', response.status, response.text);
         })
@@ -134,6 +135,7 @@ function ContactView() {
                 required
               />
             </div>
+
             <div className="col-md-10">
               <label
                 html="validationEmail"
@@ -141,10 +143,10 @@ function ContactView() {
               >
                 Email
               </label>
-              <div className="input-group">
-                <span className="input-group-text" id="inputGroupPrepend2">
-                  @
-                </span>
+
+
+              
+             
                 <input
                 onChange={handleDetailsChange}
                   type="text"
@@ -155,7 +157,7 @@ function ContactView() {
                 value={details.email}
                   required
                 />
-              </div>
+              
             </div>
 
             <div className="col-md-10">
