@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./TopBooks.css";
+import "./TopBooks.scss";
 import { Link } from "react-router-dom";
 
 function TopBooks(props) {
@@ -32,7 +32,7 @@ function TopBooks(props) {
 
   return (
     <div className="bookContainer">
-      <div className="row row-cols-4">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
         {books.map((b) => (
           <div className="col" key={b.book_id} >
             <div className="card bookCard">
