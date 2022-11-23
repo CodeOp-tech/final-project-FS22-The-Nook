@@ -28,17 +28,9 @@ function PollOptionsForm(props) {
     }));
   }
 
-  async function addBookPollOptions(pollFormData) {
-    let myresponse = await Api.patchClub(pollFormData);
-    if (myresponse.ok) {
-      //   props.getClubsCb();
-      navigate(`/clubs/${id}`);
-    }
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    addBookPollOptions(pollFormData);
+    props.addBookPollOptionsCb(pollFormData);
     setPollFormData(EMPTY_POLL_OPTIONS_FORM);
   }
 

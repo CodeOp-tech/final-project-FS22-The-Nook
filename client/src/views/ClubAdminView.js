@@ -9,15 +9,13 @@ function ClubAdminView(props) {
       <div className="AddBookArea">
         <h2>Add your next meeting</h2>
         <AddMeetingForm
-          setClubCb={props.setClubCb}
-          setClubBooksCb={props.setClubBooksCb}
           postBookAndPatchClubCb={props.postBookAndPatchClubCb}
           clubs={props.clubs}
         />
       </div>
       <div>
         <h2>Set the next books for your club to vote on.</h2>
-        <PollOptionsForm />
+        <PollOptionsForm addBookPollOptionsCb={props.addBookPollOptionsCb} />
       </div>
     </div>
   );
