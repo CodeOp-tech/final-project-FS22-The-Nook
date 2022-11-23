@@ -9,12 +9,13 @@
 
 .carousel {
   margin-bottom: 20px;
-  width: 900px;
+  width: 84%;
 }
 
 .carouselContainer {
   margin: auto;
   align-items: center;
+  width: 100%;
 }
 
 .carousel-inner {
