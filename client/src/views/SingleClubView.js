@@ -142,9 +142,9 @@ function SingleClubView(props) {
             />
           </div>
 
-          {pollInfo ? (
+          {pollInfo && userMember ? (
             <div className="col-12">
-              <Poll currentClub={currentClub} />
+              <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
           ) : null}
 

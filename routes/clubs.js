@@ -187,7 +187,7 @@ router.patch("/:id", async function (req, res) {
       WHERE
         id = ${req.params.id};
     `;
-  } else if (req.body[0].percentage) {
+  } else if (req.body[1]) {
     sql = `
       UPDATE clubs
       SET

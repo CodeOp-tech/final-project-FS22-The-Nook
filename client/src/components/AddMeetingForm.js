@@ -176,6 +176,7 @@ function AddMeetingForm(props) {
               aria-label="Default select example"
               onChange={handleNewMeetingChange}
               name="country"
+              defaultValue={currentClub.next_mtg_country}
               value={meetingDetailsFormData.country}
             >
               <option defaultValue></option>
