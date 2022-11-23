@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 import ErrorView from "./views/ErrorView";
@@ -17,13 +17,14 @@ import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
 import ClubSearchView from "./views/ClubSearchView";
 import SingleClubView from "./views/SingleClubView";
+import ContactView from "./views/ContactView";
 
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState(null);
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
@@ -91,6 +92,14 @@ function App() {
       navigate(`/clubs/${meetingDetails.club_id}`);
     }
   };
+
+  async function addBookPollOptions(pollFormData) {
+    let myresponse = await Api.patchClub(pollFormData);
+    if (myresponse.ok) {
+      setClubs(myresponse.data);
+      navigate(`/clubs/${pollFormData.club_id}`);
+    }
+  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -206,6 +215,7 @@ function App() {
             element={
               <ClubAdminView
                 clubs={clubs}
+                addBookPollOptionsCb={addBookPollOptions}
                 postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }
@@ -226,6 +236,8 @@ function App() {
             path="*"
             element={<ErrorView code="404" text="Page not found" />}
           />
+
+          <Route path="/contact" element={<ContactView />} />
         </Routes>
       </div>
     </div>
