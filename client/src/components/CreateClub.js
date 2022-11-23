@@ -54,7 +54,7 @@ function CreateClub(props) {
 
   return (
     <div className="CreateClubContainer text-centered">
-      <h3 className="CreateClubH">Create A New Club</h3>
+      <h3 className="CreateClubH">Create a new club</h3>
 
       <form onSubmit={handleClubSubmit}>
         <div className="mb-3">

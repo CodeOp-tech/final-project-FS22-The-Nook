@@ -60,13 +60,7 @@ function ProfileView(props) {
                             <h5 className="card-title">{c.name}</h5>
                         </div>
                        
-                        {/* <a
-          type="button"
-          className="btn btn-responsive btn-outline-dark"
-          onClick={e => redirect(c.id)}
-        >
-          More Info
-        </a> */}
+
 
                         </div>
                     </div>
