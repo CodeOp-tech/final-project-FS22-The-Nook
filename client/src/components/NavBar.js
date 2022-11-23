@@ -36,7 +36,7 @@ function NavBar(props) {
             <a href="/clubs" className="nav-item nav-link">
               Clubs
             </a>
-            <a href="/books" className="nav-item nav-link">
+            <a href="/books/all" className="nav-item nav-link">
               Books
             </a>
 
