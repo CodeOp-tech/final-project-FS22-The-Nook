@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 import ErrorView from "./views/ErrorView";
