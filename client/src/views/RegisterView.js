@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './RegisterView.css'
 
 
 
@@ -27,42 +28,47 @@ function RegisterView(props){
 
     return(
         <div>
+            <div className="container container-register">
             <h2>Sign up</h2>   
-                <form onSubmit={e=> handleSubmit(e)}>
-                    <div>
-                        <label>Username
+                <form class="mb-3" onSubmit={e=> handleSubmit(e)}>
+                    <div class="col-auto">
+                        <label>Username</label>
                             <input
+                            class="form-control form-control-sm registerInputsFields"
                                 type="text"
                                 name="username"
                                 required
                                 onChange={e=> handleChange(e)}
                             />
-                        </label>
+                        
                     </div>
                     <div>
-                        <label>Email
+                        <label>Email</label>
                             <input
+                            class="form-control form-control-sm registerInputsFields"
                                 type="email"
                                 name="email"
                                 required
                                 onChange={e=> handleChange(e)}
 
                             />
-                        </label>
+                        
                     </div>
                     <div>
-                        <label>Password
+                        <label>Password </label>
                             <input
+                            class="form-control form-control-sm registerInputsFields"
                                 type="password"
                                 name="password"
                                 required
                                 onChange={e=> handleChange(e)}
 
                             />
-                        </label>
+                       
                     </div>
-                    <button type="submit">Create an account</button>
+                    <button type="submit" className="btn btn-outline-dark btn-sm register-button" >Create Account</button>
                 </form>
+        </div>
         </div>
     )
 }

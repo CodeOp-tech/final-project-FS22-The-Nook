@@ -54,7 +54,7 @@ function CreateClub(props) {
 
   return (
     <div className="CreateClubContainer text-centered">
-      <h3 className="CreateClubH">Create A New Club</h3>
+      <h3 className="CreateClubH">Create a new club</h3>
 
       <form onSubmit={handleClubSubmit}>
         <div className="mb-3">
@@ -63,7 +63,7 @@ function CreateClub(props) {
           </label>
           <input
             type="text"
-            className="form-control-sm"
+            className="form-control create-input"
             id="nameInput"
             name="name"
             placeholder="e.g. Les Bibliophiles"
@@ -71,10 +71,15 @@ function CreateClub(props) {
             onChange={(e) => handleNewClubChange(e)}
           />
         </div>
-        <div className="mb-3 dropdown">
+
+        <div className="mb-3">
+          <label for="clubCategory" className="form-label">
+            Category
+          </label>
           <select
-            className="form-select"
-            id="floatingSelect"
+            type="text"
+            className="form-select create-input"
+            id="categoryInput"
             name="category"
             aria-label="Choose category"
             value={fields.category}
@@ -96,7 +101,7 @@ function CreateClub(props) {
           </label>
           <input
             type="text"
-            className="form-control-sm"
+            class="form-control create-input"
             id="cityInput"
             name="city"
             placeholder="e.g. Paris"
@@ -110,14 +115,14 @@ function CreateClub(props) {
             Country
           </label>
           <select
-            className="form-select"
+            className="form-select create-input"
             aria-label="Default select example"
             id="countryInput"
             name="country"
             value={fields.country}
             onChange={(e) => handleNewClubChange(e)}
           >
-            <option hidden> </option>
+            <option hidden>e.g. France</option>
             {CountryList.map((c) => (
               <option className="dropdown-item" key={c} value={c}>
                 {c}
@@ -133,7 +138,7 @@ function CreateClub(props) {
           </label>
           <input
             type="url"
-            className="form-control-sm"
+            className="form-control create-input"
             id="imageInput"
             name="image"
             placeholder="Add Link Here"
@@ -142,7 +147,7 @@ function CreateClub(props) {
           />
         </div>
 
-        <button className="createClubButton" type="submit">
+        <button className="btn btn-outline-dark btn-sm create-button" type="submit">
           Create Club
         </button>
       </form>

@@ -12,6 +12,11 @@
   width: 900px;
 }
 
+.carouselContainer {
+  margin: auto;
+  align-items: center;
+}
+
 .carousel-inner {
   padding-bottom: 20px;
   width: 900px;
@@ -50,8 +55,6 @@ img {
 .card-img-overlay {
   text-align: center;
   display: block;
-
-  object-fit: cover;
 }
 
 .clubName {
