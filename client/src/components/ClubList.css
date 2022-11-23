@@ -9,18 +9,27 @@
     opacity: 1;
     background-color: white;
     color: black;
-    border: 1px solid #AA8B56;
 }
 
-.card-img {
+
+
+
+.card-img-top {
     height: 100%;
     width: 100%;
-    object-fit: cover;
-    aspect-ratio: 1 / 1;
+    object-fit:cover;
+    
 }
 
-.test {
-    border: 3px solid red;
-}
 
+
+
+
+.info-button{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    margin: auto;
+    text-align: center;
+}
 

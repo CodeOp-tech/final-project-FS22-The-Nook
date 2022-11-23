@@ -3,10 +3,9 @@ import "./Carousel4Wide.scss";
 import { Link } from "react-router-dom";
 
 function Carousel4Wide(props) {
-
-
   //carousel function
-let clubs = props.clubs;
+  let clubs = props.clubs;
+  // const [featuredClubs, setFeaturedClubs] = useState([]);
   //when page loads do this
   useEffect(() => {
     props.getClubs();
@@ -15,10 +14,28 @@ let clubs = props.clubs;
   // when the clubs var changes, call do init
   useEffect(() => {
     doInit();
+    // selectClubs(clubs);
   }, [clubs]);
+
+  // function selectClubs(clubs) {
+  //   if (clubs.length > 0) {
+  //     const shuffled = clubs.sort(() => 0.5 - Math.random());
+  //     setFeaturedClubs(shuffled.slice(0, 5));
+  //   }
+  // }
 
   function doInit() {
     let items = document.querySelectorAll(".carouselWide .carouselWide-item");
+    // console.log("items", items);
+    // let selectedItems = [];
+
+    // for (let item of items) {
+    //   if (featuredClubs.includes((c) => c.id === item.id)) {
+    //     selectedItems.push(item);
+    //   }
+    // }
+    // console.log("selecteditems", selectedItems);
+
 
     items.forEach((el) => {
       const minPerSlide = 4;
@@ -35,19 +52,18 @@ let clubs = props.clubs;
     });
   }
 
+  // if (featuredClubs) {
   return (
     <>
-        <div className="Carousel4Wide">
-      <div className="container text-center my-3">
+    <div className="Carousel4Wide">
+      <div className="container text-center my-3 carouselContainer">
         <div className="row mx-auto my-auto justify-content-center">
           <div
             id="clubCarousel"
             className=" carouselWide carousel slide"
             data-bs-ride="carousel"
           >
-          
             <div className="carousel-inner" role="listbox">
-
               {clubs.map((c, ix) => (
                 <div
                   key={c.id}
@@ -57,12 +73,15 @@ let clubs = props.clubs;
                       <div className="card-img">
                         <img src={c.image} className="img-fluid" alt="" />
                       </div>
-                      <div className="card-img-overlay d-flex flex-column justify-content-center">
-                        <Link to={`/clubs/${c?.id}`} className="clubName">
-                          {c?.name}
-                        </Link>
-
-                      </div>
+                      <div className="card-img-overlay">
+                        {props.user ? (
+                          <Link to={`/clubs/${c?.id}`} className="clubName">
+                            {c?.name}
+                          </Link>
+                        ) : (
+                          <h3 className="clubName">{c?.name}</h3>
+                        )}
+                    </div>
                     </div>
                   </div>
                 </div>

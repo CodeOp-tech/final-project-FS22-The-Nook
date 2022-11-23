@@ -48,7 +48,8 @@ function NavBar(props) {
                 </NavLink>
               </li>
             ) : null}
-          </div>
+
+</div>
 
           {/* navbar items right */}
           {/*     log in/ log out showing up depending on user       */}
@@ -60,8 +61,19 @@ function NavBar(props) {
 
           <div className="navbar-nav ms-auto">
 
+         <ul className="navbar-nav">
+         <li className="nav-item">
+<a href="/contact" className="nav-item nav-link">
+              Contact
+            </a>
+          
+          </li>
+         </ul>
+
             {props.user ? (
               <ul className="navbar-nav">
+
+
                 <li className="nav-item">
                   {/* Log out user. Then go to home page. */}
                   <Link className="nav-link" to="/" onClick={props.logoutCb}>

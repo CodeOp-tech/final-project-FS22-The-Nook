@@ -1,0 +1,15 @@
+.ErrorView{
+background-color: bisque;
+}
+
+.errorIcon{
+    height: 200px;
+    width: 200px;
+}
+
+.errorButton{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    
+}
