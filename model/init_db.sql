@@ -43,7 +43,8 @@ CREATE TABLE `clubs`(
     `next_mtg_city` VARCHAR(255) NOT NULL,
     `next_mtg_postal_code` VARCHAR(255),
     `next_mtg_country` VARCHAR(255) NOT NULL,
-    `image` VARCHAR(255) NOT NULL
+    `image` VARCHAR(255) NOT NULL,
+    `book_poll_info` JSON
 );
 
 CREATE TABLE `books_clubs`(

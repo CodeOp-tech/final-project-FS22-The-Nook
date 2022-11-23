@@ -10,18 +10,23 @@ function ClubSearchProfile(props) {
 
   let user = props.user;
 
-
   useEffect(() => {
     changeUrl();
-    }, [searchInput, searchLocation, category])
+  }, [searchInput, searchLocation, category]);
 
+  function changeUrl() {
+    navigate(
+      `/users/${user.id}/edit/?search=${searchInput}&location=${searchLocation}&category=${category}`
+    );
+    props.getClubs && props.getClubs();
+  }
 
-    function changeUrl(){
-      navigate(`/users/${user.id}/edit/?search=${searchInput}&location=${searchLocation}&category=${category}`)
-      props.getClubs && props.getClubs()
-      
-    }
-
+  function changeUrl() {
+    navigate(
+      `/users/${user.id}/edit/?search=${searchInput}&location=${searchLocation}&category=${category}`
+    );
+    props.getClubs && props.getClubs();
+  }
 
   return (
     <div className="ClubSearch pt-2">
@@ -73,7 +78,11 @@ function ClubSearchProfile(props) {
             name="category"
             aria-label="Choose category"
             value={category}
-            onChange={(e) => e.target.value === "Choose a category" ? setCategory("") : setCategory(e.target.value)}
+            onChange={(e) =>
+              e.target.value === "Choose a category"
+                ? setCategory("")
+                : setCategory(e.target.value)
+            }
           >
             <option defaultValue>Choose a category</option>
             {categoryList.map((c) => (
@@ -84,8 +93,6 @@ function ClubSearchProfile(props) {
             ;
           </select>
         </div>
-
-
       </form>
     </div>
   );
