@@ -92,6 +92,14 @@ function App() {
     }
   };
 
+  async function addBookPollOptions(pollFormData) {
+    let myresponse = await Api.patchClub(pollFormData);
+    if (myresponse.ok) {
+      setClubs(myresponse.data);
+      navigate(`/clubs/${pollFormData.club_id}`);
+    }
+  }
+
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
@@ -206,6 +214,7 @@ function App() {
             element={
               <ClubAdminView
                 clubs={clubs}
+                addBookPollOptionsCb={addBookPollOptions}
                 postBookAndPatchClubCb={postBookAndPatchClub}
               />
             }
