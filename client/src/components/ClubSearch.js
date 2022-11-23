@@ -16,7 +16,7 @@ function ClubSearch(props) {
 
     function changeUrl(){
 
-      navigate(`/clubs//?search=${searchInput}&location=${searchLocation}&category=${category}`)
+      navigate(`/clubs/?search=${searchInput}&location=${searchLocation}&category=${category}`)
       props.getClubs && props.getClubs()
       
     }
@@ -24,11 +24,12 @@ function ClubSearch(props) {
 
   return (
     <div className="ClubSearch pt-2">
+      <h3>Search for a club</h3>
       <form role="search">
         <input
           className="form-control"
           type="search"
-          placeholder="Search for a club"
+          placeholder="By Name"
           aria-label="Search"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
@@ -37,7 +38,7 @@ function ClubSearch(props) {
         <input
           className="form-control"
           type="search"
-          placeholder="Location"
+          placeholder="By Location"
           aria-label="Location"
           value={searchLocation}
           onChange={(e) => setSearchLocation(e.target.value)}
@@ -74,7 +75,7 @@ function ClubSearch(props) {
             value={category}
             onChange={(e) => e.target.value === "Choose a category" ? setCategory("") : setCategory(e.target.value)}
           >
-            <option defaultValue>Choose a category</option>
+            <option defaultValue>By Category</option>
             {categoryList.map((c) => (
               <option className="dropdown-item" key={c} value={c}>
                 {c}

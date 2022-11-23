@@ -1,0 +1,21 @@
+.container-login{
+    background-color: bisque;
+    width: 40%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.login-button, .signup-button{
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.login-button{
+    margin-top: 10px;
+}
+
+.loginInputsFields{
+    width: 70%;
+    margin: auto;
+}

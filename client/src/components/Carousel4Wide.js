@@ -37,7 +37,7 @@ let clubs = props.clubs;
 
   return (
     <div className="Carousel4Wide">
-      <div className="container text-center my-3">
+      <div className="container text-center my-3 carouselContainer">
         <div className="row mx-auto my-auto justify-content-center">
           <div
             id="clubCarousel"
