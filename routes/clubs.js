@@ -29,6 +29,7 @@ function joinToJsonCountAndMembers(result, count, clubMembersResults) {
     next_mtg_postal_code: c.next_mtg_postal_code,
     next_mtg_country: c.next_mtg_country,
     image: c.image,
+    book_poll_info: c.book_poll_info,
     membersCount: count.data[ind] ? count.data[ind].j : 0,
     membersList: grouped[+c.id],
   }));
@@ -63,8 +64,8 @@ function makeWhereFromFilters(query) {
   if (query.next_mtg_city) {
     filters.push(`next_mtg_city LIKE '%${query.next_mtg_city}%'`);
   }
-  if(query.user){
-    filters.push(`user_id = '${query.user}'`)
+  if (query.user) {
+    filters.push(`user_id = '${query.user}'`);
   }
   return filters.join(" AND ");
 }
@@ -138,9 +139,6 @@ router.get("/:id", async function (req, res) {
   }
 });
 
-
-
-
 // add a user to a club
 
 router.post("/:id", ensureUserLoggedIn, async function (req, res) {
@@ -173,9 +171,37 @@ router.post("/:id", ensureUserLoggedIn, async function (req, res) {
   }
 });
 
-// Update the next meeting time and location
+// Update the next meeting time and location OR the book poll options
 router.patch("/:id", async function (req, res) {
-  let sql = `
+  let sql;
+  if (req.body.book1) {
+    sql = `
+      UPDATE clubs
+      SET
+        book_poll_info =
+          '[
+            {"id": 0, "text": "${req.body.book1}", "votes": ${req.body.votes1}, "percentage": 0},
+            {"id": 1, "text": "${req.body.book2}", "votes": ${req.body.votes2}, "percentage": 0},
+            {"id": 2, "text": "${req.body.book3}", "votes": ${req.body.votes3}, "percentage": 0}
+          ]'
+      WHERE
+        id = ${req.params.id};
+    `;
+  } else if (req.body[1]) {
+    sql = `
+      UPDATE clubs
+      SET
+        book_poll_info =
+          '[
+            {"id": 0, "text": "${req.body[0].text}", "votes": ${req.body[0].votes}, "percentage": ${req.body[0].percentage}},
+            {"id": 1, "text": "${req.body[1].text}", "votes": ${req.body[1].votes}, "percentage": ${req.body[1].percentage}},
+            {"id": 2, "text": "${req.body[2].text}", "votes": ${req.body[2].votes}, "percentage": ${req.body[2].percentage}}
+          ]'
+      WHERE
+        id = ${req.params.id};
+    `;
+  } else {
+    sql = `
       UPDATE clubs
       SET
         next_mtg_time = "${req.body.time}",
@@ -185,10 +211,12 @@ router.patch("/:id", async function (req, res) {
         next_mtg_postal_code = "${req.body.postalCode}",
         next_mtg_country = "${req.body.country}"
       WHERE
-        id = ${req.body.club_id};
+        id = ${req.params.id};
     `;
+  }
+
   try {
-    let club = await db(`SELECT * FROM clubs WHERE id = ${req.body.club_id}`);
+    let club = await db(`SELECT * FROM clubs WHERE id = ${req.params.id}`);
     if (club.data.length === 0) {
       res.status(404).send({ error: "Club does not exist." });
     } else {

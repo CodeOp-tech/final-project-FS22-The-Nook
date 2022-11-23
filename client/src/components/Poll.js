@@ -1,35 +1,55 @@
 import { LeafPoll, Result } from "react-leaf-polls";
 import "react-leaf-polls/dist/index.css";
 import React from "react";
-// import { Link } from "react-router-dom";
-
-// Persistent data array (typically fetched from the server)
-const resData = [
-  { id: 0, text: "Answer 1", votes: 0 },
-  { id: 1, text: "Answer 2", votes: 0 },
-  { id: 2, text: "Answer 3", votes: 0 },
-];
-
-// Object keys may vary on the poll type (see the 'Theme options' table below)
-const customTheme = {
-  textColor: "black",
-  mainColor: "#00B87B",
-  backgroundColor: "rgb(255,255,255)",
-  alignment: "center",
-};
-
-function vote(item: Result, results: Result[]) {
-  // Here you probably want to manage
-  // and return the modified data to the server.
-}
+import { useParams } from "react-router-dom";
+import Api from "../helpers/Api";
 
 function Poll(props) {
+  const { id } = useParams();
+  let options = JSON.parse(props.currentClub.book_poll_info);
+  console.log("options", options);
+
+  // Persistent data array (typically fetched from the server)
+  const resData = [
+    { id: 0, text: options[0].text, votes: options[0].votes },
+    { id: 1, text: options[1].text, votes: options[1].votes },
+    { id: 2, text: options[2].text, votes: options[2].votes },
+  ];
+
+  const customTheme = {
+    // textColor: "black",
+    mainColor: "#00B87B",
+    backgroundColor: "rgb(255,255,255)",
+    alignment: "center",
+  };
+
+  async function addVote(results) {
+    let myresponse = await Api.patchClub(results);
+    if (myresponse.ok) {
+      let updatedClubInfo = myresponse.data.find((c) => +c.id === +id);
+      props.setCurrentClub(updatedClubInfo);
+      // navigate(`/clubs/${id}`);
+    }
+  }
+
+  function vote(item, results) {
+    console.log("hi");
+    console.log("item", item);
+    console.log("results", results);
+    console.log("resData", resData);
+    results.club_id = id;
+    addVote(results);
+
+    // Here you probably want to manage
+    // and return the modified data to the server.
+  }
+
   return (
     <div className="container Poll">
       <h2>Vote on our next read!</h2>
       <LeafPoll
         type="multiple"
-        question="What you wanna ask?"
+        question="Which book should we read next?"
         results={resData}
         theme={customTheme}
         onVote={vote}
@@ -38,5 +58,7 @@ function Poll(props) {
     </div>
   );
 }
+
+// Object keys may vary on the poll type (see the 'Theme options' table below)
 
 export default Poll;

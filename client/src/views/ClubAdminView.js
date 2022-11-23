@@ -1,6 +1,8 @@
 import React from "react";
 import AddMeetingForm from "../components/AddMeetingForm";
 
+import PollOptionsForm from "../components/PollOptionsForm";
+
 function ClubAdminView(props) {
   return (
     <div className="ClubAdminView">
@@ -12,6 +14,10 @@ function ClubAdminView(props) {
           postBookAndPatchClubCb={props.postBookAndPatchClubCb}
           clubs={props.clubs}
         />
+      </div>
+      <div>
+        <h2>Set the next books for your club to vote on.</h2>
+        <PollOptionsForm />
       </div>
     </div>
   );

@@ -27,15 +27,13 @@ class Api {
     return await this._doFetch(`/users/${userId}`);
   }
 
-
-   /**
+  /**
    * Get data for user with ID 'userId' and Club filters
    **/
 
-    static async getUserFiltered(url) {
-      return await this._doFetch(`${url}`);
-    }
-
+  static async getUserFiltered(url) {
+    return await this._doFetch(`${url}`);
+  }
 
   /**
    * Delete a user from a club'
@@ -79,23 +77,15 @@ class Api {
   }
 
   //Fetch call for PATCH club.
-  static async patchClub(meetingData) {
-    return await this._doFetch(
-      `/clubs/${meetingData.club_id}`,
-      "PATCH",
-      meetingData
-    );
+  static async patchClub(data) {
+    return await this._doFetch(`/clubs/${data.club_id}`, "PATCH", data);
   }
 
-    //Fetch call for PATCH book.
-    static async patchBook(body, book_id) {
-      console.log(body, book_id)
-      return await this._doFetch(
-        `/books/${book_id}`,
-        "PATCH",
-        body
-      );
-    }
+  //Fetch call for PATCH book.
+  static async patchBook(body, book_id) {
+    console.log(body, book_id);
+    return await this._doFetch(`/books/${book_id}`, "PATCH", body);
+  }
 
   //Fetch call for POST book.
   static async postBook(bookData) {

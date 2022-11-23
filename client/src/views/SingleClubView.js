@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
 import MembersList from "../components/MembersList";
+import Poll from "../components/Poll";
 import Api from "../helpers/Api";
 import "./SingleClubView.css";
 import Local from "../helpers/Local";
@@ -14,7 +15,6 @@ function SingleClubView(props) {
   const [currentClub, setCurrentClub] = useState(
     props.clubs.find((c) => +c.id === +id)
   );
-
 
   useEffect(() => {
     props.fetchClubBooksCb(id);
@@ -59,6 +59,9 @@ function SingleClubView(props) {
   let user = JSON.parse(localStorage.getItem("user"));
   let userMember = currentClub.membersList.some((m) => m.id === user.id);
   let userMemberAdmin = 0;
+
+  let pollInfo = JSON.parse(currentClub.book_poll_info);
+
   if (userMember) {
     userMemberAdmin = currentClub.membersList.find(
       (m) => m.id === user.id
@@ -138,6 +141,12 @@ function SingleClubView(props) {
               currentClub={currentClub}
             />
           </div>
+
+          {pollInfo && userMember ? (
+            <div className="col-12">
+              <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
+            </div>
+          ) : null}
 
           <div className="col-4"></div>
         </div>
