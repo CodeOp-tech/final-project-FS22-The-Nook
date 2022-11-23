@@ -73,9 +73,13 @@ function Carousel4Wide(props) {
                         <img src={c.image} className="img-fluid" alt="" />
                       </div>
                       <div className="card-img-overlay">
-                        <Link to={`/clubs/${c?.id}`} className="clubName">
-                          {c?.name}
-                        </Link>
+                        {props.user ? (
+                          <Link to={`/clubs/${c?.id}`} className="clubName">
+                            {c?.name}
+                          </Link>
+                        ) : (
+                          <h3 className="clubName">{c?.name}</h3>
+                        )}
                       </div>
                     </div>
                   </div>

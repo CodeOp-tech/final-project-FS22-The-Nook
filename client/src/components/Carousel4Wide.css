@@ -58,6 +58,7 @@ img {
 }
 
 .clubName {
+  vertical-align: middle;
   text-align: center;
   display: inline-block;
   margin: 60px auto 0 auto;
