@@ -1,8 +1,5 @@
 @use '../common' as *;
 
-h1, h2{
-  color: $light-green;
-}
 
 img {
   width: 400px;
@@ -10,15 +7,14 @@ img {
   margin-bottom: 50px;
 }
 
-h1 {
-  margin: 20px;
-  padding-top: 20px;
-}
+
+
+
 
 .clubCarousel,
 .topBooks,.buttonArea {
   background-color: $beige;
-  border: 0.5rem solid $dark-green;
+  border: 0.5rem solid $light-brown;
   margin-top: 2rem;
 }
 
@@ -28,7 +24,7 @@ h1 {
 }
 
 .buttonArea {
-  background-color: $beige  ;
+  background-color: $beige;
 }
 
 .btn-responsive {

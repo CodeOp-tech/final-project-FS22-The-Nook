@@ -1,4 +1,26 @@
+.SingleClubView{
+  background-color:bisque;
+  color: black;
+}
 
+.SingleClubView .card-img-overlay{
+  background-color: rgba(255, 228, 196, 0.5);
+width: 70%;
+height: 70%;
+margin: auto;
+
+  
+}
+
+.SingleClubView .card-title{
+  color: black;
+  margin-top: 0px;
+  
+}
+
+.memberList{
+  color: black;
+}
 
 #header-img {
   object-fit: cover;
@@ -10,15 +32,15 @@
   height: auto;
 }
 
-.SingleClubView {
-  color: bisque;
+.card-title{
+  font-size: 16x;
 }
-
 .card-text {
   color: black;
+  font-size: 14px;
 }
 
-.user {
-  color: bisque !important;
+/* .user {
+  color: black !important;
   border-color: bisque !important;
-}
+} */

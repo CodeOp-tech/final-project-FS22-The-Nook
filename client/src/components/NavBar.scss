@@ -2,24 +2,23 @@
  .nav-item, .nav-link {
   display: inline-block;
   list-style: none;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  color: $dark-green;
+  font-family: 'Safira March Personal Use';
+  font-size: 1.3rem;
+  color:rgb(57, 81, 28);
   text-align: right;
   
 } 
 
 .img-responsive{
-  width: 100px;
-  height: 70px;
+  width: 80px;
+  height: 65px;
   margin: auto;
 }
 
 
 .navbar{
   background-color: $beige;
-  border-bottom: 0.2rem solid $dark-green
+  border-bottom: 0.2rem solid $dark-green;
 }
 
 .navbar-toggler{

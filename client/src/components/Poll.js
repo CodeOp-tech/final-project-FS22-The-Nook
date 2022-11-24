@@ -60,8 +60,8 @@ function Poll(props) {
   }
 
   return (
-    <div className="container Poll">
-      <h2>Vote on our next read!</h2>
+    <div className="container border Poll">
+      
       <LeafPoll
         type="multiple"
         question="Which book should we read next?"

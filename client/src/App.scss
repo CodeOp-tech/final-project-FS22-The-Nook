@@ -6,23 +6,8 @@
     padding: 0;
 }
 
-body {
-    background-color: rgba(255, 0, 0, .2);
-
-    @include tablet {
-        background-color: rgba(0, 255, 0, .2);
-    }
-
-    @include desktop {
-        background-color: rgba(0, 0, 255, .2);
-    }
-    
-  
-}
-
 body{
   content:"";
-  position:fixed;
   top:0;
   left:0;
   right:0;
@@ -34,17 +19,27 @@ body{
   background-size:200px 170px;
 }
 
-
 .App {
     text-align: center;
     margin: 0 ;
     width: 100%;
-    // background-image: url("../public/Transparent.png");
-    // // background-image: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
-    // background-repeat: repeat;
-    // background-size: contain;
     padding-bottom: 1rem;
+  }
 
+
+  h1, h2, h3, h4, h5, h6, .btn, a{
+    color: $light-green;
+    font-family: 'Safira March Personal Use';
+
+  }
+
+  p, span, input, textarea, label{
+    font-family:'Montserrat';
+  }
+
+  h1 {
+    margin: 20px;
+    padding-top: 20px;
   }
   
   .App-logo {

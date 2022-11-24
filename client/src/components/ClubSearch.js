@@ -52,7 +52,7 @@ function ClubSearch(props) {
             name="category"
             aria-label="Choose category"
             value={category}
-            onChange={(e) => e.target.value === "Choose a category" ? setCategory("") : setCategory(e.target.value)}
+            onChange={(e) => e.target.value === "By Category" ? setCategory("") : setCategory(e.target.value)}
           >
             <option defaultValue>By Category</option>
             {categoryList.map((c) => (

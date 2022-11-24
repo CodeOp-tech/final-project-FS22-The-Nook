@@ -3,17 +3,13 @@ import { Link } from "react-router-dom";
 
 function MembersList(props) {
   return (
-    <div className="container MembersList">
+    <div className="container border MembersList">
       <div className="row">
-        <div className="col">
+        <div className="col-md-10">
           {props.currentClub.membersList.map((m) => (
-            <Link
-              to={`/users/${m.id}`}
-              className="btn btn-outline-light mx-2 btn-sm user"
-              key={m.id}
-            >
+            <div className="btn btn-dark btn-rounded disabled mt-3" key={m.id}>
               <h4>{m.username}</h4>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

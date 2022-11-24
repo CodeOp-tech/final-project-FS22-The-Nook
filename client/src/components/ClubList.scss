@@ -1,0 +1,43 @@
+.clubList{
+    .info-bg {
+        background-color: white;
+        opacity: 0.8;
+        /* text-align: left; */
+        /* padding-left: 10px; */
+    }
+
+    .card:hover .info-bg {
+        opacity: 1;
+        background-color: white;
+        color: black;
+    }
+
+    .category-text, .card-title{
+        text-transform: capitalize;
+    }
+
+    .card-img-top {
+        height: 12rem;
+        width: 12rem;
+        object-fit:cover;
+        margin: auto;
+        
+    }
+
+
+    .info-button{
+        width: 6.5rem;
+        height: 2rem;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+
+    .moreinfo-button{
+        width: 6.5rem;
+        height: 3.5rem;
+        font-size: 1.2rem;
+        text-align: center;
+        
+    }
+}

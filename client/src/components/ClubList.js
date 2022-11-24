@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./ClubList.css";
+import "./ClubList.scss";
 
 function ClubList(props) {
   const navigate = useNavigate();
 
-
   return (
-    <div className="container mt-5 mt-md-0">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+    <div className="clubList container mt-5 mt-md-0">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
         {props.clubs.map((c) => (
-          <div class="col">
-            <div class="card h-100">
-              <img src={c.image} class="card-img-top" alt={c.name} />
-              <div class="card-body">
-                <h5 class="card-title">{c.name}</h5>
-                <p class="card-text">
-                  <b>Genre:</b> {c.category}
+          <div className="col">
+            <div className="card h-100">
+              <img src={c.image} className="card-img-top" alt={c.name} />
+              <div className="card-body">
+                <h5 className="card-title">{c.name}</h5>
+                <p className="card-text">
+                  <b>Genre:</b> <span className="category-text">{c.category}</span>
                   <br></br>
                   <b>Location:</b> {c.next_mtg_city}, {c.next_mtg_country}
                   <br></br>
@@ -24,15 +23,17 @@ function ClubList(props) {
                 </p>
                 <div>
                   {props.user ? (
-                    <Link to={`./${c.id}`}><button
-                      className="btn btn-outline-dark btn-sm info-button mt-auto"
-                      type="button"
-                    >
-                      More Info
-                    </button></Link>
+                    <Link to={`./${c.id}`}>
+                      <button
+                        className="btn btn-outline-dark btn-sm info-button mt-auto"
+                        type="button"
+                      >
+                        More Info
+                      </button>
+                    </Link>
                   ) : (
                     <button
-                      className="btn btn-outline-dark btn-sm info-button mt-auto"
+                      className="btn btn-outline-dark btn-sm moreinfo-button mt-auto py-0 "
                       type="button"
                       onClick={(e) => navigate(`/login`)}
                     >

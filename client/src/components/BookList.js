@@ -39,7 +39,7 @@ function BookList(props) {
 
                       {
                         props.user ?
-                        <Link to={`./${b.book_id}`}><button type="button" >More info</button></Link>
+                        <Link to={`/books/all/${b.book_id}`}><button type="button" >More info</button></Link>
                           :
                           <Link to="/login"><button>More info</button></Link>
                       }
@@ -53,12 +53,15 @@ function BookList(props) {
                       } */}
                        
                        </div>
+
                    </div>
                  )})
               }
 
 
-          </div>     
+          </div>    
+
+
         </div>
     );
 }
