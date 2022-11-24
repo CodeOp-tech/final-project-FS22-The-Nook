@@ -28,7 +28,7 @@ function ClubList(props) {
                 <div>
                   {props.user ? (
                     <button
-                      className="btn btn-outline-dark btn-sm info-button mt-auto"
+                      className="btn btn-outline-dark btn-sm info-button mt-auto py-0 "
                       type="button"
                       onClick={(e) => redirect(c.id)}
                     >
@@ -36,7 +36,7 @@ function ClubList(props) {
                     </button>
                   ) : (
                     <button
-                      className="btn btn-outline-dark btn-sm info-button mt-auto"
+                      className="btn btn-outline-dark btn-sm moreinfo-button mt-auto py-0 "
                       type="button"
                       onClick={(e) => navigate(`/login`)}
                     >

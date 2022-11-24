@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import CountryList from "./DropdownCountries.js";
+import './AddMeetingForm.css'
+
 
 function AddMeetingForm(props) {
   const { id } = useParams();
@@ -62,23 +64,14 @@ function AddMeetingForm(props) {
   }
 
   return (
+    
     <div className="AddMeetingForm">
-      <form className=" w-100 mx-0" onSubmit={handleSubmit}>
+      <div className="addMeetingContainer">
+      <form className=" w-100 mx-0 meetingForm" onSubmit={handleSubmit}>
+      <div className="mb-3">
         <div className="row">
-          <div className="col mb-6">
-            <label htmlFor="title" className="form-label">
-              Book Title
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="titleInput"
-              name="title"
-              value={nextBookFormData.title}
-              onChange={(e) => handleNewBookChange(e)}
-            />
-          </div>
-          <div className="col mb-2">
+         
+          <div className="col-6 mb-2 mt-2">
             <label htmlFor="title" className="form-label">
               Meeting Date
             </label>
@@ -91,8 +84,8 @@ function AddMeetingForm(props) {
               onChange={(e) => handleNewBookChange(e)}
             />
           </div>
-
-          <div className="col mb-2">
+          
+          <div className="col-6 mb-2 mt-2">
             <label htmlFor="title" className="form-label">
               Meeting Time
             </label>
@@ -103,6 +96,24 @@ function AddMeetingForm(props) {
               name="time"
               type="time"
               onChange={(e) => handleNewMeetingChange(e)}
+            />
+          </div>
+          
+          </div>
+
+          
+
+          <div className="col mb-6">
+            <label htmlFor="title" className="form-label">
+              Book Title
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="titleInput"
+              name="title"
+              value={nextBookFormData.title}
+              onChange={(e) => handleNewBookChange(e)}
             />
           </div>
         </div>
@@ -139,7 +150,7 @@ function AddMeetingForm(props) {
         </div>
 
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-4">
             <label htmlFor="inputCity" className="form-label">
               City
             </label>
@@ -153,7 +164,7 @@ function AddMeetingForm(props) {
             />
           </div>
 
-          <div className="col-md-2">
+          <div className="col-md-3">
             <label htmlFor="inputZip" className="form-label">
               Postal Code
             </label>
@@ -190,10 +201,11 @@ function AddMeetingForm(props) {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary mt-3 btn-sm">
+        <button type="submit" className="btn btn-outline-dark mt-3 btn-sm py-0">
           Add New Meeting
         </button>
       </form>
+    </div>
     </div>
   );
 }

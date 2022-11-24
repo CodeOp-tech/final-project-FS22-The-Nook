@@ -19,8 +19,11 @@
     font-size: 18px;
   }
 
- .ContactView h3{
+ 
+ .ContactView h3, h1{
     text-align: center;
+    font-family: "Safira March Personal Use";
+    font-size: 2rem;
  }
 
   .contactOptions{

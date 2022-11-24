@@ -1,0 +1,17 @@
+.NextMeetingInfo{
+    color: black;
+}
+
+.NextMeetingInfo h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+   
+}
+
+.meetingText{
+    text-align: left;
+}
+
+#book-cover-img{
+    border-radius: 10px;
+}

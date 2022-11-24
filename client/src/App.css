@@ -20,3 +20,8 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+
+h3, h5{
+  font-family: 'Times New Roman', Times, serif;
+}
