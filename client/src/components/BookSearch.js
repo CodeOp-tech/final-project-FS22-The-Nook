@@ -11,7 +11,7 @@ function BookSearch(props) {
         }, [searchInput, searchAuthor])
 
         function changeUrl(){
-            navigate(`/books/?title=${searchInput}&author=${searchAuthor}`)
+            navigate(`/books/all/?title=${searchInput}&author=${searchAuthor}`)
             props.getBooks() 
           }
 
