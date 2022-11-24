@@ -133,6 +133,45 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+router.post("/:user_id", async function (req, res, next) {
+  let { user_id } = req.params;
+  let title = req.body.title.replaceAll(" ", "+");
+  let {rating, comment, date_read, favorite} = req.body;
+  let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
+
+  try {
+    let response = await fetch(url);
+    if (response.ok) {
+      let results = await response.json();
+
+      let book = results.items.filter((e) => e.volumeInfo.language === "en");
+      let bookObj = {
+        author: book[0].volumeInfo.authors[0],
+        title: book[0].volumeInfo.title,
+        image: book[0].volumeInfo.imageLinks.thumbnail,
+      };
+
+      let idResult = await db(`INSERT INTO books (title, author, image)
+    VALUES ("${bookObj.title}", "${bookObj.author}", "${bookObj.image}"); SELECT LAST_INSERT_ID();`);
+
+     await db(`INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
+    VALUES (${user_id}, ${idResult.data[0].insertId}, ${rating}, '${comment}', '${date_read}', ${favorite});`); // add book when function called
+
+    //then get one user 
+  
+      let booksResults = await db(`${booksSql} WHERE users.id = ${user_id}`);
+        let clubsResults = await db( `${clubsSql} WHERE users.id = ${user_id}`);
+      
+        res.send(joinToJson(booksResults, clubsResults));
+    }
+
+
+      // server error
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
+})
+
 router.patch("/:id", async function (req, res) {
   let bookId = Number(req.params.id);
   let {rating, date_read, favorite, comment, user_id} = req.body;
