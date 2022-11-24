@@ -42,9 +42,9 @@ function ProfileView(props) {
         <div className="UserInfo">
           <h2>Personal Info</h2>
 
-          <ul class="list-group">
-            <li class="list-group-item">Username: {user.username}</li>
-            <li class="list-group-item">Email: {user.email}</li>
+          <ul className="list-group">
+            <li className="list-group-item">Username: {user.username}</li>
+            <li className="list-group-item">Email: {user.email}</li>
           </ul>
         </div>
 
