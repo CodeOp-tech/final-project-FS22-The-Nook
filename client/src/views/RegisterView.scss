@@ -1,0 +1,54 @@
+@use '../common' as *;
+
+.SignUp{
+
+    background-color: bisque;
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    padding: 1rem 0;
+
+    @include tablet{
+        width: 70%;
+    }
+    
+    @include desktop{
+        width: 40%;
+    }
+    
+    .register-button{
+        font-size: 0.9rem;
+        margin: 2rem 1rem 0 1rem;
+    }
+    
+    .login-button{
+      
+    }
+    
+    .loginInputsFields{
+        width: 70%;
+        margin: auto;
+    }
+    label, p{
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+    p{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    }
+    
+
+
+
+.register-button{
+  
+}
+
+
+
+.registerInputsFields{
+    width: 70%;
+    margin: auto;
+}

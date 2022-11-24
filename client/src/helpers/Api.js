@@ -46,6 +46,14 @@ class Api {
   }
 
   /**
+   * Get all books sorted in descending order by average rating
+   **/
+
+  static async getTopBooks() {
+    return await this._doFetch(`/books/topbooks`);
+  }
+
+  /**
    * Get all books from books table associated with club with ID 'club_id'
    **/
 
@@ -90,6 +98,11 @@ class Api {
   //Fetch call for POST book.
   static async postBook(bookData) {
     return await this._doFetch("/books", "POST", bookData);
+  }
+
+  //Fetch call for POST book for one user.
+  static async postBookUser(bookData, user_id) {
+    return await this._doFetch(`/books/${user_id}`, "POST", bookData);
   }
 
   /**

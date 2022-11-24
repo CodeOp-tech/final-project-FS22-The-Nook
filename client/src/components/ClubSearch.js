@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import categoryList from "./DropdownCategoryList.js";
+import "./ClubSearch.scss"
 
 function ClubSearch(props) {
   const navigate = useNavigate();
@@ -43,28 +44,6 @@ function ClubSearch(props) {
           value={searchLocation}
           onChange={(e) => setSearchLocation(e.target.value)}
         />
-
-        {/* <div className="mt-3">
-          <label htmlFor="floatingSelect">Choose a category</label>
-          <select
-            className="form-select"
-            id="floatingSelect"
-            aria-label="Choose category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option className="" defaultValue>
-              Choose a category
-            </option>
-            <option data-tokens="1">biography</option>
-            <option data-tokens="2">casual</option>
-            <option data-tokens="3">childrens literature</option>
-            <option data-tokens="4">classics</option>
-            <option data-tokens="5">historical fiction</option>
-            <option data-tokens="6">sci-fi</option>
-            <option data-tokens="7">travel</option>
-          </select>
-        </div> */}
 
         <div className="mb-3 dropdown">
           <select
