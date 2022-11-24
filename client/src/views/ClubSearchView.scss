@@ -3,4 +3,15 @@
 
 .ClubSearchView{
     background-color: $beige;
+    border: 0.5rem solid $light-brown;
+    margin-top: 2rem;
+
+    .row{
+        margin: 0 2rem;
+        @include desktop{
+            margin: 0 1rem;
+        }
+    }
+
+    
 }

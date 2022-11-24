@@ -7,7 +7,7 @@ function ClubList(props) {
 
   return (
     <div className="clubList container mt-5 mt-md-0">
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <div className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
         {props.clubs.map((c) => (
           <div className="col">
             <div className="card h-100">

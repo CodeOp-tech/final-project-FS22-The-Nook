@@ -2,7 +2,9 @@
 
 .SignUp{
 
-    background-color: $dark-green;
+    background-color: $beige;
+    border: 0.5rem solid $light-brown;
+
     width: 90%;
     margin: auto;
     margin-top: 2rem;
@@ -16,13 +18,27 @@
         width: 40%;
     }
     
-    .register-button{
-        font-size: 0.9rem;
+    .btn{
+        font-size: 1rem;
         margin: 2rem 1rem 0 1rem;
     }
     
-    .login-button{
-      
+    .signup-button{
+        margin-bottom:1rem;
+        margin-top: 0.2rem;
+    }
+
+    h2{
+        color: $dark-green;
+        font-size: 1.7rem;
+        font-weight: bold
+    }
+
+    p{
+        padding-top: 1.5rem;
+        color: $dark-green;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
     
     .loginInputsFields{
@@ -33,22 +49,17 @@
         font-size: 1.1rem;
         margin-top: 1rem;
     }
-    p{
-        margin-left: 1rem;
-        margin-right: 1rem;
+    .registerInputsFields{
+        width: 70%;
+        margin: auto;
     }
+
     }
     
 
 
 
-.register-button{
-  
-}
 
 
 
-.registerInputsFields{
-    width: 70%;
-    margin: auto;
-}
+

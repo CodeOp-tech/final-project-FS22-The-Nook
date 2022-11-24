@@ -2,13 +2,37 @@
 
 .homePage{
 
+  h1{
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .join-button{
+    width: 30%;
+    @include desktop{
+      width:20%
+    }
+  }
+
 .buttonArea{
 img {
   width: 70%;
   height: 70%;
   margin-bottom: 3rem;
 
+  @include tablet{
+    width: 50%;
+    height: 50%;
+    }
+
+  @include desktop{
+  width: 30%;
+  height: 30%;
+  }
+  
+
 }
+
 
 h2{
   color: $dark-green;
@@ -19,10 +43,7 @@ h2{
 
 }
 
-h1{
-  font-weight: bold;
-  font-size: 2rem;
-}
+
 }
 
 .clubCarousel,
@@ -32,20 +53,10 @@ h1{
   margin-top: 2rem;
 }
 
-.btn {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
 
 .buttonArea {
   background-color: $beige;
 }
 
-.btn-responsive {
-  width: 150px;
-  height: 40px;
-  font-size: 20px;
-  color: rgb(57, 81, 68);
-  border-color: rgb(57, 81, 68);
-}
+
 }

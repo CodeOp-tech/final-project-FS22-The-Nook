@@ -1,6 +1,7 @@
 @use '../common' as *;
 
 .Carousel4Wide{
+    
     display: none;
 
     @include desktop {
@@ -118,6 +119,10 @@
 #carouselSmall{
     @include desktop{
         display: none;
+    }
+
+    @include tablet{
+        width: 80%
     }
 
     .carousel-text{

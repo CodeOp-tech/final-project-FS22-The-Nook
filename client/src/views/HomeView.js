@@ -35,7 +35,7 @@ function HomeView(props) {
             </h2>
             <a
               type="button"
-              className="btn btn-responsive btn-outline-dark"
+              className="join-button btn btn-responsive btn-outline-dark"
               href="/register"
             >
               Join The Nook!
