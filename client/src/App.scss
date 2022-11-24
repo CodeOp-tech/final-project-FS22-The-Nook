@@ -16,15 +16,33 @@ body {
     @include desktop {
         background-color: rgba(0, 0, 255, .2);
     }
+    
+  
 }
+
+body{
+  content:"";
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: 
+   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 64 64' width='64' height='64'><path d='M0 48 L0 64 L32 16 L64 64 L64 48 L32 0 Z' fill='rgb(4, 48, 4)' /></svg>") 0 100px,
+   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 64 64' width='64' height='64'><path d='M0 48 L0 64 L32 16 L64 64 L64 48 L32 0 Z' fill='rgb(4, 48, 4)' /></svg>") 0 50px
+   rgb(2, 41, 4);
+  background-size:200px 170px;
+}
+
 
 .App {
     text-align: center;
     margin: 0 ;
     width: 100%;
-    background-image: url("https://i.pinimg.com/originals/9b/ed/e2/9bede21da7861bdad0a7191e571bda68.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    // background-image: url("../public/Transparent.png");
+    // // background-image: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
+    // background-repeat: repeat;
+    // background-size: contain;
     padding-bottom: 1rem;
 
   }

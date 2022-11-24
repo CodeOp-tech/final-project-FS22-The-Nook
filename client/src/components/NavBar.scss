@@ -1,10 +1,11 @@
+@use '../common' as *;
  .nav-item, .nav-link {
   display: inline-block;
   list-style: none;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
   font-size: 16px;
-  color:rgb(57, 81, 28);
+  color: $dark-green;
   text-align: right;
   
 } 
@@ -15,8 +16,10 @@
   margin: auto;
 }
 
+
 .navbar{
-  background-color: bisque;
+  background-color: $beige;
+  border-bottom: 0.2rem solid $dark-green
 }
 
 .navbar-toggler{
@@ -26,6 +29,5 @@
 
 .navbar-toggler-icon{
   color: rgb(57, 81, 68);
- 
 }
 

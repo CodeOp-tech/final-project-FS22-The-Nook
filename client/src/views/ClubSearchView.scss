@@ -1,3 +1,6 @@
+@use '../common' as *;
+
+
 .ClubSearchView{
-    background-color: bisque;
+    background-color: $dark-green;
 }
