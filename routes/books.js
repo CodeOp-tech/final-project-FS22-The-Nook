@@ -79,6 +79,7 @@ router.get("/topbooks", async function (req, res) {
         ON users_books.book_id = books.id
         GROUP BY book_id
         ORDER BY avg_rating DESC
+        LIMIT 4
         `;
 
   try {

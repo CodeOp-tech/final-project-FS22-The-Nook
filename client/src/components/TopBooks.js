@@ -15,7 +15,7 @@ function TopBooks(props) {
   async function fetchBooksByRating() {
     let myresponse = await Api.getTopBooks();
     if (myresponse.ok) {
-      let topFour = myresponse.data.data.slice(0, 4);
+      let topFour = myresponse.data.data;
       setTopBooks(topFour);
       setErrorMsg("");
     } else {
@@ -25,6 +25,7 @@ function TopBooks(props) {
     }
   }
 
+  const topFour = topBooks;
   return (
     <div className="bookContainer">
       <div className="row row-cols-4">
