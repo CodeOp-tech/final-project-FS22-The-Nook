@@ -1,11 +1,32 @@
+@use '../common' as *;
+
 .Login{
+
     
 .container-login{
-    background-color: bisque;
-    width: 40%;
+    background-color: $beige;
+    border: 0.5rem solid $light-brown;
+    width: 80%;
     margin: auto;
     margin-top: 2rem;
     padding: 1rem 0;
+
+    @include tablet {
+        width: 60%
+    }
+    @include desktop{
+        width: 40%
+    }
+}
+
+h2{
+    color: $dark-green;
+    font-size: 1.7rem;
+    font-weight: bold
+}
+
+p{
+    color: $dark-green;
 }
 
 

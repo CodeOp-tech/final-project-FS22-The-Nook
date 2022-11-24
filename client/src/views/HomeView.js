@@ -12,7 +12,7 @@ function HomeView(props) {
             <h1>Welcome to the Nook!</h1>
             <img src="TheNookLogo.png" alt="The Nook logo" />
             <h2>
-              For avid readers who want to connet with fellow bookworms, The
+              For avid readers who want to connect with fellow bookworms, The
               Nook is a community hub that makes it easier to create, manage,
               and join a book club.
             </h2>
@@ -35,7 +35,7 @@ function HomeView(props) {
             </h2>
             <a
               type="button"
-              className="btn btn-responsive btn-outline-dark"
+              className="join-button btn btn-responsive btn-outline-dark"
               href="/register"
             >
               Join The Nook!

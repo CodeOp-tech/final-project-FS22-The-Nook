@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import "./ClubList.css";
+import "./ClubList.scss";
 
 function ClubList(props) {
   const navigate = useNavigate();
 
   return (
-    <div className="container mt-5 mt-md-0">
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+    <div className="clubList container mt-5 mt-md-0">
+      <div className="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
         {props.clubs.map((c) => (
           <div className="col">
             <div className="card h-100">
@@ -15,7 +15,7 @@ function ClubList(props) {
               <div className="card-body">
                 <h5 className="card-title">{c.name}</h5>
                 <p className="card-text">
-                  <b>Genre:</b> {c.category}
+                  <b>Genre:</b> <span className="category-text">{c.category}</span>
                   <br></br>
                   <b>Location:</b> {c.next_mtg_city}, {c.next_mtg_country}
                   <br></br>

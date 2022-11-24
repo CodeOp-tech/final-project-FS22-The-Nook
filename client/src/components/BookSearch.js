@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./BookSearch.scss"
 
 function BookSearch(props) {
     const navigate = useNavigate();
@@ -17,7 +18,8 @@ function BookSearch(props) {
 
    
     return (
-        <div className="pt-4">
+        <div className="BookSearch pt-4">
+            <h3>Search Book</h3>
              <form role="search">
                 <input
                     className="form-control"

@@ -2,14 +2,27 @@
 
 
 .contactContainer{
+
+  
     width: 80%;
     background-color: bisque;
     margin: auto;
     margin: 5rem auto;
+    border: 0.5rem solid $light-brown;
 
     .form-check-input:checked {
       border-color: rgb(57, 81, 28);
       background-color: rgb(57, 81, 28);
+    }
+    h2{
+      color: $dark-green;
+      font-size: 2.2rem;
+      font-weight: bold;
+      padding-top: 2rem;
+    }
+    h3{
+      font-size: 1.7rem;
+      padding-top: 1rem;
     }
   
     .sendButton{

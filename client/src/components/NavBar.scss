@@ -1,8 +1,9 @@
+@use '../common' as *;
  .nav-item, .nav-link {
   display: inline-block;
   list-style: none;
   font-family: 'Safira March Personal Use';
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   color:rgb(57, 81, 28);
   text-align: right;
   
@@ -14,8 +15,10 @@
   margin: auto;
 }
 
+
 .navbar{
-  background-color: bisque;
+  background-color: $beige;
+  border-bottom: 0.2rem solid $dark-green;
 }
 
 .navbar-toggler{
@@ -25,6 +28,5 @@
 
 .navbar-toggler-icon{
   color: rgb(57, 81, 68);
- 
 }
 

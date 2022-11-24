@@ -1,0 +1,26 @@
+@use "../common" as *;
+
+.CreateClubContainer{
+    text-align: center;
+   margin-top: 1.5rem;
+
+   .create-button{
+    font-size: 18px;
+    margin: auto;
+    text-align: center;
+    font-family: 'Safira March';
+}
+
+    h3{
+        font-weight: bold;
+        font-size: 1.7rem;
+    }
+
+    label{
+        font-size: 1.2rem;
+        color: $dark-green;
+    }
+
+}
+
+

@@ -6,40 +6,79 @@
   padding: 0;
 }
 
-body {
-  background-color: rgba(255, 0, 0, 0.2);
-
-  @include tablet {
-    background-color: rgba(0, 255, 0, 0.2);
-  }
-
-  @include desktop {
-    background-color: rgba(0, 0, 255, 0.2);
-  }
+body{
+  content:"";
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: 
+   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 64 64' width='64' height='64'><path d='M0 48 L0 64 L32 16 L64 64 L64 48 L32 0 Z' fill='rgb(4, 48, 4)' /></svg>") 0 100px,
+   url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 64 64' width='64' height='64'><path d='M0 48 L0 64 L32 16 L64 64 L64 48 L32 0 Z' fill='rgb(4, 48, 4)' /></svg>") 0 50px
+   rgb(2, 41, 4);
+  background-size:200px 170px;
 }
 
 .App {
-  text-align: center;
-  margin: 0;
-  width: 100%;
-  background-image: url("https://i.pinimg.com/originals/9b/ed/e2/9bede21da7861bdad0a7191e571bda68.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-bottom: 1rem;
-}
+    text-align: center;
+    margin: 0 ;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  h1, h2, h3, h4, h5, h6, .btn, a{
+    color: $light-green;
+    font-family: 'Safira March Personal Use';
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  }
+
+  p, span, input, textarea, label{
+    font-family:'Montserrat';
+  }
+
+  img {
+    width: 400px;
+    height: 300px;
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  
+  .buttonArea {
+    background-color: bisque;
+  }
+  
+  .btn-responsive {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    color: rgb(57, 81, 68);
+    border-color: rgb(57, 81, 68);
+  }
+
+  h1 {
+    margin: 20px;
+    padding-top: 20px;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  

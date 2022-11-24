@@ -39,7 +39,7 @@ function ContactView() {
 
   return (
     <div className="container contactContainer">
-      <h1>Contact Us</h1>
+      <h2>Contact Us</h2>
 
       <div className="row">
         <div className="col-md contactUs">
@@ -187,9 +187,9 @@ function ContactView() {
                 </div>
               </div>
 
-              <div className="col-10">
+              <div className="col-12">
                 <button
-                  className="btn btn-outline-dark sendButton py-0"
+                  className=" btn btn-outline-dark sendButton py-0"
                   type="submit"
                 >
                   Send

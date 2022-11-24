@@ -61,10 +61,10 @@ function Carousel4Wide(props) {
                         <div className="card-img-overlay">
                           {props.user ? (
                             <Link to={`/clubs/${c?.id}`} className="clubName">
-                              {c?.name}
+                              <span className="clubs">{c?.name}</span>
                             </Link>
                           ) : (
-                            <h3 className="clubName">{c?.name}</h3>
+                            <h3 className="clubs">{c?.name}</h3>
                           )}
                         </div>
                       </div>
@@ -106,7 +106,7 @@ function Carousel4Wide(props) {
               <img src={c.image} className="d-block w-100 container" alt="" />
               <div className="carousel-caption d-md-block">
                 <p className="carousel-text">
-                  <Link to={`/clubs/${c?.id}`}>{c?.name}</Link>
+                  <Link className="clubs" to={`/clubs/${c?.id}`}>{c?.name}</Link>
                 </p>
               </div>
             </div>
