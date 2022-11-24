@@ -24,17 +24,21 @@ function BookList(props) {
                        <p><b>Author: </b>{b.book_author}</p>
                 
                      
-
-                       { b.clubsThatRead.length >= 1 ?
+                      { b.clubsThatRead.length >= 1 ?
                        <div>
                         <p><b>Clubs: </b></p>
                         {
-                          b.clubsThatRead.map(c => { 
-                          return <Link className="text-decoration-none" to={`/clubs/${c.club_id}`} ><p>{c.name}</p></Link>
-                          })}
+                          b.clubsThatRead.map(c => { return (
+                            props.user   ?
+                             <Link className="text-decoration-none" to={`/clubs/${c.club_id}`} ><p>{c.name}</p></Link>
+                            :
+                             <Link className="text-decoration-none" to="/login" ><p>{c.name}</p></Link>
+                          )} )
+                        }
                         </div>
                         : null
                       }
+             
 
                       {
                         props.user ?
