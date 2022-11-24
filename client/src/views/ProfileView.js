@@ -93,7 +93,13 @@ function ProfileView(props) {
                         edit={false}
                         color2={"#ffd700"}
                       />
-                      <h5 className="card-title">{b.title}</h5>
+                      <br></br>
+                      <div className="card-title">
+                        <Link to={`/books/all/${b.book_id}`} key={b.book_id}>
+                          <h5>{b.title}</h5>
+                        </Link>
+                      </div>
+
                       <h6 className="card-text">By {b.author}</h6>
                       <p>
                         Read on:{" "}
@@ -136,7 +142,7 @@ function ProfileView(props) {
                     />
 
                     <div className="card-title">
-                      <Link to={`/books/all/${b.book_id}`} key={b.id}>
+                      <Link to={`/books/all/${b.book_id}`} key={b.book_id}>
                         <h5>{b.title}</h5>
                       </Link>
                     </div>
