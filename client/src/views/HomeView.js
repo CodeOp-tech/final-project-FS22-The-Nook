@@ -52,7 +52,7 @@ function HomeView(props) {
         <a
           type="button"
           className="btn btn-responsive btn-outline-dark"
-          href="/books"
+          href="/books/all"
         >
           See All Books
         </a>
