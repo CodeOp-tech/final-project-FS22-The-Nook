@@ -1,0 +1,53 @@
+@use '../common' as *;
+
+
+.contactContainer{
+    width: 80%;
+    background-color: bisque;
+    margin: auto;
+    margin: 5rem auto;
+
+    .form-check-input:checked {
+      border-color: rgb(57, 81, 28);
+      background-color: rgb(57, 81, 28);
+    }
+  
+    .sendButton{
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+  
+   .ContactView h3{
+      text-align: center;
+   }
+  
+    .contactOptions{
+      font-size: 1rem;
+      margin-top: 3rem;
+    }
+  
+   .messageUs{
+    margin-top: 2rem;
+    @include tablet {
+      margin-top: 0;
+    }
+    @include desktop{
+      margin-top: 0;
+    }
+    
+   } 
+  
+   .contact-label{
+    margin-top: 0rem;
+   }
+  
+   #exampleFormControlTextarea1{
+    margin-bottom: 0.5rem;
+   }
+}
+
+
+
+
+
+  

@@ -1,0 +1,75 @@
+@use '../common' as *;
+
+.bookContainer{
+  padding-top: 2rem;
+
+  .row{
+    display: inline;
+    padding: 0 auto;
+    margin: 0 auto;
+
+    @include desktop{
+      display: flex;
+      width: 95%;
+      marding-right: 2rem;
+      gap: 2%;
+    }
+  }
+  .col{
+    margin: 0 auto;
+    padding: 0 !important;
+    @include desktop{ 
+      width: 20%
+
+    }
+    }
+    
+    .card {
+        display: inline-flex;
+        padding: 0 auto;
+        
+      }
+    
+      .card-img-top {
+        padding-top: 1rem;
+        object-fit: contain;
+        width: 90%;
+        height: 70%;
+        margin: 0 auto 1rem auto;
+        @include desktop {
+          width: 100%;
+        }
+      }
+    
+      .bookCard{
+        height: 80%;
+        width: 50%;
+        margin-left: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 3rem;
+        margin-bottom: 5rem;
+
+
+        @include tablet{
+          padding: 0rem;
+          margin-right: 2rem;
+          width: 100%;
+          height: 80%;
+        }
+        
+      }
+      .card-title, .card-body{
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      h2, .card-title{
+        font-family:'Courier New', Courier, monospace;
+
+        @include desktop {
+          font-size: 1rem;
+        }
+      }
+      
+
+}

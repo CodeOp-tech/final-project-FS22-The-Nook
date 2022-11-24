@@ -1,0 +1,16 @@
+@use '../common' as *;
+
+.ClubSearch{
+    .search-input{
+        margin: 10px;
+    }
+    
+    .search-button{
+        width: 80px;
+        height: 40px;
+        font-size: 18px;
+        margin: auto;
+        text-align: center;
+    }
+
+}

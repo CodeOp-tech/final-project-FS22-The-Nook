@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './RegisterView.css'
+import './RegisterView.scss'
 
 
 
@@ -28,7 +28,7 @@ function RegisterView(props){
 
     return(
         <div>
-            <div className="container container-register">
+            <div className="SignUp container container-register">
             <h2>Sign up</h2>   
                 <form class="mb-3" onSubmit={e=> handleSubmit(e)}>
                     <div class="col-auto">

@@ -1,0 +1,33 @@
+.Login{
+    
+.container-login{
+    background-color: bisque;
+    width: 40%;
+    margin: auto;
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+
+.login-button, .signup-button{
+    font-size: 1rem;
+}
+
+.login-button{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.loginInputsFields{
+    width: 70%;
+    margin: auto;
+}
+label, p{
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+p{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+}

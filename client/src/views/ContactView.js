@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import "./ContactView.css";
-import { send } from 'emailjs-com';
+import "./ContactView.scss";
+// import { send } from 'emailjs-com';
 
 let EMPTY_CONTACT_FORM = {
   firstname:" ",
@@ -51,7 +51,7 @@ function ContactView() {
       <h1>Contact Us</h1>
 
       <div class="row">
-        <div class="col contactUs">
+        <div class="col-md contactUs">
           <h3>Where to find us:</h3>
 
           <div className="contactOptions">
@@ -97,10 +97,11 @@ function ContactView() {
           </div>
         </div>
 
-        <div class="col messageUs ">
-          <h3>Send us a message:</h3>
-          <form className="row-g3" onSubmit={handleContactSubmit}>
-            <div className="col-md-10">
+        <div class="col-lg messageUs ">
+          <div className="row-g3"> 
+          <h3 className="col-lg-10">Send us a message:</h3>
+          <form  onSubmit={handleContactSubmit}>
+            <div className="col-lg-10">
               <label
                 htmlFor="validationFirstName"
                 className="form-label contact-label"
@@ -117,7 +118,7 @@ function ContactView() {
                 required
               />
             </div>
-            <div className="col-md-10">
+            <div className="col-lg-10">
               <label
                 htmlFor="validationLastName"
                 className="form-label contact-label"
@@ -160,7 +161,7 @@ function ContactView() {
               
             </div>
 
-            <div className="col-md-10">
+            <div className="col-lg-10">
               <label
                 html="exampleFormControlTextarea1"
                 className="form-label contact-label"
@@ -202,7 +203,7 @@ function ContactView() {
             </div>
 
 
-            <div className="col-12">
+            <div className="col-10">
               <button
                 className="btn btn-outline-dark sendButton py-0"
                 type="submit"
@@ -211,6 +212,7 @@ function ContactView() {
               </button>
             </div>
           </form>
+          </div>
         </div>
       </div>
     </div>

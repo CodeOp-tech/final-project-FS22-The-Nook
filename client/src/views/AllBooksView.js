@@ -3,11 +3,15 @@ import { useSearchParams } from "react-router-dom";
 import BookSearch from "../components/BookSearch";
 import BookList from "../components/BookList";
 
-function AllBooksView() {
+
+function AllBooksView(props) {
+
     const [searchParams] = useSearchParams({});
     const title = searchParams.get("title") || "";
     const author = searchParams.get("author") || "";
-    const [books, setBooks] = useState([]);
+    const [allBooks, setAllBooks] = useState([]);
+
+  
 
     useEffect(() => {
         getBooks();
@@ -18,30 +22,18 @@ function AllBooksView() {
     }, [title, author]); 
 
 
-    // search function 
     async function getBooks() {
         const query = new URLSearchParams({
             title: title,
             author: author,
         }).toString();
         try {
-         
-            if (title !== "" || author !== "") {
-                let response = await fetch("/books/?" + query);
-                if (response.ok) {
-                    let books = await response.json();
-                    setBooks(books)
-                } else {
-                    console.log(`Server error: ${response.status} ${response.StatusText}`);
-                }
-            } else if (title === "" && author === "") {
-                let response = await fetch("/books");
-                if (response.ok) {
-                    let books = await response.json();
-                    setBooks(books)
-                } else {
-                    console.log(`Server error: ${response.status} ${response.StatusText}`);
-                }
+            let response = await fetch("/books/all/?" + query);
+            if (response.ok) {
+                let allBooks = await response.json();
+                setAllBooks(allBooks)
+            } else {
+                console.log(`Server error: ${response.status} ${response.statusText}`);
             }
 
         } catch (err) {
@@ -58,10 +50,9 @@ return (
         </div>
 
         <div className="col-md-9">
-           <BookList books={books} />
+           <BookList allBooks={allBooks} user={props.user} />
         </div>
 
-        
       </div>
     </div>
 

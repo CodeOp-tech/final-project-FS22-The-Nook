@@ -11,9 +11,24 @@ function Poll(props) {
 
   // Persistent data array (typically fetched from the server)
   const resData = [
-    { id: 0, text: options[0].text, votes: options[0].votes },
-    { id: 1, text: options[1].text, votes: options[1].votes },
-    { id: 2, text: options[2].text, votes: options[2].votes },
+    {
+      id: 0,
+      text: options[0].text,
+      votes: options[0].votes,
+      percentage: options[0].percentage,
+    },
+    {
+      id: 1,
+      text: options[1].text,
+      votes: options[1].votes,
+      percentage: options[1].percentage,
+    },
+    {
+      id: 2,
+      text: options[2].text,
+      votes: options[2].votes,
+      percentage: options[2].percentage,
+    },
   ];
 
   const customTheme = {

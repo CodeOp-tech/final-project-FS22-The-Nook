@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from "react";
 import { Link, useSearchParams } from 'react-router-dom';
-
 import ReactStars from 'react-stars';
 import Api from "../helpers/Api";
 import "./EditProfileView.css";
@@ -8,6 +7,7 @@ import { DateTime } from "luxon";
 import EditCommentModal from '../components/EditCommentModal'
 import ClubSearchProfile from '../components/ClubSearchProfile'
 import BookSearchProfile from '../components/BookSearchProfile'
+import AddBookForm from "../components/AddBookForm"
 
 
 
@@ -52,6 +52,14 @@ async function getClubs() {
         setShownClubs(response.data.clubs)}
 };
 
+const postBookForUser = async (bookData) => {
+    let responseBook = await Api.postBookUser(bookData, user.id);
+    if (responseBook.ok) {
+      props.setUser(responseBook.data)
+      setShownBooks(responseBook.data.books)}
+    }
+  
+
 // book search function 
 async function getBooks() {
     const query = new URLSearchParams({
@@ -64,6 +72,7 @@ async function getBooks() {
     let response = await Api.getUserFiltered(url);
 
     if(response.data) {
+        props.setUser(response.data)
         setShownBooks(response.data.books)}
 };
 
@@ -148,6 +157,12 @@ return(
         <br/>
         
         <h2 className="title">Edit Your Bookshelf</h2>
+                            <br/>
+                            <div>
+                            <button data-bs-toggle="modal" data-bs-target="#bookModal"> Add a New Book</button>
+                            </div>
+
+            <AddBookForm id="bookModal" user={user} postBookForUser={(bookData) => postBookForUser(bookData)}/>
             <BookSearchProfile user={user} getBooks={e=> getBooks()}/>
 
                 {shownBooks &&shownBooks.map((b) => (
