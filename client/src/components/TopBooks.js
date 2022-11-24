@@ -32,7 +32,7 @@ function TopBooks(props) {
 
   return (
     <div className="bookContainer">
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
         {books.map((b) => (
           <div className="col" key={b.book_id} >
             <div className="card bookCard">
