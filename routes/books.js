@@ -72,6 +72,9 @@ function joinToJsonBooksClubsUsers(bookSqlResults, clubSqlResults, userSqlResult
   if (query.author) {
     filters.push(`author LIKE '%${query.author}%'`);
   }
+  if (query.book_id) {
+    filters.push(`books.id = ${query.book_id}`);
+  }
   return filters.join(" AND ");
   }
 
@@ -99,6 +102,12 @@ router.get("/all", async function (req, res) {
   if (where) {
     bookSql = `SELECT * FROM books WHERE ${where}`;
   } 
+
+ 
+  // if (req.query.books_id) {
+  //   // let bookId = Number(req.params.id)
+  //   bookSql=`SELECT * FROM books WHERE books.id = ${books_id}`;
+  // }
 
   
   try {
