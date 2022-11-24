@@ -6,17 +6,17 @@
     padding: 0;
 }
 
-// body {
-//     background-color: rgba(255, 0, 0, .2);
+body {
+    background-color: rgba(255, 0, 0, .2);
 
-//     @include tablet {
-//         background-color: rgba(0, 255, 0, .2);
-//     }
+    @include tablet {
+        background-color: rgba(0, 255, 0, .2);
+    }
 
-//     @include desktop {
-//         background-color: rgba(0, 0, 255, .2);
-//     }
-// }
+    @include desktop {
+        background-color: rgba(0, 0, 255, .2);
+    }
+}
 
 .App {
     text-align: center;

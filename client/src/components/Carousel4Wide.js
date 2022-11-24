@@ -54,37 +54,34 @@ function Carousel4Wide(props) {
   // if (featuredClubs) {
   return (
     <>
-      <div className="Carousel4Wide">
-        <div className="container text-center my-3 carouselContainer">
-          <div className="row mx-auto my-auto justify-content-center">
-            <div
-              id="clubCarousel"
-              className=" carouselWide carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div className="carousel-inner" role="listbox">
-                {clubs.map((c, ix) => (
-                  <div
-                    key={c.id}
-                    className={`carouselWide-item carousel-item ${
-                      ix === 0 ? "active" : null
-                    }`}
-                  >
-                    <div className="col-md-3">
-                      <div className="card carouselCard d-flex flex-column align-items-center">
-                        <div className="card-img">
-                          <img src={c.image} className="img-fluid" alt="" />
-                        </div>
-                        <div className="card-img-overlay">
-                          {props.user ? (
-                            <Link to={`/clubs/${c?.id}`} className="clubName">
-                              {c?.name}
-                            </Link>
-                          ) : (
-                            <h3 className="clubName">{c?.name}</h3>
-                          )}
-                        </div>
+    <div className="Carousel4Wide">
+      <div className="container text-center my-3 carouselContainer">
+        <div className="row mx-auto my-auto justify-content-center">
+          <div
+            id="clubCarousel"
+            className=" carouselWide carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="4000"
+          >
+            <div className="carousel-inner" role="listbox">
+              {clubs.map((c, ix) => (
+                <div
+                  key={c.id}
+                  className={`carouselWide-item carousel-item ${ix === 0 ? "active" : null}`}>
+                  <div className="col-md-4">
+                    <div className="card carouselCard d-flex flex-column align-items-center">
+                      <div className="card-img">
+                        <img src={c.image} className="img-fluid" alt="" />
                       </div>
+                      <div className="card-img-overlay">
+                        {props.user ? (
+                          <Link to={`/clubs/${c?.id}`} className="clubName">
+                            {c?.name}
+                          </Link>
+                        ) : (
+                          <h3 className="clubName">{c?.name}</h3>
+                        )}
+                    </div>
                     </div>
                   </div>
                 ))}

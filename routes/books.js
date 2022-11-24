@@ -6,35 +6,60 @@ require("dotenv").config();
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const { joinToJson, clubsSql, booksSql } = require("./commonfunctions");
+var _ = require("lodash");
+const { response } = require("express");
 
-function joinToJsonBooksClubsUsers(results) {
-  let booksread = {};
+// get books for a particular club
 
-  results.data.map((c) =>
-    booksread[c.title]
-      ? (booksread[c.title] += `, ${c.name}`)
-      : (booksread[c.title] = c.name)
+router.get("/", async function (req, res) {
+  let sql = `
+    SELECT * from books
+  `;
+
+  if (req.query.club_id) {
+    sql = `SELECT books.*, books_clubs.*
+      FROM books
+      LEFT JOIN books_clubs ON books.id = books_clubs.book_id
+      WHERE books_clubs.club_id=${req.query.club_id}
+      ORDER BY date DESC`;
+  }
+
+  try {
+    let results = await db(sql);
+
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
+// get all books and search function
+
+function joinToJsonBooksClubsUsers(
+  bookSqlResults,
+  clubSqlResults,
+  userSqlResults
+) {
+  const groupedClubs = _.groupBy(
+    clubSqlResults.data,
+    (groupedClubs) => groupedClubs.book_id
   );
 
-  let reallyFinal = [];
+  const groupedUsers = _.groupBy(
+    userSqlResults.data,
+    (groupedUsers) => groupedUsers.book_id
+  );
 
-  let finalResult = results.data.map((b) => ({
-    book_id: b.book_id,
-    title: b.title,
-    author: b.author,
-    image: b.image,
-    clubs: booksread[b.title],
+  let book = bookSqlResults.data.map((b) => ({
+    book_id: b.id,
+    book_title: b.title,
+    book_author: b.author,
+    book_img: b.image,
+    clubsThatRead: groupedClubs[b.id] ? groupedClubs[b.id] : [],
+    usersThatRead: groupedUsers[b.id] ? groupedUsers[b.id] : [],
   }));
 
-  reallyFinal = finalResult.filter((e, ind) => {
-    if (ind < finalResult.length - 1) {
-      return e.title !== finalResult[ind + 1].title ? e : null;
-    } else {
-      return e;
-    }
-  });
-
-  return reallyFinal;
+  return book;
 }
 
 function makeWhereFromFilters(query) {
@@ -90,40 +115,36 @@ router.get("/topbooks", async function (req, res) {
   }
 });
 
-/**
- * Get all books or all books by club or do search
- **/
-router.get("/", async function (req, res) {
-  let sql = `
-    SELECT books.*, books.id AS book_id, books_clubs.club_id AS bc_cid, clubs.id AS c_id, clubs.name, books_clubs.book_id AS bc_bid
-    FROM books
-    LEFT JOIN books_clubs ON books.id = books_clubs.book_id
+router.get("/all", async function (req, res) {
+  let bookSql = `
+    SELECT * FROM books
+  `;
+
+  let clubSql = `
+    SELECT books_clubs.book_id, books_clubs.club_id, books_clubs.date, clubs.name
+    FROM books_clubs
     LEFT JOIN clubs ON clubs.id = books_clubs.club_id
+  `;
+
+  let userSql = `
+      SELECT users.id, users.username, users_books.book_id, users_books.rating, users_books.comment, users_books.date_read, users_books.favorite
+      FROM users
+      LEFT JOIN users_books ON users_books.user_id = users.id
   `;
 
   let where = makeWhereFromFilters(req.query);
 
-  if (Object.keys(req.query)[0] === "title") {
-    sql += ` WHERE ${where}`;
-  }
-
-  if (req.query.club_id) {
-    sql = `SELECT books.*, books_clubs.*
-      FROM books
-      LEFT JOIN books_clubs ON books.id = books_clubs.book_id
-      WHERE books_clubs.club_id=${req.query.club_id}
-      ORDER BY date DESC`;
+  if (where) {
+    bookSql = `SELECT * FROM books WHERE ${where}`;
   }
 
   try {
-    let results = await db(sql);
-    if (Object.keys(req.query)[0] === "title") {
-      res.send(joinToJsonBooksClubsUsers(results));
-    } else if (req.query.club_id) {
-      res.send(results.data);
-    } else {
-      res.send(joinToJsonBooksClubsUsers(results));
-    }
+    let bookSqlResults = await db(bookSql);
+    let clubSqlResults = await db(clubSql);
+    let userSqlResults = await db(userSql);
+    res.send(
+      joinToJsonBooksClubsUsers(bookSqlResults, clubSqlResults, userSqlResults)
+    );
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
@@ -163,6 +184,44 @@ router.post("/", async function (req, res, next) {
     }
   } catch (err) {
     res.status(500).send({ error: err.message });
+  }
+});
+
+router.post("/:user_id", async function (req, res, next) {
+  let { user_id } = req.params;
+  let title = req.body.title.replaceAll(" ", "+");
+  let { rating, comment, date_read, favorite } = req.body;
+  let url = `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_BOOKS_API_KEY}`;
+
+  try {
+    let response = await fetch(url);
+    if (response.ok) {
+      let results = await response.json();
+
+      let book = results.items.filter((e) => e.volumeInfo.language === "en");
+      let bookObj = {
+        author: book[0].volumeInfo.authors[0],
+        title: book[0].volumeInfo.title,
+        image: book[0].volumeInfo.imageLinks.thumbnail,
+      };
+
+      let idResult = await db(`INSERT INTO books (title, author, image)
+    VALUES ("${bookObj.title}", "${bookObj.author}", "${bookObj.image}"); SELECT LAST_INSERT_ID();`);
+
+      await db(`INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
+    VALUES (${user_id}, ${idResult.data[0].insertId}, ${rating}, '${comment}', '${date_read}', ${favorite});`); // add book when function called
+
+      //then get one user
+
+      let booksResults = await db(`${booksSql} WHERE users.id = ${user_id}`);
+      let clubsResults = await db(`${clubsSql} WHERE users.id = ${user_id}`);
+
+      res.send(joinToJson(booksResults, clubsResults));
+    }
+
+    // server error
+  } catch (err) {
+    res.status(500).send(err.message);
   }
 });
 

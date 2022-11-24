@@ -18,6 +18,7 @@ import RegisterView from "./views/RegisterView";
 import ClubSearchView from "./views/ClubSearchView";
 import SingleClubView from "./views/SingleClubView";
 import ContactView from "./views/ContactView";
+import SingleBookView from "./views/SingleBookView";
 
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
@@ -34,6 +35,7 @@ function App() {
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
 
   useEffect(() => {
     getUserInfo();
@@ -93,6 +95,8 @@ function App() {
     }
   };
 
+ 
+
   async function addBookPollOptions(pollFormData) {
     let myresponse = await Api.patchClub(pollFormData);
     if (myresponse.ok) {
@@ -148,17 +152,20 @@ function App() {
       });
   }
 
+
   return (
     <div className="App">
+     
       <NavBar user={user} logoutCb={doLogout} />{" "}
       <div className="container">
+     
         <Routes>
           <Route
             path="/"
             element={<HomeView clubs={clubs} getClubs={getClubs} user={user} />}
           />
 
-          <Route path="/books" element={<AllBooksView />} />
+          <Route path="/books/all" element={<AllBooksView user={user}  />} />
 
           <Route
             path="/login"
@@ -228,6 +235,15 @@ function App() {
                 user={user}
                 setUser={(user) => setUser(user)}
                 getClubs={getClubs}
+              />
+            }
+          />
+
+          <Route
+            path="/books/all/:id"
+            element={
+              <SingleBookView
+                  user={user}
               />
             }
           />

@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import ClubList from "../components/ClubList";
 import ClubSearch from "../components/ClubSearch";
 import CreateClub from "../components/CreateClub";
-import "./ClubSearchView.css";
+import "./ClubSearchView.scss";
 import Local from "../helpers/Local";
 import Api from "../helpers/Api";
 

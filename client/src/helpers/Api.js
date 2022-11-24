@@ -100,6 +100,11 @@ class Api {
     return await this._doFetch("/books", "POST", bookData);
   }
 
+  //Fetch call for POST book for one user.
+  static async postBookUser(bookData, user_id) {
+    return await this._doFetch(`/books/${user_id}`, "POST", bookData);
+  }
+
   /**
    * General purpose GET (for URLs like /members-only)
    **/

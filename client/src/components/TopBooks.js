@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./TopBooks.css";
+import "./TopBooks.scss";
 import { Link } from "react-router-dom";
 import Api from "../helpers/Api";
 
