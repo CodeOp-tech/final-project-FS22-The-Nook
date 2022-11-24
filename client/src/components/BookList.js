@@ -8,9 +8,10 @@ function BookList(props) {
     return (
         <div className="container">  
           <div className="row justify-content-center">
+    
   
              {   
-                 props.books.map(b => {return (
+                 props.allBooks.map(b => {return (
                    <div className="col-md-5 col-lg-3  book-card rounded m-3" key={b.book_id}>
                       <div>
                         <img
@@ -23,22 +24,33 @@ function BookList(props) {
                        <p><b>Title: </b>{b.book_title}</p>
                        <p><b>Author: </b>{b.book_author}</p>
                 
-                       <p><b>ClubNames: </b></p>
+                     
 
                        { b.clubsThatRead.length >= 1 ?
-                        b.clubsThatRead.map(c => { 
-                        return <Link to={`/clubs/${c.club_id}`} ><p>{c.name}</p></Link>
-                        })
+                       <div>
+                        <p><b>Clubs: </b></p>
+                        {
+                          b.clubsThatRead.map(c => { 
+                          return <Link className="text-decoration-none" to={`/clubs/${c.club_id}`} ><p>{c.name}</p></Link>
+                          })}
+                        </div>
                         : null
                       }
 
-                      <p><b>Users: </b></p>
+                      {
+                        props.user ?
+                        <Link to={`./${b.book_id}`}><button type="button" >More info</button></Link>
+                          :
+                          <Link to="/login"><button>More info</button></Link>
+                      }
+
+                      {/* <p><b>Users: </b></p>
                       { b.usersThatRead.length >= 1 ?
                         b.usersThatRead.map(u => { 
                         return <p>{u.username}</p>
                         })
                         : null
-                      }
+                      } */}
                        
                        </div>
                    </div>

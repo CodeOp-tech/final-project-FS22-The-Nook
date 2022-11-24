@@ -3,19 +3,22 @@ import { useSearchParams } from "react-router-dom";
 import BookSearch from "../components/BookSearch";
 import BookList from "../components/BookList";
 
+
 function AllBooksView(props) {
     const [searchParams] = useSearchParams({});
     const title = searchParams.get("title") || "";
     const author = searchParams.get("author") || "";
-    const [books, setBooks] = useState([]);
+    const [allBooks, setAllBooks] = useState([]);
+
+  
 
     useEffect(() => {
         getBooks();
     }, []); 
     
-    // useEffect(() => {
-    //     getBooks();
-    // }, [title, author]); 
+    useEffect(() => {
+        getBooks();
+    }, [title, author]); 
 
 
     async function getBooks() {
@@ -26,8 +29,8 @@ function AllBooksView(props) {
         try {
             let response = await fetch("/books/all/?" + query);
             if (response.ok) {
-                let books = await response.json();
-                setBooks(books)
+                let allBooks = await response.json();
+                setAllBooks(allBooks)
             } else {
                 console.log(`Server error: ${response.status} ${response.statusText}`);
             }
@@ -46,10 +49,9 @@ return (
         </div>
 
         <div className="col-md-9">
-           <BookList books={books} user={props.userInfo}/>
+           <BookList allBooks={allBooks} user={props.user} />
         </div>
 
-        
       </div>
     </div>
 
