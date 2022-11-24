@@ -25,7 +25,6 @@ function TopBooks(props) {
     }
   }
 
-  const topFour = topBooks;
   return (
     <div className="bookContainer">
       <div className="row row-cols-4">
