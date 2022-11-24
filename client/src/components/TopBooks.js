@@ -27,9 +27,10 @@ function TopBooks(props) {
 
   return (
     <div className="bookContainer">
-      <div className="row row-cols-4">
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
         {topBooks.map((b) => (
-          <div className="col" key={b.book_id}>
+          <div className="col" key={b.book_id} >
+
             <div className="card bookCard">
               <img src={b.image} className="card-img-top" alt="book 1" />
               <div className="card-body">

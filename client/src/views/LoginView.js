@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './LoginView.css'
+import './LoginView.scss'
 
 
 function LoginView(props) {
@@ -27,9 +27,9 @@ function LoginView(props) {
     }
 
     return (
-        <div>
+        <div className="Login">
             <div className="container container-login">
-                <h2>Login</h2>
+                <h2 className="title">Login</h2>
                 
                 {
                     props.loginError && (

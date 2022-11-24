@@ -56,6 +56,7 @@ function joinToJson(booksResult, clubsResult) {
       clubs = [];
     }
   }
+}
 
   let user = {
     id: row0.user_id,

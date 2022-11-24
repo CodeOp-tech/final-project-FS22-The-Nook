@@ -71,6 +71,9 @@ function makeWhereFromFilters(query) {
   if (query.author) {
     filters.push(`author LIKE '%${query.author}%'`);
   }
+  if (query.book_id) {
+    filters.push(`books.id = ${query.book_id}`);
+  }
   return filters.join(" AND ");
 }
 
