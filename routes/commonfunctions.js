@@ -17,27 +17,27 @@ let clubMembersListSql = `
 
 function joinToJson(booksResult, clubsResult) {
   let row0 = {};
-  booksResult.data.length ? row0 = booksResult.data[0] :row0 = clubsResult.data[0] ;
+  booksResult.data.length
+    ? (row0 = booksResult.data[0])
+    : (row0 = clubsResult.data[0]);
 
   let books = [];
-  if(booksResult.data.length){
-  books = booksResult.data.map((b) => ({
-    book_id: b.book_id,
-    title: b.title,
-    author: b.author,
-    rating: b.rating,
-    date_read: b.date_read,
-    favorite: b.favorite,
-    comment: b.comment,
-    image: b.image,
-  }));
+  if (booksResult.data.length) {
+    books = booksResult.data.map((b) => ({
+      book_id: b.book_id,
+      title: b.title,
+      author: b.author,
+      rating: b.rating,
+      date_read: b.date_read,
+      favorite: b.favorite,
+      comment: b.comment,
+      image: b.image,
+    }));
 
-  if(!books[0].book_id) {
-    books = []
+    if (!books[0].book_id) {
+      books = [];
+    }
   }
-}
-
-
 
   let clubs = [];
   if(clubsResult.data.length){
@@ -56,9 +56,6 @@ function joinToJson(booksResult, clubsResult) {
     clubs = []
   }
 }
-
-  
-
 
   let user = {
     id: row0.user_id,

@@ -46,6 +46,14 @@ class Api {
   }
 
   /**
+   * Get all books sorted in descending order by average rating
+   **/
+
+  static async getTopBooks() {
+    return await this._doFetch(`/books/topbooks`);
+  }
+
+  /**
    * Get all books from books table associated with club with ID 'club_id'
    **/
 
