@@ -25,7 +25,6 @@ function ProfileView(props) {
   if (!user) {
     return <h2>Loading...</h2>;
   }
-  console.log("user", user);
 
   return (
     <div className="ProfileView">
@@ -136,7 +135,11 @@ function ProfileView(props) {
                       color2={"#ffd700"}
                     />
 
-                    <h5 className="card-title">{b.title}</h5>
+                    <div className="card-title">
+                      <Link to={`/books/all/${b.book_id}`} key={b.id}>
+                        <h5>{b.title}</h5>
+                      </Link>
+                    </div>
 
                     <h6 className="card-text">By {b.author}</h6>
 
