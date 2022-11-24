@@ -45,6 +45,7 @@ function joinToJson(booksResult, clubsResult) {
       name: c.name,
       category: c.category,
       id: c.id,
+      image: c.image,
       // next_mtg_time: c.next_mtg_time,
       // next_mtg_location_name: c.next_mtg_location_name,
       // next_mtg_address: c.next_mtg_address,

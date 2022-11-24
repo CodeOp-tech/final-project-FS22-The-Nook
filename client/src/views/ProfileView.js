@@ -14,6 +14,8 @@ function ProfileView(props) {
 
   let user = props.user;
 
+  console.log("user", user);
+
   function handleClick() {
     navigate(`/users/${userId}/edit`);
   }
@@ -52,19 +54,17 @@ function ProfileView(props) {
           <h2>Your Book Clubs</h2>
 
           {user.clubs.map((c) => (
-            <div key={c.name} className="d-inline-flex">
-              <div key={c.category} className="card me-3 clubCards">
-                <div>
-                  <div className="card-body">
-                    <Link
-                      to={`/clubs/${c.id}`}
-                      className="card-title"
-                      key={c.id}
-                    >
-                      <h4>{c.name}</h4>
-                    </Link>
-                  </div>
-                </div>
+            <div className="card text-bg-dark d-inline-flex" key={c.id}>
+              <img
+                src={c.image}
+                id="header-img"
+                className="card-img mb-0"
+                alt={c.name}
+              />
+              <div className="card-img-overlay ">
+                <Link to={`/clubs/${c.id}`} className="card-title" key={c.id}>
+                  <h4>{c.name}</h4>
+                </Link>
               </div>
             </div>
           ))}
