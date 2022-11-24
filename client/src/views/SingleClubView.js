@@ -4,7 +4,6 @@ import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
 import MembersList from "../components/MembersList";
 import Poll from "../components/Poll";
-import Api from "../helpers/Api";
 import "./SingleClubView.css";
 import Local from "../helpers/Local";
 
