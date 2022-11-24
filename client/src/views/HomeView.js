@@ -23,8 +23,31 @@ function HomeView(props) {
         </a>
       </div>
 
+     
+       
+    
+
+      <div className="buttonArea">
+      
+        {props.user ? (
+          <div className="buttonAreaFind">
+            <h1>Looking for more communities?</h1>
+            <a type="button" className="btn btn-responsive btn-outline-dark" href="/clubs">
+              All Clubs
+            </a>
+          </div>
+        ) : (
+          <div className="buttonAreaJoin ">
+            <h1> Want to find a book club?</h1>
+            <a type="button" className="btn btn-responsive btn-outline-dark" href="/register">
+              Join!
+            </a>
+          </div>
+        )}
+      </div>
+
       <div className="topBooks">
-        <h1>Top Books</h1>
+        <h1>Our Members Are Loving</h1>
         <TopBooks />
         <a
           type="button"
@@ -35,23 +58,7 @@ function HomeView(props) {
         </a>
       </div>
 
-      <div className="buttonArea">
-        {props.user ? (
-          <div className="buttonAreaFind">
-            <h1>Find more book clubs</h1>
-            <a type="button" className="btn btn-light" href="/clubs">
-              All Clubs
-            </a>
-          </div>
-        ) : (
-          <div className="buttonAreaJoin">
-            <h1> Want to find a book club?</h1>
-            <a type="button" className="btn btn-light" href="/register">
-              Join!
-            </a>
-          </div>
-        )}
-      </div>
+      
     </div>
   );
 }

@@ -77,6 +77,37 @@ function clubsFilters(query) {
   }
 });
 
+/**
+ * Add Book For One User.
+ **/
+ router.post("/:user_id", async function (req, res) {
+  let { user_id } = req.params;
+  let { book_id, rating, comment, date_read, favorite } = req.body;
+  // sql command line for inserting book 
+  let sql = `INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
+    VALUES (${user_id}, ${book_id}, ${rating}, '${comment}', '${date_read}', ${favorite}); SELECT LAST_INSERT_ID();`;
+  // adding new book
+  try {
+    let results = await db(sql); // add book when function called
+
+    //then get one user 
+    let whereC = clubsFilters(req.query);
+    let whereB = bookFilters(req.query);
+    let cSql = "";
+    let bSql = "";
+      
+      whereC ? cSql = `${clubsSql} WHERE ${whereC} AND users.id = ${user_id}` : cSql = `${clubsSql} WHERE users.id = ${user_id}`;
+      whereB ? bSql = `${booksSql} WHERE ${whereB} AND users.id = ${user_id}` : bSql = `${booksSql} WHERE users.id = ${user_id}`;
+  
+      let booksResults = await db(bSql);
+        let clubsResults = await db(cSql);
+      
+        res.send(joinToJson(booksResults, clubsResults));
+    // server error
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
 
 
 
