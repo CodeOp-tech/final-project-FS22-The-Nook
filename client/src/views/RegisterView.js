@@ -67,7 +67,12 @@ function RegisterView(props){
                        
                     </div>
                     <button type="submit" className="btn btn-outline-dark btn-sm register-button" >Create Account</button>
+            
                 </form>
+
+                <p>Already have an account? </p>
+                        
+                    <a type="button" className="btn btn-outline-dark btn-sm signup-button" href="/login" >Log In</a>
         </div>
         </div>
     )

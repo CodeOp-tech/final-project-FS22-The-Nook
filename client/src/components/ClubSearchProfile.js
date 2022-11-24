@@ -32,7 +32,7 @@ function ClubSearchProfile(props) {
     <div className="ClubSearch pt-2">
       <form role="search">
         <input
-          className="form-control"
+          className="form-control-sm"
           type="search"
           placeholder="Search for a club"
           aria-label="Search"
@@ -41,7 +41,7 @@ function ClubSearchProfile(props) {
         />
 
         <input
-          className="form-control"
+          className="form-control-sm"
           type="search"
           placeholder="Location"
           aria-label="Location"
@@ -73,7 +73,7 @@ function ClubSearchProfile(props) {
 
         <div className="mb-3 dropdown">
           <select
-            className="form-select"
+            className="form-select-sm"
             id="floatingSelect"
             name="category"
             aria-label="Choose category"
