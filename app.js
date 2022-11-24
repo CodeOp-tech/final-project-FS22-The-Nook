@@ -1,5 +1,5 @@
 const cors = require("cors");
-var createError = require('http-errors');
+var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -11,7 +11,6 @@ var authRouter = require("./routes/auth");
 var booksRouter = require("./routes/books");
 var clubsRouter = require("./routes/clubs");
 var usersClubs = require("./routes/users_clubs");
-
 
 var app = express();
 app.use(cors());
@@ -28,7 +27,6 @@ app.use("/books", booksRouter);
 app.use("/clubs", clubsRouter);
 app.use(authRouter);
 app.use(usersClubs);
-
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

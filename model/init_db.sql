@@ -105,8 +105,17 @@ INSERT INTO books (title, author, image)
 
 INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     VALUES (1, 1, 3, "A bit boring", "2022-10-11", 0),
-    (1, 2, 3, "Aaaa", "2022-10-11", 1),
-    (2, 2, 5, "One of my favorites!", "2022-11-10", 1);
+    (1, 2, 3, "Average, not the best, not the worst", "2022-10-11", 1),
+    (2, 2, 5, "One of my favorites!", "2022-11-10", 1),
+    (3, 3, 5, "Amazing read!", "2022-10-11", 1),
+    (2, 10, 4, "It took me on quite the adventure!", "2022-10-11", 1),
+    (2, 3, 3, "It was just okay, a little weird and silly", "2022-10-11", 0),
+    (7, 10, 5, "I learned so much about life in the restaurant business.", "2022-10-11", 1),
+    (6, 2, 2, "It was too slow for me.", "2022-10-11", 0),
+    (6, 4, 5, "Fascinating", "2022-10-11", 1),
+    (4, 3, 3, "So-so", "2022-10-11", 0),
+    (8, 1, 3, "It was tough to read but rewarding.", "2022-10-11", 0),
+    (3, 1, 2, "Not my favorite", "2022-10-11", 0);
 
 INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_mtg_address, next_mtg_city, next_mtg_country, next_mtg_postal_code, image)
     VALUES ("International classics", "classics", "19:00:00", "Olive or Twist", "925 NW 11th Ave", "Portland", "United States", "97209", "https://static01.nyt.com/images/2022/01/16/fashion/VIRAL-LIBRARY/VIRAL-LIBRARY-articleLarge.jpg?quality=75&auto=webp&disable=upscale"),
