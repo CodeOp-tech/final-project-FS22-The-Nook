@@ -74,25 +74,6 @@ function makeWhereFromFilters(query) {
   return filters.join(" AND ");
 }
 
-/**
- * Get average ratings for each book and return the top 4.
- **/
-// function joinToJsonRatingAndBookInfo(ratingsResults, bookInfoResults) {
-//   let completeResult = [];
-
-//   completeResult = ratingsResults.data.map((b, ind) => ({
-//      let matchedBook = bookInfoResults.data.find((b) => b.id === id);
-//     id: b.id,
-//     rating: b.rating,
-//     title: matchedBook.title,
-
-//     image: bookInfoResults[ind] ? bookInfoResults[ind].image : null,
-//     author: bookInfoResults[ind] ? bookInfoResults[ind].author : null,
-//   }));
-
-//   return completeResult;
-// }
-
 router.get("/topbooks", async function (req, res) {
   let ratingsSql = `
         SELECT
