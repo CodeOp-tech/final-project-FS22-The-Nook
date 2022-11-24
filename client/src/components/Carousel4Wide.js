@@ -36,7 +36,6 @@ function Carousel4Wide(props) {
     // }
     // console.log("selecteditems", selectedItems);
 
-
     items.forEach((el) => {
       const minPerSlide = 4;
       let next = el.nextElementSibling;
@@ -62,13 +61,14 @@ function Carousel4Wide(props) {
             id="clubCarousel"
             className=" carouselWide carousel slide"
             data-bs-ride="carousel"
+            data-bs-interval="4000"
           >
             <div className="carousel-inner" role="listbox">
               {clubs.map((c, ix) => (
                 <div
                   key={c.id}
                   className={`carouselWide-item carousel-item ${ix === 0 ? "active" : null}`}>
-                  <div className="col-md-3">
+                  <div className="col-md-4">
                     <div className="card carouselCard d-flex flex-column align-items-center">
                       <div className="card-img">
                         <img src={c.image} className="img-fluid" alt="" />
