@@ -24,18 +24,26 @@ function TopBooks(props) {
       setErrorMsg(msg);
     }
   }
+  let user = JSON.parse(localStorage.getItem("user"));
 
-  const topFour = topBooks;
   return (
     <div className="bookContainer">
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
         {topBooks.map((b) => (
-          <div className="col" key={b.book_id} >
-
+          <div className="col" key={b.book_id}>
             <div className="card bookCard">
               <img src={b.image} className="card-img-top" alt="book 1" />
               <div className="card-body">
-                <div className="card-title">{b.title}</div>
+                <div className="card-title">
+                  {user ? (
+                    <Link to={`/books/all/${b.id}`} key={b.id}>
+                      <h5>{b.title}</h5>
+                    </Link>
+                  ) : (
+                    <h5 className="card-title">by {b.title}</h5>
+                  )}
+                </div>
+
                 <h5 className="card-title">by {b.author}</h5>
               </div>
             </div>

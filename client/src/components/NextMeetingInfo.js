@@ -1,13 +1,14 @@
 import React from "react";
+import "./NextMeetingInfo.css";
 
 function NextMeetingInfo(props) {
-
   return (
     <div className="NextMeetingInfo">
-      <div className="container border ms-0">
-        <h2 className="mt-3">Next Meeting</h2>
-        <div className="row my-0">
-          <div className="col w-25 mb-3 p-0 my-auto">
+      <h2 className="mt2">Next Meeting</h2>
+
+      <div className="card mb-3" style={{ maxWidth: "550px" }}>
+        <div className="row g-0">
+          <div className="col-md-4">
             {props.clubBooks.length ? (
               <>
                 <img
@@ -16,31 +17,43 @@ function NextMeetingInfo(props) {
                   className="my-3 ms-2"
                   id="book-cover-img"
                 />
-                <h5>{props.clubBooks[props.clubBooks.length - 1].title}</h5>
-                <h6>{props.clubBooks[props.clubBooks.length - 1].author}</h6>
+                <p className="card-text">
+                  <small className="text-muted">
+                    <h5>{props.clubBooks[props.clubBooks.length - 1].title}</h5>
+                    <h6>
+                      {props.clubBooks[props.clubBooks.length - 1].author}
+                    </h6>
+                  </small>
+                </p>
               </>
             ) : (
-              <img src={props.currentClub.image} />
+              <img src={props.currentClub.image} className="my-3 ms-2" />
             )}
           </div>
-          <div className="col w-75 mb-6 my-auto">
+          <div className="col-md-8 my-auto">
             {props.currentClub && props.clubBooks.length ? (
-              <div>
-                <h3>
-                  Date:{" "}
-                  {props.clubBooks[props.clubBooks.length - 1].date.slice(
-                    0,
-                    10
-                  )}
-                </h3>
-                <h3>Time: {props.currentClub.next_mtg_time.slice(0, 5)}</h3>
-                <h3>Location: {props.currentClub.next_mtg_location_name}</h3>
-                <h4>
-                  Address: {props.currentClub.next_mtg_address},{" "}
-                  {props.currentClub.next_mtg_city},{" "}
-                  {props.currentClub.next_mtg_postal_code},{" "}
-                  {props.currentClub.next_mtg_country}
-                </h4>
+              <div className="card-body ms-3 ">
+                <div className="card-text meetingText">
+                  <h5>
+                    <b>Date:</b>{" "}
+                    {props.clubBooks[props.clubBooks.length - 1].date.slice(
+                      0,
+                      10
+                    )}
+                  </h5>
+                  <h5>
+                    <b>Time:</b> {props.currentClub.next_mtg_time.slice(0, 5)}
+                  </h5>
+                  <h5>
+                    <b>Location:</b> {props.currentClub.next_mtg_location_name}
+                  </h5>
+                  <h5>
+                    <b>Address:</b> {props.currentClub.next_mtg_address},{" "}
+                    {props.currentClub.next_mtg_city},{" "}
+                    {props.currentClub.next_mtg_postal_code},{" "}
+                    {props.currentClub.next_mtg_country}
+                  </h5>
+                </div>
               </div>
             ) : (
               <h4>Meeting details coming soon!</h4>

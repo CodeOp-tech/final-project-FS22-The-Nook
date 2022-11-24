@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Api from "../helpers/Api";
+import './PollOptionsForm.css'
 
 function PollOptionsForm(props) {
   const { id } = useParams();
@@ -35,10 +36,11 @@ function PollOptionsForm(props) {
   }
 
   return (
-    <div className="PollOptionsForm">
+    <div className="PollOptionsForm ">
       <form className="w-100 mx-0" onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col mb-6">
+
+      <div className="row">
+          <div className="col-10 mb-6">
             <label htmlFor="title" className="form-label">
               Book 1
             </label>
@@ -51,7 +53,10 @@ function PollOptionsForm(props) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <div className="col mb-6">
+          </div>
+
+          <div className="row">
+          <div className="col-10 mb-6">
             <label htmlFor="title" className="form-label">
               Book 2
             </label>
@@ -64,7 +69,10 @@ function PollOptionsForm(props) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <div className="col mb-6">
+          </div>
+
+          <div className="row">
+          <div className="col-10 mb-2">
             <label htmlFor="title" className="form-label">
               Book 3
             </label>
@@ -77,11 +85,18 @@ function PollOptionsForm(props) {
               onChange={(e) => handleChange(e)}
             />
           </div>
-        </div>
+          </div>
 
-        <button type="submit" className="btn btn-primary mt-3 btn-sm">
+        
+          <div className="row">
+          <div className="col-10 mb-2">
+        <button type="submit" className="btn btn-outline-dark mt-3 btn-sm py-0">
           Add Poll Options
         </button>
+        </div>
+          </div>
+
+          
       </form>
     </div>
   );

@@ -70,10 +70,11 @@ function SingleClubView(props) {
 
   return (
     <div className="SingleClubView mt-0">
+
       {userMemberAdmin ? (
         <Link
           to={`/clubs/${id}/club-admin`}
-          className="btn btn-outline-light mx-2 mt-4 btn-sm user"
+          className="btn btn-outline-dark mx-2 mt-4 btn-sm user"
         >
           <h4 className="mb-0">CLUB ADMIN</h4>
         </Link>
@@ -88,8 +89,8 @@ function SingleClubView(props) {
             className="card-img mb-0"
             alt={currentClub.name}
           />
-          <div className="card-img-overlay">
-            <h1 className="card-title">{currentClub.name}</h1>
+          <div className="card-img-overlay ">
+            <h1 className="card-title clubViewCard">{currentClub.name}</h1>
             <h3 className="card-subtitle lh-lg">
               Category: {currentClub.category}
             </h3>
@@ -102,9 +103,11 @@ function SingleClubView(props) {
       ) : (
         <h2>Loading</h2>
       )}
-      <div>
-        <div className="row mt-5">
-          <div className="col-4">
+
+
+      <div className="container singleClubContainer">
+        <div className="row mt-5 d-flex justify-content-start">
+          <div className="col-4 ">
             {props.user ? (
               currentClub.membersList
                 .map((m) => m.id)
@@ -114,7 +117,7 @@ function SingleClubView(props) {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-light mb-3"
+                  className="btn btn-dark mb-3"
                   onClick={(e) => canJoin(currentClub)}
                 >
                   JOIN
@@ -129,24 +132,30 @@ function SingleClubView(props) {
                 JOIN
               </button>
             )}
-            <h2>Members</h2>
+            <h2 className="memberList">Members</h2>
             <div>
               <MembersList currentClub={currentClub} />
             </div>
           </div>
 
           <div className="col-8">
+            <div className="row d-flex justify-content-start">
             <NextMeetingInfo
               clubBooks={props.clubBooks}
               currentClub={currentClub}
             />
           </div>
+          </div>
+          
 
           {pollInfo && userMember ? (
-            <div className="col-12">
+            
+            <div className="col-5 col-auto">
               <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
+           
           ) : null}
+          
 
           <div className="col-4"></div>
         </div>
