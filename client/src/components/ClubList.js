@@ -33,7 +33,7 @@ function ClubList(props) {
                     </Link>
                   ) : (
                     <button
-                      className="btn btn-outline-dark btn-sm info-button mt-auto"
+                      className="btn btn-outline-dark btn-sm moreinfo-button mt-auto py-0 "
                       type="button"
                       onClick={(e) => navigate(`/login`)}
                     >

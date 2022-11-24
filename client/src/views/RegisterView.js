@@ -24,11 +24,11 @@ function RegisterView(props) {
     <div>
       <div className="SignUp container container-register">
         <h2>Sign up</h2>
-        <form className="mb-3" onSubmit={(e) => handleSubmit(e)}>
-          <div className="col-auto">
+        <form class="mb-3" onSubmit={(e) => handleSubmit(e)}>
+          <div class="col-auto">
             <label>Username</label>
             <input
-              className="form-control form-control-sm registerInputsFields"
+              class="form-control form-control-sm registerInputsFields"
               type="text"
               name="username"
               required
@@ -38,7 +38,7 @@ function RegisterView(props) {
           <div>
             <label>Email</label>
             <input
-              className="form-control form-control-sm registerInputsFields"
+              class="form-control form-control-sm registerInputsFields"
               type="email"
               name="email"
               required
@@ -48,7 +48,7 @@ function RegisterView(props) {
           <div>
             <label>Password </label>
             <input
-              className="form-control form-control-sm registerInputsFields"
+              class="form-control form-control-sm registerInputsFields"
               type="password"
               name="password"
               required
@@ -62,6 +62,16 @@ function RegisterView(props) {
             Create Account
           </button>
         </form>
+
+        <p>Already have an account? </p>
+
+        <a
+          type="button"
+          className="btn btn-outline-dark btn-sm signup-button"
+          href="/login"
+        >
+          Log In
+        </a>
       </div>
     </div>
   );
