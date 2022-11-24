@@ -37,7 +37,7 @@ function ClubList(props) {
                       type="button"
                       onClick={(e) => navigate(`/login`)}
                     >
-                      Log in for More Info
+                      More Info
                     </button>
                   )}
                 </div>

@@ -115,7 +115,8 @@ INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     (6, 4, 5, "Fascinating", "2022-10-11", 1),
     (4, 3, 3, "So-so", "2022-10-11", 0),
     (8, 1, 3, "It was tough to read but rewarding.", "2022-10-11", 0),
-    (3, 1, 2, "Not my favorite", "2022-10-11", 0);
+    (3, 1, 2, "Not my favorite", "2022-10-11", 0),
+    (9, 5, 5, "Really good, couldn't stop reading.", "2022-10-11", 1);
 
 INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_mtg_address, next_mtg_city, next_mtg_country, next_mtg_postal_code, image)
     VALUES ("International classics", "classics", "19:00:00", "Olive or Twist", "925 NW 11th Ave", "Portland", "United States", "97209", "https://static01.nyt.com/images/2022/01/16/fashion/VIRAL-LIBRARY/VIRAL-LIBRARY-articleLarge.jpg?quality=75&auto=webp&disable=upscale"),

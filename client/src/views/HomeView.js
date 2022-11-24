@@ -6,6 +6,44 @@ import TopBooks from "../components/TopBooks";
 function HomeView(props) {
   return (
     <div className="homePage">
+      <div className="buttonArea">
+        {props.user ? (
+          <div className="buttonAreaFind">
+            <h1>Welcome to the Nook!</h1>
+            <img src="TheNookLogo.png" alt="The Nook logo" />
+            <h2>
+              For avid readers who want to connect with fellow bookworms, The
+              Nook is a community hub that makes it easier to create, manage,
+              and join a book club.
+            </h2>
+            <a
+              type="button"
+              className="btn btn-responsive btn-outline-dark"
+              href="/clubs"
+            >
+              All Clubs
+            </a>
+          </div>
+        ) : (
+          <div className="buttonAreaJoin ">
+            <h1>Welcome to the Nook!</h1>
+            <img src="TheNookLogo.png" alt="The Nook logo" />
+            <h2>
+              For avid readers who want to connet with fellow bookworms, The
+              Nook is a community hub that makes it easier to create, manage,
+              and join a book club.
+            </h2>
+            <a
+              type="button"
+              className="btn btn-responsive btn-outline-dark"
+              href="/register"
+            >
+              Join The Nook!
+            </a>
+          </div>
+        )}
+      </div>
+
       <div className="clubCarousel container-fluid">
         <h1>Featured Clubs</h1>
         <Carousel4Wide
@@ -23,29 +61,6 @@ function HomeView(props) {
         </a>
       </div>
 
-     
-       
-    
-
-      <div className="buttonArea">
-      
-        {props.user ? (
-          <div className="buttonAreaFind">
-            <h1>Looking for more communities?</h1>
-            <a type="button" className="btn btn-responsive btn-outline-dark" href="/clubs">
-              All Clubs
-            </a>
-          </div>
-        ) : (
-          <div className="buttonAreaJoin ">
-            <h1> Want to find a book club?</h1>
-            <a type="button" className="btn btn-responsive btn-outline-dark" href="/register">
-              Join!
-            </a>
-          </div>
-        )}
-      </div>
-
       <div className="topBooks">
         <h1>Our Members Are Loving</h1>
         <TopBooks />
@@ -57,8 +72,6 @@ function HomeView(props) {
           See All Books
         </a>
       </div>
-
-      
     </div>
   );
 }

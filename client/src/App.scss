@@ -1,9 +1,9 @@
-@use 'common' as *;
+@use "common" as *;
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body{
@@ -26,7 +26,6 @@ body{
     padding-bottom: 1rem;
   }
 
-
   h1, h2, h3, h4, h5, h6, .btn, a{
     color: $light-green;
     font-family: 'Safira March Personal Use';
@@ -35,6 +34,31 @@ body{
 
   p, span, input, textarea, label{
     font-family:'Montserrat';
+  }
+
+  img {
+    width: 400px;
+    height: 300px;
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  
+  .buttonArea {
+    background-color: bisque;
+  }
+  
+  .btn-responsive {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    color: rgb(57, 81, 68);
+    border-color: rgb(57, 81, 68);
   }
 
   h1 {

@@ -105,7 +105,7 @@ router.get("/all", async function (req, res) {
   `;
 
   let clubSql = `
-    SELECT books_clubs.book_id, books_clubs.club_id, books_clubs.date, clubs.name
+    SELECT books_clubs.book_id, books_clubs.club_id, books_clubs.date, clubs.name, clubs.image
     FROM books_clubs
     LEFT JOIN clubs ON clubs.id = books_clubs.club_id
   `;

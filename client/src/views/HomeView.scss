@@ -1,15 +1,29 @@
 @use '../common' as *;
 
+.homePage{
 
+.buttonArea{
 img {
-  width: 400px;
-  height: 300px;
-  margin-bottom: 50px;
+  width: 70%;
+  height: 70%;
+  margin-bottom: 3rem;
+
 }
 
+h2{
+  color: $dark-green;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  margin: 0 2rem 1.5rem;
+  font-family: "'Montserrat', sans-serif"
 
+}
 
-
+h1{
+  font-weight: bold;
+  font-size: 2rem;
+}
+}
 
 .clubCarousel,
 .topBooks,.buttonArea {
@@ -33,4 +47,5 @@ img {
   font-size: 20px;
   color: rgb(57, 81, 68);
   border-color: rgb(57, 81, 68);
+}
 }
