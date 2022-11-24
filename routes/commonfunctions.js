@@ -40,22 +40,22 @@ function joinToJson(booksResult, clubsResult) {
   }
 
   let clubs = [];
-  if(clubsResult.data.length){
-  clubs = clubsResult.data.map((c) => ({
-    name: c.name,
-    category: c.category,
-    // next_mtg_time: c.next_mtg_time,
-    // next_mtg_location_name: c.next_mtg_location_name,
-    // next_mtg_address: c.next_mtg_address,
-    next_mtg_city: c.next_mtg_city,
-    image: c.image
-    // next_mtg_postal_code: c.next_mtg_postal_code,
-    // next_mtg_country: next_mtg_country,
-  }));
-  if(!clubs[0].name) {
-    clubs = []
+  if (clubsResult.data.length) {
+    clubs = clubsResult.data.map((c) => ({
+      name: c.name,
+      category: c.category,
+      id: c.id,
+      // next_mtg_time: c.next_mtg_time,
+      // next_mtg_location_name: c.next_mtg_location_name,
+      // next_mtg_address: c.next_mtg_address,
+      next_mtg_city: c.next_mtg_city,
+      // next_mtg_postal_code: c.next_mtg_postal_code,
+      // next_mtg_country: next_mtg_country,
+    }));
+    if (!clubs[0].name) {
+      clubs = [];
+    }
   }
-}
 
   let user = {
     id: row0.user_id,
