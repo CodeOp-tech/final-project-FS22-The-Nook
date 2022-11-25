@@ -40,14 +40,18 @@ function ClubBookshelf(props) {
                   />
                   <div className="card-body">
                     <h5 className="card-title">{b.title}</h5>
-                    <h6 className="card-text">By {b.author}</h6>
+                    <div className="card-text">
+                      <h6>By {b.author}</h6>
+                      <h7>Discussed on:
+                        <br></br> {formatDate(b.date)} </h7>
+                      </div>
                   </div>
-                  <div className="card-footer">
+                  {/* <div className="card-footer">
                     <small className="text-muted">
                       Discussed on:<br></br>
                       {formatDate(b.date)}
                     </small>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

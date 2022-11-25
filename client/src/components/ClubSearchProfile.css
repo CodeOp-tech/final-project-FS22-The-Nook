@@ -1,11 +1,7 @@
 
 
-.edit-form {
-    width: 20%;
-    margin: 0 auto;
-}
 
-.ClubSearchProfile .input-form-control{
-    width: 50%;
-    padding: auto;
+.searchProfileForm{
+    width: 30% !important;
+    margin: 0 auto !important;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import categoryList from "./DropdownCategoryList.js";
-// import "./ClubSearchProfile.css";
+import "./ClubSearchProfile.css";
 
 function ClubSearchProfile(props) {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ function ClubSearchProfile(props) {
 
   return (
     <div className="ClubSearchProfile pt-2 mb-5">
-      <form className="edit-form" role="search">
+      <form className="edit-form searchProfileForm" role="search">
         <input
           className="form-control w-100 mb-2"
           type="search"

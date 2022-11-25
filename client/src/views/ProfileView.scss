@@ -6,6 +6,15 @@
     border: 0.5rem solid $light-brown;
     margin-top: 2rem;
 
+    .favBookCard{
+        margin:auto !important;
+        padding: 10px !important;
+        aspect-ratio: 1/1.5;
+        object-fit: fill;
+        height: 20rem;
+        width: 15rem;
+    }
+
     .row{
         margin: 0 2rem;
         @include desktop{
