@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import "./SingleBookView.css";
+import "./SingleBookView.scss";
 import ReactStars from 'react-stars'
 
 
@@ -34,7 +34,7 @@ function SingleBookView(props) {
 
     return (
       
-        <div className="container sg-book p-5 my-5">
+        <div className=" SingleBookView container sg-book p-5 my-5">
             { 
             
             book.length > 0 && 
@@ -69,7 +69,7 @@ function SingleBookView(props) {
                     
                     />
                     <div className="text-overlay">
-                    <h4 ><b>Club name: </b>{c.name}</h4>
+                    <h4 className="name-bckg rounded">{c.name}</h4>
                     </div>
                     
                     </div></Link>
