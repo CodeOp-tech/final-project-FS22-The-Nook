@@ -21,7 +21,7 @@ router.get("/", async function (req, res) {
       FROM books
       LEFT JOIN books_clubs ON books.id = books_clubs.book_id
       WHERE books_clubs.club_id=${req.query.club_id}
-      ORDER BY date DESC`;
+      `;
   }
 
   try {
