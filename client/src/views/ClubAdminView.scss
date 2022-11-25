@@ -1,14 +1,46 @@
-@use "../common" as *;
+@use '../common' as *;
 
-.ClubAdminView {
-  background-color: $beige;
-  border: 0.5rem solid $light-brown;
-  margin-top: 2rem;
 
-  .row {
-    margin: 0 2rem;
-    @include desktop {
-      margin: 0 1rem;
+.ClubAdminView{
+    background-color:bisque;
+    
+    h2{
+font-size: 1.7rem !important;
     }
-  }
+
+    .container{
+    background-color: $beige;
+    border: 0.5rem solid $light-brown;
+    margin-top: 2rem;
+    }
+    .row {
+      margin: 0 2rem;
+      @include desktop {
+        margin: 0 1rem;
+      }
+    }
+.AddMeetingArea{
+    margin-top: 4%;
+    padding-top: 1rem;
+    
+    
 }
+
+.AddPollArea{
+    margin-top: 4%;
+    padding-top: 1rem;
+}
+
+h2{
+    font-family: 'Prata', serif;
+    font-size: 0.9rem;
+}
+
+.newPollHeader{
+    line-height: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-right: 2rem;
+}
+}
+

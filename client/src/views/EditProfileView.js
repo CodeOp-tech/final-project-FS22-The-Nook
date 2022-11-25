@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import ReactStars from "react-stars";
 import Api from "../helpers/Api";
-import "./EditProfileView.css";
+import "./EditProfileView.scss";
 import { DateTime } from "luxon";
 import EditCommentModal from "../components/EditCommentModal";
 import ClubSearchProfile from "../components/ClubSearchProfile";

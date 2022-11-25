@@ -1,6 +1,9 @@
+@use '../common' as *;
+
 .EditProfile .title{
-    color: rgb(170, 139, 86);
-    font-size: 18px;
+    color: $dark-green;
+    font-size: 2rem;
+    font-weight: bold
 }
 
 .EditProfile {

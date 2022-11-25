@@ -24,6 +24,7 @@ body {
   margin: 0;
   width: 100%;
   padding-bottom: 1rem;
+
 }
 
 h1,
@@ -43,7 +44,7 @@ span,
 input,
 textarea,
 label {
-  font-family: "Montserrat";
+  font-family: "Montserrat, sans serif";
 }
 
 img {
@@ -57,6 +58,10 @@ img {
   margin-bottom: 20px;
   text-transform: capitalize;
   text-align: center;
+}
+
+.btn:hover{
+  background-color:rgba(57, 81, 68, .4)
 }
 
 .buttonArea {
