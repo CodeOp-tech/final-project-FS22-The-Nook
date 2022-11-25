@@ -2,12 +2,14 @@
 
 
 .ClubAdminView{
+
     background-color:bisque;
     
     h2{
 font-size: 1.7rem !important;
     }
 
+   
     .container{
     background-color: $beige;
     border: 0.5rem solid $light-brown;
@@ -19,10 +21,12 @@ font-size: 1.7rem !important;
         margin: 0 1rem;
       }
     }
+
 .AddMeetingArea{
     margin-top: 4%;
     padding-top: 1rem;
     
+
     
 }
 
@@ -42,5 +46,14 @@ h2{
     text-align: center;
     margin-right: 2rem;
 }
+
+
+.newPollHeader{
+    line-height: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-right: 2rem;
+}
+
 }
 

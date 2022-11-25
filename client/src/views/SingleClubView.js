@@ -90,7 +90,9 @@ function SingleClubView(props) {
           <div className="card-img-overlay ">
             <h1 className="card-title clubViewCard">{currentClub.name}</h1>
             <h3 className="card-subtitle lh-lg">
+
               <b>Category: </b><span className="club-category">{currentClub.category}</span>
+
             </h3>
             <h3 className="card-subtitle lh-lg">
               <b>Location:</b> {currentClub.next_mtg_city},{" "}
@@ -157,7 +159,9 @@ function SingleClubView(props) {
           </div>
 
           {pollInfo && userMember ? (
-            <div className="col-8 col-auto ms-5">
+
+            <div className="col-10 col-auto ms-5">
+
               <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
           ) : null}
