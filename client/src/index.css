@@ -1,13 +1,13 @@
+@import url(//db.onlinewebfonts.com/c/611de94a2f05d6e33f39a8e12cc2fe65?family=Safira+March+Personal+Use);
+@font-face {font-family: "Safira March Personal Use"; src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot"); src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff") format("woff"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.svg#Safira March Personal Use") format("svg");}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Safira March Personal Use";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */

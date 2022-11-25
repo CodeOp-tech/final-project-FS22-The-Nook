@@ -2,7 +2,7 @@ import React from "react";
 import AddMeetingForm from "../components/AddMeetingForm";
 
 import PollOptionsForm from "../components/PollOptionsForm";
-import './ClubAdminView.css'
+import './ClubAdminView.scss'
 
 function ClubAdminView(props) {
   return (

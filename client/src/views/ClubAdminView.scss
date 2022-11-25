@@ -1,19 +1,26 @@
+@use '../common' as *;
+
+
+.ClubAdminView{
+
+    .container{
+    background-color: $beige;
+    border: 0.5rem solid $light-brown;
+    }
+
 .AddMeetingArea{
-    background-color: bisque;
     margin-top: 4%;
     padding-top: 1rem;
     
 }
 
 .AddPollArea{
-    background-color: bisque;
     margin-top: 4%;
     padding-top: 1rem;
 }
 
 h2{
     font-family: 'Safira March Personal Use';
-    color: rgb(170, 139, 86);
     font-size: 0.9rem;
 }
 
@@ -22,4 +29,5 @@ h2{
     margin-bottom: 1rem;
     text-align: center;
     margin-right: 2rem;
+}
 }

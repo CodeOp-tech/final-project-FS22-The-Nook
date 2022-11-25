@@ -1,9 +1,16 @@
+@use '../common' as *;
+
 .SingleClubView{
-  background-color:bisque;
-  color: black;
+  background-color: $beige;
+  border: 0.5rem solid $light-brown;
+  // border-top: 0;
+
+
+.club-category{
+  text-transform: capitalize;
 }
 
-.SingleClubView .card-img-overlay{
+ .card-img-overlay{
   background-color: rgba(255, 228, 196, 0.5);
 width: 70%;
 height: 70%;
@@ -12,7 +19,7 @@ margin: auto;
   
 }
 
-.SingleClubView .card-title{
+ .card-title{
   color: black;
   margin-top: 0px;
   
@@ -24,6 +31,7 @@ margin: auto;
 
 #header-img {
   object-fit: cover;
+  border-radius: 0;
   opacity: 0.5;
 }
 
@@ -33,17 +41,16 @@ margin: auto;
 }
 
 .card-title{
-  font-size: 16x;
+  font-size: 2.7rem;
+  color: $dark-green;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 .card-text {
   color: black;
   font-size: 14px;
 }
 
-/* .user {
-  color: black !important;
-  border-color: bisque !important;
-} */
 
 .new-button {
   // width: 100px;
@@ -51,4 +58,5 @@ margin: auto;
   font-size: 18px !important;
   margin: auto;
   text-align: center;
+}
 }

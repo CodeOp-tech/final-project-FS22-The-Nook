@@ -92,7 +92,7 @@ function SingleClubView(props) {
           <div className="card-img-overlay ">
             <h1 className="card-title clubViewCard">{currentClub.name}</h1>
             <h3 className="card-subtitle lh-lg">
-              Category: {currentClub.category}
+              Category: <span className="club-category">{currentClub.category}</span>
             </h3>
             <h3 className="card-subtitle lh-lg">
               Location: {currentClub.next_mtg_city},{" "}
