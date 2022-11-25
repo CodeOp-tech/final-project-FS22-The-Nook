@@ -26,7 +26,7 @@ function ClubBookshelf(props) {
 
   return (
     <div className="ClubBookshelf row mb-2">
-      <div className="container border me-0">
+      <div className="container me-0">
         <h2 className="mt-3 bookshelfname">Bookshelf</h2>
         <div className="card-group">
           {props.clubBooks &&
