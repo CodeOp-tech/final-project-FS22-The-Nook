@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import categoryList from "./DropdownCategoryList.js";
+import "./ClubSearchProfile.css";
 
 function ClubSearchProfile(props) {
   const navigate = useNavigate();
@@ -29,10 +30,10 @@ function ClubSearchProfile(props) {
   }
 
   return (
-    <div className="ClubSearch pt-2">
-      <form role="search">
+    <div className="ClubSearch pt-2 mb-5">
+      <form className="edit-form" role="search">
         <input
-          className="form-control-sm"
+          className="form-control-sm w-100 mb-2"
           type="search"
           placeholder="Search for a club"
           aria-label="Search"
@@ -41,7 +42,7 @@ function ClubSearchProfile(props) {
         />
 
         <input
-          className="form-control-sm"
+          className="form-control-sm w-100 mb-2"
           type="search"
           placeholder="Location"
           aria-label="Location"
@@ -71,9 +72,9 @@ function ClubSearchProfile(props) {
           </select>
         </div> */}
 
-        <div className="mb-3 dropdown">
+        <div className="mb-3 dropdown ">
           <select
-            className="form-select-sm"
+            className="form-select-sm w-100"
             id="floatingSelect"
             name="category"
             aria-label="Choose category"

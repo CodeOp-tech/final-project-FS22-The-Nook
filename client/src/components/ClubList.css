@@ -24,17 +24,17 @@
 
 
 .info-button{
-    width: 6.5rem;
-    height: 2rem;
-    font-size: 1.2rem;
+    width: 100px;
+    height: 40px;
+    font-size: 18px !important;
+    margin: auto;
     text-align: center;
 }
 
 
-.moreinfo-button{
+/* .moreinfo-button{
     width: 6.5rem;
     height: 3.5rem;
     font-size: 1.2rem;
     text-align: center;
-    
-}
+} */

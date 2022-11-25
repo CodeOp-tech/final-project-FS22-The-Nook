@@ -81,7 +81,7 @@ function SingleBookView(props) {
                 </div>
 
                 <div className="col-md-6 mt-5">
-                    <h3 className="mb-5">Members that have read this book:</h3>
+                    <h3 className="mb-5">Members who read this book:</h3>
                     { book[0].usersThatRead.length > 0 ?
                     book[0].usersThatRead.map(u => (
                     <div className="row mb-3 pt-2 box-border rounded text-start ">

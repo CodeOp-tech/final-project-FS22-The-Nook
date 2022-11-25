@@ -29,7 +29,7 @@ function ProfileView(props) {
   }
 
   return (
-    <div className="ProfileView">
+    <div className="ProfileView my-5">
       <div className="container FullProfile">
         <h1>Profile View</h1>
 
@@ -50,8 +50,8 @@ function ProfileView(props) {
           </ul>
         </div>
 
-        <div className="JoinedClubs">
-          <h2>Your Book Clubs</h2>
+        <div className="JoinedClubs mt-5">
+          <h2 className="mb-3">Your Book Clubs</h2>
 
           {user.clubs.map((c) => (
             <div className="card text-bg-dark d-inline-flex" key={c.id}>
@@ -70,8 +70,8 @@ function ProfileView(props) {
           ))}
         </div>
 
-        <div className="FavoriteBooks">
-          <h2>Your Favorite Books</h2>
+        <div className="FavoriteBooks mt-5">
+          <h2 className="mb-3">Your Favorite Books</h2>
           {user.books.map((b) =>
             b.favorite === 1 ? (
               <div key={b.author} className="d-inline-flex">
@@ -113,8 +113,8 @@ function ProfileView(props) {
           )}
         </div>
 
-        <div className="ReadBooks">
-          <h2>Books You've Read</h2>
+        <div className="ReadBooks mt-5 pb-5">
+          <h2 className="mb-3">Books You've Read</h2>
           {user.books.map((b) => (
             <div key={b.author} className="d-inline-flex">
               <div

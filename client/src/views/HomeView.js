@@ -5,7 +5,7 @@ import TopBooks from "../components/TopBooks";
 
 function HomeView(props) {
   return (
-    <div className="homePage">
+    <div className="homePage mt-5">
       <div className="buttonArea">
         {props.user ? (
           <div className="buttonAreaFind">
@@ -61,7 +61,7 @@ function HomeView(props) {
         </a>
       </div>
 
-      <div className="topBooks">
+      <div className="topBooks mb-5">
         <h1>Our Members Are Loving</h1>
         <TopBooks />
         <a
