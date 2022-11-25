@@ -30,7 +30,12 @@ function ClubSearchProfile(props) {
 
   return (
     <div className="ClubSearch pt-2">
-      <form role="search">
+      <div class="vertical-input-group d-flex mb-6 pt-4">
+
+      <h2 className="title">Edit Your Clubs</h2>
+      
+      
+      <form role="search row">
         <input
           className="form-control-sm"
           type="search"
@@ -94,6 +99,7 @@ function ClubSearchProfile(props) {
           </select>
         </div>
       </form>
+    </div>
     </div>
   );
 }

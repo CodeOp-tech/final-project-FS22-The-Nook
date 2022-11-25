@@ -30,7 +30,7 @@ function BookSearchProfile(props) {
             <input
                 className="form-control"
                 type="search"
-                placeholder="Title"
+                placeholder="Search by Title"
                 aria-label="Title"
                 value={searchTitle}
                 onChange={(e) => setTitle(e.target.value)}
@@ -39,7 +39,7 @@ function BookSearchProfile(props) {
             <input
                 className="form-control"
                 type="search"
-                placeholder="Author"
+                placeholder="Search by Author"
                 aria-label="Author"
                 value={searchAuthor}
                 onChange={(e) => setAuthor(e.target.value)}

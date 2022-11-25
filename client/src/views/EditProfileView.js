@@ -131,16 +131,21 @@ async function updateBook(book) {
 return(
         
         <div className="EditProfile">
+            
 
+            <div className="container EditProfileContainer">
+            <div class="row-12">
 
-        <h2 className="title">Edit Your Clubs</h2>
+                <div class="col-6"></div>
+
+        
 
 
         <ClubSearchProfile user={user} getClubs={e=> getClubs()}/>
 
         {shownClubs && shownClubs.map((c) => (
-            <div key={c.name} className="d-inline-flex">
-            <div key={c.category} className="card me-5" style={{ width: "18rem" }}>
+            <div key={c.name} className="d-flex">
+            <div key={c.category} className="card me-2" style={{ width: "12rem" }}>
                 <div >
                 <div className="card-body">
                     <h5 className="card-title">{c.name}</h5>
@@ -153,16 +158,24 @@ return(
 
 
         <br/>
-        <label>Want to find more?<button><Link to="/clubs">Join more clubs</Link></button></label>
+        <label>Want to find more?</label><br></br>
+            <a type="button" className="btn btn-outline-dark" href="/clubs">Join more clubs</a>
         <br/>
+        </div>
         
+
+
+        <div class="col-6">
         <h2 className="title">Edit Your Bookshelf</h2>
                             <br/>
                             <div>
-                            <button data-bs-toggle="modal" data-bs-target="#bookModal"> Add a New Book</button>
+                            <button className="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#bookModal"> Add a New Book</button>
                             </div>
 
             <AddBookForm id="bookModal" user={user} postBookForUser={(bookData) => postBookForUser(bookData)}/>
+
+
+
             <BookSearchProfile user={user} getBooks={e=> getBooks()}/>
 
                 {shownBooks &&shownBooks.map((b) => (
@@ -211,7 +224,7 @@ return(
 
                             
                             <br/>
-                            <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> Edit/View Review</a>
+                            <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> Edit My Review</a>
                             </div>
 
                             <EditCommentModal id="myModal" book={book} updateBook={book=>updateBook(book)}/>
@@ -222,6 +235,11 @@ return(
                         ))}
 
         </div>
+
+
+        </div>
+        </div>
+        
     )
 }
 

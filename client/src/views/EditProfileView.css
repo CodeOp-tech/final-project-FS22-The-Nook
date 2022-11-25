@@ -1,6 +1,14 @@
 .EditProfile .title{
-    color: bisque
+    color: rgb(170, 139, 86);
+    font-size: 18px;
 }
+
+.EditProfile .container{
+    background-color: bisque;
+margin-top: 20px;
+
+}
+
 
 .form-group label{
     color: white

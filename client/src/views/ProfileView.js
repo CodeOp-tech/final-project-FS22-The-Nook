@@ -93,7 +93,7 @@ function ProfileView(props) {
                         color2={'#ffd700'} />
                             <h5 className="card-title">{b.title}</h5>
                             <h6 className="card-text">By {b.author}</h6>
-                            <p>Read on: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
+                            <p>Read On: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
 
                         </div>
                         </div>
@@ -118,7 +118,7 @@ function ProfileView(props) {
 
                         <div className="card-body">
 
-                            <p>My rating:</p>
+                            <p>My Rating:</p>
                             <ReactStars
                             count={5}
                             size={24}
@@ -130,7 +130,7 @@ function ProfileView(props) {
                             
                             <h6 className="card-text">By {b.author}</h6>
                             
-                            <p>Read on: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
+                            <p>Read On: {DateTime.fromISO(b.date_read).toFormat('LLL dd, yyyy')}</p>
 
 
                         <button key={b.id} 
@@ -142,7 +142,7 @@ function ProfileView(props) {
 
                         <br/>
 
-                        <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> Edit/View Review</a>
+                        <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> View My Review</a>
                         </div>
 
                         <ViewReviewModal id="myModal" book={book}/>
