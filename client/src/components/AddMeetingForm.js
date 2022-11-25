@@ -97,7 +97,7 @@ function AddMeetingForm(props) {
               </div>
             </div>
 
-            <div className="col mx-4 mb-2">
+            <div className="col mx-4">
               <label htmlFor="title" className="form-label">
                 Book Title
               </label>
