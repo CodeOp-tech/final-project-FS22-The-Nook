@@ -1,12 +1,9 @@
 @use "common" as *;
 
-@import url(//db.onlinewebfonts.com/c/611de94a2f05d6e33f39a8e12cc2fe65?family=Safira+March+Personal+Use);
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  // @font-face {font-family: "Safira March Personal Use"; src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot"); src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff") format("woff"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.svg#Safira March Personal Use") format("svg"); }
 }
 
 body {
@@ -20,7 +17,6 @@ body {
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 64 64' width='64' height='64'><path d='M0 48 L0 64 L32 16 L64 64 L64 48 L32 0 Z' fill='rgb(4, 48, 4)' /></svg>")
       0 50px rgb(2, 41, 4);
   background-size: 200px 170px;
-  @font-face {font-family: "Safira March Personal Use"; src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot"); src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff") format("woff"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.svg#Safira March Personal Use") format("svg"); }
 }
 
 .App {
@@ -28,7 +24,6 @@ body {
   margin: 0;
   width: 100%;
   padding-bottom: 1rem;
-  @font-face {font-family: "Safira March Personal Use"; src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot"); src: url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.woff") format("woff"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/611de94a2f05d6e33f39a8e12cc2fe65.svg#Safira March Personal Use") format("svg"); }
 
 }
 
@@ -41,7 +36,7 @@ h6,
 .btn,
 a {
   color: $light-green;
-  font-family: "Safira March Personal Use";
+  font-family: 'Prata', serif;
 }
 
 p,
@@ -63,6 +58,10 @@ img {
   margin-bottom: 20px;
   text-transform: capitalize;
   text-align: center;
+}
+
+.btn:hover{
+  background-color:rgba(57, 81, 68, .4)
 }
 
 .buttonArea {

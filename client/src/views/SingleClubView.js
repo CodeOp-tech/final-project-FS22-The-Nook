@@ -68,7 +68,7 @@ function SingleClubView(props) {
   }
 
   return (
-    <div className="SingleClubView mt-0">
+    <div className="SingleClubView mt-5">
       {userMemberAdmin ? (
         <Link
           to={`/clubs/${id}/club-admin`}
@@ -141,7 +141,7 @@ function SingleClubView(props) {
                 JOIN
               </button>
             )}
-            <h2 className="memberList">Members</h2>
+            
             <div>
               <MembersList currentClub={currentClub} />
             </div>
@@ -157,7 +157,7 @@ function SingleClubView(props) {
           </div>
 
           {pollInfo && userMember ? (
-            <div className="col-5 col-auto">
+            <div className="col-10 col-auto ms-5">
               <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
           ) : null}

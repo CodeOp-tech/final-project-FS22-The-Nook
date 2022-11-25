@@ -1,14 +1,16 @@
 import React from "react";
-import "./NextMeetingInfo.css";
+import "./NextMeetingInfo.scss";
 
 function NextMeetingInfo(props) {
   return (
     <div className="NextMeetingInfo">
-      <h2 className="mt2">Next Meeting</h2>
+      <h2 className="">Next Meeting</h2>
 
-      <div className="card mb-3" style={{ maxWidth: "550px" }}>
+
+      <div className="card  mb-3" style={{ maxWidth: "550px" }}>
+        
         <div className="row g-0">
-          <div className="col-md-4">
+          <div className="col-xl-4">
             {props.clubBooks.length ? (
               <>
                 <img
@@ -30,10 +32,10 @@ function NextMeetingInfo(props) {
               <img src={props.currentClub.image} className="my-3 ms-2" />
             )}
           </div>
-          <div className="col-md-8 my-auto">
+          <div className="col-md-8 m-auto">
             {props.currentClub && props.clubBooks.length ? (
-              <div className="card-body ms-3 ">
-                <div className="card-text meetingText">
+              <div className="card-body  ms-3 ">
+                <div className="card-text text-center text-md-left meetingText">
                   <h5>
                     <b>Date:</b>{" "}
                     {props.clubBooks[props.clubBooks.length - 1].date.slice(

@@ -1,5 +1,5 @@
 import React from "react";
-import "./ClubBookshelf.css";
+import "./ClubBookshelf.scss";
 
 function ClubBookshelf(props) {
   function formatDate(date) {
@@ -25,13 +25,13 @@ function ClubBookshelf(props) {
   }
 
   return (
-    <div className="ClubBookshelf row mb-2">
+    <div className="ClubBookshelf row mb-3">
       <div className="container me-0">
         <h2 className="mt-3 bookshelfname">Bookshelf</h2>
-        <div className="card-group">
+        <div className="card-group row-cols-1 row-cols-sm-2 row-cols-lg-3 ">
           {props.clubBooks &&
             props.clubBooks.map((b) => (
-              <div key={b.id} className="col-sm-3">
+              <div key={b.id} className=" col-xl-3 ">
                 <div className="card mx-3 h-100">
                   <img
                     src={`${b.image}`}
