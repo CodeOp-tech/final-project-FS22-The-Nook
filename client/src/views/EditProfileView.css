@@ -1,6 +1,10 @@
-.EditProfile .title{
-    color: bisque
+.EditProfile {
+    background-color: bisque;
 }
+
+/* .EditProfile .title{
+    color: bisque
+} */
 
 .form-group label{
     color: white
@@ -31,4 +35,11 @@
 .EditProfile .exit{
     font-size: 0.9rem;
     margin-bottom: 0
+}
+
+.add-button {
+    height: 40px;
+    font-size: 18px !important;
+    margin: auto;
+    text-align: center;
 }

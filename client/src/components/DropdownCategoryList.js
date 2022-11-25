@@ -2,7 +2,7 @@ const categoryList = [
   "Adventure",
   "Biography",
   "Casual",
-  "Children's Literature",
+  "Childrens Literature", // needs to stay as Childrens literature (not Children's - otherwise the search doesn't work)
   "Classics",
   "Fantasy",
   "Graphic Novels",
