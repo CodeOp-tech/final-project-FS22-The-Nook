@@ -30,10 +30,10 @@ function ClubSearchProfile(props) {
   }
 
   return (
-    <div className="ClubSearch pt-2 mb-5">
+    <div className="ClubSearchProfile pt-2 mb-5">
       <form className="edit-form" role="search">
         <input
-          className="form-control-sm w-100 mb-2"
+          className="form-control w-100 mb-2"
           type="search"
           placeholder="Search for a club"
           aria-label="Search"
@@ -42,7 +42,7 @@ function ClubSearchProfile(props) {
         />
 
         <input
-          className="form-control-sm w-100 mb-2"
+          className="form-control w-100 mb-2"
           type="search"
           placeholder="Location"
           aria-label="Location"
@@ -50,31 +50,10 @@ function ClubSearchProfile(props) {
           onChange={(e) => setSearchLocation(e.target.value)}
         />
 
-        {/* <div className="mt-3">
-          <label htmlFor="floatingSelect">Choose a category</label>
-          <select
-            className="form-select"
-            id="floatingSelect"
-            aria-label="Choose category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option className="" defaultValue>
-              Choose a category
-            </option>
-            <option data-tokens="1">biography</option>
-            <option data-tokens="2">casual</option>
-            <option data-tokens="3">childrens literature</option>
-            <option data-tokens="4">classics</option>
-            <option data-tokens="5">historical fiction</option>
-            <option data-tokens="6">sci-fi</option>
-            <option data-tokens="7">travel</option>
-          </select>
-        </div> */}
 
         <div className="mb-3 dropdown ">
           <select
-            className="form-select-sm w-100"
+            className="form-select w-100"
             id="floatingSelect"
             name="category"
             aria-label="Choose category"
@@ -96,6 +75,7 @@ function ClubSearchProfile(props) {
         </div>
       </form>
     </div>
+    
   );
 }
 

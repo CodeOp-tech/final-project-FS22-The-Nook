@@ -104,7 +104,7 @@ function SingleBookView(props) {
             </div>
           </div>
         </div>
-      )}
+      }
     </div>
   );
 }

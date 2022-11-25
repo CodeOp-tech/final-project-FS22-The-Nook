@@ -11,7 +11,7 @@ function HomeView(props) {
           <div className="buttonAreaFind">
             <h1>Welcome to the Nook!</h1>
             <img src="TheNookLogo.png" alt="The Nook logo" />
-            <h2>
+            <h2 className="theNookMission">
               For avid readers who want to connect with fellow bookworms, The
               Nook is a community hub that makes it easier to create, manage,
               and join a book club.
@@ -28,7 +28,7 @@ function HomeView(props) {
           <div className="buttonAreaJoin ">
             <h1>Welcome to the Nook!</h1>
             <img src="TheNookLogo.png" alt="The Nook logo" />
-            <h2>
+            <h2 className="theNookMission">
               For avid readers who want to connet with fellow bookworms, The
               Nook is a community hub that makes it easier to create, manage,
               and join a book club.
@@ -54,7 +54,7 @@ function HomeView(props) {
 
         <a
           type="button"
-          className="btn btn-responsive btn-outline-dark"
+          className="btn btn-responsive btn-outline-dark clubsHomeViewbtn"
           href="/clubs"
         >
           See All Clubs
@@ -66,7 +66,7 @@ function HomeView(props) {
         <TopBooks />
         <a
           type="button"
-          className="btn btn-responsive btn-outline-dark"
+          className="btn btn-responsive btn-outline-dark booksHomeViewbtn"
           href="/books/all"
         >
           See All Books

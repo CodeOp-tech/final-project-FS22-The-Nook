@@ -135,15 +135,15 @@ function ProfileView(props) {
                     />
                   </div>
 
-                  <div className="card-body">
-                    <p>My rating:</p>
-                    <ReactStars
-                      count={5}
-                      size={24}
-                      value={b.rating}
-                      edit={false}
-                      color2={"#ffd700"}
-                    />
+                        <div className="card-body">
+
+                            <p>My Rating:</p>
+                            <ReactStars
+                            count={5}
+                            size={24}
+                            value={b.rating}
+                            edit={false}
+                            color2={'#ffd700'} />
 
                     <div className="card-title">
                       <Link to={`/books/all/${b.book_id}`} key={b.book_id}>
@@ -176,24 +176,22 @@ function ProfileView(props) {
 
                     <br />
 
-                    <a
-                      data-bs-toggle="modal"
-                      data-bs-target="#myModal"
-                      onClick={(e) => setBook(b)}
-                    >
-                      {" "}
-                      View Review
-                    </a>
-                  </div>
+                        <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> View My Review</a>
+                        </div>
 
-                  <ViewReviewModal id="myModal" book={book} />
-                </div>
-              </div>
-              </div>
-          ))}
+                        <ViewReviewModal id="myModal" book={book}/>
+
+
+                        
+                        </div>
+                    </div>
+                    </div>
+                ))}
+            </div>
+         
         </div>
       </div>
-    </div>
+   
   );
 }
 
