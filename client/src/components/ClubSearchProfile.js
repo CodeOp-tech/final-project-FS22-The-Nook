@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import categoryList from "./DropdownCategoryList.js";
-import "./ClubSearchProfile.css";
+// import "./ClubSearchProfile.css";
 
 function ClubSearchProfile(props) {
   const navigate = useNavigate();
