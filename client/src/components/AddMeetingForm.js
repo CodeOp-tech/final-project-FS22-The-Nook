@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import CountryList from "./DropdownCountries.js";
-import './AddMeetingForm.css'
-
-
+import "./AddMeetingForm.scss";
 
 function AddMeetingForm(props) {
   const { id } = useParams();
@@ -65,148 +63,146 @@ function AddMeetingForm(props) {
   }
 
   return (
-    
     <div className="AddMeetingForm">
       <div className="addMeetingContainer">
-      <form className=" w-100 mx-0 meetingForm" onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <div className="row">
-         
-          <div className="col-6 mb-2 mt-2">
-            <label htmlFor="title" className="form-label">
-              Meeting Date
-            </label>
-            <input
-              className="form-control"
-              value={nextBookFormData.date}
-              id="read-by-date"
-              name="date"
-              type="date"
-              onChange={(e) => handleNewBookChange(e)}
-            />
+        <form className=" w-100 mx-0 meetingForm" onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <div className="row mb-2">
+              <div className="col-6 mt-2">
+                <label htmlFor="title" className="form-label">
+                  Meeting Date
+                </label>
+                <input
+                  className="form-control"
+                  value={nextBookFormData.date}
+                  id="read-by-date"
+                  name="date"
+                  type="date"
+                  onChange={(e) => handleNewBookChange(e)}
+                />
+              </div>
+
+              <div className="col-6 mt-2">
+                <label htmlFor="title" className="form-label">
+                  Meeting Time
+                </label>
+                <input
+                  className="form-control"
+                  value={meetingDetailsFormData.time}
+                  id="meeting-time"
+                  name="time"
+                  type="time"
+                  onChange={(e) => handleNewMeetingChange(e)}
+                />
+              </div>
+            </div>
+
+            <div className="col mx-4">
+              <label htmlFor="title" className="form-label">
+                Book Title
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="titleInput"
+                name="title"
+                value={nextBookFormData.title}
+                onChange={(e) => handleNewBookChange(e)}
+              />
+            </div>
           </div>
-          
-          <div className="col-6 mb-2 mt-2">
-            <label htmlFor="title" className="form-label">
-              Meeting Time
-            </label>
-            <input
-              className="form-control"
-              value={meetingDetailsFormData.time}
-              id="meeting-time"
-              name="time"
-              type="time"
-              onChange={(e) => handleNewMeetingChange(e)}
-            />
-          </div>
-          
+          <div className="row mb-2">
+            <div className="col-6">
+              <label htmlFor="locationName" className="form-label">
+                Location Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="location-name"
+                placeholder="Name of cafe, bar, park, library, etc."
+                name="locationName"
+                value={meetingDetailsFormData.locationName}
+                onChange={(e) => handleNewMeetingChange(e)}
+              />
+            </div>
+
+            <div className="col-6">
+              <label htmlFor="inputAddress" className="form-label">
+                Address
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="inputAddress"
+                placeholder="123 Main St"
+                name="address"
+                value={meetingDetailsFormData.address}
+                onChange={(e) => handleNewMeetingChange(e)}
+              />
+            </div>
           </div>
 
-          
+          <div className="row my-2">
+            <div className="col-md-4">
+              <label htmlFor="inputCity" className="form-label">
+                City
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="inputCity"
+                name="city"
+                value={meetingDetailsFormData.city}
+                onChange={(e) => handleNewMeetingChange(e)}
+              />
+            </div>
 
-          <div className="col mb-6">
-            <label htmlFor="title" className="form-label">
-              Book Title
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="titleInput"
-              name="title"
-              value={nextBookFormData.title}
-              onChange={(e) => handleNewBookChange(e)}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6">
-            <label htmlFor="locationName" className="form-label">
-              Location Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="location-name"
-              placeholder="Name of cafe, bar, park, library, etc."
-              name="locationName"
-              value={meetingDetailsFormData.locationName}
-              onChange={(e) => handleNewMeetingChange(e)}
-            />
-          </div>
+            <div className="col-md-3">
+              <label htmlFor="inputZip" className="form-label">
+                Postal Code
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="inputPostalCode"
+                name="postalCode"
+                value={meetingDetailsFormData.postalCode}
+                onChange={(e) => handleNewMeetingChange(e)}
+              />
+            </div>
 
-          <div className="col-6">
-            <label htmlFor="inputAddress" className="form-label">
-              Address
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputAddress"
-              placeholder="123 Main St"
-              name="address"
-              value={meetingDetailsFormData.address}
-              onChange={(e) => handleNewMeetingChange(e)}
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-4">
-            <label htmlFor="inputCity" className="form-label">
-              City
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputCity"
-              name="city"
-              value={meetingDetailsFormData.city}
-              onChange={(e) => handleNewMeetingChange(e)}
-            />
+            <div className="col-md-5 my-auto dropdown">
+              <label htmlFor="inputCountry" className="form-label">
+                Country
+              </label>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={handleNewMeetingChange}
+                name="country"
+                defaultValue={currentClub.next_mtg_country}
+                value={meetingDetailsFormData.country}
+              >
+                <option defaultValue></option>
+                {CountryList.map((c) => (
+                  <option className="dropdown-item" key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+                ;
+              </select>
+            </div>
           </div>
 
-          <div className="col-md-3">
-            <label htmlFor="inputZip" className="form-label">
-              Postal Code
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputPostalCode"
-              name="postalCode"
-              value={meetingDetailsFormData.postalCode}
-              onChange={(e) => handleNewMeetingChange(e)}
-            />
-          </div>
-
-          <div className="col-md-5 my-auto dropdown">
-            <label htmlFor="inputCountry" className="form-label">
-              Country
-            </label>
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              onChange={handleNewMeetingChange}
-              name="country"
-              defaultValue={currentClub.next_mtg_country}
-              value={meetingDetailsFormData.country}
-            >
-              <option defaultValue></option>
-              {CountryList.map((c) => (
-                <option className="dropdown-item" key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-              ;
-            </select>
-          </div>
-        </div>
-
-        <button type="submit" className="btn btn-outline-dark mt-3 btn-sm py-0">
-          Add New Meeting
-        </button>
-      </form>
-    </div>
+          <button
+            type="submit"
+            className="btn btn-outline-dark mt-3 btn-sm py-0"
+          >
+            Add New Meeting
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
