@@ -4,7 +4,6 @@ import ClubBookshelf from "../components/ClubBookshelf";
 import NextMeetingInfo from "../components/NextMeetingInfo";
 import MembersList from "../components/MembersList";
 import Poll from "../components/Poll";
-import Api from "../helpers/Api";
 import "./SingleClubView.scss";
 import Local from "../helpers/Local";
 
@@ -70,7 +69,6 @@ function SingleClubView(props) {
 
   return (
     <div className="SingleClubView mt-0">
-
       {userMemberAdmin ? (
         <Link
           to={`/clubs/${id}/club-admin`}
@@ -104,7 +102,6 @@ function SingleClubView(props) {
         <h2>Loading</h2>
       )}
 
-
       <div className="container singleClubContainer">
         <div className="row mt-5 d-flex justify-content-start">
           <div className="col-4 ">
@@ -114,8 +111,17 @@ function SingleClubView(props) {
                 .includes(props.user.id) ? null : currentClub.membersList
                   .length >= 5 ? (
                 <div>
-                  <p>Club is full.<br></br> Consider starting a new club instead.</p>
-                  <Link to="/clubs"><button type="button" className="btn btn-outline-dark btn-sm new-button mt-auto mb-3">Create a new club</button></Link>
+                  <p>
+                    Club is full.<br></br> Consider starting a new club instead.
+                  </p>
+                  <Link to="/clubs">
+                    <button
+                      type="button"
+                      className="btn btn-outline-dark btn-sm new-button mt-auto mb-3"
+                    >
+                      Create a new club
+                    </button>
+                  </Link>
                 </div>
               ) : (
                 <button
@@ -143,22 +149,18 @@ function SingleClubView(props) {
 
           <div className="col-8">
             <div className="row d-flex justify-content-start">
-            <NextMeetingInfo
-              clubBooks={props.clubBooks}
-              currentClub={currentClub}
-            />
+              <NextMeetingInfo
+                clubBooks={props.clubBooks}
+                currentClub={currentClub}
+              />
+            </div>
           </div>
-          </div>
-          
 
           {pollInfo && userMember ? (
-            
             <div className="col-5 col-auto">
               <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
-           
           ) : null}
-          
 
           <div className="col-4"></div>
         </div>
