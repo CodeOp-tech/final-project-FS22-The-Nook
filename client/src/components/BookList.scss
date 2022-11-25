@@ -1,3 +1,10 @@
+@use '../common' as *;
+
+.BookList{
+
+    color: $dark-green;
+    width: 100%;
+
 #book-img {
     width: 100%;
     height: 100%;
@@ -15,6 +22,7 @@
         width: 100px;
         height: 40px;
         font-size: 18px !important;
-        margin: auto;
+        margin: 0 auto 2rem;
         text-align: center;
+}
 }

@@ -187,9 +187,9 @@ function ContactView() {
                 </div>
               </div>
 
-              <div className="col-10">
+              <div className="col-12">
                 <button
-                  className="btn btn-outline-dark sendButton py-0"
+                  className=" btn btn-outline-dark sendButton py-0"
                   type="submit"
                 >
                   Send

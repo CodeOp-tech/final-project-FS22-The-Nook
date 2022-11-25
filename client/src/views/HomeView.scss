@@ -1,41 +1,62 @@
-// body {
-//   background-image: url("https://i.pinimg.com/originals/9b/ed/e2/9bede21da7861bdad0a7191e571bda68.jpg");
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
+@use '../common' as *;
 
+.homePage{
+
+  h1{
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .join-button{
+    width: 30%;
+    @include desktop{
+      width:20%
+    }
+  }
+
+.buttonArea{
 img {
-  width: 400px;
-  height: 300px;
-  margin-bottom: 50px;
+  width: 70%;
+  height: 70%;
+  margin-bottom: 3rem;
+
+  @include tablet{
+    width: 50%;
+    height: 50%;
+    }
+
+  @include desktop{
+  width: 30%;
+  height: 30%;
+  }
+  
+
 }
 
 
+h2{
+  color: $dark-green;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  margin: 0 2rem 1.5rem;
+  font-family: "'Montserrat', sans-serif"
 
-h1 {
-  margin: 20px;
-  padding-top: 20px;
-  color: rgb(170, 139, 86);
+}
+
+
 }
 
 .clubCarousel,
-.topBooks {
-  background-color: bisque;
+.topBooks,.buttonArea {
+  background-color: $beige;
+  border: 0.5rem solid $light-brown;
+  margin-top: 2rem;
 }
 
-.btn {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
 
 .buttonArea {
-  background-color: bisque;
+  background-color: $beige;
 }
 
-.btn-responsive {
-  width: 150px;
-  height: 40px;
-  font-size: 20px;
-  color: rgb(57, 81, 68);
-  border-color: rgb(57, 81, 68);
+
 }

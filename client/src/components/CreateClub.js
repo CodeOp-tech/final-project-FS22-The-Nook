@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateClub.css";
+import "./CreateClub.scss";
 import CountryList from "./DropdownCountries";
 import categoryList from "./DropdownCategoryList.js";
 import Local from "../helpers/Local";
