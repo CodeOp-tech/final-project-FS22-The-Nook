@@ -2,6 +2,19 @@
 
 .homePage{
 
+  .clubsHomeViewbtn, .booksHomeViewbtn{
+    width: 15%;
+  }
+
+  .theNookMission{
+    width: 60%;
+    margin: auto !important;
+    text-align: center;
+    padding-bottom: 1rem;
+    font-family: 'Prata', serif !important;
+    font-size: 1.5rem !important;
+  }
+
   h1{
     font-weight: bold;
     font-size: 2rem;

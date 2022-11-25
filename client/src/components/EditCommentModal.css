@@ -1,0 +1,23 @@
+.modalBtnSave{
+    font-size: 1.2rem;
+    width: 30%;
+    height: 45%;
+    font-family: 'Monserrat';
+    color: white;
+
+}
+
+.modalBtnClose{
+    font-size: 1.2rem;
+    width: 15%;
+    height: 45%;
+    font-family: 'Monserrat';
+    color: white;
+
+}
+
+.modal-title{
+    font-family: 'Monserrat';
+    font-size: 1.5rem;
+    color: black;
+}
