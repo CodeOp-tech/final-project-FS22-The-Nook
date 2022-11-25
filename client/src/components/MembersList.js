@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function MembersList(props) {
   return (
-    <div className="container border MembersList">
+    <div className="container MembersList">
       <div className="row">
         <div className="col-md-10">
           {props.currentClub.membersList.map((m) => (
