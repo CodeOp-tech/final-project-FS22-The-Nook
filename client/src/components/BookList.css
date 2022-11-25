@@ -1,0 +1,13 @@
+#book-img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    aspect-ratio: 1 / 1.5;
+    margin-top: 10px;
+
+}
+
+.book-card {
+    background-color: white;
+    border: 1px solid  #AA8B56;
+}

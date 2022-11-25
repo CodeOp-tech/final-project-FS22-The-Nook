@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import ReactStars from "react-stars";
-import "./ProfileView.css";
+import "./ProfileView.scss";
 import ViewReviewModal from "../components/ViewReviewModal";
 
 function ProfileView(props) {
@@ -42,36 +42,40 @@ function ProfileView(props) {
         </button>
 
         <div className="UserInfo">
-          <h2>Personal Info</h2>
+          <h2 className="my-3">Personal Info</h2>
 
           <ul className="list-group">
-            <li className="list-group-item">Username: {user.username}</li>
+            <li className="list-group-item mb-2">Username: {user.username}</li>
             <li className="list-group-item">Email: {user.email}</li>
           </ul>
         </div>
 
         <div className="JoinedClubs mt-5">
-          <h2 className="mb-3">Your Book Clubs</h2>
+          <h2 className="mb-5">Your Book Clubs</h2>
 
+        <div className="row px-5">
           {user.clubs.map((c) => (
-            <div className="card text-bg-dark d-inline-flex" key={c.id}>
+            <div className="col-lg-4 overlay" key={c.id}>
+              <div className="">
               <img
                 src={c.image}
-                id="header-img"
-                className="card-img mb-0"
+                id="club-img"
                 alt={c.name}
               />
-              <div className="card-img-overlay ">
+              </div>
+              <div className="cb-text-overlay ">
                 <Link to={`/clubs/${c.id}`} className="card-title" key={c.id}>
-                  <h4>{c.name}</h4>
+                  <h4 className="cb-text-bg rounded">{c.name}</h4>
                 </Link>
               </div>
+           
             </div>
           ))}
+          </div>
         </div>
 
-        <div className="FavoriteBooks mt-5">
-          <h2 className="mb-3">Your Favorite Books</h2>
+        <div className="FavoriteBooks">
+          <h2 className="mb-5">Your Favorite Books</h2>
           {user.books.map((b) =>
             b.favorite === 1 ? (
               <div key={b.author} className="d-inline-flex">
@@ -114,7 +118,7 @@ function ProfileView(props) {
         </div>
 
         <div className="ReadBooks mt-5 pb-5">
-          <h2 className="mb-3">Books You've Read</h2>
+          <h2 className="mb-5">Books You've Read</h2>
           {user.books.map((b) => (
             <div key={b.author} className="d-inline-flex">
               <div
@@ -131,15 +135,15 @@ function ProfileView(props) {
                     />
                   </div>
 
-                  <div className="card-body">
-                    <p>My rating:</p>
-                    <ReactStars
-                      count={5}
-                      size={24}
-                      value={b.rating}
-                      edit={false}
-                      color2={"#ffd700"}
-                    />
+                        <div className="card-body">
+
+                            <p>My Rating:</p>
+                            <ReactStars
+                            count={5}
+                            size={24}
+                            value={b.rating}
+                            edit={false}
+                            color2={'#ffd700'} />
 
                     <div className="card-title">
                       <Link to={`/books/all/${b.book_id}`} key={b.book_id}>
@@ -172,24 +176,22 @@ function ProfileView(props) {
 
                     <br />
 
-                    <a
-                      data-bs-toggle="modal"
-                      data-bs-target="#myModal"
-                      onClick={(e) => setBook(b)}
-                    >
-                      {" "}
-                      Edit/View Review
-                    </a>
-                  </div>
+                        <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> View My Review</a>
+                        </div>
 
-                  <ViewReviewModal id="myModal" book={book} />
-                </div>
-              </div>
+                        <ViewReviewModal id="myModal" book={book}/>
+
+
+                        
+                        </div>
+                    </div>
+                    </div>
+                ))}
             </div>
-          ))}
+         
         </div>
       </div>
-    </div>
+   
   );
 }
 

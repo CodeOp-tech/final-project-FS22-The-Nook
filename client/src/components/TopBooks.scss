@@ -2,6 +2,7 @@
 
 .bookContainer{
   padding-top: 2rem;
+  
 
   .row{
     display: inline;
@@ -15,9 +16,10 @@
       gap: 2%;
     }
   }
-  .col{
+  .col {
     margin: 0 auto;
     padding: 0 !important;
+    
     @include desktop{ 
       width: 20%
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import './BookSearchProfile.css'
 
 
 
@@ -26,11 +27,11 @@ function BookSearchProfile(props) {
 
   return (
     <div className="ClubSearch pt-2">
-        <form role="search">
+        <form role="search" className="search-form">
             <input
                 className="form-control"
                 type="search"
-                placeholder="Title"
+                placeholder="Search by Title"
                 aria-label="Title"
                 value={searchTitle}
                 onChange={(e) => setTitle(e.target.value)}
@@ -39,7 +40,7 @@ function BookSearchProfile(props) {
             <input
                 className="form-control"
                 type="search"
-                placeholder="Author"
+                placeholder="Search by Author"
                 aria-label="Author"
                 value={searchAuthor}
                 onChange={(e) => setAuthor(e.target.value)}
