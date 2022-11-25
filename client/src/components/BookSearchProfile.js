@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import './BookSearchProfile.css'
 
 
 
@@ -26,7 +27,7 @@ function BookSearchProfile(props) {
 
   return (
     <div className="ClubSearch pt-2">
-        <form role="search">
+        <form role="search" className="search-form">
             <input
                 className="form-control"
                 type="search"

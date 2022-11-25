@@ -3,10 +3,67 @@
     font-size: 18px;
 }
 
-.EditProfile .container{
+.EditProfile {
     background-color: bisque;
 margin-top: 20px;
+border: 0.5rem solid #A96D2C;
+  margin-top: 2rem;
 
+}
+
+.myClubsCards{
+    width: 35%;
+    height:10rem;
+    margin: auto;
+
+}
+
+.EditProfile .card-img{
+width: 100%;
+}
+
+.EditProfile .h5{
+    line-height: 1.7rem;
+    font-size: 0.6rem;
+}
+
+.EditClubDetails{
+      text-align: center;
+        display:flex;
+        flex-direction: column;
+        margin-top: 10px;
+        margin: auto;
+        width: 80%;
+        background-color: rgb(240, 235, 206, 0.9);
+        border-radius: 15px;
+        padding: 10px;
+        
+}
+
+.EditProfile .exit{
+    font-size: 1rem;
+    margin-bottom: 0;
+    width: 45%;
+    height: 30%;
+    margin: auto;
+    
+
+
+    
+}
+
+.EditProfile .btn-sm{
+    width: 16rem;
+    height: 2rem;
+    font-size: 1rem;
+    margin: auto;
+    text-align: center;
+}
+
+.wantMoreLabel{
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    font-family: 'Prata', serif;
 }
 
 
@@ -29,21 +86,40 @@ margin-top: 20px;
 }
 
 .EditProfile .favoritebtn {
-    vertical-align: middle;
+   
+    margin-top: 1rem;
+    
 }
 
 .EditProfile .card-body div {
     display: inline-block
 }
 
-.EditProfile .exit{
-    font-size: 0.9rem;
-    margin-bottom: 0
+
+
+#book-img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    aspect-ratio: 1 / 1.5;
+    margin:auto;
+    padding: 7px;
 }
 
-.add-button {
-    height: 40px;
-    font-size: 18px !important;
-    margin: auto;
-    text-align: center;
+
+.myBooksCard{
+    height: 5rem;
+    width: 12rem;
+    background-color: white;
+    border: 1px solid  #AA8B56;
+}
+
+.EditProfile .card-title{
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+}
+
+.EditProfile .card-text{
+    font-size: 0.8rem;
+    line-height: 1.3rem;
 }

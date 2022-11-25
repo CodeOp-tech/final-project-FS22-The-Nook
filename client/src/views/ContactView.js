@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ContactView.scss";
-import { send } from 'emailjs-com';
+import { send } from "emailjs-com";
 
 let EMPTY_CONTACT_FORM = {
   firstname: " ",

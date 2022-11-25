@@ -87,13 +87,13 @@ function SingleBookView(props) {
                     <div className="row mb-3 pt-2 box-border rounded text-start ">
                     <p><b>Username: </b>{u.username}</p>
                  
-                    <p><b>Rating: </b></p>
-                    <ReactStars 
+                    <p className="star-p">
+                    <b>Rating: </b><ReactStars 
                         count={5}
                         size={24}
                         value={u.rating}
                         edit={false}
-                        color2={'#ffd700'} />
+                        color2={'#ffd700'} /></p>
                     <p><b>Comment: </b>{u.comment}</p>
            
 
