@@ -112,8 +112,11 @@ function SingleClubView(props) {
               currentClub.membersList
                 .map((m) => m.id)
                 .includes(props.user.id) ? null : currentClub.membersList
-                  .length >= 10 ? (
-                <p>club is full</p>
+                  .length >= 5 ? (
+                <div>
+                  <p>Club is full.<br></br> Consider starting a new club instead.</p>
+                  <Link to="/clubs"><button type="button" className="btn btn-outline-dark btn-sm new-button mt-auto mb-3">Create a new club</button></Link>
+                </div>
               ) : (
                 <button
                   type="button"

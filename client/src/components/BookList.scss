@@ -1,0 +1,28 @@
+@use '../common' as *;
+
+.BookList{
+
+    color: $dark-green;
+    width: 100%;
+
+#book-img {
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    object-fit: fill;
+    aspect-ratio: 1 / 1.5;
+}
+
+.book-card {
+    background-color: white;
+    border: 1px solid  #AA8B56;
+}
+
+.book-button {
+        width: 100px;
+        height: 40px;
+        font-size: 18px !important;
+        margin: 0 auto 2rem;
+        text-align: center;
+}
+}

@@ -28,7 +28,7 @@ function ClubSearch(props) {
       <h3>Search for a club</h3>
       <form role="search">
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="search"
           placeholder="By Name"
           aria-label="Search"
@@ -37,7 +37,7 @@ function ClubSearch(props) {
         />
 
         <input
-          className="form-control"
+          className="form-control mb-2"
           type="search"
           placeholder="By Location"
           aria-label="Location"
@@ -52,7 +52,7 @@ function ClubSearch(props) {
             name="category"
             aria-label="Choose category"
             value={category}
-            onChange={(e) => e.target.value === "Choose a category" ? setCategory("") : setCategory(e.target.value)}
+            onChange={(e) => e.target.value === "By Category" ? setCategory("") : setCategory(e.target.value)}
           >
             <option defaultValue>By Category</option>
             {categoryList.map((c) => (

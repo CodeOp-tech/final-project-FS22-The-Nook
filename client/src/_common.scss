@@ -23,8 +23,18 @@ $sm-space: 10px;
     }
   }
   
-  @mixin large {
+  @mixin large{
     @media only screen and (min-width: 1200px) {
       @content;
     }
   }
+
+  $dark-brown: #54400C;
+  $dark-brown-2: #6E5624;
+  $light-brown: #A96D2C;
+  $light-brown-2: #C68744;
+  $dark-green: #104908;
+  $light-green: #2B6020;
+  $orange: #C78744;
+  $beige: #F9E5C4;
+

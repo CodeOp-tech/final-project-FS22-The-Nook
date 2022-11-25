@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CreateClub.css";
+import "./CreateClub.scss";
 import CountryList from "./DropdownCountries";
 import categoryList from "./DropdownCategoryList.js";
 import Local from "../helpers/Local";
@@ -101,7 +101,7 @@ function CreateClub(props) {
           </label>
           <input
             type="text"
-            class="form-control create-input"
+            className="form-control create-input"
             id="cityInput"
             name="city"
             placeholder="e.g. Paris"
@@ -147,7 +147,10 @@ function CreateClub(props) {
           />
         </div>
 
-        <button className="btn btn-outline-dark btn-sm create-button" type="submit">
+        <button
+          className="btn btn-outline-dark btn-sm create-button"
+          type="submit"
+        >
           Create Club
         </button>
       </form>

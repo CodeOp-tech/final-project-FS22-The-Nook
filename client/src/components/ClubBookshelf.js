@@ -26,24 +26,24 @@ function ClubBookshelf(props) {
 
   return (
     <div className="ClubBookshelf row mb-2">
-      <div className="container border me-0">
+      <div className="container me-0">
         <h2 className="mt-3 bookshelfname">Bookshelf</h2>
-        <div class="card-group">
+        <div className="card-group">
           {props.clubBooks &&
             props.clubBooks.map((b) => (
               <div key={b.id} className="col-sm-3">
-                <div class="card mx-3 h-100">
+                <div className="card mx-3 h-100">
                   <img
                     src={`${b.image}`}
                     className="card-img-top py-0 mb-0"
                     alt={`${b.title}`}
                   />
-                  <div class="card-body">
-                    <h5 class="card-title">{b.title}</h5>
-                    <h6 class="card-text">By {b.author}</h6>
+                  <div className="card-body">
+                    <h5 className="card-title">{b.title}</h5>
+                    <h6 className="card-text">By {b.author}</h6>
                   </div>
-                  <div class="card-footer">
-                    <small class="text-muted">
+                  <div className="card-footer">
+                    <small className="text-muted">
                       Discussed on:<br></br>
                       {formatDate(b.date)}
                     </small>

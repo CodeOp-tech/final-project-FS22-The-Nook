@@ -115,7 +115,8 @@ INSERT INTO users_books (user_id, book_id, rating, comment, date_read, favorite)
     (6, 4, 5, "Fascinating", "2022-10-11", 1),
     (4, 3, 3, "So-so", "2022-10-11", 0),
     (8, 1, 3, "It was tough to read but rewarding.", "2022-10-11", 0),
-    (3, 1, 2, "Not my favorite", "2022-10-11", 0);
+    (3, 1, 2, "Not my favorite", "2022-10-11", 0),
+    (9, 5, 5, "Really good, couldn't stop reading.", "2022-10-11", 1);
 
 INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_mtg_address, next_mtg_city, next_mtg_country, next_mtg_postal_code, image)
     VALUES ("International classics", "classics", "19:00:00", "Olive or Twist", "925 NW 11th Ave", "Portland", "United States", "97209", "https://static01.nyt.com/images/2022/01/16/fashion/VIRAL-LIBRARY/VIRAL-LIBRARY-articleLarge.jpg?quality=75&auto=webp&disable=upscale"),
@@ -130,14 +131,14 @@ INSERT INTO clubs (name, category, next_mtg_time, next_mtg_location_name, next_m
 
 INSERT INTO books_clubs (book_id, club_id, date)
     VALUES (12, 1, "2022-11-13"), (1, 1, "2022-10-01"), (2, 1, "2022-11-01"),
-    (12, 2, "2022-12-13"), (1, 2, "2022-10-22"), (3, 2, "2022-11-12"),
-    (1, 3, "2022-12-22"), (8, 3, "2022-10-11"), (13, 3, "2022-11-20"),
+    (12, 2, "2022-12-13"), (3, 2, "2022-11-12"),
+    (8, 3, "2022-10-11"), (13, 3, "2022-11-20"),
     (6, 4, "2022-11-30"), (11, 4, "2022-10-30"),
-    (9, 5, "2022-12-27"), (8, 5, "2022-10-28"), (12, 5, "2022-11-13"), (10, 5, "2022-11-28"),
+    (9, 5, "2022-12-27"), (8, 5, "2022-10-28"), (10, 5, "2022-11-28"),
     (10, 6, "2022-11-30"),
     (8, 7, "2022-12-21"), (4, 7, "2022-12-1"), (14, 7, "2023-1-10"),
     (7, 8, "2022-12-10"), (11, 8, "2022-11-10"),
-    (12, 9, "2022-11-13"),
+    (12, 9, "2022-11-13"), (2, 9, "2022-10-13"),
     (13, 10, "2022-12-22");
 
 INSERT INTO users_clubs (club_id, user_id, admin)
