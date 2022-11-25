@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ContactView.scss";
-import { send } from "emailjs-com";
+// import { send } from "emailjs-com";
 
 let EMPTY_CONTACT_FORM = {
   firstname: " ",
@@ -38,8 +38,8 @@ function ContactView() {
   }
 
   return (
-    <div className="container contactContainer">
-      <h2>Contact Us</h2>
+    <div className="container contactContainer mt-5">
+      <h1>Contact Us</h1>
 
       <div className="row">
         <div className="col-md contactUs">

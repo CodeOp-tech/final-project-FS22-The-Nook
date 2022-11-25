@@ -119,8 +119,8 @@ function EditProfileView(props) {
   }
 
   return (
-    <div className="EditProfile">
-      <h2 className="title">Edit Your Clubs</h2>
+    <div className="EditProfile my-5 ">
+      <h2 className="title pt-5">Edit Your Clubs</h2>
 
       <ClubSearchProfile user={user} getClubs={(e) => getClubs()} />
 
@@ -156,10 +156,14 @@ function EditProfileView(props) {
       </label>
       <br />
 
-      <h2 className="title">Edit Your Bookshelf</h2>
+      <h2 className="title mt-5">Edit Your Bookshelf</h2>
       <br />
       <div>
-        <button data-bs-toggle="modal" data-bs-target="#bookModal">
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#bookModal"
+          className="mb-2 btn btn-outline-dark btn-sm add-button mt-auto py-0"
+        >
           {" "}
           Add a New Book
         </button>
@@ -174,7 +178,7 @@ function EditProfileView(props) {
 
       {shownBooks &&
         shownBooks.map((b) => (
-          <div key={b.author} className="d-inline-flex">
+          <div key={b.author} className="d-inline-flex my-5">
             <div key={b.title} className="card me-5" style={{ width: "18rem" }}>
               <div>
                 <div>
