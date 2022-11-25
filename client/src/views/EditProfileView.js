@@ -126,25 +126,23 @@ function EditProfileView(props) {
 
       {shownClubs &&
         shownClubs.map((c) => (
-          <div key={c.name} className="d-inline-flex">
-            <div
-              key={c.category}
-              className="card me-5"
-              style={{ width: "18rem" }}
-            >
-              <div>
-                <div className="card-body">
-                  <h5 className="card-title">{c.name}</h5>
-                  <button
-                    type="button"
-                    className="btn btn-outline-dark exit"
-                    onClick={(e) => exitGroup(e)}
-                    name={c.name}
-                  >
-                    Leave club
-                  </button>
-                </div>
-              </div>
+          <div className="card text-bg-dark d-inline-flex" key={c.id}>
+            <img
+              src={c.image}
+              id="header-img"
+              className="card-img mb-0"
+              alt={c.name}
+            />
+            <div className="card-img-overlay ">
+              <h4>{c.name}</h4>
+              <button
+                type="button"
+                className="btn btn-outline-dark exit"
+                onClick={(e) => exitGroup(e)}
+                name={c.name}
+              >
+                Leave club
+              </button>
             </div>
           </div>
         ))}
