@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import './EditCommentModal.css'
 
 function EditCommentModal (props){
     let [review, setReview] = useState("");
@@ -38,8 +39,8 @@ function EditCommentModal (props){
 
             {/* <!-- Modal footer --> */}
             <div className="modal-footer">
-                <button onClick={e=> submitReview(b)}type="button" className="btn btn-primary" data-bs-dismiss="modal" >Save Changes</button>
-                <button onClick={e=> setReview("")} type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button onClick={e=> submitReview(b)}type="button" className="btn btn-primary  modalBtnSave" data-bs-dismiss="modal" >Save Changes</button>
+                <button onClick={e=> setReview("")} type="button" className="btn btn-danger modalBtnClose" data-bs-dismiss="modal">Close</button>
             </div>
 
             </div>

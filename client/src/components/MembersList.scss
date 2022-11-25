@@ -1,0 +1,26 @@
+@use '../common' as *;
+
+.MembersList{
+    display: flex;
+    flex-direction: column;
+
+    
+
+
+    .title{
+        font-weight: bold;
+    }
+
+    .btn-outline-dark{
+        border-color: $dark-green;
+        background-color: rgba(42, 97, 32, .4);
+        @include desktop{
+        margin-left: 1rem;}
+
+    }
+
+    h4{
+        color: $dark-green;
+        font-weight: bold;
+    }
+}

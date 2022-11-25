@@ -1,0 +1,26 @@
+@use '../common' as *;
+
+.NextMeetingInfo{
+
+ h2{
+    font-size: 1.8rem;
+    color: $dark-green;
+    font-weight: bold;
+    text-align: center;
+}
+.card{
+    margin: 0 auto;
+    border: 0.3rem solid $dark-brown-2;
+    width: 80%;
+
+
+    @include desktop{
+        width: 100%;
+    }
+}
+
+
+#book-cover-img{
+    border-radius: 10px;
+}
+}

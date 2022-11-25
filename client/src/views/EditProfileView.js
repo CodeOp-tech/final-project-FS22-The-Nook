@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import ReactStars from "react-stars";
 import Api from "../helpers/Api";
-import "./EditProfileView.css";
+import "./EditProfileView.scss";
 import { DateTime } from "luxon";
 import EditCommentModal from "../components/EditCommentModal";
 import ClubSearchProfile from "../components/ClubSearchProfile";
@@ -126,15 +126,17 @@ function EditProfileView(props) {
 
       {shownClubs &&
         shownClubs.map((c) => (
-          <div className="card text-bg-dark d-inline-flex" key={c.id}>
+          <div className="card text-bg-dark d-inline-flex myClubsCards mb-2 mx-3" key={c.id}>
             <img
               src={c.image}
               id="header-img"
-              className="card-img mb-0"
+              className="card-img mb-0 myClubsCards"
               alt={c.name}
             />
-            <div className="card-img-overlay ">
-              <h4>{c.name}</h4>
+            <div className="card-img-overlay">
+                <p className="EditClubDetails">
+              <h5 >{c.name}</h5>
+              
               <button
                 type="button"
                 className="btn btn-outline-dark exit"
@@ -143,17 +145,17 @@ function EditProfileView(props) {
               >
                 Leave club
               </button>
+              </p>
             </div>
           </div>
         ))}
 
       <br />
-      <label>
-        Want to find more?
-        <button>
-          <Link to="/clubs">Join more clubs</Link>
-        </button>
-      </label>
+      <h2 className="title mt-3">Want To Find More?</h2>
+      <br></br>
+        <a class="btn btn-outline-dark btn-sm" href="/clubs">Join more clubs
+        </a>
+      
       <br />
 
       <h2 className="title mt-5">Edit Your Bookshelf</h2>
@@ -162,7 +164,7 @@ function EditProfileView(props) {
         <button
           data-bs-toggle="modal"
           data-bs-target="#bookModal"
-          className="mb-2 btn btn-outline-dark btn-sm add-button mt-auto py-0"
+          className="mb-2 btn btn-outline-dark add-button btn-sm"
         >
           {" "}
           Add a New Book
@@ -174,37 +176,40 @@ function EditProfileView(props) {
         user={user}
         postBookForUser={(bookData) => postBookForUser(bookData)}
       />
+
+<h2 className="title mt-5">Search For A Book</h2>
       <BookSearchProfile user={user} getBooks={(e) => getBooks()} />
 
       {shownBooks &&
         shownBooks.map((b) => (
           <div key={b.author} className="d-inline-flex my-5">
-            <div key={b.title} className="card me-5" style={{ width: "18rem" }}>
+            <div key={b.title} className="card me-4 h-100 myBooksCard">
               <div>
                 <div>
                   <img
                     src={`${b.image}`}
                     className="card-img-top"
+                    id="book-img"
                     alt={`${b.title}`}
                   />
                 </div>
 
                 <div className="card-body">
-                  <p>My rating:</p>
+                  <h6>My rating:
                   <ReactStars
                     count={5}
                     size={24}
                     value={b.rating}
                     onChange={(r) => ratingChanged(r, b)}
                     color2={"#ffd700"}
-                  />
+                  /></h6>
 
                   <h5 className="card-title">{b.title}</h5>
 
                   <h6 className="card-text">By {b.author}</h6>
 
-                  <label>
-                    Read on:
+                  <label><h6 className="mt-2">Read on:</h6>
+                    
                     <input
                       type="date"
                       defaultValue={DateTime.fromISO(b.date_read).toFormat(
@@ -218,7 +223,7 @@ function EditProfileView(props) {
                     key={b.id}
                     id="button"
                     type="button"
-                    className="btn btn-outline-danger favoritebtn py-0"
+                    className="btn btn-outline-danger favoritebtn py-0 mb-4"
                     name={b.title}
                     onClick={(e) => toggleFavorite(b)}
                   >
@@ -231,12 +236,13 @@ function EditProfileView(props) {
 
                   <br />
                   <a
+                  className="card-title"
                     data-bs-toggle="modal"
                     data-bs-target="#myModal"
                     onClick={(e) => setBook(b)}
                   >
                     {" "}
-                    Edit/View Review
+                    Edit Review
                   </a>
                 </div>
 

@@ -24,6 +24,7 @@ body {
   margin: 0;
   width: 100%;
   padding-bottom: 1rem;
+
 }
 
 h1,
@@ -35,7 +36,7 @@ h6,
 .btn,
 a {
   color: $light-green;
-  font-family: "Safira March Personal Use";
+  font-family: 'Prata', serif;
 }
 
 p,
@@ -43,7 +44,7 @@ span,
 input,
 textarea,
 label {
-  font-family: "Montserrat";
+  font-family: "Montserrat, sans serif";
 }
 
 img {
@@ -53,10 +54,14 @@ img {
 }
 
 .btn {
-  font-size: 30px;
+  // font-size: 30px;
   margin-bottom: 20px;
   text-transform: capitalize;
   text-align: center;
+}
+
+.btn:hover{
+  background-color:rgba(57, 81, 68, .4)
 }
 
 .buttonArea {

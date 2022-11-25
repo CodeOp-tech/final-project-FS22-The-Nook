@@ -1,0 +1,137 @@
+@use '../common' as *;
+
+
+.ProfileView{
+    background-color: $beige;
+    border: 0.5rem solid $light-brown;
+    margin-top: 2rem;
+
+    .favBookCard{
+        margin:auto !important;
+        padding: 10px !important;
+        aspect-ratio: 1/1.5;
+        object-fit: fill;
+        height: 20rem;
+        width: 15rem;
+    }
+
+    .row{
+        margin: 0 2rem;
+        @include desktop{
+            margin: 0 1rem;
+        }
+    }
+
+    .card-body div {
+        display: inline-block
+    }
+    
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .FullProfile{
+        background-color: bisque;
+        margin: auto;
+    }
+    
+    .ProfileView h1{
+        font-size: 40px;
+    }
+    
+    
+    .UserInfo{
+        color: black;
+        margin: auto;
+    }
+    .list-group{
+        margin: auto;
+    }
+    
+    
+    .list-group-item{
+        width: 40%;
+        margin: auto;
+    }
+    
+    .ProfileView h2{
+        color: black;
+        text-align: center;
+    }
+    
+    .ProfileView .edit{
+        width: 4rem;
+        height: 2rem;
+        // font-size: 16rem !important;
+        margin: auto 20px 20px;
+       
+    }
+    
+    .ProfileView .clubCards{
+        display: flex;
+        margin: auto 0px 10px;
+        height: 6rem;
+        width: 18rem;
+        
+    }
+    
+    .ProfileView .card-title{
+        text-align: center;
+        margin: auto;
+        
+    }
+    
+
+    .ProfileView .heart {
+        color: red;
+        padding: 5px
+    }
+    
+    .ProfileView .heart {
+        color: red;
+        font-size: 1.3rem;
+        display: block;
+        opacity: 1
+    }
+    
+    .ProfileView .favoritebtn:disabled {
+        vertical-align: middle;
+        opacity: 1;
+        border:none;
+    }
+    
+    .ProfileView .card-body div {
+        display: inline-block
+    }
+    
+    .overlay {
+        position: relative;
+        text-align: center;
+    }
+    
+    #club-img {
+        object-fit:fill;
+        border-radius: 5%;
+        height: 10rem;
+        width: 20rem;
+    }
+    
+    .cb-text-overlay {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .cb-text-bg {
+        background-color: bisque;
+        opacity: 0.9;
+        width: 100%; 
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    
+}
+

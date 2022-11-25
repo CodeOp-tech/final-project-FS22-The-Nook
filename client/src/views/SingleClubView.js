@@ -68,7 +68,7 @@ function SingleClubView(props) {
   }
 
   return (
-    <div className="SingleClubView mt-0">
+    <div className="SingleClubView mt-5">
       {userMemberAdmin ? (
         <Link
           to={`/clubs/${id}/club-admin`}
@@ -90,10 +90,12 @@ function SingleClubView(props) {
           <div className="card-img-overlay ">
             <h1 className="card-title clubViewCard">{currentClub.name}</h1>
             <h3 className="card-subtitle lh-lg">
-              Category: {currentClub.category}
+
+              <b>Category: </b><span className="club-category">{currentClub.category}</span>
+
             </h3>
             <h3 className="card-subtitle lh-lg">
-              Location: {currentClub.next_mtg_city},{" "}
+              <b>Location:</b> {currentClub.next_mtg_city},{" "}
               {currentClub.next_mtg_country}
             </h3>
           </div>
@@ -141,7 +143,7 @@ function SingleClubView(props) {
                 JOIN
               </button>
             )}
-            <h2 className="memberList">Members</h2>
+            
             <div>
               <MembersList currentClub={currentClub} />
             </div>
@@ -157,7 +159,9 @@ function SingleClubView(props) {
           </div>
 
           {pollInfo && userMember ? (
-            <div className="col-5 col-auto">
+
+            <div className="col-10 col-auto ms-5">
+
               <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
           ) : null}

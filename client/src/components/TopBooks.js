@@ -28,16 +28,16 @@ function TopBooks(props) {
 
   return (
     <div className="bookContainer">
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+      <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3">
         {topBooks.map((b) => (
           <div className="col" key={b.book_id}>
             <div className="card bookCard">
-              <img src={b.image} className="card-img-top" alt="book 1" />
+              <img src={b.image} alt={b.title} className="card-img-top"  />
               <div className="card-body">
                 <div className="card-title">
                   {user ? (
                     <Link to={`/books/all/${b.id}`} key={b.id}>
-                      <h5>{b.title}</h5>
+                      <h6>{b.title}</h6>
                     </Link>
                   ) : (
                     <h5 className="card-title">by {b.title}</h5>
