@@ -9,7 +9,7 @@ function ClubAdminView(props) {
     <div className="ClubAdminView container  text-center">
       <div className="row ">
         <div className="AddMeetingArea col-8 mt-2 px-4 ">
-          <h2>Add your next meeting</h2>
+          <h2 className="newMeetingHeader mt-3">Add your next meeting</h2>
           <AddMeetingForm
             postBookAndPatchClubCb={props.postBookAndPatchClubCb}
             clubs={props.clubs}
@@ -17,9 +17,7 @@ function ClubAdminView(props) {
         </div>
 
         <div className="AddPollArea col-4 mt-2 px-1">
-          <h2 className="newPollHeader">
-            Set the next books for your club to vote on
-          </h2>
+          <h2 className="newPollHeader mt-3">Set the next poll books</h2>
           <PollOptionsForm addBookPollOptionsCb={props.addBookPollOptionsCb} />
         </div>
       </div>

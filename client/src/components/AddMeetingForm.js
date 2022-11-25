@@ -67,8 +67,8 @@ function AddMeetingForm(props) {
       <div className="addMeetingContainer">
         <form className=" w-100 mx-0 meetingForm" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <div className="row">
-              <div className="col-6 mb-2 mt-2">
+            <div className="row mb-2">
+              <div className="col-6 mt-2">
                 <label htmlFor="title" className="form-label">
                   Meeting Date
                 </label>
@@ -82,7 +82,7 @@ function AddMeetingForm(props) {
                 />
               </div>
 
-              <div className="col-6 mb-2 mt-2">
+              <div className="col-6 mt-2">
                 <label htmlFor="title" className="form-label">
                   Meeting Time
                 </label>
@@ -97,7 +97,7 @@ function AddMeetingForm(props) {
               </div>
             </div>
 
-            <div className="col mx-4 mb-6">
+            <div className="col mx-4 mb-2">
               <label htmlFor="title" className="form-label">
                 Book Title
               </label>
@@ -111,7 +111,7 @@ function AddMeetingForm(props) {
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row mb-2">
             <div className="col-6">
               <label htmlFor="locationName" className="form-label">
                 Location Name
@@ -143,7 +143,7 @@ function AddMeetingForm(props) {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row my-2">
             <div className="col-md-4">
               <label htmlFor="inputCity" className="form-label">
                 City

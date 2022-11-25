@@ -38,9 +38,9 @@ function PollOptionsForm(props) {
   return (
     <div className="PollOptionsForm ">
       <form className="w-100 mx-0" onSubmit={handleSubmit}>
-        <div className="row">
+        <div className="row mb-2">
           <div className="col-10 mb-6 mx-auto">
-            <label htmlFor="title" className="form-label">
+            <label htmlFor="title" className="form-label mt-2">
               Book 1
             </label>
             <input
@@ -54,7 +54,7 @@ function PollOptionsForm(props) {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row mb-2">
           <div className="col-10 mb-6 mx-auto">
             <label htmlFor="title" className="form-label">
               Book 2
