@@ -15,7 +15,7 @@ function TopBooks(props) {
   async function fetchBooksByRating() {
     let myresponse = await Api.getTopBooks();
     if (myresponse.ok) {
-      let topFour = myresponse.data.data;
+      let topFour = myresponse.data;
       setTopBooks(topFour);
       setErrorMsg("");
     } else {
@@ -32,7 +32,7 @@ function TopBooks(props) {
         {topBooks.map((b) => (
           <div className="col" key={b.book_id}>
             <div className="card bookCard">
-              <img src={b.image} alt={b.title} className="card-img-top"  />
+              <img src={b.image} alt={b.title} className="card-img-top" />
               <div className="card-body">
                 <div className="card-title">
                   {user ? (
