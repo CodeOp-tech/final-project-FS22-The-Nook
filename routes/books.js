@@ -93,7 +93,7 @@ router.get("/topbooks", async function (req, res) {
 
   try {
     let results = await db(ratingsSql);
-    res.send(results);
+    res.send(results.data);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
