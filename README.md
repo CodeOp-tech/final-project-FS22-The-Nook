@@ -45,8 +45,7 @@ React-Leaf-Polls, React Stars
 - Frontend runs on http://localhost:3000 and backend runs on http://localhost:5000
 
 ## Database Schema:
-
-![](DBSchema.png)
+![DBSchema](https://user-images.githubusercontent.com/110904967/204106052-e2153a94-b5ed-475b-b837-7fe40c2c5544.png)
 
 ## API Routes:
 
