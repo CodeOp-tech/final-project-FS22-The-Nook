@@ -29,6 +29,8 @@ function ClubBookshelf(props) {
       <div className="container me-0">
         <h2 className="mt-3 bookshelfname">Bookshelf</h2>
         <div className="card-group row-cols-1 row-cols-sm-2 row-cols-lg-3 ">
+          {!props.clubBooks.lenght ? 
+            <p className="empty-message">This club's bookshelf is empty.</p> : null}
           {props.clubBooks &&
             props.clubBooks.map((b) => (
               <div key={b.id} className=" col-xl-3 ">
@@ -46,12 +48,6 @@ function ClubBookshelf(props) {
                         <br></br> {formatDate(b.date)} </h7>
                       </div>
                   </div>
-                  {/* <div className="card-footer">
-                    <small className="text-muted">
-                      Discussed on:<br></br>
-                      {formatDate(b.date)}
-                    </small>
-                  </div> */}
                 </div>
               </div>
             ))}

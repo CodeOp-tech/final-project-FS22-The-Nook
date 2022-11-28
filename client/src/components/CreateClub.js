@@ -42,7 +42,7 @@ function CreateClub(props) {
     let responsePostClub = await Api.postClub(fields);
 
     if (responsePostClub.ok) {
-      props.getClubsCb();
+      await props.getClubsCb();
 
       let newClubId = responsePostClub.data.club_id;
       let responsePostAdminMember = await Api.postAdminMember(user, newClubId);

@@ -56,7 +56,7 @@ function SingleClubView(props) {
   }
 
   let user = JSON.parse(localStorage.getItem("user"));
-  let userMember = currentClub.membersList.some((m) => m.id === user.id);
+  let userMember = (currentClub && currentClub.membersList.some((m) => m.id === user.id));
   let userMemberAdmin = 0;
 
   let pollInfo = JSON.parse(currentClub.book_poll_info);

@@ -29,7 +29,7 @@ function NextMeetingInfo(props) {
                 </p>
               </>
             ) : (
-              <img src={props.currentClub.image} className="my-3 ms-2" />
+              <img src={props.currentClub.image} className="my-3 ms-2" id="book-cover-img"/>
             )}
           </div>
           <div className="col-md-8 m-auto">
