@@ -21,6 +21,11 @@ function SingleClubView(props) {
     setCurrentClub(props.clubs.find((c) => +c.id === +id));
   }, [id, props.clubs]);
 
+  useEffect(() => {
+    props.getClubs();
+  }, []
+  )
+
   function redirect() {
     navigate("/login");
   }
@@ -128,7 +133,7 @@ function SingleClubView(props) {
               ) : (
                 <button
                   type="button"
-                  className="btn btn-dark mb-3"
+                  className="btn btn-responsive btn-outline-dark mb-3"
                   onClick={(e) => canJoin(currentClub)}
                 >
                   JOIN

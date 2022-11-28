@@ -3,6 +3,7 @@ import "react-leaf-polls/dist/index.css";
 import React from "react";
 import { useParams } from "react-router-dom";
 import Api from "../helpers/Api";
+import "./Poll.scss"
 
 function Poll(props) {
   const { id } = useParams();
@@ -32,10 +33,9 @@ function Poll(props) {
   ];
 
   const customTheme = {
-    // textColor: "black",
     mainColor: "#00B87B",
     backgroundColor: "rgb(255,255,255)",
-    alignment: "center",
+    alignment: "center"
   };
 
   async function addVote(results) {
@@ -60,7 +60,7 @@ function Poll(props) {
   }
 
   return (
-    <div className="container border Poll">
+    <div className="container Poll">
       
       <LeafPoll
         type="multiple"

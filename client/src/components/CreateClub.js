@@ -42,7 +42,7 @@ function CreateClub(props) {
     let responsePostClub = await Api.postClub(fields);
 
     if (responsePostClub.ok) {
-      await props.getClubsCb();
+      props.getClubsCb();
 
       let newClubId = responsePostClub.data.club_id;
       let responsePostAdminMember = await Api.postAdminMember(user, newClubId);
@@ -73,7 +73,7 @@ function CreateClub(props) {
         </div>
 
         <div className="mb-3">
-          <label for="clubCategory" className="form-label">
+          <label htmlFor="clubCategory" className="form-label">
             Category
           </label>
           <select
