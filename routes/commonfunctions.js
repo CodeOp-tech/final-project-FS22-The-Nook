@@ -1,4 +1,5 @@
-let booksSql = `SELECT users.*, users.id AS user_id, ub.rating, ub.date_read, ub.favorite, ub.comment, books.*, books.id AS book_id
+let booksSql = `SELECT users.*, users.id AS user_id, ub.rating, 
+ub.date_read, ub.favorite, ub.comment, books.*, books.id AS book_id
   FROM users
   LEFT JOIN users_books AS ub ON users.id = ub.user_id
   LEFT JOIN books ON ub.book_id = books.id`;
@@ -46,12 +47,7 @@ function joinToJson(booksResult, clubsResult) {
       category: c.category,
       id: c.id,
       image: c.image,
-      // next_mtg_time: c.next_mtg_time,
-      // next_mtg_location_name: c.next_mtg_location_name,
-      // next_mtg_address: c.next_mtg_address,
-      next_mtg_city: c.next_mtg_city,
-      // next_mtg_postal_code: c.next_mtg_postal_code,
-      // next_mtg_country: next_mtg_country,
+      next_mtg_city: c.next_mtg_city
     }));
     if (!clubs[0].name) {
       clubs = [];
