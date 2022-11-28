@@ -29,7 +29,7 @@ function ClubBookshelf(props) {
       <div className="container me-0">
         <h2 className="mt-3 bookshelfname">Bookshelf</h2>
         <div className="card-group row-cols-1 row-cols-sm-2 row-cols-lg-3 ">
-          {!props.clubBooks.lenght ? 
+          {!props.clubBooks.length ? 
             <p className="empty-message">This club's bookshelf is empty.</p> : null}
           {props.clubBooks &&
             props.clubBooks.map((b) => (

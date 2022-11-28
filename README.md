@@ -2,12 +2,13 @@
 
 ## By Antonia Vladut, Lauren Goldstein, Tina Decman, Veronica Baldin
 
-============================================================
+
 ## Introduction
 
 For avid readers who want to connect with fellow bookworms, The Nook is a community hub that makes it easier to create, manage, and join a book club.
 
-============================================================
+
+
 ## Motivation and Description
 
 Many of the current reading apps such as [Goodreads](https://www.goodreads.com/) are not focused on the intimate community experience that many readers are looking for. Although some apps do offer the possibility to create clubs and message users, most of them do not set a limit on the number of members, resulting in overcroded groups and little to no engagement between members.
@@ -70,12 +71,24 @@ The Sign up view can be accessed bu clicking on the **Sign Up** button on the bo
 
 The error page will appear if the user types in an inexistent url. It enables the user to navigate to the Books view, the Clubs view, or the Home page, by clicking on the respective button.
 
-============================================================
+
 ## Tools Used
+- Github, 
+- Postman, 
+- MySQL, 
+- Node.js, 
+- Express,
+- Bootstrap, 
+- Google Books API, 
+- JWT, 
+- Bcrypt, 
+- Lodash, 
+- React-Leaf-Polls, 
+- React Stars,
+- EmailJS,  
+- Luxon.
 
-VS Code, Github, Gitbash, Postman, MySQL, HTML, CSS, JavaScript, React, Bootstrap, Node.js, Express, Lodash, JWT, Bcrypt, Canva, EmailJS, Google Jamboard, Trello, Mural, Luxon, DrawSQL, Google Books API, React-Leaf-Polls, React Stars.
 
-============================================================
 ## Prerequisites
 
 - npm
@@ -83,7 +96,7 @@ VS Code, Github, Gitbash, Postman, MySQL, HTML, CSS, JavaScript, React, Bootstra
 - mysql
 - GoogleBooksAPI Key
 
-============================================================
+
 ## Getting Started
 
 - Create a .env file:
@@ -110,17 +123,17 @@ VS Code, Github, Gitbash, Postman, MySQL, HTML, CSS, JavaScript, React, Bootstra
 
 - Frontend runs on http://localhost:3000 and backend runs on http://localhost:5000
 
-============================================================
+
 ## Database Schema
 
 ![DBSchema](https://user-images.githubusercontent.com/110904967/204106052-e2153a94-b5ed-475b-b837-7fe40c2c5544.png)
 
-============================================================
+
 ## API Routes
 
 A table explaining all API routes' design in detail can be accessed [here](https://docs.google.com/document/d/1qDGPEbRoCFpYr-UseVBFBn2ScdaWJBR-z2eMiCRtyRE/edit?usp=sharing).
 
-============================================================
+
 ## Future Features 
 Some of the features that will be implemented in the future include: 
 - A **chat** feature for each club's page;
@@ -129,7 +142,7 @@ Some of the features that will be implemented in the future include:
 - A **shop** for users' to buy the books for the next meeting;
 - Possibility to choose a club's **maximum number of users** (now by default at 5 members for all clubs).
 
-============================================================
+
 
 ## Acknowledgements
 
