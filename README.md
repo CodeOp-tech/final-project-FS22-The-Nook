@@ -2,11 +2,11 @@
 
 ## By Antonia Vladut, Lauren Goldstein, Tina Decman, Veronica Baldin
 
-
 ## Introduction
 
 For avid readers who want to connect with fellow bookworms, The Nook is a community hub that makes it easier to create, manage, and join a book club.
 
+https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4
 
 
 ## Motivation and Description
@@ -15,7 +15,6 @@ Many of the current reading apps such as [Goodreads](https://www.goodreads.com/)
 
 With out app, we wanted to provide a space for people who are passionate about reading and are either already part of an existing bookclub or want to find a group of like-minded individuals to share their passion both online and in-person. For the former, our app enables book club administrators to create a page for their existing club where members can easily vote for the next book to read, access the information about past books read in the club, and see other members' opinion about books. The latter, on the other hand, can browse through the existing book clubs to join one, or start a new one if there is none of their interest.
 
-============================================================
 ## Features and Views
 
 This app is made up of the following views: **Home - Clubs - Single Club - Club Admin - Books - Single Book - Profile - Edit Profile - Contact - Log in - Sign up - Error page**.
