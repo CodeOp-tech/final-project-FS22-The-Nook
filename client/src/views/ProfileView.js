@@ -84,7 +84,7 @@ function ProfileView(props) {
                     <div>
                       <img
                         src={`${b.image}`}
-                        className="card-img-top"
+                        className="card-img-top favBookCard"
                         alt={`${b.title}`}
                       />
                     </div>
@@ -130,7 +130,7 @@ function ProfileView(props) {
                   <div>
                     <img
                       src={`${b.image}`}
-                      className="card-img-top"
+                      className="card-img-top favBookCard"
                       alt={`${b.title}`}
                     />
                   </div>
