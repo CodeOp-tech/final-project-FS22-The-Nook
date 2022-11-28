@@ -33,7 +33,7 @@ function NextMeetingInfo(props) {
             )}
           </div>
           <div className="col-md-8 m-auto">
-            {props.currentClub && props.clubBooks.length ? (
+            {props.clubBooks.length ? (
               <div className="card-body  ms-3 ">
                 <div className="card-text text-center text-md-left meetingText">
                   <h5>
