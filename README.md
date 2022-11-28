@@ -2,10 +2,15 @@
 
 ## By Antonia Vladut, Lauren Goldstein, Tina Decman, Veronica Baldin
 
+
 ============================================================
 ## Introduction
 
 For avid readers who want to connect with fellow bookworms, The Nook is a community hub that makes it easier to create, manage, and join a book club.
+
+
+https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4
+
 
 ============================================================
 ## Motivation and Description
