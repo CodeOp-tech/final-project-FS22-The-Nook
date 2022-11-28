@@ -2,8 +2,6 @@
 
 ## By Antonia Vladut, Lauren Goldstein, Tina Decman, Veronica Baldin
 
-
-============================================================
 ## Introduction
 
 For avid readers who want to connect with fellow bookworms, The Nook is a community hub that makes it easier to create, manage, and join a book club.
@@ -11,15 +9,12 @@ For avid readers who want to connect with fellow bookworms, The Nook is a commun
 
 https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4
 
-
-============================================================
 ## Motivation and Description
 
 Many of the current reading apps such as [Goodreads](https://www.goodreads.com/) are not focused on the intimate community experience that many readers are looking for. Although some apps do offer the possibility to create clubs and message users, most of them do not set a limit on the number of members, resulting in overcroded groups and little to no engagement between members.
 
 With out app, we wanted to provide a space for people who are passionate about reading and are either already part of an existing bookclub or want to find a group of like-minded individuals to share their passion both online and in-person. For the former, our app enables book club administrators to create a page for their existing club where members can easily vote for the next book to read, access the information about past books read in the club, and see other members' opinion about books. The latter, on the other hand, can browse through the existing book clubs to join one, or start a new one if there is none of their interest.
 
-============================================================
 ## Features and Views
 
 This app is made up of the following views: **Home - Clubs - Single Club - Club Admin - Books - Single Book - Profile - Edit Profile - Contact - Log in - Sign up - Error page**.
@@ -75,12 +70,10 @@ The Sign up view can be accessed bu clicking on the **Sign Up** button on the bo
 
 The error page will appear if the user types in an inexistent url. It enables the user to navigate to the Books view, the Clubs view, or the Home page, by clicking on the respective button.
 
-============================================================
 ## Tools Used
 
 VS Code, Github, Gitbash, Postman, MySQL, HTML, CSS, JavaScript, React, Bootstrap, Node.js, Express, Lodash, JWT, Bcrypt, Canva, EmailJS, Google Jamboard, Trello, Mural, Luxon, DrawSQL, Google Books API, React-Leaf-Polls, React Stars.
 
-============================================================
 ## Prerequisites
 
 - npm
@@ -88,7 +81,7 @@ VS Code, Github, Gitbash, Postman, MySQL, HTML, CSS, JavaScript, React, Bootstra
 - mysql
 - GoogleBooksAPI Key
 
-============================================================
+
 ## Getting Started
 
 - Create a .env file:
@@ -115,17 +108,16 @@ VS Code, Github, Gitbash, Postman, MySQL, HTML, CSS, JavaScript, React, Bootstra
 
 - Frontend runs on http://localhost:3000 and backend runs on http://localhost:5000
 
-============================================================
+
 ## Database Schema
 
 ![DBSchema](https://user-images.githubusercontent.com/110904967/204106052-e2153a94-b5ed-475b-b837-7fe40c2c5544.png)
 
-============================================================
 ## API Routes
 
 A table explaining all API routes' design in detail can be accessed [here](https://docs.google.com/document/d/1qDGPEbRoCFpYr-UseVBFBn2ScdaWJBR-z2eMiCRtyRE/edit?usp=sharing).
 
-============================================================
+
 ## Future Features 
 Some of the features that will be implemented in the future include: 
 - A **chat** feature for each club's page;
@@ -133,8 +125,6 @@ Some of the features that will be implemented in the future include:
 - A **map** to show the club's next meeting location;
 - A **shop** for users' to buy the books for the next meeting;
 - Possibility to choose a club's **maximum number of users** (now by default at 5 members for all clubs).
-
-============================================================
 
 ## Acknowledgements
 
