@@ -45,11 +45,10 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-<br>
 
 
 ## Introduction
-# 
+
 
 For avid readers who want to connect with fellow bookworms, **The Nook** is a community hub that makes it easier to create, manage, and join a book club.
 
@@ -63,7 +62,6 @@ For avid readers who want to connect with fellow bookworms, **The Nook** is a co
 
 
 ## Motivation
-#
 
 Many of the current reading apps (such as [Goodreads](https://www.goodreads.com/)) are not focused on the intimate community experience that many readers are looking for. Although some apps do offer the possibility to create clubs and message users, most of them do not set a limit on the number of members, resulting in overcrowded groups, and little to no engagement between members.
 
@@ -78,7 +76,7 @@ To achieve the former, our app enables book club administrators to create a page
 
 
 ## Features & Views
-#
+
 
 This app is made up of the following views: **Home - Clubs - Single Club - Club Admin - Books - Single Book - Profile - Edit Profile - Contact - Log In - Sign Up - Error Page**.
 
@@ -153,7 +151,7 @@ The **Error** page will appear if the user types in an inexistent URL. It contai
 
 
 ## Tools Used
-# 
+
 
 * VS Code
 * Github
@@ -186,7 +184,7 @@ The **Error** page will appear if the user types in an inexistent URL. It contai
 
 
 ## Getting Started
-# 
+
 
 
 ### Prerequisites
@@ -195,7 +193,6 @@ The **Error** page will appear if the user types in an inexistent URL. It contai
 - mySQL
 - GoogleBooksAPI Key
 
-<br>
 
 ### Installation
 
@@ -241,7 +238,7 @@ npm start
 
 
 ## Database Schema
-# 
+
 
 ![DBSchema](https://user-images.githubusercontent.com/110904967/204106052-e2153a94-b5ed-475b-b837-7fe40c2c5544.png)
 
@@ -249,7 +246,7 @@ npm start
 
 
 ## API Routes
-# 
+
 
 A table explaining all API routes' design in detail can be accessed [here](https://docs.google.com/document/d/1qDGPEbRoCFpYr-UseVBFBn2ScdaWJBR-z2eMiCRtyRE/edit?usp=sharing).
 
@@ -258,7 +255,7 @@ A table explaining all API routes' design in detail can be accessed [here](https
 
 
 ## Future Features 
-#
+
 Some of the features that will be implemented in the future include: 
 - A **chat** feature for each club's page;
 - A **calendar** showing next and past meeting's of a club;
@@ -266,7 +263,6 @@ Some of the features that will be implemented in the future include:
 - A **shop** for users' to buy the books for the next meeting;
 - Possibility to choose a club's **maximum number of users** (now by default at 5 members for all clubs).
 
-<br>
 
 ### Instructions to add features:
 1. Fork the Project
@@ -280,7 +276,7 @@ Some of the features that will be implemented in the future include:
 
 
 ## Contact
-#
+
 
 Antonia Vladut - [LinkedIn](https://www.linkedin.com/in/antoniavladut/) 
 
@@ -294,14 +290,13 @@ Veronica Baldin - [LinkedIn](https://www.linkedin.com/in/veronica-baldin/)
 
 
 ## Acknowledgements
-#
+
 
 * Instructor [Jim Rudolf](https://github.com/jbrcodes)
 * TA [Lucie Baborová](https://github.com/lucieBBR)
 * TA [Maria Llaverias Pugliese](https://github.com/mariallaverias)
 * TA [Pia Prozesky](https://github.com/piaprozesky)
 
-<br>
 
 ### Thank you for all your help!<br>
 
