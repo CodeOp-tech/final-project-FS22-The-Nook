@@ -8,7 +8,7 @@
    <a href="https://github.com/CodeOp-tech/FS22_Team1">**Explore the docs »**</a>
     <br />
     <br />
-    <a href="https://github.com/antoniavladut/MVP-Skin-Saver">View Demo</a>
+    <a href="https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4">View Demo</a>
     ·
     <a href="https://github.com/CodeOp-tech/FS22_Team1/issues">Report Bug</a>
     ·
@@ -47,22 +47,23 @@
 </details>
 <br>
 
-# 
 
 ## Introduction
+# 
 
 For avid readers who want to connect with fellow bookworms, **The Nook** is a community hub that makes it easier to create, manage, and join a book club.
 
 <br>
-https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4
+<video src="https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4"></video>
 
 <br>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#
+
 
 ## Motivation
+#
 
 Many of the current reading apps (such as [Goodreads](https://www.goodreads.com/)) are not focused on the intimate community experience that many readers are looking for. Although some apps do offer the possibility to create clubs and message users, most of them do not set a limit on the number of members, resulting in overcrowded groups, and little to no engagement between members.
 
@@ -74,9 +75,10 @@ To achieve the former, our app enables book club administrators to create a page
 <br>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Motivation and Description
+
 
 ## Features & Views
+#
 
 This app is made up of the following views: **Home - Clubs - Single Club - Club Admin - Books - Single Book - Profile - Edit Profile - Contact - Log In - Sign Up - Error Page**.
 
@@ -149,8 +151,9 @@ The **Error** page will appear if the user types in an inexistent URL. It contai
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# 
+
 ## Tools Used
+# 
 
 * VS Code
 * Github
@@ -180,10 +183,11 @@ The **Error** page will appear if the user types in an inexistent URL. It contai
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# 
+
 
 ## Getting Started
-<br>
+# 
+
 
 ### Prerequisites
 - npm
@@ -235,25 +239,26 @@ npm start
 
  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# 
 
 ## Database Schema
+# 
 
 ![DBSchema](https://user-images.githubusercontent.com/110904967/204106052-e2153a94-b5ed-475b-b837-7fe40c2c5544.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# 
 
 ## API Routes
+# 
 
 A table explaining all API routes' design in detail can be accessed [here](https://docs.google.com/document/d/1qDGPEbRoCFpYr-UseVBFBn2ScdaWJBR-z2eMiCRtyRE/edit?usp=sharing).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#
+
 
 ## Future Features 
+#
 Some of the features that will be implemented in the future include: 
 - A **chat** feature for each club's page;
 - A **calendar** showing next and past meeting's of a club;
@@ -272,9 +277,10 @@ Some of the features that will be implemented in the future include:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#
+
 
 ## Contact
+#
 
 Antonia Vladut - [LinkedIn](https://www.linkedin.com/in/antoniavladut/) 
 
@@ -286,9 +292,9 @@ Veronica Baldin - [LinkedIn](https://www.linkedin.com/in/veronica-baldin/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-#
 
 ## Acknowledgements
+#
 
 * Instructor [Jim Rudolf](https://github.com/jbrcodes)
 * TA [Lucie Baborová](https://github.com/lucieBBR)
