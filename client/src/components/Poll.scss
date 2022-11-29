@@ -1,0 +1,16 @@
+@use '../common' as *;
+
+.Poll{
+
+    border: 0.2rem solid $dark-brown;
+    border-radius: 4px;
+
+  h1{
+    font-weight: bold;
+  }
+
+  div{
+    text-align: left;
+    width: 100%;
+  }
+}

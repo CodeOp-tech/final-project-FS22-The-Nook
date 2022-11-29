@@ -1,5 +1,5 @@
 import React from 'react';
-import './ErrorView.css'
+import './ErrorView.scss'
 
 
 function ErrorView(props) {

@@ -1,5 +1,9 @@
+@use '../common' as *;
+
 .ErrorView{
-background-color: bisque;
+background-color: $beige;
+border: 0.5rem solid $light-brown;
+margin-top: 2rem;
 }
 
 .errorIcon{

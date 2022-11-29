@@ -53,6 +53,11 @@
 
 For avid readers who want to connect with fellow bookworms, **The Nook** is a community hub that makes it easier to create, manage, and join a book club.
 
+<br>
+https://user-images.githubusercontent.com/113427751/204394477-eb817b0f-6112-4ece-b19b-577d740a6fe0.mp4
+
+<br>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 #
@@ -65,9 +70,11 @@ Many of the current reading apps (such as [Goodreads](https://www.goodreads.com/
 To achieve the former, our app enables book club administrators to create a page for their existing club where members can easily vote for the next book to read, access the information about past books read in the club, and see other members' opinion about books.
 <br> The latter, on the other hand, can browse through the existing book clubs to join one, or start a new one if there is none of their interest.
 
+
+<br>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# 
+## Motivation and Description
 
 ## Features & Views
 
