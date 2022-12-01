@@ -29,11 +29,12 @@ function ClubBookshelf(props) {
       <div className="container me-0">
         <h2 className="mt-3 bookshelfname">Bookshelf</h2>
         <div className="card-group row-cols-1 row-cols-sm-2 row-cols-lg-3 ">
-          {!props.clubBooks.lenght ? 
-            <p className="empty-message">This club's bookshelf is empty.</p> : null}
+          {!props.clubBooks.length ? (
+            <p className="empty-message">This club's bookshelf is empty.</p>
+          ) : null}
           {props.clubBooks &&
             props.clubBooks.map((b) => (
-              <div key={b.id} className=" col-xl-3 ">
+              <div key={b.id} className=" col-xl-3 mb-3">
                 <div className="card mx-3 h-100">
                   <img
                     src={`${b.image}`}
@@ -44,9 +45,11 @@ function ClubBookshelf(props) {
                     <h5 className="card-title">{b.title}</h5>
                     <div className="card-text">
                       <h6>By {b.author}</h6>
-                      <h7>Discussed on:
-                        <br></br> {formatDate(b.date)} </h7>
-                      </div>
+                      <h7>
+                        Discussed on:
+                        <br></br> {formatDate(b.date)}{" "}
+                      </h7>
+                    </div>
                   </div>
                 </div>
               </div>

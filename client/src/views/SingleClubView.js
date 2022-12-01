@@ -23,8 +23,7 @@ function SingleClubView(props) {
 
   useEffect(() => {
     props.getClubs();
-  }, []
-  )
+  }, []);
 
   function redirect() {
     navigate("/login");
@@ -61,7 +60,8 @@ function SingleClubView(props) {
   }
 
   let user = JSON.parse(localStorage.getItem("user"));
-  let userMember = (currentClub && currentClub.membersList.some((m) => m.id === user.id));
+  let userMember =
+    currentClub && currentClub.membersList.some((m) => m.id === user.id);
   let userMemberAdmin = 0;
 
   let pollInfo = JSON.parse(currentClub.book_poll_info);
@@ -95,9 +95,8 @@ function SingleClubView(props) {
           <div className="card-img-overlay ">
             <h1 className="card-title clubViewCard">{currentClub.name}</h1>
             <h3 className="card-subtitle lh-lg">
-
-              <b>Category: </b><span className="club-category">{currentClub.category}</span>
-
+              <b>Category: </b>
+              <span className="club-category">{currentClub.category}</span>
             </h3>
             <h3 className="card-subtitle lh-lg">
               <b>Location:</b> {currentClub.next_mtg_city},{" "}
@@ -148,7 +147,7 @@ function SingleClubView(props) {
                 JOIN
               </button>
             )}
-            
+
             <div>
               <MembersList currentClub={currentClub} />
             </div>
@@ -164,16 +163,14 @@ function SingleClubView(props) {
           </div>
 
           {pollInfo && userMember ? (
-
-            <div className="col-10 col-auto ms-5">
-
+            <div className="col-10 col-auto mx-auto">
               <Poll currentClub={currentClub} setCurrentClub={setCurrentClub} />
             </div>
           ) : null}
 
           <div className="col-4"></div>
         </div>
-        <div className="row mt-3">
+        <div className="row">
           <div className="col">
             <ClubBookshelf
               clubBooks={props.clubBooks}
