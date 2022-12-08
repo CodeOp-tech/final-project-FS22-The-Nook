@@ -1,4 +1,4 @@
 {
-    "editor.fontLigatures": false,
-    "editor.fontFamily": " Consolas, 'Courier New', monospace"
+  "editor.fontLigatures": false,
+  "editor.fontFamily": "Menlo, 'Courier New', monospace"
 }
