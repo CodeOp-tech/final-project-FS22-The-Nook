@@ -126,7 +126,10 @@ function EditProfileView(props) {
 
       {shownClubs &&
         shownClubs.map((c) => (
-          <div className="card text-bg-dark d-inline-flex myClubsCards mb-2 mx-3" key={c.id}>
+          <div
+            className="card text-bg-dark d-inline-flex myClubsCards mb-2 mx-3"
+            key={c.id}
+          >
             <img
               src={c.image}
               id="header-img"
@@ -134,17 +137,17 @@ function EditProfileView(props) {
               alt={c.name}
             />
             <div className="card-img-overlay">
-                <p className="EditClubDetails">
-              <h5 >{c.name}</h5>
-              
-              <button
-                type="button"
-                className="btn btn-outline-dark exit"
-                onClick={(e) => exitGroup(e)}
-                name={c.name}
-              >
-                Leave club
-              </button>
+              <p className="EditClubDetails">
+                <h5>{c.name}</h5>
+
+                <button
+                  type="button"
+                  className="btn btn-outline-dark exit"
+                  onClick={(e) => exitGroup(e)}
+                  name={c.name}
+                >
+                  Leave club
+                </button>
               </p>
             </div>
           </div>
@@ -153,9 +156,10 @@ function EditProfileView(props) {
       <br />
       <h2 className="title mt-3">Want To Find More?</h2>
       <br></br>
-        <a class="btn btn-outline-dark btn-sm" href="/clubs">Join more clubs
-        </a>
-      
+      <a className="btn btn-outline-dark btn-sm" href="/clubs">
+        Join more clubs
+      </a>
+
       <br />
 
       <h2 className="title mt-5">Edit Your Bookshelf</h2>
@@ -177,7 +181,7 @@ function EditProfileView(props) {
         postBookForUser={(bookData) => postBookForUser(bookData)}
       />
 
-<h2 className="title mt-5">Search For A Book</h2>
+      <h2 className="title mt-5">Search For A Book</h2>
       <BookSearchProfile user={user} getBooks={(e) => getBooks()} />
 
       {shownBooks &&
@@ -195,21 +199,24 @@ function EditProfileView(props) {
                 </div>
 
                 <div className="card-body">
-                  <h6>My rating:
-                  <ReactStars
-                    count={5}
-                    size={24}
-                    value={b.rating}
-                    onChange={(r) => ratingChanged(r, b)}
-                    color2={"#ffd700"}
-                  /></h6>
+                  <h6>
+                    My rating:
+                    <ReactStars
+                      count={5}
+                      size={24}
+                      value={b.rating}
+                      onChange={(r) => ratingChanged(r, b)}
+                      color2={"#ffd700"}
+                    />
+                  </h6>
 
                   <h5 className="card-title">{b.title}</h5>
 
                   <h6 className="card-text">By {b.author}</h6>
 
-                  <label><h6 className="mt-2">Read on:</h6>
-                    
+                  <label>
+                    <h6 className="mt-2">Read on:</h6>
+
                     <input
                       type="date"
                       defaultValue={DateTime.fromISO(b.date_read).toFormat(
@@ -236,7 +243,7 @@ function EditProfileView(props) {
 
                   <br />
                   <a
-                  className="card-title"
+                    className="card-title"
                     data-bs-toggle="modal"
                     data-bs-target="#myModal"
                     onClick={(e) => setBook(b)}
