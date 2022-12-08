@@ -14,8 +14,6 @@ function ProfileView(props) {
 
   let user = props.user;
 
-  console.log("user", user);
-
   function handleClick() {
     navigate(`/users/${userId}/edit`);
   }
@@ -53,24 +51,19 @@ function ProfileView(props) {
         <div className="JoinedClubs mt-5">
           <h2 className="mb-5">Your Book Clubs</h2>
 
-        <div className="row px-5">
-          {user.clubs.map((c) => (
-            <div className="col-lg-4 overlay" key={c.id}>
-              <div className="">
-              <img
-                src={c.image}
-                id="club-img"
-                alt={c.name}
-              />
+          <div className="row px-5">
+            {user.clubs.map((c) => (
+              <div className="col-lg-4 overlay" key={c.id}>
+                <div className="">
+                  <img src={c.image} id="club-img" alt={c.name} />
+                </div>
+                <div className="cb-text-overlay ">
+                  <Link to={`/clubs/${c.id}`} className="card-title" key={c.id}>
+                    <h4 className="cb-text-bg rounded">{c.name}</h4>
+                  </Link>
+                </div>
               </div>
-              <div className="cb-text-overlay ">
-                <Link to={`/clubs/${c.id}`} className="card-title" key={c.id}>
-                  <h4 className="cb-text-bg rounded">{c.name}</h4>
-                </Link>
-              </div>
-           
-            </div>
-          ))}
+            ))}
           </div>
         </div>
 
@@ -135,15 +128,15 @@ function ProfileView(props) {
                     />
                   </div>
 
-                        <div className="card-body">
-
-                            <p>My Rating:</p>
-                            <ReactStars
-                            count={5}
-                            size={24}
-                            value={b.rating}
-                            edit={false}
-                            color2={'#ffd700'} />
+                  <div className="card-body">
+                    <p>My Rating:</p>
+                    <ReactStars
+                      count={5}
+                      size={24}
+                      value={b.rating}
+                      edit={false}
+                      color2={"#ffd700"}
+                    />
 
                     <div className="card-title">
                       <Link to={`/books/all/${b.book_id}`} key={b.book_id}>
@@ -176,22 +169,24 @@ function ProfileView(props) {
 
                     <br />
 
-                        <a data-bs-toggle="modal" data-bs-target="#myModal"  onClick={e => setBook(b)}> View My Review</a>
-                        </div>
+                    <a
+                      data-bs-toggle="modal"
+                      data-bs-target="#myModal"
+                      onClick={(e) => setBook(b)}
+                    >
+                      {" "}
+                      View My Review
+                    </a>
+                  </div>
 
-                        <ViewReviewModal id="myModal" book={book}/>
-
-
-                        
-                        </div>
-                    </div>
-                    </div>
-                ))}
+                  <ViewReviewModal id="myModal" book={book} />
+                </div>
+              </div>
             </div>
-         
+          ))}
         </div>
       </div>
-   
+    </div>
   );
 }
 
