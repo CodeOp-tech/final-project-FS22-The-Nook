@@ -45,10 +45,10 @@ function ClubBookshelf(props) {
                     <h5 className="card-title">{b.title}</h5>
                     <div className="card-text">
                       <h6>By {b.author}</h6>
-                      <h7>
+                      <h6>
                         Discussed on:
                         <br></br> {formatDate(b.date)}{" "}
-                      </h7>
+                      </h6>
                     </div>
                   </div>
                 </div>

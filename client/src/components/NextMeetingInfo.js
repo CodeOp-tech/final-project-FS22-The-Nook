@@ -6,9 +6,7 @@ function NextMeetingInfo(props) {
     <div className="NextMeetingInfo">
       <h2 className="">Next Meeting</h2>
 
-
       <div className="card  mb-3" style={{ maxWidth: "550px" }}>
-        
         <div className="row g-0">
           <div className="col-xl-4">
             {props.clubBooks.length ? (
@@ -19,17 +17,21 @@ function NextMeetingInfo(props) {
                   className="my-3 ms-2"
                   id="book-cover-img"
                 />
-                <p className="card-text">
+                <div className="card-text">
                   <small className="text-muted">
                     <h5>{props.clubBooks[props.clubBooks.length - 1].title}</h5>
                     <h6>
                       {props.clubBooks[props.clubBooks.length - 1].author}
                     </h6>
                   </small>
-                </p>
+                </div>
               </>
             ) : (
-              <img src={props.currentClub.image} className="my-3 ms-2" id="book-cover-img"/>
+              <img
+                src={props.currentClub.image}
+                className="my-3 ms-2"
+                id="book-cover-img"
+              />
             )}
           </div>
           <div className="col-md-8 m-auto">
